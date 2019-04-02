@@ -1,12 +1,12 @@
 # Desafio BTG [iOS]
 
-Seja bem-vindo, este é o seu primeiro passo para fazer parte do time de desenvolvimento do maior banco de investimentos da america latina. 
+Seja bem-vindo! Este é o seu primeiro passo para fazer parte do time de desenvolvimento do maior banco de investimentos da América Latina. 
 
 #### LEIA AS INSTRUÇÕES POR COMPLETO ANTES DE COMEÇAR
 
 O Desafio consiste no desenvolvimento de um app bem simples que consome a [API](https://developers.themoviedb.org/3/getting-started/introduction) do [TheMovieDB](https://www.themoviedb.org/?language=en).
 
-Você não precisa se preocupar tanto com o design, este não é o objetivo do desafio, mas tenha em mente que seu código e app serão avaliados em todos os aspectos, então cada detalhe conta. Faça disso uma oportunidade pra mostrar todo o seu conhecimento.
+Você não precisa se preocupar tanto com o design. Esse não é o objetivo do desafio. Tenha em mente que seu código e app serão avaliados em todos os aspectos, então cada detalhe conta. Faça disso uma oportunidade pra mostrar todo o seu conhecimento.
 
 O único pré requisito é que o app seja feito em Swift, mas atente-se aos seguintes pontos:
 * Prefere-se a utilização de ferramentas nativas;
@@ -32,7 +32,7 @@ O único pré requisito é que o app seja feito em Swift, mas atente-se aos segu
 	* Sinopse;
 	* Nota do filme;
 	* E os gêneros por extenso.
-* É necessário fazer tratamento de error e dos fluxos de exceção, como busca vazia, carregando e outros error que possam ocorrer.
+* É necessário fazer tratamento de erros e dos fluxos de exceção, como busca vazia, carregando e outros erros que possam ocorrer.
   
 ### Opcionais:
 #### Não necessário, porém contam pontos.
