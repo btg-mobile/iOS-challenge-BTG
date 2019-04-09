@@ -11,6 +11,8 @@ class MovieListViewController: UITableViewController {
     
     var tableData: [Movie]?
     
+    let searchController = UISearchController(searchResultsController: nil)
+    var filteredMovies = [Movie]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +22,21 @@ class MovieListViewController: UITableViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(UINib(nibName: "MovieListCell", bundle: nil), forCellReuseIdentifier: "MovieListCell")
+        
+        //Setup the Search Controller
+        searchController.searchResultsUpdater = self
+        if #available(iOS 9.1, *) {
+            searchController.obscuresBackgroundDuringPresentation = false
+        } else {
+            // Fallback on earlier versions
+        }
+        searchController.searchBar.placeholder = "Search Movie"
+        if #available(iOS 11.0, *) {
+            navigationItem.searchController = searchController
+        } else {
+            // Fallback on earlier versions
+        }
+        definesPresentationContext = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -31,6 +48,23 @@ class MovieListViewController: UITableViewController {
         // TODO: error handler and alerts / retry
     }
     
+    func searchBarIsEmpty() -> Bool {
+        // Returns true if the text is empty or nil
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func filterContentForSearchText (_ searchText: String, scope: String = "All") {
+        filteredMovies = (tableData?.filter({ (movie: Movie) -> Bool in
+            return movie.title.lowercased().contains(searchText.lowercased())
+        }))!
+        
+        tableView.reloadData()
+        
+    }
+    
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
+    }
     
     // MARK: - UITableViewDelegate Methods
     
@@ -48,6 +82,18 @@ class MovieListViewController: UITableViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+      
+        if isFiltering() {
+            if let index = self.tableView.indexPathForSelectedRow?.row {
+                let movie = self.filteredMovies[index]
+                if let destination = segue.destination as? MovieDetailView {
+                    destination.setMovie(movie: movie)
+                }
+            }
+            return
+        }
+
+
         if let index = self.tableView.indexPathForSelectedRow?.row,
             let movie = self.tableData?[index]
         {
@@ -55,6 +101,8 @@ class MovieListViewController: UITableViewController {
                 destination.setMovie(movie: movie)
             }
         }
+
+        
     }
     
     
@@ -65,20 +113,38 @@ class MovieListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering() {
+            return filteredMovies.count
+        }
+        
         return self.tableData?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MovieListCell = tableView.dequeueReusableCell(withIdentifier: "MovieListCell", for: indexPath) as! MovieListCell
         
-        if let movie = tableData?[indexPath.row] {
-            cell.titleLabel.text = movie.title
-            cell.dateLabel.text = movie.localizedReleaseDate
-            cell.genreLabel.text = movie.genresString
+        if isFiltering() {
+            let movieFiltered = filteredMovies[indexPath.row]
+            cell.titleLabel.text = movieFiltered.title
+            cell.dateLabel.text = movieFiltered.localizedReleaseDate
+            cell.genreLabel.text = movieFiltered.genresString
             
             cell.coverImageView.image = nil
-            if let imageURL = MovieService.smallCoverUrl(movie: movie) {
+            if let imageURL = MovieService.smallCoverUrl(movie: movieFiltered) {
                 cell.coverImageView.load(url: imageURL)
+            }
+            
+        } else {
+        
+            if let movie = tableData?[indexPath.row] {
+                cell.titleLabel.text = movie.title
+                cell.dateLabel.text = movie.localizedReleaseDate
+                cell.genreLabel.text = movie.genresString
+                
+                cell.coverImageView.image = nil
+                if let imageURL = MovieService.smallCoverUrl(movie: movie) {
+                    cell.coverImageView.load(url: imageURL)
+                }
             }
         }
         
@@ -90,6 +156,14 @@ class MovieListViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+}
+
+extension MovieListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
     
 }
 
