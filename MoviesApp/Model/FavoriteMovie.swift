@@ -1,12 +1,12 @@
 
 import Foundation
 
-enum MovieKey: String, CodingKey {
+enum FavoriteMovieKey: String, CodingKey {
     case id = "id"
     case title = "title"
 }
 
-struct Movie: Codable  {
+struct FavoriteMovie: Codable  {
     
     var id:Int
     var title: String
@@ -30,8 +30,8 @@ struct Movie: Codable  {
     }
     
     var localizedReleaseDate: String {
-        // TODO: format date 
-    
+        // TODO: format date
+        
         return self.release_date
         
     }

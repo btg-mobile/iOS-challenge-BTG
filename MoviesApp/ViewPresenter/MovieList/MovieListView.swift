@@ -1,5 +1,6 @@
 
 import UIKit
+import Disk
 
 protocol MovieListView: NSObjectProtocol {
     func finishLoading(movies: [Movie])
@@ -13,6 +14,8 @@ class MovieListViewController: UITableViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     var filteredMovies = [Movie]()
+    //var retrievedFavorites: [FavoriteMovie]?
+    var retrievedFavorites: [Movie]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +45,26 @@ class MovieListViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.presenter.loadGenreAndMovies()
+        if navigationController?.tabBarItem.tag == 0 {
+            self.presenter.loadGenreAndMovies()
+        } else {
+            debugPrint("Loading favorite movies")
+
+            do {
+                
+                retrievedFavorites = try Disk.retrieve("favorite.json", from: .applicationSupport, as: [Movie].self)
+                if let retrievedMovies = retrievedFavorites {
+                    finishLoading(movies: retrievedMovies)
+                }
+                dump(retrievedFavorites)
+                
+                
+            } catch {
+                print(error.localizedDescription)
+            }
+
+        }
+        
         
         // TODO: add loading view
         // TODO: error handler and alerts / retry
@@ -54,9 +76,15 @@ class MovieListViewController: UITableViewController {
     }
     
     func filterContentForSearchText (_ searchText: String, scope: String = "All") {
-        filteredMovies = (tableData?.filter({ (movie: Movie) -> Bool in
-            return movie.title.lowercased().contains(searchText.lowercased())
-        }))!
+        if navigationController?.tabBarItem.tag == 0 {
+            filteredMovies = (tableData?.filter({ (movie: Movie) -> Bool in
+                return movie.title.lowercased().contains(searchText.lowercased())
+            }))!
+        } else {
+            filteredMovies = (retrievedFavorites?.filter({ (movie: Movie) -> Bool in
+                return movie.title.lowercased().contains(searchText.lowercased())
+            }))!
+        }
         
         tableView.reloadData()
         
@@ -93,9 +121,8 @@ class MovieListViewController: UITableViewController {
             return
         }
 
-
         if let index = self.tableView.indexPathForSelectedRow?.row,
-            let movie = self.tableData?[index]
+            let movie = self.tableData?[index] ?? self.retrievedFavorites?[index]
         {
             if let destination = segue.destination as? MovieDetailView {
                 destination.setMovie(movie: movie)
@@ -117,7 +144,11 @@ class MovieListViewController: UITableViewController {
             return filteredMovies.count
         }
         
-        return self.tableData?.count ?? 0
+        if navigationController?.tabBarItem.tag == 0 {
+            return self.tableData?.count ?? 0
+        } else {
+            return retrievedFavorites?.count ?? 0
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -135,15 +166,27 @@ class MovieListViewController: UITableViewController {
             }
             
         } else {
-        
-            if let movie = tableData?[indexPath.row] {
-                cell.titleLabel.text = movie.title
-                cell.dateLabel.text = movie.localizedReleaseDate
-                cell.genreLabel.text = movie.genresString
-                
-                cell.coverImageView.image = nil
-                if let imageURL = MovieService.smallCoverUrl(movie: movie) {
-                    cell.coverImageView.load(url: imageURL)
+            if navigationController?.tabBarItem.tag == 0 {
+                if let movie = tableData?[indexPath.row] {
+                    cell.titleLabel.text = movie.title
+                    cell.dateLabel.text = movie.localizedReleaseDate
+                    cell.genreLabel.text = movie.genresString
+                    
+                    cell.coverImageView.image = nil
+                    if let imageURL = MovieService.smallCoverUrl(movie: movie) {
+                        cell.coverImageView.load(url: imageURL)
+                    }
+                }
+            } else {
+                if let movie = retrievedFavorites?[indexPath.row] {
+                    cell.titleLabel.text = movie.title
+                    cell.dateLabel.text = movie.localizedReleaseDate
+                    cell.genreLabel.text = movie.genresString
+                    
+                    cell.coverImageView.image = nil
+                    if let imageURL = MovieService.smallCoverUrl(movie: movie) {
+                        cell.coverImageView.load(url: imageURL)
+                    }
                 }
             }
         }

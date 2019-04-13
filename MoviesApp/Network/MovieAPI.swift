@@ -6,6 +6,7 @@ enum MovieAPI {
     case upcoming(page: Int)
     case movie(id: Int)
     case genre()
+    case popular(page: Int)
 }
 
 extension MovieAPI: TargetType {
@@ -22,18 +23,20 @@ extension MovieAPI: TargetType {
     
     var path: String {
         switch self {
-        case .upcoming(_):
-            return "/movie/upcoming"
-        case .movie(let id):
-            return "/movie/\(id)"
-        case .genre():
-            return "/genre/movie/list"
+            case .upcoming(_):
+                return "/movie/upcoming"
+            case .movie(let id):
+                return "/movie/\(id)"
+            case .genre():
+                return "/genre/movie/list"
+            case .popular(_):
+                return "/movie/popular"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .upcoming(_), .movie(_), .genre():
+        case .upcoming(_), .movie(_), .genre(), .popular(_):
             return .get
         }
     }
@@ -41,7 +44,7 @@ extension MovieAPI: TargetType {
     var task: Task {
         var params = ["api_key": apiKey]
         switch self {
-        case .upcoming(let page):
+        case .upcoming(let page), .popular(let page):
             params["page"] = "\(page)"
             params["language"] = "pt-BR"
             params["region"] = "BR"
@@ -56,7 +59,7 @@ extension MovieAPI: TargetType {
     
     var parameterEncoding: ParameterEncoding {
         switch self {
-        case .upcoming(_), .movie(_), .genre():
+        case .upcoming(_), .movie(_), .genre(), .popular(_):
             return URLEncoding.queryString
         }
     }
@@ -69,6 +72,9 @@ extension MovieAPI: TargetType {
             break
         case .movie(_):
             filename = "movie353081"
+            break
+        case .popular:
+            filename = "popular"
             break
         case .genre:
             filename = "genre" // TODO

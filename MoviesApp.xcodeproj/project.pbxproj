@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4D40CBE60A86855C707D44DA /* libPods-MoviesApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 055EB5317FF5C490DF6A5681 /* libPods-MoviesApp.a */; };
+		99B9FD4D79C15FD135700EA3 /* Pods_MoviesApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01AB09BE69DC2DCA95EC5D0E /* Pods_MoviesApp.framework */; };
+		9A9232F6225E791D00566A5F /* FavoriteMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9232F5225E791D00566A5F /* FavoriteMovie.swift */; };
 		B4013821213191E00043B74C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4013820213191E00043B74C /* AppDelegate.swift */; };
 		B4013826213191E00043B74C /* Movies.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4013824213191E00043B74C /* Movies.storyboard */; };
 		B4013828213191E10043B74C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4013827213191E10043B74C /* Assets.xcassets */; };
@@ -43,8 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		055EB5317FF5C490DF6A5681 /* libPods-MoviesApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MoviesApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		01AB09BE69DC2DCA95EC5D0E /* Pods_MoviesApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoviesApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7042D114FD464242C6DECD47 /* Pods-MoviesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviesApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MoviesApp/Pods-MoviesApp.release.xcconfig"; sourceTree = "<group>"; };
+		9A9232F5225E791D00566A5F /* FavoriteMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMovie.swift; sourceTree = "<group>"; };
 		B401381D213191E00043B74C /* MoviesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4013820213191E00043B74C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4013825213191E00043B74C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Movies.storyboard; sourceTree = "<group>"; };
@@ -79,7 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D40CBE60A86855C707D44DA /* libPods-MoviesApp.a in Frameworks */,
+				99B9FD4D79C15FD135700EA3 /* Pods_MoviesApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,7 +98,7 @@
 		1366B9202B12455416CDBC64 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				055EB5317FF5C490DF6A5681 /* libPods-MoviesApp.a */,
+				01AB09BE69DC2DCA95EC5D0E /* Pods_MoviesApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				B4786FC92131990500ED31AA /* Movie.swift */,
+				9A9232F5225E791D00566A5F /* FavoriteMovie.swift */,
 				B4786FD72131A9C500ED31AA /* MovieList.swift */,
 				B4786FEB2131E2A500ED31AA /* Genre.swift */,
 				B4786FED2131F4E200ED31AA /* GenreList.swift */,
@@ -251,6 +254,8 @@
 				B4013819213191E00043B74C /* Sources */,
 				B401381A213191E00043B74C /* Frameworks */,
 				B401381B213191E00043B74C /* Resources */,
+				7F865D334BED4C427A3A1892 /* [CP] Embed Pods Frameworks */,
+				7FB1912E4A8BE84D653387FA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -287,7 +292,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
-				ORGANIZATIONNAME = "Pedro Valentini";
+				ORGANIZATIONNAME = "Fulvio Resendes";
 				TargetAttributes = {
 					B401381C213191E00043B74C = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -342,6 +347,45 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		7F865D334BED4C427A3A1892 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MoviesApp/Pods-MoviesApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Disk/Disk.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Disk.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MoviesApp/Pods-MoviesApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7FB1912E4A8BE84D653387FA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MoviesApp/Pods-MoviesApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C31E5BB094FFEB57B346AA1E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -369,6 +413,7 @@
 			files = (
 				B4786FD82131A9C500ED31AA /* MovieList.swift in Sources */,
 				B4786FE62131BE9A00ED31AA /* MovieListCell.swift in Sources */,
+				9A9232F6225E791D00566A5F /* FavoriteMovie.swift in Sources */,
 				B47ED18A213CD7D9002B79AC /* MovieDetailPresenter.swift in Sources */,
 				B47ED185213C8D8E002B79AC /* MovieListPresenter.swift in Sources */,
 				B4786FEA2131CC9300ED31AA /* UIImageView+Extension.swift in Sources */,
