@@ -1,0 +1,44 @@
+PODS:
+  - Alamofire (4.8.2)
+  - Kingfisher (5.3.1)
+  - Moya/Core (12.0.1):
+    - Alamofire (~> 4.1)
+    - Result (~> 4.0)
+  - Moya/RxSwift (12.0.1):
+    - Moya/Core
+    - RxSwift (~> 4.0)
+  - Result (4.1.0)
+  - RxCocoa (4.5.0):
+    - RxSwift (>= 4.4.2, ~> 4.4)
+  - RxSwift (4.5.0)
+  - SwiftOverlays (5.0.1)
+
+DEPENDENCIES:
+  - Kingfisher (~> 5.0)
+  - Moya/RxSwift (~> 12.0)
+  - RxCocoa (~> 4.0)
+  - RxSwift (~> 4.0)
+  - SwiftOverlays (~> 5.0.1)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Kingfisher
+    - Moya
+    - Result
+    - RxCocoa
+    - RxSwift
+    - SwiftOverlays
+
+SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  Kingfisher: d9e7e0b209b59b8f9873aa2f37654e81a7beea51
+  Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
+  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
+  RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
+  RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
+  SwiftOverlays: ab459ea9194b0e96aaccaa00e9ead1bf6d46eef1
+
+PODFILE CHECKSUM: 6fc38accb3d0b9e4ec41f15ff1f01bbb4c2b1e2f
+
+COCOAPODS: 1.5.3
