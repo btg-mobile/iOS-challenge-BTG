@@ -13,7 +13,7 @@ import UIKit
 
 // MARK: - Protocols
 protocol FavoritesBusinessLogic {
-    func doSomething(request: Favorites.Request)
+    func doSomething()
 }
 
 protocol FavoritesDataStore {
@@ -38,12 +38,9 @@ class FavoritesInteractor: FavoritesBusinessLogic, FavoritesDataStore {
     // MARK: - Overrides
     
     // MARK: - Public Methods
-    func doSomething(request: Favorites.Request) {
+    func doSomething() {
         worker = FavoritesWorker()
         worker?.doSomeWork()
-        
-        let response = Favorites.Response()
-        presenter?.presentSomething(response: response)
     }
     
     // MARK: - Private Methods

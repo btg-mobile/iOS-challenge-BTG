@@ -15,12 +15,14 @@ import RxCocoa
 
 // MARK: - Protocols
 protocol MoviesBusinessLogic {
-    func fetchMovies(request: Movies.Request)
+    func fetchMovies(page: Int)
     func favoriteMovie(movie: MoviesResult)
+    func unfavoriteMovie(movie: MoviesResult)
 }
 
 protocol MoviesDataStore {
     var movies: Observable<[MoviesResult]> { get }
+    func movie(indexPath: IndexPath) -> MoviesResult
 }
 
 // MARK: - Constantes
@@ -53,21 +55,28 @@ class MoviesInteractor: MoviesBusinessLogic, MoviesDataStore {
     // MARK: - Overrides
     
     // MARK: - Public Methods
-    func fetchMovies(request: Movies.Request) {
-        if request.page == 1 {
+    func movie(indexPath: IndexPath) -> MoviesResult {
+        return self.moviesResponse.value[indexPath.row]
+    }
+    
+    func fetchMovies(page: Int) {
+        if page == 1 {
             moviesResponse.accept([])
         }
-        worker.fetchMovies(page: request.page) { result in
+        worker.fetchMovies(page: page) { result in
             switch result {
             case .success(let result):
                 var movies = self.moviesResponse.value
                 movies.append(contentsOf: result.results)
+                for index in 0..<movies.count {
+                    self.worker.isFavorite(movie: movies[index], completion: { isFavorite in
+                        movies[index].isFavorite = isFavorite
+                    })
+                }
                 self.moviesResponse.accept(movies)
-                let response = Movies.Response(moviesResponse: result, errorMessage: nil)
-                self.presenter?.presentFetchedMovies(response: response)
+                self.presenter?.presentFetchedMovies(response: result)
             case .failure(let error):
-                let response = Movies.Response(moviesResponse: nil, errorMessage: error.message)
-                self.presenter?.presentFetchedMovies(response: response)
+                self.presenter?.presentError(error: error)
             }
         }
     }
@@ -75,7 +84,15 @@ class MoviesInteractor: MoviesBusinessLogic, MoviesDataStore {
     func favoriteMovie(movie: MoviesResult) {
         worker.favoriteMovie(movie: movie) { error in
             if let error = error {
-                self.presenter?.presentError(response: Movies.Response(moviesResponse: nil, errorMessage: error.localizedDescription))
+                self.presenter?.presentError(error: ApiError.standard(error: error))
+            }
+        }
+    }
+    
+    func unfavoriteMovie(movie: MoviesResult) {
+        worker.unfavoriteMovie(movie: movie) { error in
+            if let error = error {
+                self.presenter?.presentError(error: ApiError.standard(error: error))
             }
         }
     }

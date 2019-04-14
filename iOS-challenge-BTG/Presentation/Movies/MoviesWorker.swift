@@ -50,6 +50,18 @@ class MoviesWorker {
         }).disposed(by: disposeBag)
     }
     
+    func unfavoriteMovie(movie: MoviesResult, completion: @escaping (Error?) -> Void) {
+        MoviesService.shared.unfavorite(movie: movie).subscribe(onCompleted: {
+            completion(nil)
+        }, onError: { error in
+            completion(error)
+        }).disposed(by: disposeBag)
+    }
+    
+    func isFavorite(movie: MoviesResult, completion: @escaping (Bool) -> Void) {
+        completion(MoviesService.shared.isFavorite(movie: movie))
+    }
+    
     // MARK: - Private Methods
     
     // MARK: - Deinitializers

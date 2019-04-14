@@ -13,7 +13,7 @@ import UIKit
 
 // MARK: - Protocols
 protocol MovieDetailsDisplayLogic: class {
-    func displaySomething(viewModel: MovieDetails.ViewModel)
+    func displaySomething()
 }
 
 // MARK: - Constantes
@@ -65,11 +65,10 @@ class MovieDetailsViewController: UIViewController, MovieDetailsDisplayLogic {
     
     // MARK: - Public Methods
     func doSomething() {
-        let request = MovieDetails.Request()
-        interactor?.doSomething(request: request)
+        interactor?.doSomething()
     }
     
-    func displaySomething(viewModel: MovieDetails.ViewModel) {
+    func displaySomething() {
         //nameTextField.text = viewModel.name
     }
     

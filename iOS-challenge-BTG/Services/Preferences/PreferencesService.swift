@@ -25,7 +25,6 @@ class PreferencesService: PreferencesServiceContract {
     
     func store<T>(encodable value: T, forKey key: UserDefaults.Key) throws where T : Encodable {
         let json = try JSONEncoder().encode(value)
-        
         UserDefaults.standard.set(json, forKey: key.rawValue)
     }
     

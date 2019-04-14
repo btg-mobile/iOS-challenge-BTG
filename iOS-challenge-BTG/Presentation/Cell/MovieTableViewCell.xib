@@ -67,6 +67,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="ageLabel" destination="vCL-9j-3VK" id="Sbm-Ra-i0p"/>
+                <outlet property="favoriteButton" destination="YgG-tl-g15" id="bdj-HH-M0a"/>
                 <outlet property="posterImageView" destination="jPG-vh-sms" id="szh-bC-Whh"/>
                 <outlet property="titleLabel" destination="VvC-dG-8xJ" id="Ucu-6D-bql"/>
             </connections>

@@ -13,7 +13,7 @@ import UIKit
 
 // MARK: - Protocols
 protocol MovieDetailsPresentationLogic {
-    func presentSomething(response: MovieDetails.Response)
+    func presentSomething()
 }
 
 // MARK: - Constantes
@@ -35,9 +35,8 @@ class MovieDetailsPresenter: MovieDetailsPresentationLogic {
     // MARK: - Overrides
     
     // MARK: - Public Methods
-    func presentSomething(response: MovieDetails.Response) {
-        let viewModel = MovieDetails.ViewModel()
-        viewController?.displaySomething(viewModel: viewModel)
+    func presentSomething() {
+        viewController?.displaySomething()
     }
     
     // MARK: - Private Methods

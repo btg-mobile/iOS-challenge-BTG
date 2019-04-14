@@ -13,8 +13,8 @@ import UIKit
 
 // MARK: - Protocols
 protocol MoviesPresentationLogic {
-    func presentFetchedMovies(response: Movies.Response)
-    func presentError(response: Movies.Response)
+    func presentFetchedMovies(response: MoviesResponse)
+    func presentError(error: ApiError)
 }
 
 // MARK: - Constantes
@@ -36,27 +36,12 @@ class MoviesPresenter: MoviesPresentationLogic {
     // MARK: - Overrides
     
     // MARK: - Public Methods
-    func presentFetchedMovies(response: Movies.Response) {
-        if let movies = response.moviesResponse {
-            let viewModel = Movies.ViewModel(movies: movies, errorMessage: nil)
-            viewController?.displayFetchedMovies(viewModel: viewModel)
-        } else if let message = response.errorMessage {
-            let viewModel = Movies.ViewModel(movies: nil, errorMessage: message)
-            viewController?.displayError(viewModel: viewModel)
-        } else {
-            let viewModel = Movies.ViewModel(movies: nil, errorMessage: K.Messages.Unknown)
-            viewController?.displayError(viewModel: viewModel)
-        }
+    func presentFetchedMovies(response: MoviesResponse) {
+        viewController?.displayFetchedMovies(response: response)
     }
     
-    func presentError(response: Movies.Response) {
-        if let message = response.errorMessage {
-            let viewModel = Movies.ViewModel(movies: nil, errorMessage: message)
-            viewController?.displayError(viewModel: viewModel)
-        } else {
-            let viewModel = Movies.ViewModel(movies: nil, errorMessage: K.Messages.Unknown)
-            viewController?.displayError(viewModel: viewModel)
-        }
+    func presentError(error: ApiError) {
+        viewController?.displayError(message: error.message)
     }
     
     // MARK: - Private Methods

@@ -13,7 +13,7 @@ import UIKit
 
 // MARK: - Protocols
 protocol MovieDetailsBusinessLogic {
-    func doSomething(request: MovieDetails.Request)
+    func doSomething()
 }
 
 protocol MovieDetailsDataStore {
@@ -39,12 +39,11 @@ class MovieDetailsInteractor: MovieDetailsBusinessLogic, MovieDetailsDataStore {
     // MARK: - Overrides
     
     // MARK: - Public Methods
-    func doSomething(request: MovieDetails.Request) {
+    func doSomething() {
         worker = MovieDetailsWorker()
         worker?.doSomeWork()
         
-        let response = MovieDetails.Response()
-        presenter?.presentSomething(response: response)
+        presenter?.presentSomething()
     }
     
     // MARK: - Private Methods

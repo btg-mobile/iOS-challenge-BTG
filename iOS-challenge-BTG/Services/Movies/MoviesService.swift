@@ -17,8 +17,10 @@ import Moya
 protocol MoviesServiceContract: class {
     var movies: Single<[MoviesResult]> { get }
     func popular(page: Int) -> Single<Result<MoviesResponse, ApiError>>
-    func details(movieId: Int) -> Single<Result<MovieDetails.Response.MovieDetails, ApiError>>
+    func details(movieId: Int) -> Single<Result<MoviesResponse, ApiError>>
     func favorite(movie: MoviesResult) -> Completable
+    func unfavorite(movie: MoviesResult) -> Completable
+    func isFavorite(movie: MoviesResult) -> Bool
 }
 
 // MARK: - Constantes
@@ -32,7 +34,9 @@ class MoviesService: MoviesServiceContract {
     var movies: Single<[MoviesResult]> {
         return Single.create { single -> Disposable in
             guard let movies: [MoviesResult]? = self.preferencesService.get(decodable: .favoriteMovies), let result = movies else {
-                single(.error(ApiError.invalidResponse))
+                let result = [MoviesResult]()
+                try? self.preferencesService.store(encodable: result, forKey: .favoriteMovies)
+                single(.success(result))
                 return Disposables.create()
             }
             single(.success(result))
@@ -65,22 +69,26 @@ class MoviesService: MoviesServiceContract {
             })
     }
     
-    func details(movieId: Int) -> Single<Result<MovieDetails.Response.MovieDetails, ApiError>> {
+    func details(movieId: Int) -> Single<Result<MoviesResponse, ApiError>> {
         return apiClient.rx.request(.details(movieId: movieId))
-            .map({ response -> Result<MovieDetails.Response.MovieDetails, ApiError> in
-                return response.result(type: MovieDetails.Response.MovieDetails.self)
+            .map({ response -> Result<MoviesResponse, ApiError> in
+                return response.result(type: MoviesResponse.self)
             })
     }
     
     func favorite(movie: MoviesResult) -> Completable {
         return Completable.create { completable -> Disposable in
             self.movies.subscribe(onSuccess: { result in
-                var movies = result
+                var movies: [MoviesResult] = result
+                debugPrint(movies)
                 if movies.contains(where: { $0.id == movie.id }) {
                     completable(.completed)
                 } else {
                     movies.append(movie)
-                    self.preferencesService.store(movies, forKey: .favoriteMovies)
+                    guard let _ = try? self.preferencesService.store(encodable: movies, forKey: .favoriteMovies) else {
+                        completable(.error(ApiError.failure))
+                        return
+                    }
                     completable(.completed)
                 }
             }, onError: { error in
@@ -88,6 +96,31 @@ class MoviesService: MoviesServiceContract {
                 completable(.error(ApiError.failure))
             })
         }
+    }
+    
+    func unfavorite(movie: MoviesResult) -> Completable {
+        return Completable.create { completable -> Disposable in
+            self.movies.subscribe(onSuccess: { result in
+                var movies: [MoviesResult] = result
+                debugPrint(movies)
+                movies.removeAll(where: { $0.id == movie.id })
+                guard let _ = try? self.preferencesService.store(encodable: movies, forKey: .favoriteMovies) else {
+                    completable(.error(ApiError.failure))
+                    return
+                }
+                completable(.completed)
+            }, onError: { error in
+                print(String(describing: error))
+                completable(.error(ApiError.failure))
+            })
+        }
+    }
+    
+    func isFavorite(movie: MoviesResult) -> Bool {
+        if let movies: [MoviesResult]? = self.preferencesService.get(decodable: .favoriteMovies), let result = movies {
+            return !result.filter { $0.id == movie.id }.isEmpty
+        }
+        return false
     }
     
     // MARK: - Private Methods

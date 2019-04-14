@@ -13,7 +13,7 @@ import UIKit
 
 // MARK: - Protocols
 protocol FavoritesPresentationLogic {
-    func presentSomething(response: Favorites.Response)
+    func presentSomething()
 }
 
 // MARK: - Constantes
@@ -35,9 +35,8 @@ class FavoritesPresenter: FavoritesPresentationLogic {
     // MARK: - Overrides
     
     // MARK: - Public Methods
-    func presentSomething(response: Favorites.Response) {
-        let viewModel = Favorites.ViewModel()
-        viewController?.displaySomething(viewModel: viewModel)
+    func presentSomething() {
+        viewController?.displaySomething()
     }
     
     // MARK: - Private Methods

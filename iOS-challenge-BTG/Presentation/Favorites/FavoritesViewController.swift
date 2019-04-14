@@ -13,7 +13,7 @@ import UIKit
 
 // MARK: - Protocols
 protocol FavoritesDisplayLogic: class {
-    func displaySomething(viewModel: Favorites.ViewModel)
+    func displaySomething()
 }
 
 // MARK: - Constantes
@@ -66,11 +66,10 @@ class FavoritesViewController: UIViewController, FavoritesDisplayLogic {
     
     // MARK: - Public Methods
     func doSomething() {
-        let request = Favorites.Request()
-        interactor?.doSomething(request: request)
+        interactor?.doSomething()
     }
     
-    func displaySomething(viewModel: Favorites.ViewModel) {
+    func displaySomething() {
         //nameTextField.text = viewModel.name
     }
     

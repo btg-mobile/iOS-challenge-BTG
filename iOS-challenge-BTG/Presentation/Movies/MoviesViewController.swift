@@ -16,8 +16,8 @@ import RxCocoa
 
 // MARK: - Protocols
 protocol MoviesDisplayLogic: class {
-    func displayFetchedMovies(viewModel: Movies.ViewModel)
-    func displayError(viewModel: Movies.ViewModel)
+    func displayFetchedMovies(response: MoviesResponse)
+    func displayError(message: String)
 }
 
 // MARK: - Constantes
@@ -77,21 +77,20 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
     func fetchMovies(page: Int) {
         self.isLoaded = false
         SwiftOverlays.showBlockingWaitOverlay()
-        let request = Movies.Request(page: page)
-        interactor?.fetchMovies(request: request)
+        interactor?.fetchMovies(page: page)
     }
     
-    func displayFetchedMovies(viewModel: Movies.ViewModel) {
+    func displayFetchedMovies(response: MoviesResponse) {
         self.isLoaded = true
-        self.moviesResponse = viewModel.movies
+        self.moviesResponse = response
         SwiftOverlays.removeAllBlockingOverlays()
         self.tableView.refreshControl?.endRefreshing()
     }
     
-    func displayError(viewModel: Movies.ViewModel) {
+    func displayError(message: String) {
         self.isLoaded = true
         SwiftOverlays.removeAllBlockingOverlays()
-        Alert.shared.showMessage(message: viewModel.errorMessage ?? K.Messages.Unknown)
+        Alert.shared.showMessage(message: message)
         self.tableView.refreshControl?.endRefreshing()
     }
     
@@ -115,14 +114,19 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
         self.tableView.refreshControl = refreshControl
         
         self.tableView.registerNib(MovieTableViewCell.self)
-        self.interactor?.movies.bind(to: self.tableView.rx.items(cellIdentifier: String(describing: MovieTableViewCell.self), cellType: MovieTableViewCell.self)) { row, element, cell in
-            cell.setup(movie: element) {
-                self.interactor?.favoriteMovie(movie: element)
+        
+        Observable<[MoviesResult]>.combineLatest(searchBar.rx.text.orEmpty.asObservable().map { $0.lowercased() }, self.interactor!.movies) {
+            text, movies in
+            
+            return text.isEmpty ? movies : movies.filter { $0.title.lowercased().contains(text) }
+        }.bind(to: self.tableView.rx.items(cellIdentifier: String(describing: MovieTableViewCell.self), cellType: MovieTableViewCell.self)) { row, element, cell in
+            cell.setup(movie: element, isFavorite: element.isFavorite ?? false) { newState in
+                newState ? self.interactor?.favoriteMovie(movie: element) : self.interactor?.unfavoriteMovie(movie: element)
             }
             }.disposed(by: disposeBag)
         
         self.tableView.rx.didScroll.map { $0 }.bind {
-            let offset: CGFloat = 200
+            let offset: CGFloat = 20
             let bottomEdge = self.tableView.contentOffset.y + self.tableView.frame.size.height
             if (bottomEdge + offset >= self.tableView.contentSize.height) {
                 if let actual = self.moviesResponse?.page,
@@ -133,12 +137,12 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
             }
             }.disposed(by: disposeBag)
         
-        //        self.coinsTableView.rx.itemSelected.map { $0 }.bind { indexPath in
-        //            guard let coin = self.viewModel?.retrieveCoin(indexPath) else { return }
-        //            let position = self.coinsTableView.convert(self.coinsTableView.rectForRow(at: indexPath), to: self.view)
-        //            self.coordinator?.showDetails(coin: coin, position: position)
-        //            self.coinsTableView.deselectRow(at: indexPath, animated: true)
-        //            }.disposed(by: disposeBag)
+        self.tableView.rx.itemSelected.map { $0 }.bind { indexPath in
+            if let movie = self.interactor?.movie(indexPath: indexPath) {
+                debugPrint(movie.id)
+            }
+            self.tableView.deselectRow(at: indexPath, animated: true)
+        }.disposed(by: disposeBag)
     }
     
     @objc private func reloadFirstPage() {
