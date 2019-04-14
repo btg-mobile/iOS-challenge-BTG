@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FavoritesViewController" customModule="iOS_challenge_BTG" customModuleProvider="target">
             <connections>
+                <outlet property="searchBar" destination="QJY-XE-nv3" id="5ci-Vl-ENa"/>
+                <outlet property="tableView" destination="ZZA-WC-1ys" id="Lun-4e-mUp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

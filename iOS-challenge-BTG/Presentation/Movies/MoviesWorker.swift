@@ -27,6 +27,7 @@ class MoviesWorker {
     
     // MARK: - Lets
     private let disposeBag = DisposeBag()
+    
     // MARK: - Initializers
     
     // MARK: - Overrides

@@ -8,12 +8,15 @@
 
 // MARK: - Imports
 import UIKit
+import RxSwift
+import RxCocoa
 
 // MARK: - Typealias
 
 // MARK: - Protocols
 protocol FavoritesDisplayLogic: class {
-    func displaySomething()
+    func displayFetchedMovies()
+    func displayError(message: String)
 }
 
 // MARK: - Constantes
@@ -31,12 +34,15 @@ class FavoritesViewController: UIViewController, FavoritesDisplayLogic {
     // MARK: - Propriedades (Getters & Setters)
     
     // MARK: - Outlets
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Vars
-    var interactor: FavoritesBusinessLogic?
+    var interactor: (FavoritesBusinessLogic & FavoritesDataStore)?
     var router: (NSObjectProtocol & FavoritesRoutingLogic & FavoritesDataPassing)?
     
     // MARK: - Lets
+    private let disposeBag = DisposeBag()
     
     // MARK: - Initializers
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -60,20 +66,30 @@ class FavoritesViewController: UIViewController, FavoritesDisplayLogic {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()        
-        doSomething()
+        super.viewDidLoad()
+        configureView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        fetchMovies()
     }
     
     // MARK: - Public Methods
-    func doSomething() {
-        interactor?.doSomething()
+    func displayFetchedMovies() {
+        self.tableView.refreshControl?.endRefreshing()
     }
     
-    func displaySomething() {
-        //nameTextField.text = viewModel.name
+    func displayError(message: String) {
+        Alert.shared.showMessage(message: message)
+        self.tableView.refreshControl?.endRefreshing()
     }
     
     // MARK: - Private Methods
+    private func fetchMovies() {
+        interactor?.fetchMovies()
+    }
+    
     private func setup() {
         let viewController = self
         let interactor = FavoritesInteractor()
@@ -85,6 +101,36 @@ class FavoritesViewController: UIViewController, FavoritesDisplayLogic {
         presenter.viewController = viewController
         router.viewController = viewController
         router.dataStore = interactor
+    }
+    
+    private func configureView() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(reloadFirstPage), for: .valueChanged)
+        self.tableView.refreshControl = refreshControl
+        
+        self.tableView.registerNib(MovieTableViewCell.self)
+        
+        Observable<[MoviesResult]>.combineLatest(searchBar.rx.text.orEmpty.asObservable().map { $0.lowercased() }, self.interactor?.movies ?? Observable.just([])) {
+            text, movies in
+            
+            return text.isEmpty ? movies : movies.filter { $0.title.lowercased().contains(text) }
+            }.bind(to: self.tableView.rx.items(cellIdentifier: String(describing: MovieTableViewCell.self), cellType: MovieTableViewCell.self)) { row, element, cell in
+                cell.setup(movie: element, isFavorite: element.isFavorite ?? false) { newState in
+                    newState ? self.interactor?.favoriteMovie(movie: element) : self.interactor?.unfavoriteMovie(movie: element)
+                }
+            }.disposed(by: disposeBag)
+        
+        
+        self.tableView.rx.itemSelected.map { $0 }.bind { indexPath in
+            if let movie = self.interactor?.movie(indexPath: indexPath) {
+                debugPrint(movie.id)
+            }
+            self.tableView.deselectRow(at: indexPath, animated: true)
+            }.disposed(by: disposeBag)
+    }
+    
+    @objc private func reloadFirstPage() {
+        fetchMovies()
     }
     
     // MARK: - Deinitializers

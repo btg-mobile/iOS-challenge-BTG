@@ -74,12 +74,6 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
     }
     
     // MARK: - Public Methods
-    func fetchMovies(page: Int) {
-        self.isLoaded = false
-        SwiftOverlays.showBlockingWaitOverlay()
-        interactor?.fetchMovies(page: page)
-    }
-    
     func displayFetchedMovies(response: MoviesResponse) {
         self.isLoaded = true
         self.moviesResponse = response
@@ -95,6 +89,12 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
     }
     
     // MARK: - Private Methods
+    private func fetchMovies(page: Int) {
+        self.isLoaded = false
+        SwiftOverlays.showBlockingWaitOverlay()
+        interactor?.fetchMovies(page: page)
+    }
+    
     private func setup() {
         let viewController = self
         let interactor = MoviesInteractor()
@@ -115,7 +115,7 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
         
         self.tableView.registerNib(MovieTableViewCell.self)
         
-        Observable<[MoviesResult]>.combineLatest(searchBar.rx.text.orEmpty.asObservable().map { $0.lowercased() }, self.interactor!.movies) {
+        Observable<[MoviesResult]>.combineLatest(searchBar.rx.text.orEmpty.asObservable().map { $0.lowercased() }, self.interactor?.movies ?? Observable.just([])) {
             text, movies in
             
             return text.isEmpty ? movies : movies.filter { $0.title.lowercased().contains(text) }

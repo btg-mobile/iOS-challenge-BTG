@@ -13,7 +13,8 @@ import UIKit
 
 // MARK: - Protocols
 protocol FavoritesPresentationLogic {
-    func presentSomething()
+    func presentFetchedMovies()
+    func presentError(error: ApiError)
 }
 
 // MARK: - Constantes
@@ -35,8 +36,12 @@ class FavoritesPresenter: FavoritesPresentationLogic {
     // MARK: - Overrides
     
     // MARK: - Public Methods
-    func presentSomething() {
-        viewController?.displaySomething()
+    func presentFetchedMovies() {
+        viewController?.displayFetchedMovies()
+    }
+    
+    func presentError(error: ApiError) {
+        viewController?.displayError(message: error.message)
     }
     
     // MARK: - Private Methods
