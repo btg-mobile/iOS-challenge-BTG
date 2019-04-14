@@ -8,6 +8,7 @@
 
 // MARK: - Imports
 import UIKit
+import RxSwift
 
 // MARK: - Typealias
 
@@ -25,15 +26,42 @@ class MovieDetailsWorker {
     // MARK: - Propriedades (Getters & Setters)
     
     // MARK: - Lets
+    private let disposeBag = DisposeBag()
     
     // MARK: - Initializers
     
     // MARK: - Overrides
     
     // MARK: - Public Methods
-    func doSomeWork() {
+    func fetchMovie(movieId: Int, completion: @escaping (Result<Movie, ApiError>) -> Void) {
+        MoviesService.shared.details(movieId: movieId).do(onSuccess: { success in
+            completion(success)
+        }, onError: { error in
+            completion(.failure(ApiError.standard(error: error)))
+        }, onSubscribe: {
+            print("onSubscribe")
+        }).subscribe().disposed(by: disposeBag)
     }
     
+    func favoriteMovie(movie: Movie, completion: @escaping (Error?) -> Void) {
+        MoviesService.shared.favorite(movie: movie).subscribe(onCompleted: {
+            completion(nil)
+        }, onError: { error in
+            completion(error)
+        }).disposed(by: disposeBag)
+    }
+    
+    func unfavoriteMovie(movie: Movie, completion: @escaping (Error?) -> Void) {
+        MoviesService.shared.unfavorite(movie: movie).subscribe(onCompleted: {
+            completion(nil)
+        }, onError: { error in
+            completion(error)
+        }).disposed(by: disposeBag)
+    }
+    
+    func isFavorite(movie: Movie, completion: @escaping (Bool) -> Void) {
+        completion(MoviesService.shared.isFavorite(movie: movie))
+    }
     // MARK: - Private Methods
     
     // MARK: - Deinitializers

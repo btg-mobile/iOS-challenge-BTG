@@ -13,11 +13,13 @@ import UIKit
 
 // MARK: - Protocols
 protocol MovieDetailsBusinessLogic {
-    func doSomething()
+    func fetchMovie()
+    func favoriteMovie(movie: Movie)
+    func unfavoriteMovie(movie: Movie)
 }
 
 protocol MovieDetailsDataStore {
-    //var name: String { get set }
+    var id: Int { get set }
 }
 
 // MARK: - Constantes
@@ -29,7 +31,9 @@ class MovieDetailsInteractor: MovieDetailsBusinessLogic, MovieDetailsDataStore {
     
     // MARK: - Vars
     var presenter: MovieDetailsPresentationLogic?
-    var worker: MovieDetailsWorker?
+    var worker: MovieDetailsWorker
+    var id: Int = 0
+    
     //var name: String = ""
     
     // MARK: - Lets
@@ -37,13 +41,44 @@ class MovieDetailsInteractor: MovieDetailsBusinessLogic, MovieDetailsDataStore {
     // MARK: - Initializers
     
     // MARK: - Overrides
+    init(worker: MovieDetailsWorker) {
+        self.worker = worker
+    }
+    
+    convenience init() {
+        self.init(worker: MovieDetailsWorker())
+    }
     
     // MARK: - Public Methods
-    func doSomething() {
-        worker = MovieDetailsWorker()
-        worker?.doSomeWork()
-        
-        presenter?.presentSomething()
+    func fetchMovie() {
+        worker.fetchMovie(movieId: self.id) { result in
+            switch result {
+            case .success(let result):
+                var movie: Movie = result
+                self.worker.isFavorite(movie: movie, completion: { isFavorite in
+                    movie.isFavorite = isFavorite
+                })
+                self.presenter?.presentFetchedMovie(movie: movie)
+            case .failure(let error):
+                self.presenter?.presentError(error: error)
+            }
+        }
+    }
+    
+    func favoriteMovie(movie: Movie) {
+        worker.favoriteMovie(movie: movie) { error in
+            if let error = error {
+                self.presenter?.presentError(error: ApiError.standard(error: error))
+            }
+        }
+    }
+    
+    func unfavoriteMovie(movie: Movie) {
+        worker.unfavoriteMovie(movie: movie) { error in
+            if let error = error {
+                self.presenter?.presentError(error: ApiError.standard(error: error))
+            }
+        }
     }
     
     // MARK: - Private Methods

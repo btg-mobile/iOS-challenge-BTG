@@ -33,7 +33,7 @@ class FavoritesWorker {
     // MARK: - Overrides
     
     // MARK: - Public Methods
-    func fetchMovies(completion: @escaping (Result<[MoviesResult], ApiError>) -> Void) {
+    func fetchMovies(completion: @escaping (Result<[Movie], ApiError>) -> Void) {
         MoviesService.shared.movies.subscribe(onSuccess: { success in
             completion(.success(success))
         }, onError: { error in
@@ -41,7 +41,7 @@ class FavoritesWorker {
         }).disposed(by: self.disposeBag)
     }
     
-    func favoriteMovie(movie: MoviesResult, completion: @escaping (Error?) -> Void) {
+    func favoriteMovie(movie: Movie, completion: @escaping (Error?) -> Void) {
         MoviesService.shared.favorite(movie: movie).subscribe(onCompleted: {
             completion(nil)
         }, onError: { error in
@@ -49,7 +49,7 @@ class FavoritesWorker {
         }).disposed(by: disposeBag)
     }
     
-    func unfavoriteMovie(movie: MoviesResult, completion: @escaping (Error?) -> Void) {
+    func unfavoriteMovie(movie: Movie, completion: @escaping (Error?) -> Void) {
         MoviesService.shared.unfavorite(movie: movie).subscribe(onCompleted: {
             completion(nil)
         }, onError: { error in
@@ -57,7 +57,7 @@ class FavoritesWorker {
         }).disposed(by: disposeBag)
     }
     
-    func isFavorite(movie: MoviesResult, completion: @escaping (Bool) -> Void) {
+    func isFavorite(movie: Movie, completion: @escaping (Bool) -> Void) {
         completion(MoviesService.shared.isFavorite(movie: movie))
     }
     // MARK: - Private Methods

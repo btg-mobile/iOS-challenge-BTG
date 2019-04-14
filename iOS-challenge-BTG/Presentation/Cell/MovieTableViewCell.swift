@@ -22,7 +22,7 @@ class MovieTableViewCell: UITableViewCell {
     }
     private var favoriteHandler: ((Bool) -> Void)?
     
-    func setup(movie: MoviesResult, isFavorite: Bool, favoriteHandler: @escaping (Bool) -> Void) {
+    func setup(movie: Movie, isFavorite: Bool, favoriteHandler: @escaping (Bool) -> Void) {
         self.favoriteHandler = favoriteHandler
         self.isFavorite = isFavorite
         self.posterImageView.kf.indicatorType = IndicatorType.activity

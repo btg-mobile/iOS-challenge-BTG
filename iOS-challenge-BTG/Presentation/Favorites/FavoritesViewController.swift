@@ -17,6 +17,7 @@ import RxCocoa
 protocol FavoritesDisplayLogic: class {
     func displayFetchedMovies()
     func displayError(message: String)
+    func displayDetails()
 }
 
 // MARK: - Constantes
@@ -38,7 +39,7 @@ class FavoritesViewController: UIViewController, FavoritesDisplayLogic {
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Vars
-    var interactor: (FavoritesBusinessLogic & FavoritesDataStore)?
+    var interactor: FavoritesBusinessLogic?
     var router: (NSObjectProtocol & FavoritesRoutingLogic & FavoritesDataPassing)?
     
     // MARK: - Lets
@@ -56,15 +57,6 @@ class FavoritesViewController: UIViewController, FavoritesDisplayLogic {
     }
     
     // MARK: - Overrides
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let scene = segue.identifier {
-            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            if let router = router, router.responds(to: selector) {
-                router.perform(selector, with: segue)
-            }
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -83,6 +75,10 @@ class FavoritesViewController: UIViewController, FavoritesDisplayLogic {
     func displayError(message: String) {
         Alert.shared.showMessage(message: message)
         self.tableView.refreshControl?.endRefreshing()
+    }
+    
+    func displayDetails() {
+        self.router?.routeDetails()
     }
     
     // MARK: - Private Methods
@@ -105,12 +101,12 @@ class FavoritesViewController: UIViewController, FavoritesDisplayLogic {
     
     private func configureView() {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(reloadFirstPage), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(reloadMovies), for: .valueChanged)
         self.tableView.refreshControl = refreshControl
         
         self.tableView.registerNib(MovieTableViewCell.self)
         
-        Observable<[MoviesResult]>.combineLatest(searchBar.rx.text.orEmpty.asObservable().map { $0.lowercased() }, self.interactor?.movies ?? Observable.just([])) {
+        Observable<[Movie]>.combineLatest(searchBar.rx.text.orEmpty.asObservable().map { $0.lowercased() }, self.interactor?.movies ?? Observable.just([])) {
             text, movies in
             
             return text.isEmpty ? movies : movies.filter { $0.title.lowercased().contains(text) }
@@ -123,13 +119,13 @@ class FavoritesViewController: UIViewController, FavoritesDisplayLogic {
         
         self.tableView.rx.itemSelected.map { $0 }.bind { indexPath in
             if let movie = self.interactor?.movie(indexPath: indexPath) {
-                debugPrint(movie.id)
+                self.interactor?.setId(id: movie.id)
             }
             self.tableView.deselectRow(at: indexPath, animated: true)
             }.disposed(by: disposeBag)
     }
     
-    @objc private func reloadFirstPage() {
+    @objc private func reloadMovies() {
         fetchMovies()
     }
     

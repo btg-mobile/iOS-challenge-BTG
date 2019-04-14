@@ -13,7 +13,7 @@ import UIKit
 
 // MARK: - Protocols
 @objc protocol FavoritesRoutingLogic {
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeDetails()
 }
 
 protocol FavoritesDataPassing {
@@ -40,30 +40,20 @@ class FavoritesRouter: NSObject, FavoritesRoutingLogic, FavoritesDataPassing {
     // MARK: - Overrides
     
     // MARK: - Public Methods
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
-    //{
-    //  if let segue = segue {
-    //    let destinationVC = segue.destination as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //  } else {
-    //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-    //  }
-    //}
+    func routeDetails() {
+        let destinationVC = MovieDetailsViewController.instantiate()
+        var destinationDS = destinationVC.router!.dataStore!
+        passDataToDetails(source: dataStore!, destination: &destinationDS)
+        navigateToDetails(source: viewController!, destination: destinationVC)
+    }
     
-    //func navigateToSomewhere(source: MoviesViewController, destination: SomewhereViewController)
-    //{
-    //  source.show(destination, sender: nil)
-    //}
+    func navigateToDetails(source: FavoritesViewController, destination: MovieDetailsViewController) {
+        source.navigationController?.pushViewController(destination, animated: true)
+    }
     
-    //func passDataToSomewhere(source: MoviesDataStore, destination: inout SomewhereDataStore)
-    //{
-    //  destination.name = source.name
-    //}
+    func passDataToDetails(source: FavoritesDataStore, destination: inout MovieDetailsDataStore) {
+        destination.id = source.id
+    }
     
     // MARK: - Private Methods
     

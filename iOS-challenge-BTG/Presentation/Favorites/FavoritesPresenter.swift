@@ -15,6 +15,7 @@ import UIKit
 protocol FavoritesPresentationLogic {
     func presentFetchedMovies()
     func presentError(error: ApiError)
+    func moveToDetails()
 }
 
 // MARK: - Constantes
@@ -42,6 +43,10 @@ class FavoritesPresenter: FavoritesPresentationLogic {
     
     func presentError(error: ApiError) {
         viewController?.displayError(message: error.message)
+    }
+    
+    func moveToDetails() {
+        viewController?.displayDetails()
     }
     
     // MARK: - Private Methods

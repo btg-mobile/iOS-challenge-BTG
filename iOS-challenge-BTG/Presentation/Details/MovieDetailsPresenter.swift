@@ -13,7 +13,8 @@ import UIKit
 
 // MARK: - Protocols
 protocol MovieDetailsPresentationLogic {
-    func presentSomething()
+    func presentFetchedMovie(movie: Movie)
+    func presentError(error: ApiError)
 }
 
 // MARK: - Constantes
@@ -35,8 +36,12 @@ class MovieDetailsPresenter: MovieDetailsPresentationLogic {
     // MARK: - Overrides
     
     // MARK: - Public Methods
-    func presentSomething() {
-        viewController?.displaySomething()
+    func presentFetchedMovie(movie: Movie) {
+        viewController?.displayFetchedMovie(movie: movie)
+    }
+    
+    func presentError(error: ApiError) {
+        viewController?.displayError(message: error.message)
     }
     
     // MARK: - Private Methods

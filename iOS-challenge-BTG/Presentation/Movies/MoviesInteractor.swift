@@ -15,14 +15,16 @@ import RxCocoa
 
 // MARK: - Protocols
 protocol MoviesBusinessLogic {
+    var movies: Observable<[Movie]> { get }
     func fetchMovies(page: Int)
-    func favoriteMovie(movie: MoviesResult)
-    func unfavoriteMovie(movie: MoviesResult)
+    func favoriteMovie(movie: Movie)
+    func unfavoriteMovie(movie: Movie)
+    func movie(indexPath: IndexPath) -> Movie
+    func setId(id: Int)
 }
 
 protocol MoviesDataStore {
-    var movies: Observable<[MoviesResult]> { get }
-    func movie(indexPath: IndexPath) -> MoviesResult
+    var id: Int { get }
 }
 
 // MARK: - Constantes
@@ -36,10 +38,11 @@ class MoviesInteractor: MoviesBusinessLogic, MoviesDataStore {
     var presenter: MoviesPresentationLogic?
     var worker: MoviesWorker
     
-    var movies: Observable<[MoviesResult]> {
+    var movies: Observable<[Movie]> {
         return moviesResponse.asObservable()
     }
-    private var moviesResponse: BehaviorRelay<[MoviesResult]> = BehaviorRelay(value: [])
+    var id: Int = 0
+    private var moviesResponse: BehaviorRelay<[Movie]> = BehaviorRelay(value: [])
     
     // MARK: - Lets
     
@@ -55,7 +58,7 @@ class MoviesInteractor: MoviesBusinessLogic, MoviesDataStore {
     // MARK: - Overrides
     
     // MARK: - Public Methods
-    func movie(indexPath: IndexPath) -> MoviesResult {
+    func movie(indexPath: IndexPath) -> Movie {
         return self.moviesResponse.value[indexPath.row]
     }
     
@@ -81,7 +84,7 @@ class MoviesInteractor: MoviesBusinessLogic, MoviesDataStore {
         }
     }
     
-    func favoriteMovie(movie: MoviesResult) {
+    func favoriteMovie(movie: Movie) {
         worker.favoriteMovie(movie: movie) { error in
             if let error = error {
                 self.presenter?.presentError(error: ApiError.standard(error: error))
@@ -89,12 +92,17 @@ class MoviesInteractor: MoviesBusinessLogic, MoviesDataStore {
         }
     }
     
-    func unfavoriteMovie(movie: MoviesResult) {
+    func unfavoriteMovie(movie: Movie) {
         worker.unfavoriteMovie(movie: movie) { error in
             if let error = error {
                 self.presenter?.presentError(error: ApiError.standard(error: error))
             }
         }
+    }
+    
+    func setId(id: Int) {
+        self.id = id
+        self.presenter?.moveToDetails()
     }
     
     // MARK: - Private Methods

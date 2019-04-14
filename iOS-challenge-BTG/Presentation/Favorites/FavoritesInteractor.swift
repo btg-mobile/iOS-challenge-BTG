@@ -15,14 +15,16 @@ import RxCocoa
 
 // MARK: - Protocols
 protocol FavoritesBusinessLogic {
+    var movies: Observable<[Movie]> { get }
     func fetchMovies()
-    func favoriteMovie(movie: MoviesResult)
-    func unfavoriteMovie(movie: MoviesResult)
+    func favoriteMovie(movie: Movie)
+    func unfavoriteMovie(movie: Movie)
+    func movie(indexPath: IndexPath) -> Movie
+    func setId(id: Int)
 }
 
 protocol FavoritesDataStore {
-    var movies: Observable<[MoviesResult]> { get }
-    func movie(indexPath: IndexPath) -> MoviesResult
+    var id: Int { get }
 }
 
 // MARK: - Constantes
@@ -36,10 +38,11 @@ class FavoritesInteractor: FavoritesBusinessLogic, FavoritesDataStore {
     var presenter: FavoritesPresentationLogic?
     var worker: FavoritesWorker
     
-    var movies: Observable<[MoviesResult]> {
+    var movies: Observable<[Movie]> {
         return moviesResponse.asObservable()
     }
-    private var moviesResponse: BehaviorRelay<[MoviesResult]> = BehaviorRelay(value: [])
+    var id: Int = 0
+    private var moviesResponse: BehaviorRelay<[Movie]> = BehaviorRelay(value: [])
     
     // MARK: - Lets
     
@@ -55,7 +58,7 @@ class FavoritesInteractor: FavoritesBusinessLogic, FavoritesDataStore {
     // MARK: - Overrides
     
     // MARK: - Public Methods
-    func movie(indexPath: IndexPath) -> MoviesResult {
+    func movie(indexPath: IndexPath) -> Movie {
         return self.moviesResponse.value[indexPath.row]
     }
     
@@ -77,20 +80,29 @@ class FavoritesInteractor: FavoritesBusinessLogic, FavoritesDataStore {
         }
     }
     
-    func favoriteMovie(movie: MoviesResult) {
+    func favoriteMovie(movie: Movie) {
         worker.favoriteMovie(movie: movie) { error in
             if let error = error {
                 self.presenter?.presentError(error: ApiError.standard(error: error))
+            } else {
+                self.fetchMovies()
             }
         }
     }
     
-    func unfavoriteMovie(movie: MoviesResult) {
+    func unfavoriteMovie(movie: Movie) {
         worker.unfavoriteMovie(movie: movie) { error in
             if let error = error {
                 self.presenter?.presentError(error: ApiError.standard(error: error))
+            } else {
+                self.fetchMovies()
             }
         }
+    }
+    
+    func setId(id: Int) {
+        self.id = id
+        self.presenter?.moveToDetails()
     }
     
     // MARK: - Private Methods

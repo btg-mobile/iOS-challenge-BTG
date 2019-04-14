@@ -18,6 +18,7 @@ import RxCocoa
 protocol MoviesDisplayLogic: class {
     func displayFetchedMovies(response: MoviesResponse)
     func displayError(message: String)
+    func displayDetails()
 }
 
 // MARK: - Constantes
@@ -39,7 +40,7 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Vars
-    var interactor: (MoviesBusinessLogic & MoviesDataStore)?
+    var interactor: MoviesBusinessLogic?
     var router: (NSObjectProtocol & MoviesRoutingLogic & MoviesDataPassing)?
     private var moviesResponse: MoviesResponse? = nil
     private var isLoaded: Bool = true
@@ -59,14 +60,6 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
     }
     
     // MARK: - Overrides
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let scene = segue.identifier {
-            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            if let router = router, router.responds(to: selector) {
-                router.perform(selector, with: segue)
-            }
-        }
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -86,6 +79,10 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
         SwiftOverlays.removeAllBlockingOverlays()
         Alert.shared.showMessage(message: message)
         self.tableView.refreshControl?.endRefreshing()
+    }
+    
+    func displayDetails() {
+        self.router?.routeDetails()
     }
     
     // MARK: - Private Methods
@@ -115,7 +112,7 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
         
         self.tableView.registerNib(MovieTableViewCell.self)
         
-        Observable<[MoviesResult]>.combineLatest(searchBar.rx.text.orEmpty.asObservable().map { $0.lowercased() }, self.interactor?.movies ?? Observable.just([])) {
+        Observable<[Movie]>.combineLatest(searchBar.rx.text.orEmpty.asObservable().map { $0.lowercased() }, self.interactor?.movies ?? Observable.just([])) {
             text, movies in
             
             return text.isEmpty ? movies : movies.filter { $0.title.lowercased().contains(text) }
@@ -139,7 +136,7 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
         
         self.tableView.rx.itemSelected.map { $0 }.bind { indexPath in
             if let movie = self.interactor?.movie(indexPath: indexPath) {
-                debugPrint(movie.id)
+                self.interactor?.setId(id: movie.id)
             }
             self.tableView.deselectRow(at: indexPath, animated: true)
         }.disposed(by: disposeBag)

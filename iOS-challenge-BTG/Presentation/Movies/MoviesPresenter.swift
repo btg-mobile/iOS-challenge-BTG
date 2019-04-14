@@ -15,6 +15,7 @@ import UIKit
 protocol MoviesPresentationLogic {
     func presentFetchedMovies(response: MoviesResponse)
     func presentError(error: ApiError)
+    func moveToDetails()
 }
 
 // MARK: - Constantes
@@ -43,6 +44,11 @@ class MoviesPresenter: MoviesPresentationLogic {
     func presentError(error: ApiError) {
         viewController?.displayError(message: error.message)
     }
+    
+    func moveToDetails() {
+        viewController?.displayDetails()
+    }
+    
     
     // MARK: - Private Methods
     
