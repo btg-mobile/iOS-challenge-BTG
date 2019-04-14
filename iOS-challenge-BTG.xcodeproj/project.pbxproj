@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D5A37092263BACD00E10034 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A37082263BACD00E10034 /* UIViewController.swift */; };
+		0D5A370B2263BB3C00E10034 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A370A2263BB3C00E10034 /* UIButton.swift */; };
+		0D5A370D2263BB5900E10034 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A370C2263BB5900E10034 /* UILabel.swift */; };
+		0D5A370F2263BC3700E10034 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5A370E2263BC3700E10034 /* UIView.swift */; };
 		0DBA17AC2260D9BF000249E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBA17AB2260D9BF000249E4 /* AppDelegate.swift */; };
 		0DBA17B32260D9BF000249E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DBA17B22260D9BF000249E4 /* Assets.xcassets */; };
 		0DBA17B62260D9BF000249E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DBA17B42260D9BF000249E4 /* LaunchScreen.storyboard */; };
@@ -65,6 +69,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0D5A37082263BACD00E10034 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		0D5A370A2263BB3C00E10034 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
+		0D5A370C2263BB5900E10034 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
+		0D5A370E2263BC3700E10034 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		0DBA17A82260D9BF000249E4 /* iOS-challenge-BTG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-challenge-BTG.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DBA17AB2260D9BF000249E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0DBA17B22260D9BF000249E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -258,6 +266,10 @@
 				0DBA18182260FBF3000249E4 /* UserDefaults.swift */,
 				0DBA184922618CBC000249E4 /* Response.swift */,
 				0DBA18552261AE0E000249E4 /* UITableView.swift */,
+				0D5A37082263BACD00E10034 /* UIViewController.swift */,
+				0D5A370E2263BC3700E10034 /* UIView.swift */,
+				0D5A370A2263BB3C00E10034 /* UIButton.swift */,
+				0D5A370C2263BB5900E10034 /* UILabel.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -546,6 +558,7 @@
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftOverlays/SwiftOverlays.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -558,6 +571,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftOverlays.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -603,11 +617,15 @@
 				0DBA17FA2260DC7D000249E4 /* MovieDetailsPresenter.swift in Sources */,
 				0DBA184A22618CBC000249E4 /* Response.swift in Sources */,
 				0DBA17E12260DBB3000249E4 /* MoviesPresenter.swift in Sources */,
+				0D5A370B2263BB3C00E10034 /* UIButton.swift in Sources */,
+				0D5A370D2263BB5900E10034 /* UILabel.swift in Sources */,
 				0DBA181D2260FE77000249E4 /* MoviesApi.swift in Sources */,
 				0DBA17E62260DBB3000249E4 /* MoviesInteractor.swift in Sources */,
 				0DBA17E22260DBB3000249E4 /* MoviesWorker.swift in Sources */,
 				0DBA181B2260FD0C000249E4 /* MoviesService.swift in Sources */,
 				0DBA17FB2260DC7D000249E4 /* MovieDetailsWorker.swift in Sources */,
+				0D5A37092263BACD00E10034 /* UIViewController.swift in Sources */,
+				0D5A370F2263BC3700E10034 /* UIView.swift in Sources */,
 				0DBA17FF2260DC7D000249E4 /* MovieDetailsInteractor.swift in Sources */,
 				0DBA18562261AE0E000249E4 /* UITableView.swift in Sources */,
 				0DBA17FC2260DC7D000249E4 /* MovieDetailsRouter.swift in Sources */,

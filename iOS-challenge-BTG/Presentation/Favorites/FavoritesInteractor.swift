@@ -73,7 +73,11 @@ class FavoritesInteractor: FavoritesBusinessLogic, FavoritesDataStore {
                     })
                 }
                 self.moviesResponse.accept(movies)
-                self.presenter?.presentFetchedMovies()
+                if self.moviesResponse.value.isEmpty {
+                    self.presenter?.presentEmpty()
+                } else {
+                    self.presenter?.presentFetchedMovies()
+                }
             case .failure(let error):
                 self.presenter?.presentError(error: error)
             }

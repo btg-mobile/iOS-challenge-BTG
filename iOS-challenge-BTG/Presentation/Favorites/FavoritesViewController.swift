@@ -16,6 +16,7 @@ import RxCocoa
 // MARK: - Protocols
 protocol FavoritesDisplayLogic: class {
     func displayFetchedMovies()
+    func displayEmptyMovies()
     func displayError(message: String)
     func displayDetails()
 }
@@ -70,10 +71,22 @@ class FavoritesViewController: UIViewController, FavoritesDisplayLogic {
     // MARK: - Public Methods
     func displayFetchedMovies() {
         self.tableView.refreshControl?.endRefreshing()
+        self.dismissErrorView()
+        self.tableView.isUserInteractionEnabled = true
+    }
+    
+    func displayEmptyMovies() {
+        self.showErrorView(title: "Favoritos", message: "Você não possui nenhum filme favorito!", titleButton: "Favoritar", disposeBag: self.disposeBag) {
+            self.tabBarController?.selectedIndex = 0
+        }
+        self.tableView.isUserInteractionEnabled = false
     }
     
     func displayError(message: String) {
-        Alert.shared.showMessage(message: message)
+        self.showErrorView(title: "Favoritos", message: message, disposeBag: self.disposeBag) {
+            self.fetchMovies()
+        }
+        self.tableView.isUserInteractionEnabled = false
         self.tableView.refreshControl?.endRefreshing()
     }
     
@@ -106,11 +119,23 @@ class FavoritesViewController: UIViewController, FavoritesDisplayLogic {
         
         self.tableView.registerNib(MovieTableViewCell.self)
         
-        Observable<[Movie]>.combineLatest(searchBar.rx.text.orEmpty.asObservable().map { $0.lowercased() }, self.interactor?.movies ?? Observable.just([])) {
+        let movies = Observable<[Movie]>.combineLatest(searchBar.rx.text.orEmpty.asObservable().map { $0.lowercased() }, self.interactor?.movies ?? Observable.just([])) {
             text, movies in
-            
             return text.isEmpty ? movies : movies.filter { $0.title.lowercased().contains(text) }
-            }.bind(to: self.tableView.rx.items(cellIdentifier: String(describing: MovieTableViewCell.self), cellType: MovieTableViewCell.self)) { row, element, cell in
+        }
+        
+        movies.bind { movies in
+            if movies.isEmpty {
+                self.showErrorView(title: "Favoritos", message: "Nenhum resultado encontrado", hasButton: false,
+                                   topConstraint: self.searchBar.snp.bottom, disposeBag: self.disposeBag)
+                self.tableView.isUserInteractionEnabled = false
+            } else {
+                self.dismissErrorView()
+                self.tableView.isUserInteractionEnabled = true
+            }
+            }.disposed(by: disposeBag)
+        
+        movies.bind(to: self.tableView.rx.items(cellIdentifier: String(describing: MovieTableViewCell.self), cellType: MovieTableViewCell.self)) { row, element, cell in
                 cell.setup(movie: element, isFavorite: element.isFavorite ?? false) { newState in
                     newState ? self.interactor?.favoriteMovie(movie: element) : self.interactor?.unfavoriteMovie(movie: element)
                 }

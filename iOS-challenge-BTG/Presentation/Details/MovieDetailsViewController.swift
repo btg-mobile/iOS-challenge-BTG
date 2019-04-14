@@ -96,11 +96,14 @@ class MovieDetailsViewController: UIViewController, MovieDetailsDisplayLogic {
             self.isFavorite = !self.isFavorite
             self.isFavorite ? self.interactor?.favoriteMovie(movie: movie) : self.interactor?.unfavoriteMovie(movie: movie)
             }.disposed(by: self.disposeBag)
+        self.dismissErrorView()
     }
     
     func displayError(message: String) {
         SwiftOverlays.removeAllBlockingOverlays()
-        Alert.shared.showMessage(message: message)
+        self.showErrorView(title: "Detalhes", message: message, disposeBag: self.disposeBag) {
+            self.fetchMovie()
+        }
     }
     
     // MARK: - Private Methods

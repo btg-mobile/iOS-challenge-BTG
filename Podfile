@@ -12,6 +12,7 @@ target 'iOS-challenge-BTG' do
   pod 'Moya/RxSwift', '~> 12.0'
   pod 'Kingfisher', '~> 5.0'
   pod 'SwiftOverlays', '~> 5.0.1'
+  pod 'SnapKit', '~> 4.0.0'
 
   target 'iOS-challenge-BTGTests' do
     inherit! :search_paths

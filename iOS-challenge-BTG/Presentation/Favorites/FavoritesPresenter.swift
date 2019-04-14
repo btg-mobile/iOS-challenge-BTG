@@ -14,6 +14,7 @@ import UIKit
 // MARK: - Protocols
 protocol FavoritesPresentationLogic {
     func presentFetchedMovies()
+    func presentEmpty()
     func presentError(error: ApiError)
     func moveToDetails()
 }
@@ -39,6 +40,10 @@ class FavoritesPresenter: FavoritesPresentationLogic {
     // MARK: - Public Methods
     func presentFetchedMovies() {
         viewController?.displayFetchedMovies()
+    }
+    
+    func presentEmpty() {
+        viewController?.displayEmptyMovies()
     }
     
     func presentError(error: ApiError) {

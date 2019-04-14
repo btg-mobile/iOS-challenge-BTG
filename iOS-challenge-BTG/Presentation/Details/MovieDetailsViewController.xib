@@ -61,7 +61,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ei7-Wb-O3F">
-                                            <rect key="frame" x="74" y="56" width="22" height="21"/>
+                                            <rect key="frame" x="69" y="56" width="22" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -115,7 +115,7 @@ Billy Batson (Asher Angel) tem apenas 14 anos de idade, mas recebeu de um antigo
                                         <constraint firstItem="IKI-Xd-RIr" firstAttribute="leading" secondItem="gcY-GQ-65v" secondAttribute="leading" constant="20" id="6yy-aX-BQN"/>
                                         <constraint firstItem="blV-6B-xnD" firstAttribute="top" secondItem="Pby-Bu-IF6" secondAttribute="bottom" constant="12" id="CRQ-eb-Yl2"/>
                                         <constraint firstItem="phc-ID-xqR" firstAttribute="leading" secondItem="gcY-GQ-65v" secondAttribute="leading" constant="20" id="IRk-ds-n60"/>
-                                        <constraint firstItem="ei7-Wb-O3F" firstAttribute="leading" secondItem="Pby-Bu-IF6" secondAttribute="trailing" constant="8" id="Phx-QW-aUE"/>
+                                        <constraint firstItem="ei7-Wb-O3F" firstAttribute="leading" secondItem="Pby-Bu-IF6" secondAttribute="trailing" constant="3" id="Phx-QW-aUE"/>
                                         <constraint firstItem="IKI-Xd-RIr" firstAttribute="top" secondItem="gcY-GQ-65v" secondAttribute="top" constant="20" id="QZM-d2-Ef5"/>
                                         <constraint firstItem="wVV-a8-BJb" firstAttribute="leading" secondItem="IKI-Xd-RIr" secondAttribute="trailing" constant="8" id="Uiy-eV-zP5"/>
                                         <constraint firstAttribute="bottom" secondItem="phc-ID-xqR" secondAttribute="bottom" constant="20" id="bVn-Ec-7XW"/>

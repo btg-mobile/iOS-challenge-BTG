@@ -34,8 +34,6 @@ class MovieDetailsInteractor: MovieDetailsBusinessLogic, MovieDetailsDataStore {
     var worker: MovieDetailsWorker
     var id: Int = 0
     
-    //var name: String = ""
-    
     // MARK: - Lets
     
     // MARK: - Initializers

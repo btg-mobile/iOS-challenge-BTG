@@ -52,8 +52,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let favoritesVC = FavoritesViewController.instantiate()
         favoritesVC.title = "Favoritos"
         
-        moviesVC.tabBarItem = UITabBarItem(title: "Filmes", image: UIImage(), tag: 0)
-        favoritesVC.tabBarItem = UITabBarItem(title: "Favoritos", image: UIImage(), tag: 1)
+        moviesVC.tabBarItem = UITabBarItem(title: "Filmes", image: UIImage(named: "ic_movie"), tag: 0)
+        favoritesVC.tabBarItem = UITabBarItem(title: "Favoritos", image: UIImage(named: "ic_favorite"), tag: 1)
         
         tabBarController.viewControllers = [moviesVC, favoritesVC].map { UINavigationController(rootViewController: $0)}
         

@@ -43,11 +43,11 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
     var interactor: MoviesBusinessLogic?
     var router: (NSObjectProtocol & MoviesRoutingLogic & MoviesDataPassing)?
     private var moviesResponse: MoviesResponse? = nil
-    private var isLoaded: Bool = true
+    private var canLoadMore: Bool = true
     
     // MARK: - Lets
     private let disposeBag = DisposeBag()
-
+    
     // MARK: - Initializers
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -68,16 +68,23 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
     
     // MARK: - Public Methods
     func displayFetchedMovies(response: MoviesResponse) {
-        self.isLoaded = true
+        if let text = searchBar.text, text.isEmpty {
+            self.canLoadMore = true
+        }
         self.moviesResponse = response
         SwiftOverlays.removeAllBlockingOverlays()
         self.tableView.refreshControl?.endRefreshing()
+        self.dismissErrorView()
+        self.tableView.isUserInteractionEnabled = true
     }
     
     func displayError(message: String) {
-        self.isLoaded = true
+        self.canLoadMore = true
         SwiftOverlays.removeAllBlockingOverlays()
-        Alert.shared.showMessage(message: message)
+        self.showErrorView(title: "Filmes", message: message, disposeBag: self.disposeBag) {
+            self.reloadFirstPage()
+        }
+        self.tableView.isUserInteractionEnabled = false
         self.tableView.refreshControl?.endRefreshing()
     }
     
@@ -87,7 +94,7 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
     
     // MARK: - Private Methods
     private func fetchMovies(page: Int) {
-        self.isLoaded = false
+        self.canLoadMore = false
         SwiftOverlays.showBlockingWaitOverlay()
         interactor?.fetchMovies(page: page)
     }
@@ -110,16 +117,32 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
         refreshControl.addTarget(self, action: #selector(reloadFirstPage), for: .valueChanged)
         self.tableView.refreshControl = refreshControl
         
+        searchBar.rx.text.orEmpty.asObservable().map { $0 }.bind(onNext: { query in
+            self.canLoadMore = query.isEmpty ? true : false
+        }).disposed(by: disposeBag)
+        
         self.tableView.registerNib(MovieTableViewCell.self)
         
-        Observable<[Movie]>.combineLatest(searchBar.rx.text.orEmpty.asObservable().map { $0.lowercased() }, self.interactor?.movies ?? Observable.just([])) {
+        let movies = Observable<[Movie]>.combineLatest(searchBar.rx.text.orEmpty.asObservable().map { $0.lowercased() }, self.interactor?.movies ?? Observable.just([])) {
             text, movies in
-            
             return text.isEmpty ? movies : movies.filter { $0.title.lowercased().contains(text) }
-        }.bind(to: self.tableView.rx.items(cellIdentifier: String(describing: MovieTableViewCell.self), cellType: MovieTableViewCell.self)) { row, element, cell in
-            cell.setup(movie: element, isFavorite: element.isFavorite ?? false) { newState in
-                newState ? self.interactor?.favoriteMovie(movie: element) : self.interactor?.unfavoriteMovie(movie: element)
+        }
+        
+        movies.bind { movies in
+            if movies.isEmpty {
+                self.showErrorView(title: "Filmes", message: "Nenhum resultado encontrado", hasButton: false,
+                                   topConstraint: self.searchBar.snp.bottom, disposeBag: self.disposeBag)
+                self.tableView.isUserInteractionEnabled = false
+            } else {
+                self.dismissErrorView()
+                self.tableView.isUserInteractionEnabled = true
             }
+        }.disposed(by: disposeBag)
+        
+        movies.bind(to: self.tableView.rx.items(cellIdentifier: String(describing: MovieTableViewCell.self), cellType: MovieTableViewCell.self)) { row, element, cell in
+                cell.setup(movie: element, isFavorite: element.isFavorite ?? false) { newState in
+                    newState ? self.interactor?.favoriteMovie(movie: element) : self.interactor?.unfavoriteMovie(movie: element)
+                }
             }.disposed(by: disposeBag)
         
         self.tableView.rx.didScroll.map { $0 }.bind {
@@ -128,7 +151,7 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
             if (bottomEdge + offset >= self.tableView.contentSize.height) {
                 if let actual = self.moviesResponse?.page,
                     let totalPages = self.moviesResponse?.totalPages,
-                    actual < totalPages && self.isLoaded {
+                    actual < totalPages && self.canLoadMore {
                     self.fetchMovies(page: actual + 1)
                 }
             }
@@ -139,7 +162,7 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
                 self.interactor?.setId(id: movie.id)
             }
             self.tableView.deselectRow(at: indexPath, animated: true)
-        }.disposed(by: disposeBag)
+            }.disposed(by: disposeBag)
     }
     
     @objc private func reloadFirstPage() {

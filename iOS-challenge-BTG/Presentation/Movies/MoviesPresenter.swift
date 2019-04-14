@@ -49,7 +49,6 @@ class MoviesPresenter: MoviesPresentationLogic {
         viewController?.displayDetails()
     }
     
-    
     // MARK: - Private Methods
     
     // MARK: - Deinitializers
