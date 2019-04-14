@@ -41,17 +41,6 @@ class MovieListPresenter {
         self.isLoading = true
         
         print("loadDataFromPage ", page)
-//        MovieService.upcoming(page: page) { movieList in
-//            debugPrint("Movies Page Loaded ", page)
-//            
-//            if movieList != nil {
-//                self.setMovieList(newList: movieList!)
-//                self.currentPage = page
-//            }
-//            
-//            self.isLoading = false
-//            // TODO: add callback for error!!!
-//        }
         
         MovieService.popular(page: page) { movieList in
             debugPrint("Movies Page Loaded ", page)

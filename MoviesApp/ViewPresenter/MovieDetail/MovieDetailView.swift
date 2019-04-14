@@ -100,7 +100,7 @@ extension MovieDetailViewController: MovieDetailView {
     func updateView(title: String, date: String, genre: String, overview: String) {
         self.title = title
         self.titleLabel.text = title
-        self.dateLabel.text = date
+        self.dateLabel.text = date.formattedDateFromString(dateString: date, withFormat: "dd/MM/yyyy")
         self.genreLabel.text = genre
         self.overviewLabel.text = overview
     }

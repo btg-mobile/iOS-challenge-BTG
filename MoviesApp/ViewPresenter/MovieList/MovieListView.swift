@@ -14,7 +14,6 @@ class MovieListViewController: UITableViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     var filteredMovies = [Movie]()
-    //var retrievedFavorites: [FavoriteMovie]?
     var retrievedFavorites: [Movie]?
     
     override func viewDidLoad() {
@@ -156,8 +155,10 @@ class MovieListViewController: UITableViewController {
         
         if isFiltering() {
             let movieFiltered = filteredMovies[indexPath.row]
+            let releasedDate = movieFiltered.release_date
+            
             cell.titleLabel.text = movieFiltered.title
-            cell.dateLabel.text = movieFiltered.localizedReleaseDate
+            cell.dateLabel.text = movieFiltered.localizedReleaseDate.formattedDateFromString(dateString: releasedDate, withFormat: "dd/MM/yyyy")
             cell.genreLabel.text = movieFiltered.genresString
             
             cell.coverImageView.image = nil
@@ -168,8 +169,10 @@ class MovieListViewController: UITableViewController {
         } else {
             if navigationController?.tabBarItem.tag == 0 {
                 if let movie = tableData?[indexPath.row] {
+                    let releasedDate = movie.release_date
+                    
                     cell.titleLabel.text = movie.title
-                    cell.dateLabel.text = movie.localizedReleaseDate
+                    cell.dateLabel.text = releasedDate.formattedDateFromString(dateString: releasedDate, withFormat: "dd/MM/yyyy")
                     cell.genreLabel.text = movie.genresString
                     
                     cell.coverImageView.image = nil
@@ -179,8 +182,10 @@ class MovieListViewController: UITableViewController {
                 }
             } else {
                 if let movie = retrievedFavorites?[indexPath.row] {
+                    let releasedDate = movie.release_date
+                    
                     cell.titleLabel.text = movie.title
-                    cell.dateLabel.text = movie.localizedReleaseDate
+                    cell.dateLabel.text = releasedDate.formattedDateFromString(dateString: releasedDate, withFormat: "dd/MM/yyyy")
                     cell.genreLabel.text = movie.genresString
                     
                     cell.coverImageView.image = nil

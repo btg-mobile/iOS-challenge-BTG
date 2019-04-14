@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Estréias-->
+        <!--Popular-->
         <scene sceneID="nx3-xz-dan">
             <objects>
                 <tableViewController id="BFK-CS-LuG" customClass="MovieListViewController" customModule="MoviesApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Estréias" id="Cen-Ce-wPt">
+                    <navigationItem key="navigationItem" title="Popular" id="Cen-Ce-wPt">
                         <barButtonItem key="backBarButtonItem" title="Back" id="Rjq-Xu-5G2"/>
                     </navigationItem>
                     <connections>
@@ -135,6 +135,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Mq4-K9-e48" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rLm-X0-0TZ">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
