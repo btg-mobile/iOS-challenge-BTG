@@ -13,7 +13,7 @@ class MovieListViewController: UITableViewController {
     var tableData: [Movie]?
     
     let searchController = UISearchController(searchResultsController: nil)
-    var filteredMovies = [Movie]()
+    var filteredMovies: [Movie]?
     var retrievedFavorites: [Movie]?
     
     override func viewDidLoad() {
@@ -93,6 +93,7 @@ class MovieListViewController: UITableViewController {
         return searchController.isActive && !searchBarIsEmpty()
     }
     
+    
     // MARK: - UITableViewDelegate Methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -105,6 +106,75 @@ class MovieListViewController: UITableViewController {
         }
     }
     
+    //Slide to favorite
+    @available(iOS 11.0, *)
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+            
+        let action = UIContextualAction(style: .normal, title: "Favorite", handler: { (action, view, completionHandler) in
+            var movie = self.tableData?[indexPath.row]
+            
+            if self.isFiltering() {
+                movie = self.filteredMovies?[indexPath.row]
+            }
+            if Disk.exists("favorite.json", in: .applicationSupport) {
+                do {
+                    if let movie = movie{
+                        let retrievedFavorites = try Disk.retrieve("favorite.json", from: .applicationSupport, as: [Movie].self)
+                        if let _ = retrievedFavorites.index(where: { $0.title == movie.title}) {
+                            return
+                        } else {
+                            try Disk.append([movie], to: "favorite.json", in: .applicationSupport)
+                        }
+                    }
+                } catch {
+                    print(error.localizedDescription)
+                }
+                
+            } else {
+                try? Disk.save([movie], to: .applicationSupport, as: "favorite.json")
+            }
+
+            completionHandler(true)
+        })
+        
+        action.backgroundColor = UIColor.blue
+        let configuration = UISwipeActionsConfiguration(actions: [action])
+        return configuration
+    }
+    
+    //Slide to delete
+    @available(iOS 11.0, *)
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, sourceView, completionHandler) in
+            var deleteMovie = self.tableData?[indexPath.row]
+            
+            if self.isFiltering() {
+                if let movie = self.filteredMovies?[indexPath.row] {
+                    deleteMovie = movie
+                }
+            }
+            if Disk.exists("favorite.json", in: .applicationSupport) {
+                do {
+                    if let movie = deleteMovie{
+                        var retrievedFavorites = try Disk.retrieve("favorite.json", from: .applicationSupport, as: [Movie].self)
+                        let index = retrievedFavorites.index{ $0.title == movie.title}
+                        if let index = index {
+                            retrievedFavorites.remove(at: index)
+                            try Disk.save(retrievedFavorites, to: .applicationSupport, as: "favorite.json")
+                        }
+                    }
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+            print("index path of delete: \(indexPath)")
+            completionHandler(true)
+        }
+        
+        let swipeActionConfig = UISwipeActionsConfiguration(actions: [delete])
+        return swipeActionConfig
+    }
+    
     
     // MARK: - Navigation
     
@@ -112,9 +182,10 @@ class MovieListViewController: UITableViewController {
       
         if isFiltering() {
             if let index = self.tableView.indexPathForSelectedRow?.row {
-                let movie = self.filteredMovies[index]
                 if let destination = segue.destination as? MovieDetailView {
-                    destination.setMovie(movie: movie)
+                    if let movie = self.filteredMovies?[index] {
+                        destination.setMovie(movie: movie)
+                    }
                 }
             }
             return
@@ -140,7 +211,7 @@ class MovieListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering() {
-            return filteredMovies.count
+            return filteredMovies?.count ?? 0
         }
         
         if navigationController?.tabBarItem.tag == 0 {
@@ -154,49 +225,37 @@ class MovieListViewController: UITableViewController {
         let cell: MovieListCell = tableView.dequeueReusableCell(withIdentifier: "MovieListCell", for: indexPath) as! MovieListCell
         
         if isFiltering() {
-            let movieFiltered = filteredMovies[indexPath.row]
-            let releasedDate = movieFiltered.release_date
-            
-            cell.titleLabel.text = movieFiltered.title
-            cell.dateLabel.text = movieFiltered.localizedReleaseDate.formattedDateFromString(dateString: releasedDate, withFormat: "dd/MM/yyyy")
-            cell.genreLabel.text = movieFiltered.genresString
-            
-            cell.coverImageView.image = nil
-            if let imageURL = MovieService.smallCoverUrl(movie: movieFiltered) {
-                cell.coverImageView.load(url: imageURL)
+            if let movie = filteredMovies?[indexPath.row] {
+                showMovieIn(cell: cell, movie: movie)
             }
             
         } else {
             if navigationController?.tabBarItem.tag == 0 {
                 if let movie = tableData?[indexPath.row] {
-                    let releasedDate = movie.release_date
-                    
-                    cell.titleLabel.text = movie.title
-                    cell.dateLabel.text = releasedDate.formattedDateFromString(dateString: releasedDate, withFormat: "dd/MM/yyyy")
-                    cell.genreLabel.text = movie.genresString
-                    
-                    cell.coverImageView.image = nil
-                    if let imageURL = MovieService.smallCoverUrl(movie: movie) {
-                        cell.coverImageView.load(url: imageURL)
-                    }
+                    showMovieIn(cell: cell, movie: movie)
                 }
+                
             } else {
                 if let movie = retrievedFavorites?[indexPath.row] {
-                    let releasedDate = movie.release_date
-                    
-                    cell.titleLabel.text = movie.title
-                    cell.dateLabel.text = releasedDate.formattedDateFromString(dateString: releasedDate, withFormat: "dd/MM/yyyy")
-                    cell.genreLabel.text = movie.genresString
-                    
-                    cell.coverImageView.image = nil
-                    if let imageURL = MovieService.smallCoverUrl(movie: movie) {
-                        cell.coverImageView.load(url: imageURL)
-                    }
+                    showMovieIn(cell: cell, movie: movie)
                 }
             }
         }
         
         return cell
+    }
+    
+    func showMovieIn(cell: MovieListCell, movie: Movie) {
+        let releasedDate = movie.release_date
+        
+        cell.titleLabel.text = movie.title
+        cell.dateLabel.text = releasedDate.formattedDateFromString(dateString: releasedDate, withFormat: "dd/MM/yyyy")
+        cell.genreLabel.text = movie.genresString
+        
+        cell.coverImageView.image = nil
+        if let imageURL = MovieService.smallCoverUrl(movie: movie) {
+            cell.coverImageView.load(url: imageURL)
+        }
     }
     
     
