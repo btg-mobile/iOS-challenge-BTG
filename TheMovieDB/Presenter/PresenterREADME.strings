@@ -1,0 +1,35 @@
+/* 
+ Now that we have the Response from the Interactor, it’s time to format it into a ViewModel and pass
+ the result back to the ViewController. Presenter will be in charge of the presentation logic.
+ This component decides how the data will be presented to the user.
+ 
+ import UIKit
+ 
+ protocol TestPresentationLogic
+ {
+    func presentFetchResults(response: Test.Fetch.Response)
+ }
+ 
+ class TestPresenter: TestPresentationLogic
+ {
+     weak var viewController: TestDisplayLogic?
+ 
+     // MARK: - Presentation logic
+     func presentFetchResults(response: Test.Fetch.Response) {
+         // NOTE: Format the response from the Interactor and pass the result back to the View Controller
+         let viewModel = Test.Fetch.ViewModel(name: response.testObj?.name, date: response.testObj?.date, desc: response.testObj?.desc, isError: response.isError, message: response.message)
+ 
+         if viewModel.isError{
+            viewController?.errorFetchingItems(viewModel: viewModel)
+         }else{
+            viewController?.successFetchedItems(viewModel: viewModel)
+         }
+     }
+ }
+ 
+ There is only one protocol declared in this component which stores the presentation logic methods.
+ In the presentFetchResults() function you can see that I am calling two delegate methods that are
+ declared in the view controller and are expecting a proper ViewModel to present it to the UI. (1)
+ handling the success case, (2) handling the error case.
+ 
+*/

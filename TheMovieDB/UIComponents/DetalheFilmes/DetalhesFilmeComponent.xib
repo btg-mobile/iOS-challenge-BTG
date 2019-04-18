@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetalhesFilmeView" customModule="TheMovieDB" customModuleProvider="target">
+            <connections>
+                <outlet property="SinopseLabel" destination="84G-vJ-XCA" id="kuP-yQ-xcQ"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="KnU-P0-io8"/>
+                <outlet property="favoritarButton" destination="roF-Qg-bf0" id="viw-6g-Hn2"/>
+                <outlet property="imagemLabel" destination="Gu6-W9-fdB" id="QBe-1f-K10"/>
+                <outlet property="notaLabel" destination="NTP-3g-UwP" id="IZ1-IO-b0P"/>
+                <outlet property="tituloLabel" destination="LCh-wd-Hd9" id="ss9-l9-Qyg"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="609"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dummy" translatesAutoresizingMaskIntoConstraints="NO" id="Gu6-W9-fdB">
+                    <rect key="frame" x="16" y="0.0" width="151" height="263"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="151" id="bG3-mo-BrN"/>
+                        <constraint firstAttribute="height" constant="263" id="gyr-h6-axK"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titulo" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCh-wd-Hd9">
+                    <rect key="frame" x="175" y="20" width="184" height="53"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="53" id="Un7-qT-9hG"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nota" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NTP-3g-UwP">
+                    <rect key="frame" x="175" y="81" width="184" height="53"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="53" id="xx8-GT-Myx"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sinopse" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="84G-vJ-XCA">
+                    <rect key="frame" x="16" y="271" width="343" height="281"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="roF-Qg-bf0">
+                    <rect key="frame" x="16" y="571" width="343" height="30"/>
+                    <color key="backgroundColor" red="0.90588235289999997" green="0.12549019610000001" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="aDJ-P2-644"/>
+                    </constraints>
+                    <state key="normal" title="Favoritar">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="LCh-wd-Hd9" secondAttribute="trailing" constant="16" id="BYP-N0-vcP"/>
+                <constraint firstItem="84G-vJ-XCA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="CYp-PQ-eBf"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="roF-Qg-bf0" secondAttribute="bottom" constant="8" id="JTp-KV-JY7"/>
+                <constraint firstItem="Gu6-W9-fdB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Jpb-fz-zQ3"/>
+                <constraint firstItem="roF-Qg-bf0" firstAttribute="top" secondItem="84G-vJ-XCA" secondAttribute="bottom" constant="19" id="TSe-vC-9L2"/>
+                <constraint firstItem="NTP-3g-UwP" firstAttribute="top" secondItem="LCh-wd-Hd9" secondAttribute="bottom" constant="8" id="XOf-kn-Mpc"/>
+                <constraint firstItem="LCh-wd-Hd9" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="aZb-l6-0Fy"/>
+                <constraint firstItem="NTP-3g-UwP" firstAttribute="leading" secondItem="Gu6-W9-fdB" secondAttribute="trailing" constant="8" id="b0N-4W-1b0"/>
+                <constraint firstItem="Gu6-W9-fdB" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="bRf-UB-AZb"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="NTP-3g-UwP" secondAttribute="trailing" constant="16" id="sBZ-jJ-t9y"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="roF-Qg-bf0" secondAttribute="trailing" constant="16" id="tjp-yp-qmv"/>
+                <constraint firstItem="roF-Qg-bf0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="u97-7f-a48"/>
+                <constraint firstItem="LCh-wd-Hd9" firstAttribute="leading" secondItem="Gu6-W9-fdB" secondAttribute="trailing" constant="8" id="vba-iG-jN6"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="84G-vJ-XCA" secondAttribute="trailing" constant="16" id="yYK-lo-WSe"/>
+                <constraint firstItem="84G-vJ-XCA" firstAttribute="top" secondItem="Gu6-W9-fdB" secondAttribute="bottom" constant="8" id="ylN-kD-GZd"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="138.40000000000001" y="108.39580209895054"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="dummy" width="1366" height="1366"/>
+    </resources>
+</document>

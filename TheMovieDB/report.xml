@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="0: Verifying fastlane version" time="0.010599">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.001125">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: set_info_plist_value" time="0.004712">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: gym" time="4754.907213">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: slack" time="2.257054">
+        
+          <failure message="/Users/entelgy/.rbenv/versions/2.5.0/lib/ruby/gems/2.5.0/gems/fastlane-2.116.0/fastlane/lib/fastlane/actions/actions_helper.rb:48:in `execute_action'&#10;/Users/entelgy/.rbenv/versions/2.5.0/lib/ruby/gems/2.5.0/gems/fastlane-2.116.0/fastlane/lib/fastlane/runner.rb:232:in `block in execute_action'&#10;/Users/entelgy/.rbenv/versions/2.5.0/lib/ruby/gems/2.5.0/gems/fastlane-2.116.0/fastlane/lib/fastlane/runner.rb:227:in `chdir'&#10;/Users/entelgy/.rbenv/versions/2.5.0/lib/ruby/gems/2.5.0/gems/fastlane-2.116.0/fastlane/lib/fastlane/runner.rb:227:in `execute_action'&#10;/Users/entelgy/.rbenv/versions/2.5.0/lib/ruby/gems/2.5.0/gems/fastlane-2.116.0/fastlane/lib/fastlane/runner.rb:157:in `trigger_action_by_name'&#10;/Users/entelgy/.rbenv/versions/2.5.0/lib/ruby/gems/2.5.0/gems/fastlane-2.116.0/fastlane/lib/fastlane/fast_file.rb:154:in `method_missing'&#10;Fastfile:167:in `block (2 levels) in parsing_binding'&#10;/Users/entelgy/.rbenv/versions/2.5.0/lib/ruby/gems/2.5.0/gems/fastlane-2.116.0/fastlane/lib/fastlane/runner.rb:62:in `block in execute'&#10;/Users/entelgy/.rbenv/versions/2.5.0/lib/ruby/gems/2.5.0/gems/fastlane-2.116.0/fastlane/lib/fastlane/runner.rb:59:in `chdir'&#10;/Users/entelgy/.rbenv/versions/2.5.0/lib/ruby/gems/2.5.0/gems/fastlane-2.116.0/fastlane/lib/fastlane/runner.rb:59:in `rescue in execute'&#10;/Users/entelgy/.rbenv/versions/2.5.0/lib/ruby/gems/2.5.0/gems/fastlane-2.116.0/fastlane/lib/fastlane/runner.rb:44:in `execute'&#10;/Users/entelgy/.rbenv/versions/2.5.0/lib/ruby/gems/2.5.0/gems/fastlane-2.116.0/fastlane/lib/fastlane/lane_manager.rb:56:in `cruise_lane'&#10;/Users/entelgy/.rbenv/versions/2.5.0/lib/ruby/gems/2.5.0/gems/fastlane-2.116.0/fastlane/lib/fastlane/command_line_handler.rb:36:in `handle'&#10;/Users/entelgy/.rbenv/versions/2.5.0/lib/ruby/gems/2.5.0/gems/fastlane-2.116.0/fastlane/lib/fastlane/commands_generator.rb:108:in `block (2 levels) in run'&#10;/Users/entelgy/.rbenv/versions/2.5.0/lib/ruby/gems/2.5.0/gems/commander-fastlane-4.4.6/lib/commander/command.rb:178:in `call'&#10;/Users/entelgy/.rbenv/versions/2.5.0/lib/ruby/gems/2.5.0/gems/commander-fastlane-4.4.6/lib/commander/command.rb:153:in `run'&#10;/Users/entelgy/.rbenv/versions/2.5.0/lib/ruby/gems/2.5.0/gems/commander-fastlane-4.4.6/lib/commander/runner.rb:476:in `run_active_command'&#10;/Users/entelgy/.rbenv/versions/2.5.0/lib/ruby/gems/2.5.0/gems/fastlane-2.116.0/fastlane_core/lib/fastlane_core/ui/fastlane_runner.rb:76:in `run!'&#10;/Users/entelgy/.rbenv/versions/2.5.0/lib/ruby/gems/2.5.0/gems/commander-fastlane-4.4.6/lib/commander/delegates.rb:15:in `run!'&#10;/Users/entelgy/.rbenv/versions/2.5.0/lib/ruby/gems/2.5.0/gems/fastlane-2.116.0/fastlane/lib/fastlane/commands_generator.rb:333:in `run'&#10;/Users/entelgy/.rbenv/versions/2.5.0/lib/ruby/gems/2.5.0/gems/fastlane-2.116.0/fastlane/lib/fastlane/commands_generator.rb:41:in `start'&#10;/Users/entelgy/.rbenv/versions/2.5.0/lib/ruby/gems/2.5.0/gems/fastlane-2.116.0/fastlane/lib/fastlane/cli_tools_distributor.rb:113:in `take_off'&#10;/Users/entelgy/.rbenv/versions/2.5.0/lib/ruby/gems/2.5.0/gems/fastlane-2.116.0/bin/fastlane:23:in `&lt;top (required)&gt;'&#10;/Users/entelgy/.rbenv/versions/2.5.0/bin/fastlane:23:in `load'&#10;/Users/entelgy/.rbenv/versions/2.5.0/bin/fastlane:23:in `&lt;main&gt;'&#10;&#10;Error pushing Slack message, maybe the integration has no permission to post on this channel? Try removing the channel parameter in your Fastfile, this is usually caused by a misspelled or changed group/channel name or an expired SLACK_URL" />
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>

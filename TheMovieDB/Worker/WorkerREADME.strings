@@ -1,0 +1,25 @@
+/* 
+  The Worker component will handle all the API/CoreData requests and responses.
+ The Response struct (from Models) will get the data ready for the Interactor.
+ It will handle the success/error response, so the Interactor would know how to proceed.
+ 
+ typealias responseHandler = (_ response:TestModel.Fetch.Response) ->()
+ 
+ class TestWorker{
+ 
+     func fetch(itemId:Int!, keyword:String!, count: String!, success:@escaping(responseHandler), fail:@escaping(responseHandler))
+     {
+         // NOTE: Do the work
+         //call network etc.
+         let manager = YourApiManager()
+ 
+         manager.fetch(itemId: itemId, keyword: keyword, count: count, success: { (data) in
+         let test = Test(JSON: data)
+            success(TestModel.Fetch.Response(testObj: test, isError: false, message:nil))
+         }) { (error, message) in
+            fail(TestModel.Fetch.Response(testObj: nil, isError: true, message: message))
+         }
+     }
+ }
+ 
+*/

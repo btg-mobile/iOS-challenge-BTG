@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListaDeFilmesView" customModule="TheMovieDB" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="624-1L-H6a" id="jsS-Ic-URn"/>
+                <outlet property="searchText" destination="c9I-6f-dcw" id="JJD-bj-LBk"/>
+                <outlet property="tableView" destination="Aqm-mv-wyB" id="r6a-fy-GdE"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="624-1L-H6a">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INDEX AREA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ddz-bc-kur">
+                    <rect key="frame" x="139" y="626" width="97" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="92" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Aqm-mv-wyB">
+                    <rect key="frame" x="0.0" y="61" width="375" height="557"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="wPk-oO-pff"/>
+                        <outlet property="delegate" destination="-1" id="oUI-K0-K9x"/>
+                    </connections>
+                </tableView>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Busca" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c9I-6f-dcw">
+                    <rect key="frame" x="16" y="23" width="343" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+            </subviews>
+            <color key="backgroundColor" red="0.43647378869999998" green="0.33857707069999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="c9I-6f-dcw" firstAttribute="leading" secondItem="KKr-Ma-NN9" secondAttribute="leading" constant="16" id="0to-c5-fg2"/>
+                <constraint firstItem="KKr-Ma-NN9" firstAttribute="bottom" secondItem="Ddz-bc-kur" secondAttribute="bottom" constant="20" id="1qC-gW-Uyy"/>
+                <constraint firstItem="Aqm-mv-wyB" firstAttribute="leading" secondItem="KKr-Ma-NN9" secondAttribute="leading" id="62O-tL-ltX"/>
+                <constraint firstItem="KKr-Ma-NN9" firstAttribute="trailing" secondItem="Ddz-bc-kur" secondAttribute="trailing" constant="139" id="JpU-64-vfV"/>
+                <constraint firstItem="Aqm-mv-wyB" firstAttribute="trailing" secondItem="KKr-Ma-NN9" secondAttribute="trailing" id="SAz-x8-193"/>
+                <constraint firstItem="KKr-Ma-NN9" firstAttribute="trailing" secondItem="c9I-6f-dcw" secondAttribute="trailing" constant="16" id="c2m-bH-AcX"/>
+                <constraint firstItem="Ddz-bc-kur" firstAttribute="top" secondItem="Aqm-mv-wyB" secondAttribute="bottom" constant="8" id="fMB-jV-dX8"/>
+                <constraint firstItem="Aqm-mv-wyB" firstAttribute="top" secondItem="c9I-6f-dcw" secondAttribute="bottom" constant="8" id="hME-6K-3iw"/>
+                <constraint firstItem="Ddz-bc-kur" firstAttribute="leading" secondItem="KKr-Ma-NN9" secondAttribute="leading" constant="139" id="sAK-bH-ted"/>
+                <constraint firstItem="c9I-6f-dcw" firstAttribute="top" secondItem="KKr-Ma-NN9" secondAttribute="top" constant="3" id="zgP-Id-Zm0"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="KKr-Ma-NN9"/>
+            <point key="canvasLocation" x="1136.8" y="-512.29385307346331"/>
+        </view>
+    </objects>
+</document>
