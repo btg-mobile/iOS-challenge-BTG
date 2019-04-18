@@ -52,6 +52,7 @@ class FilmesViewController: UIViewController, FilmesDisplayLogic {
         setup()
         self.interactor?.fetchItems(request: FilmesModel.Fetch.Request())
         listaFilmes.delegate = self
+        
     }
     
     private func setup()
@@ -97,5 +98,6 @@ extension FilmesViewController: ListaDeFilmesDelegate {
         var search = FilmesModel.Fetch.Request()
         search.movieNameSearch = textChanged
         self.interactor?.fetchItemsSearch(request: search)
+        view.endEditing(true)
     }
 }
