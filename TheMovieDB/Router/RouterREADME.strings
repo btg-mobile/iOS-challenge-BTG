@@ -1,0 +1,65 @@
+/*
+ The router takes care for the transition and passing data between view controllers.
+ Also, you can use segues, unlike the VIPER architecture where you can’t do that.
+ 
+ import UIKit
+ 
+ @objc protocol TestRoutingLogic
+ {
+    //func routeToSomewhere(segue: UIStoryboardSegue?)
+ }
+ 
+ protocol TestDataPassing
+ {
+    var dataStore: TestDataStore? { get }
+ }
+ 
+ class TestRouter: NSObject, TestRoutingLogic, TestDataPassing
+ {
+     weak var viewController: TestViewController?
+     var dataStore: TestDataStore?
+ 
+ // MARK: Routing
+ 
+ //    func routeToSomewhere(segue: UIStoryboardSegue?)
+ //    {
+ //        if let segue = segue {
+ //            let destinationVC = segue.destination as! SomewhereViewController
+ //            var destinationDS = destinationVC.router!.dataStore!
+ //            passDataToSomewhere(source: dataStore!, destination: &destinationDS)
+ //        } else {
+ //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+ //            let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
+ //            var destinationDS = destinationVC.router!.dataStore!
+ //            passDataToSomewhere(source: dataStore!, destination: &destinationDS)
+ //            navigateToSomewhere(source: viewController!, destination: destinationVC)
+ //        }
+ //    }
+ 
+ //    MARK: Navigation
+ 
+ //    func navigateToSomewhere(source: TestViewController, destination: SomewhereViewController)
+ //    {
+ //        source.show(destination, sender: nil)
+ //    }
+ //
+ //    MARK: Passing data
+ //
+ //    func passDataToSomewhere(source: TestDataStore, destination: inout SomewhereDataStore)
+ //    {
+ //        destination.name = source.name
+ //    }
+ }
+ 
+ 
+ The generated router file comes with example methods used for navigating and passing data.
+ The routeToSomewhere() method is an example that shows us how to transition to another view controller
+ by either using a segue or by initializing the destination view controller.
+ 
+ There are two protocols declared:
+ 
+ Routing Logic Protocol - all the methods used for routing are kept under this protocol.
+ Data Passing Protocol - a protocol that contains the data that needs to be passed to the destination controller.
+ 
+
+*/

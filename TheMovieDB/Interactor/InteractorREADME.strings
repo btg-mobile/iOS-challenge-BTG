@@ -1,0 +1,45 @@
+/* 
+  This is the “mediator” between the Worker and the Presenter. Here is how the Interactor works.
+ First, it communicates with the ViewController which passes all the Request params needed for the Worker.
+ Before proceeding to the Worker, a validation is done to check if everything is sent properly. The Worker
+ returns a response and the Interactor passes that response towards the Presenter.
+ 
+ 
+ import UIKit
+ 
+ protocol TestBusinessLogic
+ {
+    func fetchItems(request: Test.Fetch.Request)
+ }
+ 
+ protocol TestDataStore
+ {
+    //var name: String { get set }
+ }
+ 
+ class TestInteractor: TestBusinessLogic, TestDataStore
+ {
+     var presenter: TestPresentationLogic?
+     var worker: TestWorker?
+     //var name: String = ""
+ 
+     func fetchItems(request: Test.Fetch.Request) {
+         if request.itemId == nil || request.count == nil || request.keyword == nil {
+         return self.presenter?.presentFetchResults(response: Test.Fetch.Response(object: nil,isError: true, message: "Fields may not be empty."))
+         }
+         worker = TestWorker()
+         worker?.fetch(name: request.name, type: request.type, count: request.count, success: { (object) in
+         self.presenter?.presentFetchResults(response: Test.Fetch.Response(object: object, isError: false, message: nil))
+         }) { (error, message) in
+         self.presenter?.presentFetchResults(response: Test.Fetch.Response(object: nil, isError: true, message: message))
+         }
+     }
+ }
+ 
+ 
+ The Interactor also contains two types of protocols like the Router:
+ 
+ Business Logic Protocol - declare all the Interactor methods in this protocol, so they can be available for use in the ViewController.
+ Data Store Protocol - all properties that should keep their current state are declared here. This protocol is mainly used in the Router to pass data between controllers.
+ 
+*/

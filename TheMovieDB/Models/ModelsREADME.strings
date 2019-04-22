@@ -1,0 +1,43 @@
+/*
+ We will store all the models related to the controller. The Models class will be related to each component,
+ as you can see in the Flow Diagram. It will be of type struct and mostly it will contain Request,
+ Response, and ViewModel structs.
+ 
+ SAMPLE CODE
+ 
+ import UIKit
+ 
+ struct TestModel{
+     struct Fetch {
+         struct Request
+         {
+             var itemId = 0
+             var keyword: String?
+             var count: String?
+         }
+         struct Response
+         {
+             var testObj: Test?
+             var isError: Bool
+             var message: String?
+         }
+         struct ViewModel
+         {
+             var name: String?
+             var date: String?
+             var desc: String?
+             var isError: Bool
+             var message: String?
+         }
+     }
+ }
+ 
+ For this example, let’s assume you are working with an API call on this scene. You will need the following structs:
+ 
+ Request - parameters that need to be sent to the API request.
+ Response - intercepts the response from the API and stores the appropriate data.
+ ViewModel - everything that you need to show to the UI is stored here. For example,
+ your API returns objects with 10 parameters, but you only need to show 4 of them.
+ 
+ 
+*/
