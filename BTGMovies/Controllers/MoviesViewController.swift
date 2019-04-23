@@ -79,6 +79,7 @@ class MoviesViewController: BaseViewController {
             switch viewState {
             case .loading:
                 showActivityIndicator()
+                tableView.restore()
             case .pullToRefresh:
                 showActivityIndicator()
             case .error:
@@ -105,7 +106,7 @@ class MoviesViewController: BaseViewController {
 
 extension MoviesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if viewModel.numberOfMovies() == 0 {
+        if viewModel.numberOfMovies() == 0 && viewState != .loading {
             viewState = .empty
         } else {
             viewState = .default
