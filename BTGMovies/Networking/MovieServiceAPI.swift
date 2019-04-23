@@ -29,15 +29,7 @@ class MovieServiceAPI {
             .appendingPathComponent(endpoint.rawValue)
         RequestManager.fetchResources(url: movieURL, completion: completion)
     }
-    
-    func fetchMovie(movieId: Int, completion: @escaping (Result<Movie, APIServiceError>) -> Void) {
         
-        let movieURL = baseURL
-            .appendingPathComponent("movie")
-            .appendingPathComponent(String(movieId))
-        RequestManager.fetchResources(url: movieURL, completion: completion)
-    }
-    
     func getImage(path: String, completion: @escaping (Result<UIImage, APIServiceError>) -> Void) {
         let url = URL(string: "https://image.tmdb.org")!
             .appendingPathComponent("t/p/w500")

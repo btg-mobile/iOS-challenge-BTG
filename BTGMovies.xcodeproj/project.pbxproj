@@ -28,7 +28,6 @@
 		FA3BE6B3226F875300158C9D /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3BE6B2226F875300158C9D /* ReusableView.swift */; };
 		FA3BE6B7226F8B9A00158C9D /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3BE6B5226F8B8F00158C9D /* MovieViewModel.swift */; };
 		FA3BE6B8226F8B9D00158C9D /* MoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3BE6B6226F8B8F00158C9D /* MoviesViewModel.swift */; };
-		FA3BE6BA226F8BED00158C9D /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3BE6B9226F8BED00158C9D /* Image.swift */; };
 		FA3BE6BC226F8EA100158C9D /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3BE6BB226F8EA100158C9D /* UIImageView+Extensions.swift */; };
 		FA3BE6C0226F9A1800158C9D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3BE6BF226F9A1300158C9D /* CoreDataManager.swift */; };
 		FA3BE6C1226F9A1800158C9D /* MoviePersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3BE6BE226F9A1300158C9D /* MoviePersistenceManager.swift */; };
@@ -74,7 +73,6 @@
 		FA3BE6B2226F875300158C9D /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		FA3BE6B5226F8B8F00158C9D /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
 		FA3BE6B6226F8B8F00158C9D /* MoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewModel.swift; sourceTree = "<group>"; };
-		FA3BE6B9226F8BED00158C9D /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		FA3BE6BB226F8EA100158C9D /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		FA3BE6BE226F9A1300158C9D /* MoviePersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePersistenceManager.swift; sourceTree = "<group>"; };
 		FA3BE6BF226F9A1300158C9D /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -153,7 +151,6 @@
 			isa = PBXGroup;
 			children = (
 				FA3BE68C226F79BD00158C9D /* RequestManager.swift */,
-				FA3BE6B9226F8BED00158C9D /* Image.swift */,
 				FA3BE692226F7C3000158C9D /* MovieServiceAPI.swift */,
 			);
 			path = Networking;
@@ -346,7 +343,6 @@
 				FA3BE672226F78C200158C9D /* BTGMovies.xcdatamodeld in Sources */,
 				FA3BE6AA226F861500158C9D /* UIViewController+Extensions.swift in Sources */,
 				FA3BE69E226F83AF00158C9D /* BaseViewController.swift in Sources */,
-				FA3BE6BA226F8BED00158C9D /* Image.swift in Sources */,
 				FA3BE6BC226F8EA100158C9D /* UIImageView+Extensions.swift in Sources */,
 				FA3BE6C3226FAC6900158C9D /* UITableView+Extensions.swift in Sources */,
 				FA3BE6B7226F8B9A00158C9D /* MovieViewModel.swift in Sources */,
