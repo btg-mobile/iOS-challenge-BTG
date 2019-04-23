@@ -26,16 +26,17 @@ class MoviesViewController: BaseViewController {
     private var searchTerms = ""
     private var searchWasCancelled = false
     
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .white
+        refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
+        return refreshControl
+    }()
+    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        switch viewModel.screenType {
-        case .popular:
-            fetchMovies()
-        case .favorites:
-            getFavorites()
-        }
-        
+        loadData()
         setupTableView()
         setupSearchBar()
     }
@@ -52,11 +53,29 @@ class MoviesViewController: BaseViewController {
     // MARK: - Setups
     private func setupTableView() {
         tableView.register(MovieMainTableViewCell.self)
+        if case .popular = viewModel.screenType {
+            tableView.refreshControl = refreshControl
+        }
         tableView.rowHeight = 150
         tableView.tableFooterView = UIView()
     }
     
+    @objc private func refreshTableView() {
+        viewState = .pullToRefresh
+        loadData()
+    }
+    
     // MARK: - API
+    
+    private func loadData() {
+        switch viewModel.screenType {
+        case .popular:
+            fetchMovies()
+        case .favorites:
+            getFavorites()
+        }
+    }
+    
     private func fetchMovies() {
         self.viewState = .loading
         viewModel.getMovies { [weak self] success in
@@ -84,6 +103,7 @@ class MoviesViewController: BaseViewController {
                 showActivityIndicator()
             case .error:
                 removeActivityIndicator()
+                refreshControl.endRefreshing()
                 showAlert(message: "Erro ao buscar os filmes")
                 tableView.setEmptyView(title: "Sem internet", message: "Não é possível encontrar filmes novos sem internet.")
             case .empty:
@@ -99,6 +119,7 @@ class MoviesViewController: BaseViewController {
                 }
             case .default:
                 removeActivityIndicator()
+                refreshControl.endRefreshing()
                 tableView.restore()
             }
         }
