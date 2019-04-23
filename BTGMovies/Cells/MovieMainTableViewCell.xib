@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="MovieMainTableViewCell" customModule="BTGMovies" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="364" height="150"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="364" height="149.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" alpha="0.20000000298023224" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NnV-fP-rbs">
+                        <rect key="frame" x="0.0" y="0.0" width="364" height="149.5"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Xh-4A-hhP">
+                        <rect key="frame" x="16" y="25" width="75" height="100"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="100" id="cLa-lr-GHf"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4N-ia-L6Y">
+                        <rect key="frame" x="107" y="25" width="241" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="jlI-hT-NCw"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                        <color key="textColor" red="0.8862745098" green="0.92156862750000001" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5et-YF-x08">
+                        <rect key="frame" x="107" y="57" width="241" height="32"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <color key="textColor" red="0.8862745098" green="0.92156862750000001" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vhd-Yh-kG3">
+                        <rect key="frame" x="323" y="108.5" width="25" height="25"/>
+                        <state key="normal" image="favorites-tab-icon"/>
+                        <connections>
+                            <action selector="favoriteButtonTappedWithSender:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="umo-VE-b2s"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" red="0.13333333333333333" green="0.18431372549019609" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstItem="7Xh-4A-hhP" firstAttribute="width" secondItem="7Xh-4A-hhP" secondAttribute="height" multiplier="3:4" id="0oS-oG-esq"/>
+                    <constraint firstAttribute="trailing" secondItem="f4N-ia-L6Y" secondAttribute="trailing" constant="16" id="9hw-np-qjk"/>
+                    <constraint firstAttribute="bottom" secondItem="NnV-fP-rbs" secondAttribute="bottom" id="AnB-iZ-5HW"/>
+                    <constraint firstItem="7Xh-4A-hhP" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="HTN-zl-xK9"/>
+                    <constraint firstItem="5et-YF-x08" firstAttribute="leading" secondItem="7Xh-4A-hhP" secondAttribute="trailing" constant="16" id="JNn-o1-FxQ"/>
+                    <constraint firstAttribute="trailing" secondItem="vhd-Yh-kG3" secondAttribute="trailing" constant="16" id="Jbl-f8-w1o"/>
+                    <constraint firstAttribute="trailing" secondItem="5et-YF-x08" secondAttribute="trailing" constant="16" id="Jur-EJ-gNU"/>
+                    <constraint firstAttribute="bottom" secondItem="vhd-Yh-kG3" secondAttribute="bottom" constant="16" id="Soe-MV-d35"/>
+                    <constraint firstItem="NnV-fP-rbs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="VDt-un-xee"/>
+                    <constraint firstItem="NnV-fP-rbs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="aaR-6n-sFB"/>
+                    <constraint firstItem="f4N-ia-L6Y" firstAttribute="leading" secondItem="7Xh-4A-hhP" secondAttribute="trailing" constant="16" id="buF-ch-tNW"/>
+                    <constraint firstItem="7Xh-4A-hhP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="hyi-1E-9Ly"/>
+                    <constraint firstItem="5et-YF-x08" firstAttribute="top" secondItem="f4N-ia-L6Y" secondAttribute="bottom" constant="8" id="kOP-b6-BQR"/>
+                    <constraint firstItem="f4N-ia-L6Y" firstAttribute="top" secondItem="7Xh-4A-hhP" secondAttribute="top" id="si2-NA-TZh"/>
+                    <constraint firstAttribute="trailing" secondItem="NnV-fP-rbs" secondAttribute="trailing" id="sre-zZ-VuJ"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="5et-YF-x08" secondAttribute="bottom" constant="16" id="vkR-Bc-5RL"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="backgroundImageView" destination="NnV-fP-rbs" id="WRQ-yS-vOW"/>
+                <outlet property="coverImageView" destination="7Xh-4A-hhP" id="sTg-FA-HcK"/>
+                <outlet property="favoriteButton" destination="vhd-Yh-kG3" id="epI-Et-nAu"/>
+                <outlet property="title" destination="f4N-ia-L6Y" id="LN5-W9-f8i"/>
+                <outlet property="yearLabel" destination="5et-YF-x08" id="kxI-Ud-ORW"/>
+            </connections>
+            <point key="canvasLocation" x="79.710144927536234" y="92.745535714285708"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="favorites-tab-icon" width="25" height="25"/>
+    </resources>
+</document>
