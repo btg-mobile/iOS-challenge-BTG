@@ -11,24 +11,40 @@ import XCTest
 
 class BTGMoviesTests: XCTestCase {
 
+    var movie: Movie!
+    var viewModel: MovieViewModel!
+    var sut: MovieDetailViewController!
+
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        super.setUp()
+        movie = Movie(id: 10, title: "Titulo", overview: "Sinopse", releaseDate: Date(), posterPath: "", backdropPath: "", voteAverage: 5.5)
+        viewModel = MovieViewModel(movie)
+        sut = MovieDetailViewController(viewModel: viewModel)
+        sut.loadView()
+        sut.viewDidLoad()
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        viewModel.removeMovie()
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testViewModel() {
+        XCTAssertEqual(viewModel.title, "Titulo")
+        XCTAssertNotEqual(viewModel.overview, "")
     }
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testCoreData() {
+        viewModel.removeMovie()
+        XCTAssertEqual(viewModel.isFavorite, false)
+        XCTAssertEqual(sut.navigationItem.rightBarButtonItem?.image, #imageLiteral(resourceName: "favorites-tab-icon").withRenderingMode(.alwaysOriginal))
+        viewModel.saveMovie()
+        XCTAssertEqual(viewModel.isFavorite, true)
     }
-
+    
+    func testDetailViewController() {
+        XCTAssertEqual(sut.titleLabel.text, viewModel.title)
+        XCTAssertEqual(sut.releaseYearLabel.text, viewModel.releaseDate)
+        XCTAssertEqual(sut.overviewLabel.text, viewModel.overview)
+        XCTAssertEqual(sut.ratingLabel.text, viewModel.voteAverage)
+    }
 }

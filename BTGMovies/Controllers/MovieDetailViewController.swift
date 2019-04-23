@@ -11,12 +11,12 @@ import UIKit
 class MovieDetailViewController: BaseViewController {
 
     // MARK: - Outlets
-    @IBOutlet private weak var backdropImageView: UIImageView!
-    @IBOutlet private weak var coverImageView: UIImageView!
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var releaseYearLabel: UILabel!
-    @IBOutlet private weak var overviewLabel: UILabel!
-    @IBOutlet private weak var ratingLabel: UILabel!
+    @IBOutlet weak var backdropImageView: UIImageView!
+    @IBOutlet weak var coverImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var releaseYearLabel: UILabel!
+    @IBOutlet weak var overviewLabel: UILabel!
+    @IBOutlet weak var ratingLabel: UILabel!
     
     // MARK: - Init
     init(viewModel: MovieViewModel) {
