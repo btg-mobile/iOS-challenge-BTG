@@ -32,6 +32,7 @@
 		FA3BE6BC226F8EA100158C9D /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3BE6BB226F8EA100158C9D /* UIImageView+Extensions.swift */; };
 		FA3BE6C0226F9A1800158C9D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3BE6BF226F9A1300158C9D /* CoreDataManager.swift */; };
 		FA3BE6C1226F9A1800158C9D /* MoviePersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3BE6BE226F9A1300158C9D /* MoviePersistenceManager.swift */; };
+		FA3BE6C3226FAC6900158C9D /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3BE6C2226FAC6900158C9D /* UITableView+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		FA3BE6BB226F8EA100158C9D /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		FA3BE6BE226F9A1300158C9D /* MoviePersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePersistenceManager.swift; sourceTree = "<group>"; };
 		FA3BE6BF226F9A1300158C9D /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		FA3BE6C2226FAC6900158C9D /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 				FA3BE69F226F83FD00158C9D /* UIApplication+Extensions.swift */,
 				FA3BE6A9226F861500158C9D /* UIViewController+Extensions.swift */,
 				FA3BE6BB226F8EA100158C9D /* UIImageView+Extensions.swift */,
+				FA3BE6C2226FAC6900158C9D /* UITableView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				FA3BE69E226F83AF00158C9D /* BaseViewController.swift in Sources */,
 				FA3BE6BA226F8BED00158C9D /* Image.swift in Sources */,
 				FA3BE6BC226F8EA100158C9D /* UIImageView+Extensions.swift in Sources */,
+				FA3BE6C3226FAC6900158C9D /* UITableView+Extensions.swift in Sources */,
 				FA3BE6B7226F8B9A00158C9D /* MovieViewModel.swift in Sources */,
 				FA3BE693226F7C3000158C9D /* MovieServiceAPI.swift in Sources */,
 				FA3BE66A226F78C200158C9D /* AppDelegate.swift in Sources */,

@@ -58,14 +58,14 @@ class MoviesViewController: BaseViewController {
     
     // MARK: - API
     private func fetchMovies() {
-        self.showActivityIndicator()
+        self.viewState = .loading
         viewModel.getMovies { [weak self] success in
             guard let self = self else { return }
-            self.removeActivityIndicator()
             if success {
+                self.viewState = .default
                 self.tableView.reloadData()
             } else {
-                print("error")
+                self.viewState = .error
             }
         }
     }
@@ -73,10 +73,43 @@ class MoviesViewController: BaseViewController {
     private func getFavorites() {
         viewModel.initWithPersistence()
     }
+    
+    override var viewState: BaseViewController.ControllerState {
+        didSet {
+            switch viewState {
+            case .loading:
+                showActivityIndicator()
+            case .pullToRefresh:
+                showActivityIndicator()
+            case .error:
+                removeActivityIndicator()
+                showAlert(message: "Erro ao buscar os filmes")
+            case .empty:
+                switch viewModel.screenType {
+                case .popular:
+                    tableView.setEmptyView(title: "Ops!", message: "Nenhum filme encontrado com o título: \(searchTerms)")
+                case .favorites:
+                    if searchTerms.isEmpty {
+                        tableView.setEmptyView(title: "Poxa", message: "Você ainda não favoritou nenhum filme. Vá para a aba filmes e clique no coraçãozinho!")
+                    } else {
+                        tableView.setEmptyView(title: "Ops!", message: "Você não tem nenhum filme favoritado com o título: \(searchTerms)")
+                    }
+                }
+            case .default:
+                removeActivityIndicator()
+                tableView.restore()
+            }
+        }
+    }
 }
 
 extension MoviesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if viewModel.numberOfMovies() == 0 {
+            viewState = .empty
+        } else {
+            viewState = .default
+        }
         return viewModel.numberOfMovies()
     }
     
@@ -131,10 +164,6 @@ extension MoviesViewController: UISearchResultsUpdating {
     @objc private func reload() {
         viewModel.filterMovies(text: searchTerms)
         tableView.reloadData()
-//
-//        if !searchBarIsEmpty() {
-//            fetchMovie(with: searchTerms)
-//        }
     }
 }
 
