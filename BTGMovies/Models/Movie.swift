@@ -22,11 +22,12 @@ struct Movie: Codable {
     let releaseDate: Date
     let posterPath: String
     let backdropPath: String
+    let voteAverage: Double
 }
 
 extension Movie {
     init(fromPersistence movie: MoviePersistence) {
-        self.init(id: Int(movie.id), title: movie.title ?? "", overview: movie.overview ?? "", releaseDate: movie.releaseYear ?? Date(), posterPath: movie.posterPath ?? "", backdropPath: movie.backdropPath ?? "")
+        self.init(id: Int(movie.id), title: movie.title ?? "", overview: movie.overview ?? "", releaseDate: movie.releaseYear ?? Date(), posterPath: movie.posterPath ?? "", backdropPath: movie.backdropPath ?? "", voteAverage: movie.voteAverage)
     }
 }
 
@@ -38,5 +39,6 @@ extension MoviePersistence {
         self.releaseYear = movie.releaseDate
         self.posterPath = movie.posterPath
         self.backdropPath = movie.backdropPath
+        self.voteAverage = movie.voteAverage
     }
 }

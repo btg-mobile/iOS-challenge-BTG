@@ -25,7 +25,9 @@ class RequestManager {
             completion(.failure(.invalidEndpoint))
             return
         }
-        let queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
+        let queryItems = [URLQueryItem(name: "api_key", value: apiKey),
+                          URLQueryItem(name: "language", value: Locale.languageAndRegion)
+        ]
         urlComponents.queryItems = queryItems
         guard let url = urlComponents.url else {
             completion(.failure(.invalidEndpoint))

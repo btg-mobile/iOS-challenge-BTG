@@ -16,6 +16,7 @@ class MovieDetailViewController: BaseViewController {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var releaseYearLabel: UILabel!
     @IBOutlet private weak var overviewLabel: UILabel!
+    @IBOutlet private weak var ratingLabel: UILabel!
     
     // MARK: - Init
     init(viewModel: MovieViewModel) {
@@ -64,5 +65,6 @@ class MovieDetailViewController: BaseViewController {
         titleLabel.text = viewModel.title
         releaseYearLabel.text = viewModel.releaseDate
         overviewLabel.text = viewModel.overview
+        ratingLabel.text = viewModel.voteAverage
     }
 }

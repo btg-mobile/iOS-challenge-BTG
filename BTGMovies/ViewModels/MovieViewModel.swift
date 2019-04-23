@@ -39,6 +39,10 @@ class MovieViewModel {
         return movie.overview
     }
     
+    var voteAverage: String {
+        return String(movie.voteAverage)
+    }
+    
     var isFavorite: Bool {
         return MoviePersistenceManager.shared.movie(id: movie.id) != nil
     }

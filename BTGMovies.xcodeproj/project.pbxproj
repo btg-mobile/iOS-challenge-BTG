@@ -35,6 +35,7 @@
 		FA3BE6C3226FAC6900158C9D /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3BE6C2226FAC6900158C9D /* UITableView+Extensions.swift */; };
 		FA3BE6C6226FB42B00158C9D /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3BE6C4226FB42B00158C9D /* MovieDetailViewController.swift */; };
 		FA3BE6C7226FB42B00158C9D /* MovieDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA3BE6C5226FB42B00158C9D /* MovieDetailViewController.xib */; };
+		FA3BE6C9226FBD3600158C9D /* Locale+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3BE6C8226FBD3600158C9D /* Locale+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		FA3BE6C2226FAC6900158C9D /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		FA3BE6C4226FB42B00158C9D /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		FA3BE6C5226FB42B00158C9D /* MovieDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailViewController.xib; sourceTree = "<group>"; };
+		FA3BE6C8226FBD3600158C9D /* Locale+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locale+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 		FA3BE68F226F7C0400158C9D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				FA3BE6C8226FBD3600158C9D /* Locale+Extensions.swift */,
 				FA3BE690226F7C1300158C9D /* URLSession+Extensions.swift */,
 				FA3BE69F226F83FD00158C9D /* UIApplication+Extensions.swift */,
 				FA3BE6A9226F861500158C9D /* UIViewController+Extensions.swift */,
@@ -331,6 +334,7 @@
 			files = (
 				FA3BE6A7226F852300158C9D /* MoviesViewController.swift in Sources */,
 				FA3BE6A0226F83FD00158C9D /* UIApplication+Extensions.swift in Sources */,
+				FA3BE6C9226FBD3600158C9D /* Locale+Extensions.swift in Sources */,
 				FA3BE696226F7C4F00158C9D /* Movie.swift in Sources */,
 				FA3BE6C0226F9A1800158C9D /* CoreDataManager.swift in Sources */,
 				FA3BE6C1226F9A1800158C9D /* MoviePersistenceManager.swift in Sources */,

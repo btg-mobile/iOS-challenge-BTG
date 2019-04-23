@@ -7,8 +7,9 @@
         <attribute name="posterPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="releaseYear" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="voteAverage" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="MoviePersistence" positionX="-54" positionY="-9" width="128" height="133"/>
+        <element name="MoviePersistence" positionX="-54" positionY="-9" width="128" height="150"/>
     </elements>
 </model>
