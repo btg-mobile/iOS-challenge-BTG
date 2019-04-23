@@ -85,6 +85,7 @@ class MoviesViewController: BaseViewController {
             case .error:
                 removeActivityIndicator()
                 showAlert(message: "Erro ao buscar os filmes")
+                tableView.setEmptyView(title: "Sem internet", message: "Não é possível encontrar filmes novos sem internet.")
             case .empty:
                 switch viewModel.screenType {
                 case .popular:
@@ -130,6 +131,14 @@ extension MoviesViewController: UITableViewDataSource {
             }
         }
         return cell
+    }
+}
+
+extension MoviesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let movie = viewModel.movie(at: indexPath.row)
+        MovieDetailViewController(viewModel: movie).open(flow: .push)
     }
 }
 

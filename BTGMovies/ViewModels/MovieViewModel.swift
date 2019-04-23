@@ -35,6 +35,10 @@ class MovieViewModel {
         return movie.backdropPath
     }
     
+    var overview: String {
+        return movie.overview
+    }
+    
     var isFavorite: Bool {
         return MoviePersistenceManager.shared.movie(id: movie.id) != nil
     }
@@ -43,5 +47,17 @@ class MovieViewModel {
 extension MovieViewModel: Equatable {
     static func == (lhs: MovieViewModel, rhs: MovieViewModel) -> Bool {
         return lhs.movie.id == rhs.movie.id
+    }
+}
+
+// MARK: - CoreData
+
+extension MovieViewModel {
+    func saveMovie() {
+        MoviePersistenceManager.shared.createMovie(movie)
+    }
+    
+    func removeMovie() {
+        MoviePersistenceManager.shared.deleteMovie(id: movie.id)
     }
 }
