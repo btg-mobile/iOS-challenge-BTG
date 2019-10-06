@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="movieListCell" id="KGk-i7-Jjw" customClass="MovieListTableViewCell" customModule="BTGTest" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="106"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="106"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HCN-Iu-QOc">
+                        <rect key="frame" x="16" y="8" width="60" height="90"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="90" id="LIH-yI-vn4"/>
+                            <constraint firstAttribute="width" secondItem="HCN-Iu-QOc" secondAttribute="height" multiplier="1:1.5" id="Vwi-6h-UcS"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CC3-CE-lKv">
+                        <rect key="frame" x="84" y="8" width="228" height="24"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(YEAR)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BVk-LQ-93F">
+                        <rect key="frame" x="84" y="34" width="228" height="14.5"/>
+                        <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="HCN-Iu-QOc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="3gz-42-Odg"/>
+                    <constraint firstAttribute="trailing" secondItem="BVk-LQ-93F" secondAttribute="trailing" constant="8" id="7zz-dt-XMp"/>
+                    <constraint firstItem="BVk-LQ-93F" firstAttribute="top" secondItem="CC3-CE-lKv" secondAttribute="bottom" constant="2" id="9DK-dx-tJb"/>
+                    <constraint firstItem="CC3-CE-lKv" firstAttribute="leading" secondItem="HCN-Iu-QOc" secondAttribute="trailing" constant="8" id="Ubw-TC-kff"/>
+                    <constraint firstAttribute="trailing" secondItem="CC3-CE-lKv" secondAttribute="trailing" constant="8" id="YJy-WQ-lTX"/>
+                    <constraint firstItem="BVk-LQ-93F" firstAttribute="leading" secondItem="HCN-Iu-QOc" secondAttribute="trailing" constant="8" id="dez-mF-ErN"/>
+                    <constraint firstAttribute="bottom" secondItem="HCN-Iu-QOc" secondAttribute="bottom" constant="8" id="f0M-9p-Vhj"/>
+                    <constraint firstItem="CC3-CE-lKv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="msu-TB-vLd"/>
+                    <constraint firstItem="HCN-Iu-QOc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="pL8-qr-nob"/>
+                    <constraint firstItem="HCN-Iu-QOc" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="x8n-rK-8xi"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="posterImageView" destination="HCN-Iu-QOc" id="C8Q-mu-aZI"/>
+                <outlet property="titleLabel" destination="CC3-CE-lKv" id="H7G-9E-l0s"/>
+                <outlet property="yearLabel" destination="BVk-LQ-93F" id="zJ0-KO-7gB"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="159.04017857142856"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nAM-Ww-yST">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Item 2-->
+        <scene sceneID="XgC-2E-etG">
+            <objects>
+                <viewController id="wex-i5-0cp" customClass="FavouritesViewController" customModule="BTGTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZAk-qD-VnH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="bNA-oE-1tv"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="mvd-pC-B46"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="my2-OU-GYT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="875" y="326"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="Wsn-gR-d7n">
+            <objects>
+                <viewController id="cEz-kj-k16" customClass="MovieListViewController" customModule="BTGTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YCd-K8-BeK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mjd-og-oW3">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Mjd-og-oW3" firstAttribute="leading" secondItem="exl-ip-vwg" secondAttribute="leading" id="54I-hP-Ucv"/>
+                            <constraint firstItem="exl-ip-vwg" firstAttribute="bottom" secondItem="Mjd-og-oW3" secondAttribute="bottom" id="aaL-gJ-f1G"/>
+                            <constraint firstItem="Mjd-og-oW3" firstAttribute="top" secondItem="exl-ip-vwg" secondAttribute="top" id="lK7-MH-EZK"/>
+                            <constraint firstItem="exl-ip-vwg" firstAttribute="trailing" secondItem="Mjd-og-oW3" secondAttribute="trailing" id="plh-NV-J8m"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="exl-ip-vwg"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="2Bq-D0-Mzn"/>
+                    <connections>
+                        <outlet property="moviesTableView" destination="Mjd-og-oW3" id="quF-vD-4CG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vft-Kx-Ap3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="873" y="-324"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="jmP-oh-qn9">
+            <objects>
+                <tabBarController id="nAM-Ww-yST" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ki4-Go-TXb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="cEz-kj-k16" kind="relationship" relationship="viewControllers" id="Tsu-6f-okc"/>
+                        <segue destination="wex-i5-0cp" kind="relationship" relationship="viewControllers" id="OLz-Q5-Sga"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sZO-jz-oxv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-46" y="1"/>
+        </scene>
+    </scenes>
+</document>

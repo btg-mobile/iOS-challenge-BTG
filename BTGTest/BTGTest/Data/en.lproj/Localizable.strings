@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  BTGTest
+
+  Created by Mario de Castro on 06/10/19.
+  Copyright © 2019 Mario de Castro. All rights reserved.
+*/
+
+// MARK: - Endpoints
+"UNKOWN_ERROR_MESSAGE" = "An unknown error has occurred, plese check your connection and try again";
