@@ -15,7 +15,11 @@ class PopularMoviesEndpoint: Endpoint {
             baseURLType: .movieDB,
             path: "/movie/popular")
 
-        let params = ["api_key": Bundle.infoDictionaryValue(forKey: "MovieDBAPIKey")]
+        let params = [
+            "api_key": Bundle.infoDictionaryValue(forKey: "MovieDBAPIKey"),
+            "language": Locale.current.languageCode ?? "pt",
+            "region": Locale.current.regionCode ?? "BR"
+        ]
 
         super.init(path: urlPath, method: .get, parameters: params)
     }

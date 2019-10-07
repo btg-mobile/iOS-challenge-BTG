@@ -6,5 +6,10 @@
   Copyright © 2019 Mario de Castro. All rights reserved.
 */
 
-// MARK: - Endpoints
+// MARK: - Tab Bar
+"MOVIE_TABBAR" = "Movies";
+"FAVOURITES_TABBAR" = "Favourites";
+
+// MARK: - Errors
+"FAILED_MOVIE_LIST_MESSAGE" = "There was an error fetching the movie list. Please check your internet connection and try again.";
 "UNKOWN_ERROR_MESSAGE" = "An unknown error has occurred, plese check your connection and try again";

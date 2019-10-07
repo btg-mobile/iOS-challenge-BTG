@@ -17,15 +17,19 @@ class Movie: Object, Mappable {
     @objc dynamic var id: Int = -1
     @objc dynamic var title: String = ""
     @objc dynamic var overview: String = ""
-    @objc dynamic var releaseDate: String = ""
     @objc dynamic var originalTitle: String = ""
     @objc dynamic var originalLanguage: String = ""
     @objc dynamic var posterPath: String = ""
+    @objc dynamic var releaseDate: Date = Date()
 
     // MARK: - Computed Paramethers
     var smallPosterURL: URL? {
         let urlPath = URLPath(baseURLType: .movieDBImage, path: posterPath)
         return URL(string: urlPath.imagePath(forSize: .small))
+    }
+
+    var releaseYear: String {
+        return "\(Calendar.current.component(.year, from: releaseDate))"
     }
 
     // MARK: - Primary Key
@@ -47,10 +51,10 @@ class Movie: Object, Mappable {
         id               <- map["id"]
         title            <- map["title"]
         overview         <- map["overview"]
-        releaseDate      <- map["release_date"]
         originalTitle    <- map["original_title"]
         originalLanguage <- map["original_language"]
         posterPath       <- map["poster_path"]
+        releaseDate      <- (map["release_date"], DateTransform())
     }
 
 }

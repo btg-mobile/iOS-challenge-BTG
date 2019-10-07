@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
+        <!--FAVOURITES_TABBAR-->
         <scene sceneID="XgC-2E-etG">
             <objects>
                 <viewController id="wex-i5-0cp" customClass="FavouritesViewController" customModule="BTGTest" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,13 +18,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="bNA-oE-1tv"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="mvd-pC-B46"/>
+                    <tabBarItem key="tabBarItem" title="FAVOURITES_TABBAR" image="tabbarFavourite" id="mvd-pC-B46" customClass="LocalizedTabBarItem" customModule="BTGTest" customModuleProvider="target"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="my2-OU-GYT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="875" y="326"/>
         </scene>
-        <!--Item 1-->
+        <!--MOVIE_TABBAR-->
         <scene sceneID="Wsn-gR-d7n">
             <objects>
                 <viewController id="cEz-kj-k16" customClass="MovieListViewController" customModule="BTGTest" customModuleProvider="target" sceneMemberID="viewController">
@@ -36,24 +36,30 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="krn-Aq-gNx">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Mjd-og-oW3" firstAttribute="leading" secondItem="exl-ip-vwg" secondAttribute="leading" id="54I-hP-Ucv"/>
+                            <constraint firstItem="krn-Aq-gNx" firstAttribute="centerX" secondItem="YCd-K8-BeK" secondAttribute="centerX" id="6Mq-dS-y7h"/>
                             <constraint firstItem="exl-ip-vwg" firstAttribute="bottom" secondItem="Mjd-og-oW3" secondAttribute="bottom" id="aaL-gJ-f1G"/>
                             <constraint firstItem="Mjd-og-oW3" firstAttribute="top" secondItem="exl-ip-vwg" secondAttribute="top" id="lK7-MH-EZK"/>
                             <constraint firstItem="exl-ip-vwg" firstAttribute="trailing" secondItem="Mjd-og-oW3" secondAttribute="trailing" id="plh-NV-J8m"/>
+                            <constraint firstItem="krn-Aq-gNx" firstAttribute="centerY" secondItem="YCd-K8-BeK" secondAttribute="centerY" id="qXl-z9-3TC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="exl-ip-vwg"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="2Bq-D0-Mzn"/>
+                    <tabBarItem key="tabBarItem" title="MOVIE_TABBAR" image="tabbarMovies" id="2Bq-D0-Mzn" customClass="LocalizedTabBarItem" customModule="BTGTest" customModuleProvider="target"/>
                     <connections>
+                        <outlet property="loadingActivityIndicator" destination="krn-Aq-gNx" id="6ts-0c-8UG"/>
                         <outlet property="moviesTableView" destination="Mjd-og-oW3" id="quF-vD-4CG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vft-Kx-Ap3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="873" y="-324"/>
+            <point key="canvasLocation" x="872.46376811594212" y="-324.10714285714283"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="jmP-oh-qn9">
@@ -74,4 +80,8 @@
             <point key="canvasLocation" x="-46" y="1"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tabbarFavourite" width="22" height="22"/>
+        <image name="tabbarMovies" width="22" height="22"/>
+    </resources>
 </document>

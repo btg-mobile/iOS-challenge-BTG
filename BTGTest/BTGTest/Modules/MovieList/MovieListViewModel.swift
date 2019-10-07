@@ -30,8 +30,12 @@ class MovieListViewModel {
 
     // MARK: - Networking
     private func fetchMovies() {
+        view.startFullScreenLoading()
         PopularMoviesEndpoint().makeRequest { (response, error) in
-            if let error = error {
+            self.view.stopFullScreenLoading()
+
+            if let _ = error {
+                self.view.showErrorMessage("FAILED_MOVIE_LIST_MESSAGE".localized)
                 return
             }
 

@@ -13,9 +13,14 @@ class MovieListViewController: UIViewController {
 
     // MARK: - IBOutlets
     @IBOutlet private weak var moviesTableView: UITableView!
+    @IBOutlet private weak var loadingActivityIndicator: UIActivityIndicatorView!
+
 
     // MARK: - View Model
     private var viewModel: MovieListViewInput!
+
+    // MARK: - Private Paramethers
+    private var errorView: ErrorView?
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -57,6 +62,44 @@ extension MovieListViewController: UITableViewDataSource {
 // MARK: - MovieListViewOutput
 extension MovieListViewController: MovieListViewOutput {
     func reloadMovieTableView() {
+        if let errorView = errorView {
+            errorView.isHidden = true
+        }
+
+        moviesTableView.isHidden = false
         moviesTableView.reloadData()
+    }
+
+    func startFullScreenLoading() {
+        if let errorView = errorView {
+            errorView.isHidden = true
+        }
+
+        moviesTableView.isHidden = true
+        loadingActivityIndicator.startAnimating()
+    }
+
+    func stopFullScreenLoading() {
+        loadingActivityIndicator.stopAnimating()
+    }
+
+    func showErrorMessage(_ message: String) {
+        if errorView == nil {
+            errorView = ErrorView.instance()
+            errorView!.layout(into: view)
+        }
+
+        errorView!.setMessage(message)
+        errorView!.isHidden = false
+        errorView!.delegate = self
+
+        moviesTableView.isHidden = true
+    }
+}
+
+// MARK: - ErrorView Delegate
+extension MovieListViewController: ErrorViewDelegate {
+    func errorViewDidPressTryAgainButton(_ errorView: ErrorView) {
+        viewModel.fetchMovieList()
     }
 }

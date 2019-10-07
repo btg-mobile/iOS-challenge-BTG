@@ -11,6 +11,11 @@ import Foundation
 // MARK: - MovieList View Contracts
 protocol MovieListViewOutput: class {
     func reloadMovieTableView()
+
+    func startFullScreenLoading()
+    func stopFullScreenLoading()
+
+    func showErrorMessage(_ message: String)
 }
 
 protocol MovieListViewInput {

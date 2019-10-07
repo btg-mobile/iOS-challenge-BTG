@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 class MovieListTableViewCell: UITableViewCell {
 
@@ -17,11 +16,9 @@ class MovieListTableViewCell: UITableViewCell {
 
     func fill(movie: Movie) {
         titleLabel.text = movie.title
-        yearLabel.text = movie.releaseDate
+        yearLabel.text = movie.releaseYear
 
-        if let imageUrl = movie.smallPosterURL {
-            posterImageView.kf.setImage(with: imageUrl)
-        }
+        posterImageView.setImageFromURL(movie.smallPosterURL)
     }
 
 }

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2188C984234BA38D006C6AE7 /* UIImageView+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2188C983234BA38D006C6AE7 /* UIImageView+URL.swift */; };
+		2188C987234BA5C4006C6AE7 /* DateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2188C986234BA5C4006C6AE7 /* DateTransform.swift */; };
+		2188C989234BA670006C6AE7 /* String+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2188C988234BA670006C6AE7 /* String+Date.swift */; };
+		2188C98B234BAC2F006C6AE7 /* TabBarItem+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2188C98A234BAC2F006C6AE7 /* TabBarItem+Localized.swift */; };
+		2188C991234BBC1B006C6AE7 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2188C990234BBC1B006C6AE7 /* ErrorView.swift */; };
+		2188C993234BBC5E006C6AE7 /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2188C992234BBC5E006C6AE7 /* ErrorView.xib */; };
 		6ADDDAA05B8912BF6F599917 /* Pods_BTGTest_BTGTestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2E3CD240C288EBE7A4D239E /* Pods_BTGTest_BTGTestUITests.framework */; };
 		A5405C0D5110C7F7CF9C7326 /* Pods_BTGTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FBC0B801F20C11D46B6930A /* Pods_BTGTest.framework */; };
 		DD3942B0234A722500DA84A7 /* URLPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3942AF234A722500DA84A7 /* URLPath.swift */; };
@@ -54,6 +60,12 @@
 /* Begin PBXFileReference section */
 		0F5175D5E767F92420510A6D /* Pods-BTGTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTGTest.debug.xcconfig"; path = "Target Support Files/Pods-BTGTest/Pods-BTGTest.debug.xcconfig"; sourceTree = "<group>"; };
 		1FBC0B801F20C11D46B6930A /* Pods_BTGTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BTGTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2188C983234BA38D006C6AE7 /* UIImageView+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+URL.swift"; sourceTree = "<group>"; };
+		2188C986234BA5C4006C6AE7 /* DateTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTransform.swift; sourceTree = "<group>"; };
+		2188C988234BA670006C6AE7 /* String+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Date.swift"; sourceTree = "<group>"; };
+		2188C98A234BAC2F006C6AE7 /* TabBarItem+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabBarItem+Localized.swift"; sourceTree = "<group>"; };
+		2188C990234BBC1B006C6AE7 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		2188C992234BBC5E006C6AE7 /* ErrorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
 		426C2F2B17E1894F72E74ACA /* Pods-BTGTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTGTestTests.release.xcconfig"; path = "Target Support Files/Pods-BTGTestTests/Pods-BTGTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		94C2401000345196CC853A6A /* Pods-BTGTestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTGTestTests.debug.xcconfig"; path = "Target Support Files/Pods-BTGTestTests/Pods-BTGTestTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9BD45F5D32CCC7CB01B8F498 /* Pods_BTGTestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BTGTestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +142,40 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2188C985234BA5AB006C6AE7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2188C986234BA5C4006C6AE7 /* DateTransform.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		2188C98D234BAC75006C6AE7 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				2188C98A234BAC2F006C6AE7 /* TabBarItem+Localized.swift */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		2188C98E234BBBF5006C6AE7 /* Movie TableView Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DD3942C7234A8DE500DA84A7 /* MovieListTableViewCell.swift */,
+				DD3942C8234A8DE500DA84A7 /* MovieListTableViewCell.xib */,
+			);
+			path = "Movie TableView Cell";
+			sourceTree = "<group>";
+		};
+		2188C98F234BBC06006C6AE7 /* ErrorView */ = {
+			isa = PBXGroup;
+			children = (
+				2188C990234BBC1B006C6AE7 /* ErrorView.swift */,
+				2188C992234BBC5E006C6AE7 /* ErrorView.xib */,
+			);
+			path = ErrorView;
+			sourceTree = "<group>";
+		};
 		9EBD29C2397544026840B259 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +219,8 @@
 		DD3942AD234A715400DA84A7 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				2188C98D234BAC75006C6AE7 /* Localization */,
+				2188C985234BA5AB006C6AE7 /* Helpers */,
 				DD3942AE234A716700DA84A7 /* Extensions */,
 			);
 			path = Support;
@@ -181,8 +229,10 @@
 		DD3942AE234A716700DA84A7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				DD3942B1234A72DD00DA84A7 /* Bundle+Info.swift */,
 				DD3942BD234A784C00DA84A7 /* String+Localized.swift */,
+				DD3942B1234A72DD00DA84A7 /* Bundle+Info.swift */,
+				2188C983234BA38D006C6AE7 /* UIImageView+URL.swift */,
+				2188C988234BA670006C6AE7 /* String+Date.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -214,8 +264,8 @@
 		DD3942C6234A8D8300DA84A7 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
-				DD3942C7234A8DE500DA84A7 /* MovieListTableViewCell.swift */,
-				DD3942C8234A8DE500DA84A7 /* MovieListTableViewCell.xib */,
+				2188C98F234BBC06006C6AE7 /* ErrorView */,
+				2188C98E234BBBF5006C6AE7 /* Movie TableView Cell */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -428,6 +478,7 @@
 				DD3942CA234A8DE500DA84A7 /* MovieListTableViewCell.xib in Resources */,
 				DDDD4877234A5AE400C703F8 /* LaunchScreen.storyboard in Resources */,
 				DD3942B9234A77CD00DA84A7 /* Localizable.strings in Resources */,
+				2188C993234BBC5E006C6AE7 /* ErrorView.xib in Resources */,
 				DDDD4874234A5AE400C703F8 /* Assets.xcassets in Resources */,
 				DDDD4872234A5AE400C703F8 /* Main.storyboard in Resources */,
 			);
@@ -558,6 +609,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD3942C5234A7EE800DA84A7 /* Movie.swift in Sources */,
+				2188C987234BA5C4006C6AE7 /* DateTransform.swift in Sources */,
 				DD80AEAF234A6BCB00B116EE /* FavouritesContracts.swift in Sources */,
 				DD3942B2234A72DD00DA84A7 /* Bundle+Info.swift in Sources */,
 				DD80AEAD234A6A7300B116EE /* MovieListContracts.swift in Sources */,
@@ -567,10 +619,14 @@
 				DD80AEA8234A66ED00B116EE /* FavouritesViewController.swift in Sources */,
 				DD3942BE234A784C00DA84A7 /* String+Localized.swift in Sources */,
 				DD3942B6234A76CF00DA84A7 /* EndpointError.swift in Sources */,
+				2188C98B234BAC2F006C6AE7 /* TabBarItem+Localized.swift in Sources */,
+				2188C984234BA38D006C6AE7 /* UIImageView+URL.swift in Sources */,
 				DD3942B0234A722500DA84A7 /* URLPath.swift in Sources */,
 				DDDD486B234A5AE400C703F8 /* AppDelegate.swift in Sources */,
+				2188C991234BBC1B006C6AE7 /* ErrorView.swift in Sources */,
 				DD80AEA3234A66B200B116EE /* MovieListViewController.swift in Sources */,
 				DD3942C9234A8DE500DA84A7 /* MovieListTableViewCell.swift in Sources */,
+				2188C989234BA670006C6AE7 /* String+Date.swift in Sources */,
 				DD80AEA6234A66D300B116EE /* MovieListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
