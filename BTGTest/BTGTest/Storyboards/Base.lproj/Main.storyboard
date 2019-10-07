@@ -32,8 +32,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X4W-NN-de2">
+                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="UW1-Mt-zop">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                    </searchBar>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="UW1-Mt-zop" firstAttribute="leading" secondItem="X4W-NN-de2" secondAttribute="leading" id="2UQ-ce-fl3"/>
+                                    <constraint firstAttribute="trailing" secondItem="UW1-Mt-zop" secondAttribute="trailing" id="3p9-Wc-udA"/>
+                                    <constraint firstAttribute="bottom" secondItem="UW1-Mt-zop" secondAttribute="bottom" id="91w-36-dEc"/>
+                                    <constraint firstAttribute="height" constant="56" id="VIy-3E-PfO"/>
+                                    <constraint firstItem="UW1-Mt-zop" firstAttribute="top" secondItem="X4W-NN-de2" secondAttribute="top" id="ekG-OR-9j9"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mjd-og-oW3">
-                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <rect key="frame" x="0.0" y="100" width="414" height="713"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="krn-Aq-gNx">
@@ -43,9 +60,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Mjd-og-oW3" firstAttribute="leading" secondItem="exl-ip-vwg" secondAttribute="leading" id="54I-hP-Ucv"/>
+                            <constraint firstItem="X4W-NN-de2" firstAttribute="leading" secondItem="exl-ip-vwg" secondAttribute="leading" id="5ou-uc-xUJ"/>
                             <constraint firstItem="krn-Aq-gNx" firstAttribute="centerX" secondItem="YCd-K8-BeK" secondAttribute="centerX" id="6Mq-dS-y7h"/>
+                            <constraint firstItem="Mjd-og-oW3" firstAttribute="top" secondItem="X4W-NN-de2" secondAttribute="bottom" id="V2s-S2-K2e"/>
+                            <constraint firstItem="X4W-NN-de2" firstAttribute="top" secondItem="exl-ip-vwg" secondAttribute="top" id="Wxc-5Z-0F2"/>
                             <constraint firstItem="exl-ip-vwg" firstAttribute="bottom" secondItem="Mjd-og-oW3" secondAttribute="bottom" id="aaL-gJ-f1G"/>
-                            <constraint firstItem="Mjd-og-oW3" firstAttribute="top" secondItem="exl-ip-vwg" secondAttribute="top" id="lK7-MH-EZK"/>
+                            <constraint firstItem="exl-ip-vwg" firstAttribute="trailing" secondItem="X4W-NN-de2" secondAttribute="trailing" id="bSO-wh-h72"/>
                             <constraint firstItem="exl-ip-vwg" firstAttribute="trailing" secondItem="Mjd-og-oW3" secondAttribute="trailing" id="plh-NV-J8m"/>
                             <constraint firstItem="krn-Aq-gNx" firstAttribute="centerY" secondItem="YCd-K8-BeK" secondAttribute="centerY" id="qXl-z9-3TC"/>
                         </constraints>
@@ -55,6 +75,7 @@
                     <connections>
                         <outlet property="loadingActivityIndicator" destination="krn-Aq-gNx" id="6ts-0c-8UG"/>
                         <outlet property="moviesTableView" destination="Mjd-og-oW3" id="quF-vD-4CG"/>
+                        <outlet property="searchBar" destination="UW1-Mt-zop" id="SiO-K1-D5A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vft-Kx-Ap3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

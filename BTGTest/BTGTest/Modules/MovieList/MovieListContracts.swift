@@ -20,6 +20,7 @@ protocol MovieListViewOutput: class {
 
 protocol MovieListViewInput {
     func fetchMovieList()
+    func didChangeSearchText(_ text: String)
 
     func movieCount() -> Int
     func movie(at position: Int) -> Movie

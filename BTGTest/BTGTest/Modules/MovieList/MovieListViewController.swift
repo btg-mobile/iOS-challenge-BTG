@@ -13,6 +13,7 @@ class MovieListViewController: UIViewController {
 
     // MARK: - IBOutlets
     @IBOutlet private weak var moviesTableView: UITableView!
+    @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var loadingActivityIndicator: UIActivityIndicatorView!
 
 
@@ -28,6 +29,7 @@ class MovieListViewController: UIViewController {
         viewModel = MovieListViewModel(view: self)
 
         loadTableView()
+        configureSearchBar()
 
         viewModel.fetchMovieList()
     }
@@ -38,6 +40,11 @@ class MovieListViewController: UIViewController {
                       forCellReuseIdentifier: "movieListCell")
 
         moviesTableView.dataSource = self
+        moviesTableView.keyboardDismissMode = .onDrag
+    }
+
+    private func configureSearchBar() {
+        searchBar.delegate = self
     }
 }
 
@@ -101,5 +108,32 @@ extension MovieListViewController: MovieListViewOutput {
 extension MovieListViewController: ErrorViewDelegate {
     func errorViewDidPressTryAgainButton(_ errorView: ErrorView) {
         viewModel.fetchMovieList()
+    }
+}
+
+extension MovieListViewController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.showsCancelButton = false
+        searchBar.resignFirstResponder()
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text, !text.isEmpty else {
+            searchBar.showsCancelButton = false
+            return
+        }
+    }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        viewModel.didChangeSearchText(searchText)
     }
 }

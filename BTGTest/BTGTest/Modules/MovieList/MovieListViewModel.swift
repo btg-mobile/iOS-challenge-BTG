@@ -54,6 +54,10 @@ extension MovieListViewModel: MovieListViewInput {
         self.fetchMovies()
     }
 
+    func didChangeSearchText(_ text: String) {
+
+    }
+
     func movieCount() -> Int {
         return popularMoviesList.count
     }
