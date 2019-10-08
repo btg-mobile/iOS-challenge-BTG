@@ -44,6 +44,7 @@
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mDh-cU-TSz">
                                     <rect key="frame" x="97.5" y="8" width="219" height="328"/>
+                                    <color key="tintColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="250" id="Ps4-WL-6gP"/>
                                         <constraint firstAttribute="width" secondItem="mDh-cU-TSz" secondAttribute="height" multiplier="1:1.5" id="r2k-QL-8ZF"/>
@@ -142,6 +143,7 @@
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yZv-cJ-Czc">
                                     <rect key="frame" x="0.0" y="526.5" width="414" height="234"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <color key="tintColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="yZv-cJ-Czc" secondAttribute="height" multiplier="1.77:1" id="RKV-CF-RdB"/>
                                     </constraints>

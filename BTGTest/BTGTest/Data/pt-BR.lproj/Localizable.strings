@@ -7,7 +7,7 @@
 */
 
 // MARK: - Movie List
-"MOVIES_TITLE" = "Popular Movies";
+"MOVIES_TITLE" = "Filmes Populares";
 "SEARCH_MOVIES_PLACEHOLDER" = "Buscar filmes";
 
 // MARK: - Favorites List
