@@ -9,6 +9,13 @@
 import UIKit
 
 class MovieDetailVC: UIViewController{
+    var viewModel = MovieDetailVM(movie: nil)
+    
+    convenience init(viewModel:MovieDetailVM){
+        self.init()
+        self.viewModel = viewModel
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white

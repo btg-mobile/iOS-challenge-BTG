@@ -9,6 +9,14 @@
 import UIKit
 
 class MoviesFavoriteVC: UIViewController {
+    
+    var viewModel = FavoriteVM()
+    
+    convenience init(viewModel:FavoriteVM){
+        self.init()
+        self.viewModel = viewModel
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
