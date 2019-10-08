@@ -18,6 +18,8 @@ struct URLPath {
 
     enum ImageSize: String {
         case small = "/w92"
+        case large = "/w500"
+        case backdrop = "/w780"
     }
 
     // MARK: - Paramethers

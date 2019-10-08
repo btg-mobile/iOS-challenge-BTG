@@ -35,17 +35,32 @@ class MovieListViewController: UIViewController {
         viewModel.fetchMovieList()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if let indexPath = moviesTableView.indexPathForSelectedRow {
+            moviesTableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+
     private func loadTableView() {
         moviesTableView
             .register(UINib(nibName: "MovieListTableViewCell", bundle: nil),
                       forCellReuseIdentifier: "movieListCell")
 
         moviesTableView.dataSource = self
+        moviesTableView.delegate = self
+
         moviesTableView.keyboardDismissMode = .onDrag
     }
 
     private func configureSearchBar() {
         searchBar.delegate = self
+    }
+
+    private func openMovieDetail(_ movie: Movie) {
+        let detailViewController = MovieDetailViewController(movie: movie)
+        present(detailViewController, animated: true, completion: nil)
     }
 }
 
@@ -104,6 +119,14 @@ extension MovieListViewController: UITableViewDataSource {
         cell.fill(movie: movie)
 
         return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension MovieListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movie = viewModel.movie(at: indexPath.row)
+        openMovieDetail(movie)
     }
 }
 

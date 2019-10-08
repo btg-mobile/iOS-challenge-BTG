@@ -1,5 +1,5 @@
 //
-//  FavouritesContracts.swift
+//  FavoritesContracts.swift
 //  BTGTest
 //
 //  Created by Mario de Castro on 06/10/19.
@@ -8,10 +8,10 @@
 
 import Foundation
 
-protocol FavouritesViewOutput: class {
+protocol FavoritesViewOutput: class {
 
 }
 
-protocol FavouritesViewInput {
+protocol FavoritesViewInput {
 
 }

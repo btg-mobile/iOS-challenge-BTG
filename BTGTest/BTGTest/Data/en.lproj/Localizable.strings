@@ -10,15 +10,23 @@
 "MOVIES_TITLE" = "Popular Movies";
 "SEARCH_MOVIES_PLACEHOLDER" = "Search movies";
 
-// MARK: - Favourites List
-"FAVOURITES_TITLE" = "Favourites";
-"SEARCH_FAVOURITES_PLACEHOLDER" = "Search favourites";
+// MARK: - Favorites List
+"FAVORITES_TITLE" = "Favorites";
+"SEARCH_FAVORITES_PLACEHOLDER" = "Search favorites";
+
+// MARK: - Movie Detal
+"OVERVIEW_LABEL" = "Overview";
+"RATING_LABEL" = "Rating";
+"GENRE_LABEL" = "Genre";
+"FAVORITE_BUTTON" = "Favorite";
+"UNFAVORITE_BUTTON" = "Unfavorite";
 
 // MARK: - Tab Bar
 "MOVIE_TABBAR" = "Movies";
-"FAVOURITES_TABBAR" = "Favourites";
+"FAVORITES_TABBAR" = "Favorites";
 
 // MARK: - Errors
 "FAILED_MOVIE_LIST_MESSAGE" = "There was an error fetching the movie list. Please check your internet connection and try again.";
 "UNKOWN_ERROR_MESSAGE" = "An unknown error has occurred, plese check your connection and try again";
 "NO_MOVIE_FOUND" = "No movies found with the title \"%@\"";
+"NO_GENRE_ERROR" = "Unable to retrieve genres";

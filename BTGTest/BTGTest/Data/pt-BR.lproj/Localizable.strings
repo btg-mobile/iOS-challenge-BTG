@@ -10,15 +10,23 @@
 "MOVIES_TITLE" = "Popular Movies";
 "SEARCH_MOVIES_PLACEHOLDER" = "Buscar filmes";
 
-// MARK: - Favourites List
-"FAVOURITES_TITLE" = "Favourites";
-"SEARCH_FAVOURITES_PLACEHOLDER" = "Buscar favoritos";
+// MARK: - Favorites List
+"FAVORITES_TITLE" = "Favoritos";
+"SEARCH_FAVORITES_PLACEHOLDER" = "Buscar favoritos";
+
+// MARK: - Movie Detal
+"OVERVIEW_LABEL" = "Sinopse";
+"RATING_LABEL" = "Nota";
+"GENRE_LABEL" = "Gênero";
+"FAVORITE_BUTTON" = "Favoritar";
+"UNFAVORITE_BUTTON" = "Desfavoritar";
 
 // MARK: - Tab Bar
 "MOVIE_TABBAR" = "Filmes";
-"FAVOURITES_TABBAR" = "Favoritos";
+"FAVORITES_TABBAR" = "Favoritos";
 
 // MARK: - Errors
 "FAILED_MOVIE_LIST_MESSAGE" = "Ocorreu um erro ao buscar a lista de filmes. Por favor verifique a sua conexão e tente novamente";
 "UNKOWN_ERROR_MESSAGE" = "Um erro desconhecido aconteceu. Por favor verifique a sua conexão e tente novamente";
 "NO_MOVIE_FOUND" = "Nenhum filme encontrado com o título \"%@\"";
+"NO_GENRE_ERROR" = "Não foi possível buscar os gêneros";

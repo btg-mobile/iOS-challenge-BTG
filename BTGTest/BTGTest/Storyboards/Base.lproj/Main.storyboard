@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nAM-Ww-yST">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nAM-Ww-yST">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--FAVOURITES_TABBAR-->
+        <!--FAVORITES_TABBAR-->
         <scene sceneID="XgC-2E-etG">
             <objects>
-                <viewController id="wex-i5-0cp" customClass="FavouritesViewController" customModule="BTGTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wex-i5-0cp" customClass="FavoritesViewController" customModule="BTGTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZAk-qD-VnH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="bNA-oE-1tv"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="FAVOURITES_TABBAR" image="tabbarFavourite" id="mvd-pC-B46" customClass="LocalizedTabBarItem" customModule="BTGTest" customModuleProvider="target"/>
+                    <tabBarItem key="tabBarItem" title="FAVORITES_TABBAR" image="tabbarFavorite" id="mvd-pC-B46" customClass="LocalizedTabBarItem" customModule="BTGTest" customModuleProvider="target"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="my2-OU-GYT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -33,15 +33,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X4W-NN-de2" userLabel="Top View">
-                                <rect key="frame" x="0.0" y="44" width="414" height="104"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="105.5"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="SEARCH_MOVIES_PLACEHOLDER" translatesAutoresizingMaskIntoConstraints="NO" id="UW1-Mt-zop" customClass="LocalizedSearchBar" customModule="BTGTest" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="47.5" width="414" height="56.5"/>
+                                        <rect key="frame" x="0.0" y="49.5" width="414" height="56"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </searchBar>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MOVIES_TITLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zg4-eO-WLP" customClass="LocalizedLabel" customModule="BTGTest" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="8" width="382" height="31.5"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <rect key="frame" x="16" y="8" width="382" height="33.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -53,20 +53,19 @@
                                     <constraint firstAttribute="bottom" secondItem="UW1-Mt-zop" secondAttribute="bottom" id="91w-36-dEc"/>
                                     <constraint firstItem="Zg4-eO-WLP" firstAttribute="top" secondItem="X4W-NN-de2" secondAttribute="top" constant="8" id="Hog-s8-hvS"/>
                                     <constraint firstItem="UW1-Mt-zop" firstAttribute="top" secondItem="Zg4-eO-WLP" secondAttribute="bottom" constant="8" id="KvK-zx-cWv"/>
-                                    <constraint firstAttribute="height" constant="104" id="VIy-3E-PfO"/>
                                     <constraint firstItem="Zg4-eO-WLP" firstAttribute="leading" secondItem="X4W-NN-de2" secondAttribute="leading" constant="16" id="elk-tg-mrA"/>
                                     <constraint firstAttribute="trailing" secondItem="Zg4-eO-WLP" secondAttribute="trailing" constant="16" id="tuk-7b-Udo"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kb4-S0-Nns" userLabel="Content View">
-                                <rect key="frame" x="0.0" y="148" width="414" height="665"/>
+                                <rect key="frame" x="0.0" y="149.5" width="414" height="663.5"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mjd-og-oW3">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="665"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="663.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </tableView>
-                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="krn-Aq-gNx">
-                                        <rect key="frame" x="188.5" y="32" width="37" height="37"/>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="krn-Aq-gNx">
+                                        <rect key="frame" x="197" y="32" width="20" height="20"/>
                                     </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -124,7 +123,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="tabbarFavourite" width="22" height="22"/>
+        <image name="tabbarFavorite" width="22" height="22"/>
         <image name="tabbarMovies" width="22" height="22"/>
     </resources>
 </document>

@@ -17,10 +17,9 @@ class Movie: Object, Mappable {
     @objc dynamic var id: Int = -1
     @objc dynamic var title: String = ""
     @objc dynamic var overview: String = ""
-    @objc dynamic var originalTitle: String = ""
-    @objc dynamic var originalLanguage: String = ""
     @objc dynamic var posterPath: String = ""
     @objc dynamic var backdropPath: String = ""
+    @objc dynamic var voteAverage: Float = 0.0
     @objc dynamic var releaseDate: Date = Date()
 
     // MARK: - Computed Paramethers
@@ -28,6 +27,18 @@ class Movie: Object, Mappable {
         guard !posterPath.isEmpty else { return nil }
         let urlPath = URLPath(baseURLType: .movieDBImage, path: posterPath)
         return URL(string: urlPath.imagePath(forSize: .small))
+    }
+
+    var largePosterURL: URL? {
+        guard !posterPath.isEmpty else { return nil }
+        let urlPath = URLPath(baseURLType: .movieDBImage, path: posterPath)
+        return URL(string: urlPath.imagePath(forSize: .large))
+    }
+
+    var backdropURL: URL? {
+        guard !backdropPath.isEmpty else { return nil }
+        let urlPath = URLPath(baseURLType: .movieDBImage, path: backdropPath)
+        return URL(string: urlPath.imagePath(forSize: .backdrop))
     }
 
     var releaseYear: String {
@@ -53,10 +64,9 @@ class Movie: Object, Mappable {
         id               <- map["id"]
         title            <- map["title"]
         overview         <- map["overview"]
-        originalTitle    <- map["original_title"]
-        originalLanguage <- map["original_language"]
         posterPath       <- map["poster_path"]
         backdropPath     <- map["backdrop_path"]
+        voteAverage      <- map["vote_average"]
         releaseDate      <- (map["release_date"], DateTransform())
     }
 
