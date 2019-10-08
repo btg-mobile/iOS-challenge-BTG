@@ -66,13 +66,13 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </tableView>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="krn-Aq-gNx">
-                                        <rect key="frame" x="188.5" y="314" width="37" height="37"/>
+                                        <rect key="frame" x="188.5" y="32" width="37" height="37"/>
                                     </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Mjd-og-oW3" secondAttribute="trailing" id="10e-hI-YuD"/>
-                                    <constraint firstItem="krn-Aq-gNx" firstAttribute="centerY" secondItem="Kb4-S0-Nns" secondAttribute="centerY" id="VWC-LC-6pP"/>
+                                    <constraint firstItem="krn-Aq-gNx" firstAttribute="top" secondItem="Kb4-S0-Nns" secondAttribute="top" constant="32" id="9RM-qu-RX5"/>
                                     <constraint firstItem="Mjd-og-oW3" firstAttribute="leading" secondItem="Kb4-S0-Nns" secondAttribute="leading" id="eBf-pF-oIm"/>
                                     <constraint firstItem="Mjd-og-oW3" firstAttribute="top" secondItem="Kb4-S0-Nns" secondAttribute="top" id="hdm-jU-XsP"/>
                                     <constraint firstAttribute="bottom" secondItem="Mjd-og-oW3" secondAttribute="bottom" id="lCk-eD-d1L"/>

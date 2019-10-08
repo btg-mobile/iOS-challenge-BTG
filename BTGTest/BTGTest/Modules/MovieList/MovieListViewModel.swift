@@ -50,7 +50,10 @@ class MovieListViewModel {
             return
         }
 
+        view.startFullScreenLoading()
         SearchMovieEndpoint(searchText: searchText).makeRequest { (response, error) in
+            self.view.stopFullScreenLoading()
+            
             guard error == nil, let response = response else {
                 self.view.showErrorMessage("FAILED_MOVIE_LIST_MESSAGE".localized, tryAgain: true)
                 return
