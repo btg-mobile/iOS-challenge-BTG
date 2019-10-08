@@ -15,12 +15,13 @@ protocol MovieListViewOutput: class {
     func startFullScreenLoading()
     func stopFullScreenLoading()
 
-    func showErrorMessage(_ message: String)
+    func showErrorMessage(_ message: String, tryAgain: Bool)
 }
 
 protocol MovieListViewInput {
     func fetchMovieList()
     func didChangeSearchText(_ text: String)
+    func retrySearch(searchText: String?)
 
     func movieCount() -> Int
     func movie(at position: Int) -> Movie

@@ -10,6 +10,8 @@ import UIKit
 
 class LocalizedTabBarItem: UITabBarItem {
     override func awakeFromNib() {
+        super.awakeFromNib()
+        
         guard let title = title else { return }
         self.title = title.localized
     }

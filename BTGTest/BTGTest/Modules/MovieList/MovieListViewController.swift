@@ -15,6 +15,7 @@ class MovieListViewController: UIViewController {
     @IBOutlet private weak var moviesTableView: UITableView!
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var loadingActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var contentView: UIView!
 
 
     // MARK: - View Model
@@ -48,24 +49,6 @@ class MovieListViewController: UIViewController {
     }
 }
 
-// MARK: - UITableViewDataSource
-extension MovieListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.movieCount()
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "movieListCell") as? MovieListTableViewCell else {
-            return UITableViewCell()
-        }
-
-        let movie = viewModel.movie(at: indexPath.row)
-        cell.fill(movie: movie)
-
-        return cell
-    }
-}
-
 // MARK: - MovieListViewOutput
 extension MovieListViewController: MovieListViewOutput {
     func reloadMovieTableView() {
@@ -90,13 +73,15 @@ extension MovieListViewController: MovieListViewOutput {
         loadingActivityIndicator.stopAnimating()
     }
 
-    func showErrorMessage(_ message: String) {
+    func showErrorMessage(_ message: String, tryAgain: Bool) {
         if errorView == nil {
             errorView = ErrorView.instance()
-            errorView!.layout(into: view)
+            errorView!.layout(into: contentView)
         }
 
         errorView!.setMessage(message)
+        errorView!.enableTryAgainButton(tryAgain)
+
         errorView!.isHidden = false
         errorView!.delegate = self
 
@@ -104,10 +89,28 @@ extension MovieListViewController: MovieListViewOutput {
     }
 }
 
+// MARK: - UITableViewDataSource
+extension MovieListViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.movieCount()
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "movieListCell") as? MovieListTableViewCell else {
+            return UITableViewCell()
+        }
+
+        let movie = viewModel.movie(at: indexPath.row)
+        cell.fill(movie: movie)
+
+        return cell
+    }
+}
+
 // MARK: - ErrorView Delegate
 extension MovieListViewController: ErrorViewDelegate {
     func errorViewDidPressTryAgainButton(_ errorView: ErrorView) {
-        viewModel.fetchMovieList()
+        viewModel.retrySearch(searchText: searchBar.text)
     }
 }
 
@@ -116,6 +119,8 @@ extension MovieListViewController: UISearchBarDelegate {
         searchBar.text = ""
         searchBar.showsCancelButton = false
         searchBar.resignFirstResponder()
+
+        viewModel.fetchMovieList()
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

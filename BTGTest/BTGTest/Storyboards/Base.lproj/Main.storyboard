@@ -32,47 +32,69 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X4W-NN-de2">
-                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X4W-NN-de2" userLabel="Top View">
+                                <rect key="frame" x="0.0" y="44" width="414" height="104"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="UW1-Mt-zop">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="SEARCH_MOVIES_PLACEHOLDER" translatesAutoresizingMaskIntoConstraints="NO" id="UW1-Mt-zop" customClass="LocalizedSearchBar" customModule="BTGTest" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="47.5" width="414" height="56.5"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </searchBar>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MOVIES_TITLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zg4-eO-WLP" customClass="LocalizedLabel" customModule="BTGTest" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="8" width="382" height="31.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="UW1-Mt-zop" firstAttribute="leading" secondItem="X4W-NN-de2" secondAttribute="leading" id="2UQ-ce-fl3"/>
                                     <constraint firstAttribute="trailing" secondItem="UW1-Mt-zop" secondAttribute="trailing" id="3p9-Wc-udA"/>
                                     <constraint firstAttribute="bottom" secondItem="UW1-Mt-zop" secondAttribute="bottom" id="91w-36-dEc"/>
-                                    <constraint firstAttribute="height" constant="56" id="VIy-3E-PfO"/>
-                                    <constraint firstItem="UW1-Mt-zop" firstAttribute="top" secondItem="X4W-NN-de2" secondAttribute="top" id="ekG-OR-9j9"/>
+                                    <constraint firstItem="Zg4-eO-WLP" firstAttribute="top" secondItem="X4W-NN-de2" secondAttribute="top" constant="8" id="Hog-s8-hvS"/>
+                                    <constraint firstItem="UW1-Mt-zop" firstAttribute="top" secondItem="Zg4-eO-WLP" secondAttribute="bottom" constant="8" id="KvK-zx-cWv"/>
+                                    <constraint firstAttribute="height" constant="104" id="VIy-3E-PfO"/>
+                                    <constraint firstItem="Zg4-eO-WLP" firstAttribute="leading" secondItem="X4W-NN-de2" secondAttribute="leading" constant="16" id="elk-tg-mrA"/>
+                                    <constraint firstAttribute="trailing" secondItem="Zg4-eO-WLP" secondAttribute="trailing" constant="16" id="tuk-7b-Udo"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mjd-og-oW3">
-                                <rect key="frame" x="0.0" y="100" width="414" height="713"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kb4-S0-Nns" userLabel="Content View">
+                                <rect key="frame" x="0.0" y="148" width="414" height="665"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mjd-og-oW3">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="665"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </tableView>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="krn-Aq-gNx">
+                                        <rect key="frame" x="188.5" y="314" width="37" height="37"/>
+                                    </activityIndicatorView>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </tableView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="krn-Aq-gNx">
-                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
-                            </activityIndicatorView>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Mjd-og-oW3" secondAttribute="trailing" id="10e-hI-YuD"/>
+                                    <constraint firstItem="krn-Aq-gNx" firstAttribute="centerY" secondItem="Kb4-S0-Nns" secondAttribute="centerY" id="VWC-LC-6pP"/>
+                                    <constraint firstItem="Mjd-og-oW3" firstAttribute="leading" secondItem="Kb4-S0-Nns" secondAttribute="leading" id="eBf-pF-oIm"/>
+                                    <constraint firstItem="Mjd-og-oW3" firstAttribute="top" secondItem="Kb4-S0-Nns" secondAttribute="top" id="hdm-jU-XsP"/>
+                                    <constraint firstAttribute="bottom" secondItem="Mjd-og-oW3" secondAttribute="bottom" id="lCk-eD-d1L"/>
+                                    <constraint firstItem="krn-Aq-gNx" firstAttribute="centerX" secondItem="Kb4-S0-Nns" secondAttribute="centerX" id="lpG-Xs-F3r"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Mjd-og-oW3" firstAttribute="leading" secondItem="exl-ip-vwg" secondAttribute="leading" id="54I-hP-Ucv"/>
                             <constraint firstItem="X4W-NN-de2" firstAttribute="leading" secondItem="exl-ip-vwg" secondAttribute="leading" id="5ou-uc-xUJ"/>
-                            <constraint firstItem="krn-Aq-gNx" firstAttribute="centerX" secondItem="YCd-K8-BeK" secondAttribute="centerX" id="6Mq-dS-y7h"/>
-                            <constraint firstItem="Mjd-og-oW3" firstAttribute="top" secondItem="X4W-NN-de2" secondAttribute="bottom" id="V2s-S2-K2e"/>
+                            <constraint firstItem="Kb4-S0-Nns" firstAttribute="leading" secondItem="exl-ip-vwg" secondAttribute="leading" id="IA3-dT-ikL"/>
+                            <constraint firstItem="exl-ip-vwg" firstAttribute="bottom" secondItem="Kb4-S0-Nns" secondAttribute="bottom" id="VSs-NP-NOy"/>
                             <constraint firstItem="X4W-NN-de2" firstAttribute="top" secondItem="exl-ip-vwg" secondAttribute="top" id="Wxc-5Z-0F2"/>
-                            <constraint firstItem="exl-ip-vwg" firstAttribute="bottom" secondItem="Mjd-og-oW3" secondAttribute="bottom" id="aaL-gJ-f1G"/>
                             <constraint firstItem="exl-ip-vwg" firstAttribute="trailing" secondItem="X4W-NN-de2" secondAttribute="trailing" id="bSO-wh-h72"/>
-                            <constraint firstItem="exl-ip-vwg" firstAttribute="trailing" secondItem="Mjd-og-oW3" secondAttribute="trailing" id="plh-NV-J8m"/>
-                            <constraint firstItem="krn-Aq-gNx" firstAttribute="centerY" secondItem="YCd-K8-BeK" secondAttribute="centerY" id="qXl-z9-3TC"/>
+                            <constraint firstItem="exl-ip-vwg" firstAttribute="trailing" secondItem="Kb4-S0-Nns" secondAttribute="trailing" id="fkq-zv-fUv"/>
+                            <constraint firstItem="Kb4-S0-Nns" firstAttribute="top" secondItem="X4W-NN-de2" secondAttribute="bottom" id="uFy-3B-EE2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="exl-ip-vwg"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="MOVIE_TABBAR" image="tabbarMovies" id="2Bq-D0-Mzn" customClass="LocalizedTabBarItem" customModule="BTGTest" customModuleProvider="target"/>
                     <connections>
+                        <outlet property="contentView" destination="Kb4-S0-Nns" id="AmH-Le-uDX"/>
                         <outlet property="loadingActivityIndicator" destination="krn-Aq-gNx" id="6ts-0c-8UG"/>
                         <outlet property="moviesTableView" destination="Mjd-og-oW3" id="quF-vD-4CG"/>
                         <outlet property="searchBar" destination="UW1-Mt-zop" id="SiO-K1-D5A"/>

@@ -11,6 +11,7 @@ import Kingfisher
 
 extension UIImageView {
     func setImageFromURL(_ url: URL?) {
+        self.image = nil
         var activityIndicator: UIActivityIndicatorView!
 
         if #available(iOS 13.0, *) {
@@ -27,11 +28,15 @@ extension UIImageView {
             activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         ])
 
-        activityIndicator.startAnimating()
         if let imageURL = url {
+            self.contentMode = .scaleAspectFit
+            activityIndicator.startAnimating()
             self.kf.setImage(with: imageURL, placeholder: nil, options: nil, progressBlock: nil) { (result) in
                 activityIndicator.stopAnimating()
             }
+        } else {
+            self.contentMode = .scaleToFill
+            self.image = UIImage(named: "emptyPoster")
         }
     }
 }

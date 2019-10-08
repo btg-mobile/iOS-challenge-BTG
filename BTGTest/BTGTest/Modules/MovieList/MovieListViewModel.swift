@@ -15,7 +15,8 @@ class MovieListViewModel {
     private weak var view: MovieListViewOutput!
 
     // MARK: - Private Parameters
-    private var popularMoviesList: [Movie] = []
+    private var moviesList: [Movie] = []
+    private let debouncer = Debouncer()
 
     // MARK: - Life Cycle
     init(view: MovieListViewOutput) {
@@ -24,7 +25,7 @@ class MovieListViewModel {
 
     // MARK: - Private Methods
     func updateMovieList(_ movies: [Movie]) {
-        popularMoviesList = movies
+        moviesList = movies
         view.reloadMovieTableView()
     }
 
@@ -34,12 +35,30 @@ class MovieListViewModel {
         PopularMoviesEndpoint().makeRequest { (response, error) in
             self.view.stopFullScreenLoading()
 
-            if let _ = error {
-                self.view.showErrorMessage("FAILED_MOVIE_LIST_MESSAGE".localized)
+            guard error == nil, let response = response else {
+                self.view.showErrorMessage("FAILED_MOVIE_LIST_MESSAGE".localized, tryAgain: true)
                 return
             }
 
-            guard let response = response else {
+            self.updateMovieList(response.movies)
+        }
+    }
+
+    private func searchMovie(_ searchText: String) {
+        guard !searchText.isEmpty else {
+            fetchMovieList()
+            return
+        }
+
+        SearchMovieEndpoint(searchText: searchText).makeRequest { (response, error) in
+            guard error == nil, let response = response else {
+                self.view.showErrorMessage("FAILED_MOVIE_LIST_MESSAGE".localized, tryAgain: true)
+                return
+            }
+
+            guard response.movies.count > 0 else {
+                let errorMessage = "NO_MOVIE_FOUND".localized.replacingOccurrences(of: "%@", with: searchText)
+                self.view.showErrorMessage(errorMessage, tryAgain: false)
                 return
             }
 
@@ -51,18 +70,30 @@ class MovieListViewModel {
 // MARK: - MovieListViewInput
 extension MovieListViewModel: MovieListViewInput {
     func fetchMovieList() {
-        self.fetchMovies()
+        fetchMovies()
     }
 
     func didChangeSearchText(_ text: String) {
+        debouncer.debounce(delay: 0.75) { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.searchMovie(text)
+        }
+    }
 
+    func retrySearch(searchText: String?) {
+        guard let text = searchText, !text.isEmpty else {
+            fetchMovies()
+            return
+        }
+
+        searchMovie(text)
     }
 
     func movieCount() -> Int {
-        return popularMoviesList.count
+        return moviesList.count
     }
 
     func movie(at position: Int) -> Movie {
-        return popularMoviesList[position]
+        return moviesList[position]
     }
 }

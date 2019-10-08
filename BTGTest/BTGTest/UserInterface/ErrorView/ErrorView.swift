@@ -56,6 +56,10 @@ class ErrorView: UIView {
         errorLabel.text = message
     }
 
+    func enableTryAgainButton(_ enabled: Bool) {
+        tryAgainButton.isHidden = !enabled
+    }
+
     @IBAction private func didPressTryAgainButton(_ sender: Any) {
         delegate.errorViewDidPressTryAgainButton(self)
     }

@@ -20,10 +20,12 @@ class Movie: Object, Mappable {
     @objc dynamic var originalTitle: String = ""
     @objc dynamic var originalLanguage: String = ""
     @objc dynamic var posterPath: String = ""
+    @objc dynamic var backdropPath: String = ""
     @objc dynamic var releaseDate: Date = Date()
 
     // MARK: - Computed Paramethers
     var smallPosterURL: URL? {
+        guard !posterPath.isEmpty else { return nil }
         let urlPath = URLPath(baseURLType: .movieDBImage, path: posterPath)
         return URL(string: urlPath.imagePath(forSize: .small))
     }
@@ -54,6 +56,7 @@ class Movie: Object, Mappable {
         originalTitle    <- map["original_title"]
         originalLanguage <- map["original_language"]
         posterPath       <- map["poster_path"]
+        backdropPath     <- map["backdrop_path"]
         releaseDate      <- (map["release_date"], DateTransform())
     }
 
