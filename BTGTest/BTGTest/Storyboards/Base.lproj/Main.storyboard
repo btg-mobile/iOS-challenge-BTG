@@ -15,10 +15,77 @@
                     <view key="view" contentMode="scaleToFill" id="ZAk-qD-VnH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6hm-kX-3Zg" userLabel="Top View">
+                                <rect key="frame" x="0.0" y="44" width="414" height="105.5"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="SEARCH_FAVORITES_PLACEHOLDER" translatesAutoresizingMaskIntoConstraints="NO" id="SCx-Rq-2Ow" customClass="LocalizedSearchBar" customModule="BTGTest" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="49.5" width="414" height="56"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <scopeButtonTitles>
+                                            <string>Title</string>
+                                            <string>Title</string>
+                                        </scopeButtonTitles>
+                                    </searchBar>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FAVORITES_TITLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XZb-9p-b65" customClass="LocalizedLabel" customModule="BTGTest" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="8" width="382" height="33.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="SCx-Rq-2Ow" secondAttribute="trailing" id="Bet-yk-L2B"/>
+                                    <constraint firstItem="SCx-Rq-2Ow" firstAttribute="top" secondItem="XZb-9p-b65" secondAttribute="bottom" constant="8" id="Bp2-fB-KxF"/>
+                                    <constraint firstAttribute="bottom" secondItem="SCx-Rq-2Ow" secondAttribute="bottom" id="NLV-bV-lJe"/>
+                                    <constraint firstItem="XZb-9p-b65" firstAttribute="top" secondItem="6hm-kX-3Zg" secondAttribute="top" constant="8" id="NvX-5u-yPY"/>
+                                    <constraint firstAttribute="trailing" secondItem="XZb-9p-b65" secondAttribute="trailing" constant="16" id="cht-nd-reh"/>
+                                    <constraint firstItem="XZb-9p-b65" firstAttribute="leading" secondItem="6hm-kX-3Zg" secondAttribute="leading" constant="16" id="yg2-Vn-Vhk"/>
+                                    <constraint firstItem="SCx-Rq-2Ow" firstAttribute="leading" secondItem="6hm-kX-3Zg" secondAttribute="leading" id="ytJ-JK-qm6"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l9f-PK-cx5" userLabel="Content View">
+                                <rect key="frame" x="0.0" y="149.5" width="414" height="663.5"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WX5-Gv-Sq7">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="663.5"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </tableView>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="L0w-Vb-ntl">
+                                        <rect key="frame" x="197" y="32" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="WX5-Gv-Sq7" firstAttribute="top" secondItem="l9f-PK-cx5" secondAttribute="top" id="9Ux-iT-uRh"/>
+                                    <constraint firstItem="L0w-Vb-ntl" firstAttribute="top" secondItem="l9f-PK-cx5" secondAttribute="top" constant="32" id="V0n-Ye-RSR"/>
+                                    <constraint firstItem="L0w-Vb-ntl" firstAttribute="centerX" secondItem="l9f-PK-cx5" secondAttribute="centerX" id="X53-OX-QH7"/>
+                                    <constraint firstAttribute="bottom" secondItem="WX5-Gv-Sq7" secondAttribute="bottom" id="b6Z-pW-Ifc"/>
+                                    <constraint firstAttribute="trailing" secondItem="WX5-Gv-Sq7" secondAttribute="trailing" id="jzk-4N-r31"/>
+                                    <constraint firstItem="WX5-Gv-Sq7" firstAttribute="leading" secondItem="l9f-PK-cx5" secondAttribute="leading" id="zLx-Jj-yK2"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="l9f-PK-cx5" firstAttribute="top" secondItem="6hm-kX-3Zg" secondAttribute="bottom" id="5lx-tJ-w9R"/>
+                            <constraint firstAttribute="trailing" secondItem="l9f-PK-cx5" secondAttribute="trailing" id="F3F-Hc-N7x"/>
+                            <constraint firstItem="6hm-kX-3Zg" firstAttribute="top" secondItem="bNA-oE-1tv" secondAttribute="top" id="Md9-pu-UQT"/>
+                            <constraint firstItem="bNA-oE-1tv" firstAttribute="trailing" secondItem="6hm-kX-3Zg" secondAttribute="trailing" id="Yji-hv-76e"/>
+                            <constraint firstItem="l9f-PK-cx5" firstAttribute="leading" secondItem="bNA-oE-1tv" secondAttribute="leading" id="ZyU-ZM-jZu"/>
+                            <constraint firstItem="6hm-kX-3Zg" firstAttribute="leading" secondItem="ZAk-qD-VnH" secondAttribute="leading" id="daR-O3-hPt"/>
+                            <constraint firstItem="bNA-oE-1tv" firstAttribute="bottom" secondItem="l9f-PK-cx5" secondAttribute="bottom" id="kHf-VF-w4d"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="bNA-oE-1tv"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="FAVORITES_TABBAR" image="tabbarFavorite" id="mvd-pC-B46" customClass="LocalizedTabBarItem" customModule="BTGTest" customModuleProvider="target"/>
+                    <connections>
+                        <outlet property="contentView" destination="l9f-PK-cx5" id="IfC-dX-gR6"/>
+                        <outlet property="favoritesTableView" destination="WX5-Gv-Sq7" id="UBd-eh-nUL"/>
+                        <outlet property="loadingActivityIndicator" destination="L0w-Vb-ntl" id="PdF-3Z-oxv"/>
+                        <outlet property="searchBar" destination="SCx-Rq-2Ow" id="Oee-YR-BaC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="my2-OU-GYT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -38,6 +105,10 @@
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="SEARCH_MOVIES_PLACEHOLDER" translatesAutoresizingMaskIntoConstraints="NO" id="UW1-Mt-zop" customClass="LocalizedSearchBar" customModule="BTGTest" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="49.5" width="414" height="56"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <scopeButtonTitles>
+                                            <string>Title</string>
+                                            <string>Title</string>
+                                        </scopeButtonTitles>
                                     </searchBar>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MOVIES_TITLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zg4-eO-WLP" customClass="LocalizedLabel" customModule="BTGTest" customModuleProvider="target">
                                         <rect key="frame" x="16" y="8" width="382" height="33.5"/>

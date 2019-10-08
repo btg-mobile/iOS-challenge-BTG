@@ -10,6 +10,11 @@ import UIKit
 
 class FavoritesViewController: UIViewController {
 
+    @IBOutlet private weak var favoritesTableView: UITableView!
+    @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private weak var loadingActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var contentView: UIView!
+
     private var viewModel: FavoritesViewInput!
 
     override func viewDidLoad() {
