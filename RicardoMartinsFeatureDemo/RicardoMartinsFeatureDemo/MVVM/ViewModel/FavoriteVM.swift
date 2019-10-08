@@ -12,6 +12,7 @@ import RxCocoa
 
 class FavoriteVM {
     var isHiddenNoResults = BehaviorRelay<Bool>(value: true)
+    var order = BehaviorRelay<Int>(value: 0) // 0: A -> Z | 1: Z -> A
     var query = BehaviorRelay<String>(value: "")
     let favorites = BehaviorRelay<[Movie]>(value: [])
     var noResultType =  BehaviorRelay<NoResultsAnimationView.TypeEnum>(value: .favoriteIsEmpty)
@@ -32,10 +33,10 @@ class FavoriteVM {
     func getFavorites(){
         if let favorites:[Movie] = try? UserDefaultsService.shared.decode(key: Constants.UserDefaultsKeys.favorites){
             if(query.value.isEmpty){
-                self.favorites.accept(favorites)
+                self.favorites.accept(sortMovieList(movies: favorites))
                 isHiddenNoResults.accept(true)
             }else{
-                let searchedMoviesFavorites = favorites.filter { fav in
+                let searchedMovies = favorites.filter { fav in
                     let favYear = fav.release_date?.components(separatedBy: "-")[0] ?? ""
                     
                     let isYearMatchingSearchText = favYear.contains(query.value.lowercased())
@@ -44,11 +45,11 @@ class FavoriteVM {
                     return isTitleMatchingSearchText || isYearMatchingSearchText
                 }
                 
-                if(searchedMoviesFavorites.isEmpty){
+                if(searchedMovies.isEmpty){
                     noResultType.accept(.noResultsInSearch)
                     isHiddenNoResults.accept(false)
                 }else{
-                    self.favorites.accept(searchedMoviesFavorites)
+                    self.favorites.accept(sortMovieList(movies: searchedMovies))
                     isHiddenNoResults.accept(true)
                 }
             }
@@ -57,5 +58,17 @@ class FavoriteVM {
             noResultType.accept(.favoriteIsEmpty)
             isHiddenNoResults.accept(false)
         }
+    }
+    
+    fileprivate func sortMovieList(movies:[Movie]) -> [Movie]{
+        var sortedMovies = [Movie]()
+        
+        switch order.value {
+        case 0: sortedMovies = movies.sorted { $0.title ?? "" < $1.title ?? "" }
+        case 1: sortedMovies = movies.sorted { $0.title ?? "" > $1.title ?? "" }
+        default: sortedMovies = movies
+        }
+        
+        return sortedMovies
     }
 }

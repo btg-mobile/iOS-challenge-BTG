@@ -79,7 +79,7 @@
 		7264E2BB234CA8C1007BFF0F /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7264E2BC234CAA19007BFF0F /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		7264E2BF234CAAA8007BFF0F /* MovieFavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieFavoriteCell.swift; sourceTree = "<group>"; };
-		72E139BA234C8B4A00521748 /* RicardoMartinsFeatureDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RicardoMartinsFeatureDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		72E139BA234C8B4A00521748 /* Ricardo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ricardo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72E139BD234C8B4A00521748 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72E139C7234C8B4B00521748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		72E139C9234C8B4B00521748 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -224,7 +224,7 @@
 		72E139BB234C8B4A00521748 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				72E139BA234C8B4A00521748 /* RicardoMartinsFeatureDemo.app */,
+				72E139BA234C8B4A00521748 /* Ricardo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -459,7 +459,7 @@
 			);
 			name = RicardoMartinsFeatureDemo;
 			productName = RicardoMartinsFeatureDemo;
-			productReference = 72E139BA234C8B4A00521748 /* RicardoMartinsFeatureDemo.app */;
+			productReference = 72E139BA234C8B4A00521748 /* Ricardo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -747,7 +747,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.ricardo.RicardoMartinsFeatureDemo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Ricardo;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -766,7 +766,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.ricardo.RicardoMartinsFeatureDemo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Ricardo;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
