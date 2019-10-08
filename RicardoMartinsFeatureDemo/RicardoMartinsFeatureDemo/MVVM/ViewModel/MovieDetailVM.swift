@@ -24,6 +24,8 @@ class MovieDetailVM {
     
     let disposeBag = DisposeBag()
     
+    init(){} // Temporary to advance the first local persistence of film genres.
+    
     init(movie:Movie?){
         self.movie.accept(movie)
         getGenres()
