@@ -53,6 +53,12 @@ class MoviesFavoriteVC: UIViewController {
                 cell.favorite = favorite
             }.disposed(by: viewModel.disposeBag)
         
+        searchController.searchBar.rx.selectedScopeButtonIndex
+            .subscribe(onNext: { [weak self] index in
+                self?.viewModel.order.accept(index)
+                self?.viewModel.getFavorites()
+            }).disposed(by: viewModel.disposeBag)
+        
         searchController.searchBar.rx.cancelButtonClicked
             .subscribe(onNext: { [weak self] _ in
                 self?.searchController.searchBar.text = ""
@@ -107,6 +113,8 @@ class MoviesFavoriteVC: UIViewController {
         searchController.searchBar.tintColor = .black
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Pesquisar filmes favoritos"
+        
+        searchController.searchBar.scopeButtonTitles = ["A -> Z", "Z -> A"]
     }
     
     fileprivate func setupTableView(){
