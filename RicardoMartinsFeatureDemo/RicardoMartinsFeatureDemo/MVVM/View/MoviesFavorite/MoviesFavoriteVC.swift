@@ -113,8 +113,8 @@ class MoviesFavoriteVC: UIViewController {
         searchController.searchBar.tintColor = .black
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Pesquisar filmes favoritos"
-        
         searchController.searchBar.scopeButtonTitles = ["A -> Z", "Z -> A"]
+        searchController.searchBar.showsScopeBar = true
     }
     
     fileprivate func setupTableView(){
