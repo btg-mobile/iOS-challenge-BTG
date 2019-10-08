@@ -9,8 +9,12 @@
 import UIKit
 
 class MoviesPopularVC: UIViewController{
+    let viewModel = MovieVM()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        
+        viewModel.getMovies()
     }
 }
