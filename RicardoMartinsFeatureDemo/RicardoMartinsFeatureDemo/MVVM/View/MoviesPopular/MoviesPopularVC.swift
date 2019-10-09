@@ -123,6 +123,7 @@ class MoviesPopularVC: UIViewController {
                 
                 if(self.searchController.isActive){
                     self.searchController.isActive = false
+                    self.searchController.searchBar.text = ""
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: { [weak self] in
                         self?.navigationController?.pushViewController(vc, animated: true)
                     })
