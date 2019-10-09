@@ -9,9 +9,15 @@
 import Foundation
 
 protocol FavoritesViewOutput: class {
+    func reloadFavoriteTableView(resetScroll: Bool)
 
+    func showErrorMessage(_ message: String)
 }
 
 protocol FavoritesViewInput {
+    func fetchFavoriteList()
+    func didChangeSearchText(_ text: String)
 
+    func movieCount() -> Int
+    func movie(at position: Int) -> Movie
 }

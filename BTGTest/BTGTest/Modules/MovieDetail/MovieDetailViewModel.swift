@@ -13,10 +13,20 @@ class MovieDetailViewModel {
     private weak var view: MovieDetailViewOutput!
 
     private let movie: Movie
+    private var favorited: Bool = false
 
     init(view: MovieDetailViewOutput, movie: Movie) {
         self.view = view
         self.movie = movie
+    }
+
+    private func checkFavorite() {
+        favorited = FavoritesManager.isMovieFavorited(movie)
+        if favorited {
+            view.updateFavoriteButton(title: "UNFAVORITE_BUTTON".localized.uppercased(), highlighted: false)
+        } else {
+            view.updateFavoriteButton(title: "FAVORITE_BUTTON".localized.uppercased(), highlighted: true)
+        }
     }
 
     private func getDetails() {
@@ -41,7 +51,27 @@ class MovieDetailViewModel {
 
 extension MovieDetailViewModel: MovieDetailViewInput {
     func loadDetails() {
-        view.fill(with: movie)
+        view.fillTitle(movie.title)
+        view.fillYear(movie.releaseYear)
+
+        let overview = movie.overview.isEmpty ? "NO_OVERVIEW_ERROR".localized : movie.overview
+        view.fillOverview(overview)
+
+        view.fillRating("\(movie.voteAverage)")
+
+        view.setPosterImage(with: movie.largePosterURL)
+        view.setBackdropImageURL(with: movie.backdropURL)
+
+        checkFavorite()
         getDetails()
+    }
+
+    func toggleFavorite() {
+        if favorited {
+            FavoritesManager.deleteFavorite(movie)
+        } else {
+            FavoritesManager.addFavorite(movie)
+        }
+        checkFavorite()
     }
 }

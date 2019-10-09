@@ -27,6 +27,8 @@
 
 // MARK: - Errors
 "FAILED_MOVIE_LIST_MESSAGE" = "Ocorreu um erro ao buscar a lista de filmes. Por favor verifique a sua conexão e tente novamente";
+"EMPTY_FAVORITES_MESSAGE" = "Você não tem nenhum filme favorito";
 "UNKOWN_ERROR_MESSAGE" = "Um erro desconhecido aconteceu. Por favor verifique a sua conexão e tente novamente";
-"NO_MOVIE_FOUND" = "Nenhum filme encontrado com o título \"%@\"";
+"NO_MOVIE_FOUND" = "Nenhum filme encontrado com o termo \"%@\"";
+"NO_OVERVIEW_ERROR" = "Sinopse indisponível";
 "NO_GENRE_ERROR" = "Não foi possível buscar os gêneros";

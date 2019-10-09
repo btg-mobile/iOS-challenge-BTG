@@ -10,12 +10,21 @@ import Foundation
 
 // MARK: - MovieDetail View Contracts
 protocol MovieDetailViewOutput: class {
-    func fill(with movie: Movie)
+    func fillTitle(_ title: String)
+    func fillYear(_ year: String)
+    func fillOverview(_ overview: String)
+    func fillRating(_ rating: String)
     func fillGenres(_ genres: String)
+    func setPosterImage(with url: URL?)
+    func setBackdropImageURL(with url: URL?)
+
+    func updateFavoriteButton(title: String, highlighted: Bool)
 
     func setDetailsLoading()
 }
 
 protocol MovieDetailViewInput {
     func loadDetails()
+
+    func toggleFavorite()
 }

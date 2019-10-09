@@ -46,7 +46,6 @@ class MovieDetailViewController: UIViewController {
 
     func setupButtonLayout() {
         favoriteButton.layer.cornerRadius = favoriteButton.frame.height / 2
-        favoriteButton.setTitle("FAVORITE_BUTTON".localized.uppercased(), for: .normal)
     }
 
     @IBAction private func didPressCloseButton(_ sender: Any) {
@@ -54,26 +53,69 @@ class MovieDetailViewController: UIViewController {
     }
 
     @IBAction private func didPressFavoriteButton(_ sender: Any) {
+        viewModel.toggleFavorite()
     }
 
 
 }
 
 extension MovieDetailViewController: MovieDetailViewOutput {
-    func fill(with movie: Movie) {
-        titleLabel.text = movie.title
-        yearLabel.text = movie.releaseYear
-        overviewLabel.text = movie.overview
-        ratingValueLabel.text = "\(movie.voteAverage)"
+    func fillTitle(_ title: String) {
+        titleLabel.text = title
+    }
 
-        backdropImageView.setImageFromURL(movie.backdropURL)
-        posterImageView.setImageFromURL(movie.largePosterURL)
+    func fillYear(_ year: String) {
+        yearLabel.text = year
+    }
+
+    func fillOverview(_ overview: String) {
+        overviewLabel.text = overview
+    }
+
+    func fillRating(_ rating: String) {
+        ratingValueLabel.text = rating
     }
 
     func fillGenres(_ genres: String) {
         genreActivityIndicator.stopAnimating()
         genreLabel.isHidden = false
         genreLabel.text = genres.uppercased()
+    }
+
+    func setPosterImage(with url: URL?) {
+        posterImageView.setImageFromURL(url)
+    }
+
+    func setBackdropImageURL(with url: URL?) {
+        backdropImageView.setImageFromURL(url)
+    }
+
+    func updateFavoriteButton(title: String, highlighted: Bool) {
+        favoriteButton.setTitle(title, for: .normal)
+
+        UIView.animate(withDuration: 0.1) {
+            if highlighted {
+                if #available(iOS 13.0, *) {
+                    self.favoriteButton.setTitleColor(.systemBackground, for: .normal)
+                } else {
+                    self.favoriteButton.setTitleColor(.white, for: .normal)
+                }
+                self.favoriteButton.layer.borderColor = UIColor.systemOrange.cgColor
+                self.favoriteButton.backgroundColor = .systemOrange
+                self.favoriteButton.layer.borderWidth = 0
+            } else {
+                if #available(iOS 13.0, *) {
+                    self.favoriteButton.setTitleColor(.secondaryLabel, for: .normal)
+                    self.favoriteButton.layer.borderColor = UIColor.secondaryLabel.cgColor
+                } else {
+                    self.favoriteButton.setTitleColor(.gray, for: .normal)
+                    self.favoriteButton.layer.borderColor = UIColor.gray.cgColor
+                }
+                self.favoriteButton.backgroundColor = .clear
+                self.favoriteButton.layer.borderWidth = 2
+            }
+            self.favoriteButton.layoutIfNeeded()
+        }
     }
 
     func setDetailsLoading() {

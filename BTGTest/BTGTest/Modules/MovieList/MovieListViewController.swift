@@ -73,6 +73,7 @@ extension MovieListViewController: MovieListViewOutput {
 
         moviesTableView.isHidden = false
         moviesTableView.reloadData()
+        moviesTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
     }
 
     func startFullScreenLoading() {

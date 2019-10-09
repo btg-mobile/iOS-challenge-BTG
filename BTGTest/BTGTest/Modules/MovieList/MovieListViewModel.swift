@@ -24,7 +24,7 @@ class MovieListViewModel {
     }
 
     // MARK: - Private Methods
-    func updateMovieList(_ movies: [Movie]) {
+    private func updateMovieList(_ movies: [Movie]) {
         moviesList = movies
         view.reloadMovieTableView()
     }

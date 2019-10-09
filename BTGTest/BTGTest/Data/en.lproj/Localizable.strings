@@ -27,6 +27,8 @@
 
 // MARK: - Errors
 "FAILED_MOVIE_LIST_MESSAGE" = "There was an error fetching the movie list. Please check your internet connection and try again.";
+"EMPTY_FAVORITES_MESSAGE" = "You don't have any favorite movie";
 "UNKOWN_ERROR_MESSAGE" = "An unknown error has occurred, plese check your connection and try again";
-"NO_MOVIE_FOUND" = "No movies found with the title \"%@\"";
+"NO_MOVIE_FOUND" = "No movies found with the term \"%@\"";
+"NO_OVERVIEW_ERROR" = "Overview unavailable";
 "NO_GENRE_ERROR" = "Unable to retrieve genres";

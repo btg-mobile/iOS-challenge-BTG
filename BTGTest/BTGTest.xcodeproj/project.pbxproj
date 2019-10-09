@@ -13,6 +13,8 @@
 		2188C98B234BAC2F006C6AE7 /* TabBarItem+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2188C98A234BAC2F006C6AE7 /* TabBarItem+Localized.swift */; };
 		2188C991234BBC1B006C6AE7 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2188C990234BBC1B006C6AE7 /* ErrorView.swift */; };
 		2188C993234BBC5E006C6AE7 /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2188C992234BBC5E006C6AE7 /* ErrorView.xib */; };
+		21DAD8AC234E197600E80B3A /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DAD8AB234E197600E80B3A /* RealmManager.swift */; };
+		21DAD8B1234E1B6D00E80B3A /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DAD8B0234E1B6D00E80B3A /* FavoritesManager.swift */; };
 		6ADDDAA05B8912BF6F599917 /* Pods_BTGTest_BTGTestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2E3CD240C288EBE7A4D239E /* Pods_BTGTest_BTGTestUITests.framework */; };
 		A5405C0D5110C7F7CF9C7326 /* Pods_BTGTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FBC0B801F20C11D46B6930A /* Pods_BTGTest.framework */; };
 		DD3942B0234A722500DA84A7 /* URLPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3942AF234A722500DA84A7 /* URLPath.swift */; };
@@ -76,6 +78,8 @@
 		2188C98A234BAC2F006C6AE7 /* TabBarItem+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabBarItem+Localized.swift"; sourceTree = "<group>"; };
 		2188C990234BBC1B006C6AE7 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		2188C992234BBC5E006C6AE7 /* ErrorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
+		21DAD8AB234E197600E80B3A /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		21DAD8B0234E1B6D00E80B3A /* FavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
 		426C2F2B17E1894F72E74ACA /* Pods-BTGTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTGTestTests.release.xcconfig"; path = "Target Support Files/Pods-BTGTestTests/Pods-BTGTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		94C2401000345196CC853A6A /* Pods-BTGTestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTGTestTests.debug.xcconfig"; path = "Target Support Files/Pods-BTGTestTests/Pods-BTGTestTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9BD45F5D32CCC7CB01B8F498 /* Pods_BTGTestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BTGTestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +171,7 @@
 			children = (
 				DD4DE231234BFCAD009FD19F /* Debouncer.swift */,
 				2188C986234BA5C4006C6AE7 /* DateTransform.swift */,
+				21DAD8AB234E197600E80B3A /* RealmManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -198,6 +203,14 @@
 				2188C992234BBC5E006C6AE7 /* ErrorView.xib */,
 			);
 			path = ErrorView;
+			sourceTree = "<group>";
+		};
+		21DAD8AD234E19F000E80B3A /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				21DAD8B0234E1B6D00E80B3A /* FavoritesManager.swift */,
+			);
+			path = Persistence;
 			sourceTree = "<group>";
 		};
 		9EBD29C2397544026840B259 /* Pods */ = {
@@ -275,6 +288,7 @@
 		DD3942C2234A7EB800DA84A7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				21DAD8AD234E19F000E80B3A /* Persistence */,
 				DD3942C3234A7EC800DA84A7 /* Entities */,
 			);
 			path = Models;
@@ -664,10 +678,12 @@
 				DD3942BE234A784C00DA84A7 /* String+Localized.swift in Sources */,
 				DD3942B6234A76CF00DA84A7 /* EndpointError.swift in Sources */,
 				2188C98B234BAC2F006C6AE7 /* TabBarItem+Localized.swift in Sources */,
+				21DAD8AC234E197600E80B3A /* RealmManager.swift in Sources */,
 				DD6CC4BA234D01850033DBB9 /* Button+Localization.swift in Sources */,
 				DD4DE232234BFCAD009FD19F /* Debouncer.swift in Sources */,
 				DD6CC4B2234CD3040033DBB9 /* MovieDetailViewController.swift in Sources */,
 				2188C984234BA38D006C6AE7 /* UIImageView+URL.swift in Sources */,
+				21DAD8B1234E1B6D00E80B3A /* FavoritesManager.swift in Sources */,
 				DD6CC4B4234CD3110033DBB9 /* MovieDetailViewModel.swift in Sources */,
 				DD3942B0234A722500DA84A7 /* URLPath.swift in Sources */,
 				DDDD486B234A5AE400C703F8 /* AppDelegate.swift in Sources */,
