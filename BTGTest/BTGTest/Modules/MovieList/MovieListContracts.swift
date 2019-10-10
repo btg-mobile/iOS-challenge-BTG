@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - MovieList View Contracts
 protocol MovieListViewOutput: class {
-    func reloadMovieTableView()
+    func reloadMovieTableView(resetScroll: Bool)
 
     func startFullScreenLoading()
     func stopFullScreenLoading()
@@ -25,4 +25,6 @@ protocol MovieListViewInput {
 
     func movieCount() -> Int
     func movie(at position: Int) -> Movie
+
+    func willDisplayCell(at position: Int, searchText: String?)
 }

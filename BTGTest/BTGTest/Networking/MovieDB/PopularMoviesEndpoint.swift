@@ -10,15 +10,16 @@ import Foundation
 import ObjectMapper
 
 class PopularMoviesEndpoint: Endpoint {
-    init() {
+    init(page: Int) {
         let urlPath = URLPath(
             baseURLType: .movieDB,
             path: "/movie/popular")
 
-        let params = [
+        let params: [String: Any] = [
             "api_key": Bundle.infoDictionaryValue(forKey: "MovieDBAPIKey"),
             "language": Locale.current.languageCode ?? "pt",
-            "region": Locale.current.regionCode ?? "BR"
+            "region": Locale.current.regionCode ?? "BR",
+            "page": page
         ]
 
         super.init(path: urlPath, method: .get, parameters: params)

@@ -18,6 +18,9 @@ class MovieListViewModel {
     private var moviesList: [Movie] = []
     private let debouncer = Debouncer()
 
+    private var currentPage: Int = 0
+    private var totalPages: Int = 1000000
+
     // MARK: - Life Cycle
     init(view: MovieListViewOutput) {
         self.view = view
@@ -25,37 +28,51 @@ class MovieListViewModel {
 
     // MARK: - Private Methods
     private func updateMovieList(_ movies: [Movie]) {
-        moviesList = movies
-        view.reloadMovieTableView()
+        moviesList.append(contentsOf: movies)
+        view.reloadMovieTableView(resetScroll: currentPage == 1)
     }
 
     // MARK: - Networking
-    private func fetchMovies() {
-        view.startFullScreenLoading()
-        PopularMoviesEndpoint().makeRequest { (response, error) in
+    private func fetchMovies(page: Int = 1) {
+        if page == 1 {
+            moviesList = []
+            view.startFullScreenLoading()
+        }
+
+        PopularMoviesEndpoint(page: page).makeRequest { (response, error) in
             self.view.stopFullScreenLoading()
 
             guard error == nil, let response = response else {
-                self.view.showErrorMessage("FAILED_MOVIE_LIST_MESSAGE".localized, tryAgain: true)
+                if page == 1 {
+                    self.view.showErrorMessage("FAILED_MOVIE_LIST_MESSAGE".localized, tryAgain: true)
+                }
                 return
             }
 
+            self.currentPage = response.page
+            self.totalPages = response.totalPages
             self.updateMovieList(response.movies)
         }
     }
 
-    private func searchMovie(_ searchText: String) {
+    private func searchMovie(_ searchText: String, page: Int = 1) {
         guard !searchText.isEmpty else {
             fetchMovieList()
             return
         }
 
-        view.startFullScreenLoading()
-        SearchMovieEndpoint(searchText: searchText).makeRequest { (response, error) in
+        if page == 1 {
+            moviesList = []
+            view.startFullScreenLoading()
+        }
+
+        SearchMovieEndpoint(searchText: searchText, page: page).makeRequest { (response, error) in
             self.view.stopFullScreenLoading()
             
             guard error == nil, let response = response else {
-                self.view.showErrorMessage("FAILED_MOVIE_LIST_MESSAGE".localized, tryAgain: true)
+                if page == 1 {
+                    self.view.showErrorMessage("FAILED_MOVIE_LIST_MESSAGE".localized, tryAgain: true)
+                }
                 return
             }
 
@@ -65,6 +82,8 @@ class MovieListViewModel {
                 return
             }
 
+            self.currentPage = response.page
+            self.totalPages = response.totalPages
             self.updateMovieList(response.movies)
         }
     }
@@ -98,5 +117,17 @@ extension MovieListViewModel: MovieListViewInput {
 
     func movie(at position: Int) -> Movie {
         return moviesList[position]
+    }
+
+    func willDisplayCell(at position: Int, searchText: String?) {
+        if position == moviesList.count-1, currentPage < totalPages {
+            let page = currentPage+1
+
+            if let text = searchText, !text.isEmpty {
+                searchMovie(text, page: page)
+            } else {
+                fetchMovies(page: page)
+            }
+        }
     }
 }

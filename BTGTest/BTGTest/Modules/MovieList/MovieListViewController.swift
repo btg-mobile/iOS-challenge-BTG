@@ -22,6 +22,7 @@ class MovieListViewController: UIViewController {
     private var viewModel: MovieListViewInput!
 
     // MARK: - Private Paramethers
+    private let refreshControll = UIRefreshControl()
     private var errorView: ErrorView?
 
     // MARK: - Life Cycle
@@ -52,6 +53,13 @@ class MovieListViewController: UIViewController {
         moviesTableView.delegate = self
 
         moviesTableView.keyboardDismissMode = .onDrag
+
+        configureRefreshControl()
+    }
+
+    private func configureRefreshControl() {
+        refreshControll.addTarget(self, action: #selector(refreshPulled), for: .valueChanged)
+        moviesTableView.addSubview(refreshControll)
     }
 
     private func configureSearchBar() {
@@ -62,18 +70,27 @@ class MovieListViewController: UIViewController {
         let detailViewController = MovieDetailViewController(movie: movie)
         present(detailViewController, animated: true, completion: nil)
     }
+
+    @objc private func refreshPulled() {
+        viewModel.retrySearch(searchText: searchBar.text)
+    }
 }
 
 // MARK: - MovieListViewOutput
 extension MovieListViewController: MovieListViewOutput {
-    func reloadMovieTableView() {
+    func reloadMovieTableView(resetScroll: Bool) {
         if let errorView = errorView {
             errorView.isHidden = true
         }
 
         moviesTableView.isHidden = false
         moviesTableView.reloadData()
-        moviesTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+
+        if resetScroll {
+            moviesTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+        }
+
+        refreshControll.endRefreshing()
     }
 
     func startFullScreenLoading() {
@@ -128,6 +145,10 @@ extension MovieListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let movie = viewModel.movie(at: indexPath.row)
         openMovieDetail(movie)
+    }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        viewModel.willDisplayCell(at: indexPath.row, searchText: searchBar.text)
     }
 }
 

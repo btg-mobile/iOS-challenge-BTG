@@ -10,16 +10,17 @@ import Foundation
 import ObjectMapper
 
 class SearchMovieEndpoint: Endpoint {
-    init(searchText: String) {
+    init(searchText: String, page: Int) {
         let urlPath = URLPath(
             baseURLType: .movieDB,
             path: "/search/movie")
 
-        let params = [
+        let params: [String: Any] = [
             "api_key": Bundle.infoDictionaryValue(forKey: "MovieDBAPIKey"),
             "language": Locale.current.languageCode ?? "pt",
             "region": Locale.current.regionCode ?? "BR",
-            "query": searchText
+            "query": searchText,
+            "page": page
         ]
 
         super.init(path: urlPath, method: .get, parameters: params)
