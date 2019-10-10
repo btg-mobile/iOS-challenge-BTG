@@ -1,0 +1,24 @@
+inhibit_all_warnings!
+
+target 'BTGTest' do
+  use_frameworks!
+
+  # Alamofire
+  pod 'Alamofire'
+  pod 'AlamofireObjectMapper'
+  pod 'ObjectMapper'
+
+  # Realm
+  pod 'RealmSwift'
+
+  # Kingfisher
+  pod 'Kingfisher'
+
+  target 'BTGTestTests' do
+    inherit! :search_paths
+  end
+
+  target 'BTGTestUITests' do
+  end
+
+end

@@ -1,0 +1,37 @@
+/* 
+  Localizable.strings
+  BTGTest
+
+  Created by Mario de Castro on 06/10/19.
+  Copyright © 2019 Mario de Castro. All rights reserved.
+*/
+
+// MARK: - Movie List
+"MOVIES_TITLE" = "Popular Movies";
+"SEARCH_MOVIES_PLACEHOLDER" = "Search movies";
+
+// MARK: - Favorites List
+"FAVORITES_TITLE" = "Favorites";
+"SEARCH_FAVORITES_PLACEHOLDER" = "Search favorites";
+"DELETE_ROW" = "Delete";
+"TITLE_SCOPE" = "Title";
+"YEAR_SCOPE" = "Year";
+
+// MARK: - Movie Detal
+"OVERVIEW_LABEL" = "Overview";
+"RATING_LABEL" = "Rating";
+"GENRE_LABEL" = "Genre";
+"FAVORITE_BUTTON" = "Favorite";
+"UNFAVORITE_BUTTON" = "Unfavorite";
+
+// MARK: - Tab Bar
+"MOVIE_TABBAR" = "Movies";
+"FAVORITES_TABBAR" = "Favorites";
+
+// MARK: - Errors
+"FAILED_MOVIE_LIST_MESSAGE" = "There was an error fetching the movie list. Please check your internet connection and try again.";
+"EMPTY_FAVORITES_MESSAGE" = "You don't have any favorite movie";
+"UNKOWN_ERROR_MESSAGE" = "An unknown error has occurred, plese check your connection and try again";
+"NO_MOVIE_FOUND" = "No movies found with the term \"%@\"";
+"NO_OVERVIEW_ERROR" = "Overview unavailable";
+"NO_GENRE_ERROR" = "Unable to retrieve genres";
