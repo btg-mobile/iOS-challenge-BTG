@@ -10,10 +10,17 @@ import Foundation
 
 class FavoritesViewModel {
 
+    enum SortOption: CaseIterable {
+        case title
+        case year
+    }
+
     private weak var view: FavoritesViewOutput!
 
     private var favoriteList: [Movie] = []
     private var searchText = ""
+
+    private var sortingBy: SortOption = .title
 
     init(view: FavoritesViewOutput) {
         self.view = view
@@ -28,11 +35,25 @@ class FavoritesViewModel {
             view.showErrorMessage(errorMessage)
         }
     }
+
+    private func sort(movies: [Movie]) -> [Movie] {
+        switch sortingBy {
+        case .title:
+            return movies.sorted { (movie1, movie2) -> Bool in
+                movie1.title.lowercased() < movie2.title.lowercased()
+            }
+        case .year:
+            return movies.sorted { (movie1, movie2) -> Bool in
+                movie1.releaseDate < movie2.releaseDate
+            }
+        }
+    }
 }
 
 extension FavoritesViewModel: FavoritesViewInput {
     func fetchFavoriteList() {
-        let favorites = FavoritesManager.favoriteList()
+        var favorites = FavoritesManager.favoriteList()
+        favorites = sort(movies: favorites)
         updateFavoritesList(favorites, errorMessage: "EMPTY_FAVORITES_MESSAGE".localized, resetScroll: false)
     }
 
@@ -49,14 +70,21 @@ extension FavoritesViewModel: FavoritesViewInput {
             return
         }
 
-        let filteredFavorites = favorites.filter { (movie) -> Bool in
+        var filteredFavorites = favorites.filter { (movie) -> Bool in
             return movie.title.localizedCaseInsensitiveContains(text) || movie.releaseYear.contains(text)
         }
+
+        filteredFavorites = sort(movies: filteredFavorites)
         updateFavoritesList(filteredFavorites, errorMessage: "NO_MOVIE_FOUND".localized.replacingOccurrences(of: "%@", with: text), resetScroll: true)
     }
 
     func resetSearch() {
         searchText = ""
+    }
+
+    func updateSorting(typeValue: Int) {
+        sortingBy = SortOption.allCases[typeValue]
+        didChangeSearchText(searchText)
     }
 
     func deleteFavorite(at position: Int) {

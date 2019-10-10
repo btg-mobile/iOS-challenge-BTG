@@ -14,10 +14,13 @@ class FavoritesViewController: UIViewController {
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var loadingActivityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var contentView: UIView!
+    @IBOutlet private weak var filterButton: UIButton!
 
     private var viewModel: FavoritesViewInput!
 
     private var errorView: ErrorView?
+
+    private var filterOpen: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,12 +58,25 @@ class FavoritesViewController: UIViewController {
 
     private func configureSearchBar() {
         searchBar.delegate = self
+        searchBar.scopeButtonTitles = ["TITLE_SCOPE".localized, "YEAR_SCOPE".localized]
     }
 
     private func openMovieDetail(_ movie: Movie) {
         let detailViewController = MovieDetailViewController(movie: movie)
         present(detailViewController, animated: true, completion: nil)
     }
+
+    @IBAction private func didPressFilterButton(_ sender: Any) {
+        filterOpen = !filterOpen
+
+        searchBar.showsScopeBar = filterOpen
+        if #available(iOS 13.0, *) {
+            filterButton.tintColor = filterOpen ? .secondaryLabel : .label
+        } else {
+            filterButton.tintColor = filterOpen ? .gray : .black
+        }
+    }
+
 }
 
 extension FavoritesViewController: FavoritesViewOutput {
@@ -153,5 +169,9 @@ extension FavoritesViewController: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         viewModel.didChangeSearchText(searchText)
+    }
+
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        viewModel.updateSorting(typeValue: selectedScope)
     }
 }

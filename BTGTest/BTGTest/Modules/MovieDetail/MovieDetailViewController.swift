@@ -25,6 +25,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet private weak var favoriteButton: UIButton!
 
     @IBOutlet private weak var genreActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var ratingActivityIndicator: UIActivityIndicatorView!
 
 
     private var viewModel: MovieDetailViewInput!
@@ -73,6 +74,8 @@ extension MovieDetailViewController: MovieDetailViewOutput {
     }
 
     func fillRating(_ rating: String) {
+        ratingActivityIndicator.stopAnimating()
+        ratingValueLabel.isHidden = false
         ratingValueLabel.text = rating
     }
 
@@ -120,6 +123,8 @@ extension MovieDetailViewController: MovieDetailViewOutput {
 
     func setDetailsLoading() {
         genreLabel.isHidden = true
+        ratingValueLabel.isHidden = true
         genreActivityIndicator.startAnimating()
+        ratingActivityIndicator.startAnimating()
     }
 }

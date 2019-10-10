@@ -14,6 +14,8 @@
 "FAVORITES_TITLE" = "Favoritos";
 "SEARCH_FAVORITES_PLACEHOLDER" = "Buscar favoritos";
 "DELETE_ROW" = "Deletar";
+"TITLE_SCOPE" = "Título";
+"YEAR_SCOPE" = "Ano";
 
 // MARK: - Movie Detal
 "OVERVIEW_LABEL" = "Sinopse";

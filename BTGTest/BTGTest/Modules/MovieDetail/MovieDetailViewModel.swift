@@ -44,6 +44,7 @@ class MovieDetailViewModel {
                 genres += genre.name
             }
 
+            self.view.fillRating("\(response.rating)")
             self.view.fillGenres(genres)
         }
     }
@@ -56,8 +57,6 @@ extension MovieDetailViewModel: MovieDetailViewInput {
 
         let overview = movie.overview.isEmpty ? "NO_OVERVIEW_ERROR".localized : movie.overview
         view.fillOverview(overview)
-
-        view.fillRating("\(movie.voteAverage)")
 
         view.setPosterImage(with: movie.largePosterURL)
         view.setBackdropImageURL(with: movie.backdropURL)

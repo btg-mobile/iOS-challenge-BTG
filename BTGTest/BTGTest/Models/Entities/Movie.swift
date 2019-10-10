@@ -19,7 +19,6 @@ class Movie: Object, Mappable {
     @objc dynamic var overview: String = ""
     @objc dynamic var posterPath: String = ""
     @objc dynamic var backdropPath: String = ""
-    @objc dynamic var voteAverage: Float = 0.0
     @objc dynamic var releaseDate: Date = Date()
 
     // MARK: - Computed Paramethers
@@ -66,7 +65,6 @@ class Movie: Object, Mappable {
         overview         <- map["overview"]
         posterPath       <- map["poster_path"]
         backdropPath     <- map["backdrop_path"]
-        voteAverage      <- map["vote_average"]
         releaseDate      <- (map["release_date"], DateTransform())
     }
 

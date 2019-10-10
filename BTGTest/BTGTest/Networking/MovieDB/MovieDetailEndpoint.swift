@@ -41,6 +41,7 @@ class MovieDetailEndpoint: Endpoint {
 
 class DetailResponse: Mappable {
     var genres: [GenreResponse] = []
+    var rating: Float = 0.0
 
     required convenience init?(map: Map) {
         self.init()
@@ -49,6 +50,7 @@ class DetailResponse: Mappable {
 
     func mapping(map: Map) {
         genres <- map["genres"]
+        rating <- map["vote_average"]
     }
 }
 

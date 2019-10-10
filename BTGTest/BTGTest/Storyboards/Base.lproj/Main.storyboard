@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="105.5"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="SEARCH_FAVORITES_PLACEHOLDER" translatesAutoresizingMaskIntoConstraints="NO" id="SCx-Rq-2Ow" customClass="LocalizedSearchBar" customModule="BTGTest" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="49.5" width="414" height="56"/>
+                                        <rect key="frame" x="0.0" y="49.5" width="374" height="56"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <scopeButtonTitles>
                                             <string>Title</string>
@@ -33,14 +33,29 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BgX-2W-4p9">
+                                        <rect key="frame" x="382" y="61.5" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="FXX-Mt-Te2"/>
+                                            <constraint firstAttribute="width" secondItem="BgX-2W-4p9" secondAttribute="height" multiplier="1:1" id="RmR-nk-ouk"/>
+                                        </constraints>
+                                        <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="4" maxX="8" maxY="4"/>
+                                        <state key="normal" image="sort"/>
+                                        <connections>
+                                            <action selector="didPressFilterButton:" destination="wex-i5-0cp" eventType="touchUpInside" id="TTK-1o-if7"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="SCx-Rq-2Ow" secondAttribute="trailing" id="Bet-yk-L2B"/>
+                                    <constraint firstItem="BgX-2W-4p9" firstAttribute="leading" secondItem="SCx-Rq-2Ow" secondAttribute="trailing" constant="8" id="0IF-Nc-gej"/>
+                                    <constraint firstAttribute="trailing" secondItem="BgX-2W-4p9" secondAttribute="trailing" id="2Sk-Zi-ULP"/>
                                     <constraint firstItem="SCx-Rq-2Ow" firstAttribute="top" secondItem="XZb-9p-b65" secondAttribute="bottom" constant="8" id="Bp2-fB-KxF"/>
                                     <constraint firstAttribute="bottom" secondItem="SCx-Rq-2Ow" secondAttribute="bottom" id="NLV-bV-lJe"/>
                                     <constraint firstItem="XZb-9p-b65" firstAttribute="top" secondItem="6hm-kX-3Zg" secondAttribute="top" constant="8" id="NvX-5u-yPY"/>
                                     <constraint firstAttribute="trailing" secondItem="XZb-9p-b65" secondAttribute="trailing" constant="16" id="cht-nd-reh"/>
+                                    <constraint firstItem="BgX-2W-4p9" firstAttribute="top" secondItem="XZb-9p-b65" secondAttribute="bottom" constant="20" id="hCA-PF-lQM"/>
                                     <constraint firstItem="XZb-9p-b65" firstAttribute="leading" secondItem="6hm-kX-3Zg" secondAttribute="leading" constant="16" id="yg2-Vn-Vhk"/>
                                     <constraint firstItem="SCx-Rq-2Ow" firstAttribute="leading" secondItem="6hm-kX-3Zg" secondAttribute="leading" id="ytJ-JK-qm6"/>
                                 </constraints>
@@ -83,13 +98,14 @@
                     <connections>
                         <outlet property="contentView" destination="l9f-PK-cx5" id="IfC-dX-gR6"/>
                         <outlet property="favoritesTableView" destination="WX5-Gv-Sq7" id="UBd-eh-nUL"/>
+                        <outlet property="filterButton" destination="BgX-2W-4p9" id="2Sf-ZF-0rW"/>
                         <outlet property="loadingActivityIndicator" destination="L0w-Vb-ntl" id="PdF-3Z-oxv"/>
                         <outlet property="searchBar" destination="SCx-Rq-2Ow" id="Oee-YR-BaC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="my2-OU-GYT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="875" y="326"/>
+            <point key="canvasLocation" x="873.91304347826099" y="325.44642857142856"/>
         </scene>
         <!--MOVIE_TABBAR-->
         <scene sceneID="Wsn-gR-d7n">
@@ -194,6 +210,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="sort" width="222" height="222"/>
         <image name="tabbarFavorite" width="22" height="22"/>
         <image name="tabbarMovies" width="22" height="22"/>
     </resources>

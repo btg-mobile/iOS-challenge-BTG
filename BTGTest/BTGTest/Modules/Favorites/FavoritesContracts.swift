@@ -18,6 +18,7 @@ protocol FavoritesViewInput {
     func fetchFavoriteList()
     func didChangeSearchText(_ text: String)
     func resetSearch()
+    func updateSorting(typeValue: Int)
 
     func deleteFavorite(at position: Int)
 
