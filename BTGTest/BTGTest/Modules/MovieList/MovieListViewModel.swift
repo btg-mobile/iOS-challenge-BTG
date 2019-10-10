@@ -28,12 +28,6 @@ class MovieListViewModel {
         self.view = view
     }
 
-    // MARK: - Private Methods
-    private func updateMovieList(_ movies: [Movie]) {
-        moviesList.append(contentsOf: movies)
-        view.reloadMovieTableView(resetScroll: currentPage == 1)
-    }
-
     // MARK: - Networking
     private func fetchMovies(page: Int = 1) {
         if page == 1 {
@@ -53,7 +47,9 @@ class MovieListViewModel {
 
             self.currentPage = response.page
             self.totalPages = response.totalPages
-            self.updateMovieList(response.movies)
+
+            self.moviesList.append(contentsOf: response.movies)
+            self.view.reloadMovieCollectionView(resetScroll: self.currentPage == 1)
         }
     }
 
@@ -86,7 +82,9 @@ class MovieListViewModel {
 
             self.currentPage = response.page
             self.totalPages = response.totalPages
-            self.updateMovieList(response.movies)
+
+            self.moviesList.append(contentsOf: response.movies)
+            self.view.reloadMovieTableView(resetScroll: self.currentPage == 1)
         }
     }
 }

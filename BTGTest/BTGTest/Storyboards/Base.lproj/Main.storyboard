@@ -151,6 +151,17 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="663.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </tableView>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="b1a-Qc-ve7">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="663.5"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6Cw-R7-63m">
+                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                    </collectionView>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="krn-Aq-gNx">
                                         <rect key="frame" x="197" y="32" width="20" height="20"/>
                                     </activityIndicatorView>
@@ -158,8 +169,12 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Mjd-og-oW3" secondAttribute="trailing" id="10e-hI-YuD"/>
+                                    <constraint firstAttribute="bottom" secondItem="b1a-Qc-ve7" secondAttribute="bottom" id="4JM-d1-d8W"/>
+                                    <constraint firstItem="b1a-Qc-ve7" firstAttribute="leading" secondItem="Kb4-S0-Nns" secondAttribute="leading" id="4WF-ve-7gQ"/>
                                     <constraint firstItem="krn-Aq-gNx" firstAttribute="top" secondItem="Kb4-S0-Nns" secondAttribute="top" constant="32" id="9RM-qu-RX5"/>
                                     <constraint firstItem="Mjd-og-oW3" firstAttribute="leading" secondItem="Kb4-S0-Nns" secondAttribute="leading" id="eBf-pF-oIm"/>
+                                    <constraint firstAttribute="trailing" secondItem="b1a-Qc-ve7" secondAttribute="trailing" id="g13-b0-TXI"/>
+                                    <constraint firstItem="b1a-Qc-ve7" firstAttribute="top" secondItem="Kb4-S0-Nns" secondAttribute="top" id="hBd-Lc-ol9"/>
                                     <constraint firstItem="Mjd-og-oW3" firstAttribute="top" secondItem="Kb4-S0-Nns" secondAttribute="top" id="hdm-jU-XsP"/>
                                     <constraint firstAttribute="bottom" secondItem="Mjd-og-oW3" secondAttribute="bottom" id="lCk-eD-d1L"/>
                                     <constraint firstItem="krn-Aq-gNx" firstAttribute="centerX" secondItem="Kb4-S0-Nns" secondAttribute="centerX" id="lpG-Xs-F3r"/>
@@ -182,6 +197,7 @@
                     <connections>
                         <outlet property="contentView" destination="Kb4-S0-Nns" id="AmH-Le-uDX"/>
                         <outlet property="loadingActivityIndicator" destination="krn-Aq-gNx" id="6ts-0c-8UG"/>
+                        <outlet property="moviesCollectionView" destination="b1a-Qc-ve7" id="bc0-Uz-w3q"/>
                         <outlet property="moviesTableView" destination="Mjd-og-oW3" id="quF-vD-4CG"/>
                         <outlet property="searchBar" destination="UW1-Mt-zop" id="SiO-K1-D5A"/>
                     </connections>

@@ -13,6 +13,7 @@ class MovieListViewController: UIViewController {
 
     // MARK: - IBOutlets
     @IBOutlet private weak var moviesTableView: UITableView!
+    @IBOutlet private weak var moviesCollectionView: UICollectionView!
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var loadingActivityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var contentView: UIView!
@@ -30,6 +31,7 @@ class MovieListViewController: UIViewController {
         super.viewDidLoad()
         viewModel = MovieListViewModel(view: self)
 
+        loadCollectionView()
         loadTableView()
         configureSearchBar()
 
@@ -43,7 +45,31 @@ class MovieListViewController: UIViewController {
             moviesTableView.deselectRow(at: indexPath, animated: true)
         }
 
+        if let indexPath = moviesCollectionView.indexPathsForSelectedItems?.first {
+            moviesCollectionView.deselectItem(at: indexPath, animated: true)
+        }
+
         moviesTableView.reloadData()
+        moviesCollectionView.reloadData()
+    }
+
+    private func loadCollectionView() {
+        moviesCollectionView.register(
+            UINib(nibName: "MovieListCollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: "movieListCollectionCell")
+
+        moviesCollectionView.dataSource = self
+        moviesCollectionView.delegate = self
+
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        let inset: CGFloat = 8
+        let width = (view.frame.width - 4*inset) / 2
+        layout.itemSize = CGSize(width: width, height: width * 2)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
+        layout.scrollDirection = .vertical
+        moviesCollectionView.collectionViewLayout = layout
+
+        moviesCollectionView.keyboardDismissMode = .onDrag
     }
 
     private func loadTableView() {
@@ -61,7 +87,7 @@ class MovieListViewController: UIViewController {
 
     private func configureRefreshControl() {
         refreshControll.addTarget(self, action: #selector(refreshPulled), for: .valueChanged)
-        moviesTableView.addSubview(refreshControll)
+        moviesCollectionView.addSubview(refreshControll)
     }
 
     private func configureSearchBar() {
@@ -80,19 +106,34 @@ class MovieListViewController: UIViewController {
 
 // MARK: - MovieListViewOutput
 extension MovieListViewController: MovieListViewOutput {
+    func reloadMovieCollectionView(resetScroll: Bool) {
+        if let errorView = errorView {
+            errorView.isHidden = true
+        }
+
+        moviesTableView.isHidden = true
+        moviesCollectionView.isHidden = false
+        moviesCollectionView.reloadData()
+
+        if resetScroll {
+            moviesCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+        }
+
+        refreshControll.endRefreshing()
+    }
+
     func reloadMovieTableView(resetScroll: Bool) {
         if let errorView = errorView {
             errorView.isHidden = true
         }
 
+        moviesCollectionView.isHidden = true
         moviesTableView.isHidden = false
         moviesTableView.reloadData()
 
         if resetScroll {
             moviesTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
         }
-
-        refreshControll.endRefreshing()
     }
 
     func startFullScreenLoading() {
@@ -100,6 +141,7 @@ extension MovieListViewController: MovieListViewOutput {
             errorView.isHidden = true
         }
 
+        moviesCollectionView.isHidden = true
         moviesTableView.isHidden = true
         loadingActivityIndicator.startAnimating()
     }
@@ -120,6 +162,7 @@ extension MovieListViewController: MovieListViewOutput {
         errorView!.isHidden = false
         errorView!.delegate = self
 
+        moviesCollectionView.isHidden = true
         moviesTableView.isHidden = true
     }
 }
@@ -156,6 +199,42 @@ extension MovieListViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        viewModel.willDisplayCell(at: indexPath.row)
+    }
+}
+
+extension MovieListViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.movieCount()
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieListCollectionCell", for: indexPath) as? MovieListCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+
+        let movie = viewModel.movie(at: indexPath.row)
+        cell.fill(movie: movie)
+        cell.setFavourite(viewModel.isMovieFavorited(movie: movie))
+
+        cell.didPressFavorite = { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.viewModel.toggleFavorite(at: indexPath.row)
+        }
+
+        return cell
+    }
+
+
+}
+
+extension MovieListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let movie = viewModel.movie(at: indexPath.row)
+        openMovieDetail(movie)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         viewModel.willDisplayCell(at: indexPath.row)
     }
 }

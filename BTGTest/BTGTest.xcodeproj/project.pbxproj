@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2159B0E3234F935800D48220 /* MovieListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2159B0E1234F935800D48220 /* MovieListCollectionViewCell.swift */; };
+		2159B0E4234F935800D48220 /* MovieListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2159B0E2234F935800D48220 /* MovieListCollectionViewCell.xib */; };
 		2188C984234BA38D006C6AE7 /* UIImageView+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2188C983234BA38D006C6AE7 /* UIImageView+URL.swift */; };
 		2188C987234BA5C4006C6AE7 /* DateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2188C986234BA5C4006C6AE7 /* DateTransform.swift */; };
 		2188C989234BA670006C6AE7 /* String+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2188C988234BA670006C6AE7 /* String+Date.swift */; };
@@ -72,6 +74,8 @@
 /* Begin PBXFileReference section */
 		0F5175D5E767F92420510A6D /* Pods-BTGTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTGTest.debug.xcconfig"; path = "Target Support Files/Pods-BTGTest/Pods-BTGTest.debug.xcconfig"; sourceTree = "<group>"; };
 		1FBC0B801F20C11D46B6930A /* Pods_BTGTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BTGTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2159B0E1234F935800D48220 /* MovieListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListCollectionViewCell.swift; sourceTree = "<group>"; };
+		2159B0E2234F935800D48220 /* MovieListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieListCollectionViewCell.xib; sourceTree = "<group>"; };
 		2188C983234BA38D006C6AE7 /* UIImageView+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+URL.swift"; sourceTree = "<group>"; };
 		2188C986234BA5C4006C6AE7 /* DateTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTransform.swift; sourceTree = "<group>"; };
 		2188C988234BA670006C6AE7 /* String+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Date.swift"; sourceTree = "<group>"; };
@@ -164,6 +168,15 @@
 				9BD45F5D32CCC7CB01B8F498 /* Pods_BTGTestTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2159B0E0234F932E00D48220 /* Movie CollectionView Cell */ = {
+			isa = PBXGroup;
+			children = (
+				2159B0E1234F935800D48220 /* MovieListCollectionViewCell.swift */,
+				2159B0E2234F935800D48220 /* MovieListCollectionViewCell.xib */,
+			);
+			path = "Movie CollectionView Cell";
 			sourceTree = "<group>";
 		};
 		2188C985234BA5AB006C6AE7 /* Helpers */ = {
@@ -306,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				2188C98F234BBC06006C6AE7 /* ErrorView */,
+				2159B0E0234F932E00D48220 /* Movie CollectionView Cell */,
 				2188C98E234BBBF5006C6AE7 /* Movie TableView Cell */,
 			);
 			path = UserInterface;
@@ -530,6 +544,7 @@
 				DD6CC4B8234CD32F0033DBB9 /* MovieDetailViewController.xib in Resources */,
 				DD3942CA234A8DE500DA84A7 /* MovieListTableViewCell.xib in Resources */,
 				DDDD4877234A5AE400C703F8 /* LaunchScreen.storyboard in Resources */,
+				2159B0E4234F935800D48220 /* MovieListCollectionViewCell.xib in Resources */,
 				DD3942B9234A77CD00DA84A7 /* Localizable.strings in Resources */,
 				2188C993234BBC5E006C6AE7 /* ErrorView.xib in Resources */,
 				DDDD4874234A5AE400C703F8 /* Assets.xcassets in Resources */,
@@ -690,6 +705,7 @@
 				2188C991234BBC1B006C6AE7 /* ErrorView.swift in Sources */,
 				DD80AEA3234A66B200B116EE /* MovieListViewController.swift in Sources */,
 				DD3942C9234A8DE500DA84A7 /* MovieListTableViewCell.swift in Sources */,
+				2159B0E3234F935800D48220 /* MovieListCollectionViewCell.swift in Sources */,
 				2188C989234BA670006C6AE7 /* String+Date.swift in Sources */,
 				DD80AEA6234A66D300B116EE /* MovieListViewModel.swift in Sources */,
 			);
