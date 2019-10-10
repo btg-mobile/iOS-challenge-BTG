@@ -26,7 +26,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CC3-CE-lKv">
-                        <rect key="frame" x="92" y="8" width="220" height="26.5"/>
+                        <rect key="frame" x="92" y="8" width="180" height="26.5"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -37,15 +37,29 @@
                         <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yDb-Mn-XeS">
+                        <rect key="frame" x="280" y="41" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="yDb-Mn-XeS" secondAttribute="height" multiplier="1:1" id="R0p-h4-FQp"/>
+                            <constraint firstAttribute="width" constant="24" id="wpz-qp-DIx"/>
+                        </constraints>
+                        <color key="tintColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                        <state key="normal" image="starOutline"/>
+                        <connections>
+                            <action selector="didPressFavouriteButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Vvz-kE-zIy"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="HCN-Iu-QOc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="3gz-42-Odg"/>
+                    <constraint firstAttribute="trailing" secondItem="yDb-Mn-XeS" secondAttribute="trailing" constant="16" id="5IR-Jw-PaB"/>
                     <constraint firstAttribute="trailing" secondItem="BVk-LQ-93F" secondAttribute="trailing" constant="8" id="7zz-dt-XMp"/>
                     <constraint firstItem="BVk-LQ-93F" firstAttribute="top" secondItem="CC3-CE-lKv" secondAttribute="bottom" constant="2" id="9DK-dx-tJb"/>
                     <constraint firstItem="CC3-CE-lKv" firstAttribute="leading" secondItem="HCN-Iu-QOc" secondAttribute="trailing" constant="16" id="Ubw-TC-kff"/>
-                    <constraint firstAttribute="trailing" secondItem="CC3-CE-lKv" secondAttribute="trailing" constant="8" id="YJy-WQ-lTX"/>
+                    <constraint firstItem="yDb-Mn-XeS" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Vps-a9-jsi"/>
                     <constraint firstItem="BVk-LQ-93F" firstAttribute="leading" secondItem="HCN-Iu-QOc" secondAttribute="trailing" constant="16" id="dez-mF-ErN"/>
                     <constraint firstAttribute="bottom" secondItem="HCN-Iu-QOc" secondAttribute="bottom" constant="8" id="f0M-9p-Vhj"/>
+                    <constraint firstItem="yDb-Mn-XeS" firstAttribute="leading" secondItem="CC3-CE-lKv" secondAttribute="trailing" constant="8" id="mji-3h-t8h"/>
                     <constraint firstItem="CC3-CE-lKv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="msu-TB-vLd"/>
                     <constraint firstItem="HCN-Iu-QOc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="pL8-qr-nob"/>
                     <constraint firstItem="HCN-Iu-QOc" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="x8n-rK-8xi"/>
@@ -53,6 +67,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="favouriteButton" destination="yDb-Mn-XeS" id="FuB-Vb-fNR"/>
                 <outlet property="posterImageView" destination="HCN-Iu-QOc" id="C8Q-mu-aZI"/>
                 <outlet property="titleLabel" destination="CC3-CE-lKv" id="H7G-9E-l0s"/>
                 <outlet property="yearLabel" destination="BVk-LQ-93F" id="zJ0-KO-7gB"/>
@@ -60,4 +75,7 @@
             <point key="canvasLocation" x="137.68115942028987" y="159.04017857142856"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="starOutline" width="38" height="38"/>
+    </resources>
 </document>

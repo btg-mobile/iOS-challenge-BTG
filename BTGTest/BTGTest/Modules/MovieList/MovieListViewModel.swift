@@ -119,6 +119,19 @@ extension MovieListViewModel: MovieListViewInput {
         return moviesList[position]
     }
 
+    func isMovieFavorited(movie: Movie) -> Bool {
+        return FavoritesManager.isMovieFavorited(movie)
+    }
+
+    func toggleFavorite(at position: Int) {
+        let movie = moviesList[position]
+        if FavoritesManager.isMovieFavorited(movie) {
+            FavoritesManager.deleteFavorite(movie)
+        } else {
+            FavoritesManager.addFavorite(movie)
+        }
+    }
+
     func willDisplayCell(at position: Int, searchText: String?) {
         if position == moviesList.count-1, currentPage < totalPages {
             let page = currentPage+1

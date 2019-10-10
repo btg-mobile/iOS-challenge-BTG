@@ -42,6 +42,8 @@ class MovieListViewController: UIViewController {
         if let indexPath = moviesTableView.indexPathForSelectedRow {
             moviesTableView.deselectRow(at: indexPath, animated: true)
         }
+
+        moviesTableView.reloadData()
     }
 
     private func loadTableView() {
@@ -135,6 +137,12 @@ extension MovieListViewController: UITableViewDataSource {
 
         let movie = viewModel.movie(at: indexPath.row)
         cell.fill(movie: movie)
+        cell.setFavourite(viewModel.isMovieFavorited(movie: movie))
+
+        cell.didPressFavorite = { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.viewModel.toggleFavorite(at: indexPath.row)
+        }
 
         return cell
     }

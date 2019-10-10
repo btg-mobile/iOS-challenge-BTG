@@ -103,7 +103,7 @@ extension FavoritesViewController: UITableViewDataSource {
         }
 
         let movie = viewModel.movie(at: indexPath.row)
-        cell.fill(movie: movie)
+        cell.fill(movie: movie, showFavouriteButton: false)
 
         return cell
     }

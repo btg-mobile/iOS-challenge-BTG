@@ -26,5 +26,8 @@ protocol MovieListViewInput {
     func movieCount() -> Int
     func movie(at position: Int) -> Movie
 
+    func toggleFavorite(at position: Int)
+    func isMovieFavorited(movie: Movie) -> Bool
+
     func willDisplayCell(at position: Int, searchText: String?)
 }
