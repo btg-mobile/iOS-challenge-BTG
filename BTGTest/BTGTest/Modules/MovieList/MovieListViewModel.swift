@@ -21,6 +21,8 @@ class MovieListViewModel {
     private var currentPage: Int = 0
     private var totalPages: Int = 1000000
 
+    private var searchText = ""
+
     // MARK: - Life Cycle
     init(view: MovieListViewOutput) {
         self.view = view
@@ -96,19 +98,24 @@ extension MovieListViewModel: MovieListViewInput {
     }
 
     func didChangeSearchText(_ text: String) {
+        searchText = text
         debouncer.debounce(delay: 0.75) { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.searchMovie(text)
         }
     }
 
-    func retrySearch(searchText: String?) {
-        guard let text = searchText, !text.isEmpty else {
+    func resetSearch() {
+        searchText = ""
+    }
+
+    func retrySearch() {
+        guard !searchText.isEmpty else {
             fetchMovies()
             return
         }
 
-        searchMovie(text)
+        searchMovie(searchText)
     }
 
     func movieCount() -> Int {
@@ -132,12 +139,12 @@ extension MovieListViewModel: MovieListViewInput {
         }
     }
 
-    func willDisplayCell(at position: Int, searchText: String?) {
+    func willDisplayCell(at position: Int) {
         if position == moviesList.count-1, currentPage < totalPages {
             let page = currentPage+1
 
-            if let text = searchText, !text.isEmpty {
-                searchMovie(text, page: page)
+            if !searchText.isEmpty {
+                searchMovie(searchText, page: page)
             } else {
                 fetchMovies(page: page)
             }

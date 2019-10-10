@@ -74,7 +74,7 @@ class MovieListViewController: UIViewController {
     }
 
     @objc private func refreshPulled() {
-        viewModel.retrySearch(searchText: searchBar.text)
+        viewModel.retrySearch()
     }
 }
 
@@ -156,20 +156,22 @@ extension MovieListViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        viewModel.willDisplayCell(at: indexPath.row, searchText: searchBar.text)
+        viewModel.willDisplayCell(at: indexPath.row)
     }
 }
 
 // MARK: - ErrorView Delegate
 extension MovieListViewController: ErrorViewDelegate {
     func errorViewDidPressTryAgainButton(_ errorView: ErrorView) {
-        viewModel.retrySearch(searchText: searchBar.text)
+        viewModel.retrySearch()
     }
 }
 
 extension MovieListViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
+        viewModel.resetSearch()
+        
         searchBar.showsCancelButton = false
         searchBar.resignFirstResponder()
 

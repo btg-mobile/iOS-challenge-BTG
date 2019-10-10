@@ -13,6 +13,7 @@
 // MARK: - Favorites List
 "FAVORITES_TITLE" = "Favorites";
 "SEARCH_FAVORITES_PLACEHOLDER" = "Search favorites";
+"DELETE_ROW" = "Delete";
 
 // MARK: - Movie Detal
 "OVERVIEW_LABEL" = "Overview";

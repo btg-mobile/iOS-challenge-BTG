@@ -21,7 +21,8 @@ protocol MovieListViewOutput: class {
 protocol MovieListViewInput {
     func fetchMovieList()
     func didChangeSearchText(_ text: String)
-    func retrySearch(searchText: String?)
+    func retrySearch()
+    func resetSearch()
 
     func movieCount() -> Int
     func movie(at position: Int) -> Movie
@@ -29,5 +30,5 @@ protocol MovieListViewInput {
     func toggleFavorite(at position: Int)
     func isMovieFavorited(movie: Movie) -> Bool
 
-    func willDisplayCell(at position: Int, searchText: String?)
+    func willDisplayCell(at position: Int)
 }

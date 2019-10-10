@@ -17,6 +17,9 @@ protocol FavoritesViewOutput: class {
 protocol FavoritesViewInput {
     func fetchFavoriteList()
     func didChangeSearchText(_ text: String)
+    func resetSearch()
+
+    func deleteFavorite(at position: Int)
 
     func movieCount() -> Int
     func movie(at position: Int) -> Movie

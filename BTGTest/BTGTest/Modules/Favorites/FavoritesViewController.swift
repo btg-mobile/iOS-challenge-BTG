@@ -114,11 +114,22 @@ extension FavoritesViewController: UITableViewDelegate {
         let movie = viewModel.movie(at: indexPath.row)
         openMovieDetail(movie)
     }
+
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "DELETE_ROW".localized) { (action, indexPath) in
+            self.viewModel.deleteFavorite(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+
+        return [deleteAction]
+    }
 }
 
 extension FavoritesViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
+        viewModel.resetSearch()
+
         searchBar.showsCancelButton = false
         searchBar.resignFirstResponder()
 

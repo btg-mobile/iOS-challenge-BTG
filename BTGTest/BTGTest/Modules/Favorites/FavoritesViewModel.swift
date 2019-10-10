@@ -13,6 +13,7 @@ class FavoritesViewModel {
     private weak var view: FavoritesViewOutput!
 
     private var favoriteList: [Movie] = []
+    private var searchText = ""
 
     init(view: FavoritesViewOutput) {
         self.view = view
@@ -36,6 +37,8 @@ extension FavoritesViewModel: FavoritesViewInput {
     }
 
     func didChangeSearchText(_ text: String) {
+        searchText = text
+
         guard !text.isEmpty else {
             fetchFavoriteList()
             return
@@ -50,6 +53,20 @@ extension FavoritesViewModel: FavoritesViewInput {
             return movie.title.localizedCaseInsensitiveContains(text) || movie.releaseYear.contains(text)
         }
         updateFavoritesList(filteredFavorites, errorMessage: "NO_MOVIE_FOUND".localized.replacingOccurrences(of: "%@", with: text), resetScroll: true)
+    }
+
+    func resetSearch() {
+        searchText = ""
+    }
+
+    func deleteFavorite(at position: Int) {
+        let movie = favoriteList[position]
+        favoriteList.remove(at: position)
+        FavoritesManager.deleteFavorite(movie)
+
+        if favoriteList.count == 0 {
+            didChangeSearchText(searchText)
+        }
     }
 
     func movieCount() -> Int {
