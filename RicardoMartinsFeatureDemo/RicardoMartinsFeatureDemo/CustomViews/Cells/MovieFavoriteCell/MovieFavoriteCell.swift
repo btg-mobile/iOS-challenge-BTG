@@ -14,7 +14,7 @@ class MovieFavoriteCell: UITableViewCell {
     fileprivate let spinerView = UIActivityIndicatorView(style: .whiteLarge)
     fileprivate let backdropImageView = UIImageView()
     
-    var favorite:Movie! {
+    var favoriteButtonVM:FavoriteButtonVM! {
         didSet{
             setupView()
             setupBind()
@@ -55,11 +55,11 @@ class MovieFavoriteCell: UITableViewCell {
     }
     
     fileprivate func setupBind(){
-        titleLabel.text = favorite.title
-        overviewLabel.text = favorite.overview
+        titleLabel.text = favoriteButtonVM.movie.value?.title
+        overviewLabel.text = favoriteButtonVM.movie.value?.overview
         
-        if let url = APIResourceEnum.image(path: favorite.backdrop_path, size: .w500).url{
-            backdropImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "img-default-2"), options: .continueInBackground){[weak self] (_, _, _, _) in
+        if let url = APIResourceEnum.image(path: favoriteButtonVM.movie.value?.backdrop_path, size: .w500).url{
+            backdropImageView.sd_setImage(with: url, placeholderImage: ImageAssets.imgDefault2.image, options: .continueInBackground){[weak self] (_, _, _, _) in
                 self?.spinerView.stopAnimating()
             }
         }
@@ -69,6 +69,6 @@ class MovieFavoriteCell: UITableViewCell {
         spinerView.startAnimating()
         titleLabel.text = nil
         overviewLabel.text = nil
-        backdropImageView.image = UIImage(named: "img-default-2")
+        backdropImageView.image = ImageAssets.imgDefault2.image
     }
 }

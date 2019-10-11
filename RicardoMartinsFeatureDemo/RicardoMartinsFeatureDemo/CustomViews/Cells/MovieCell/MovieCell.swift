@@ -34,7 +34,7 @@ class MovieCell: UICollectionViewCell {
             posterImageView.layer.cornerRadius = 5
             
             if let url = APIResourceEnum.image(path: movie.poster_path, size: .original).url{
-                posterImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "img-default-1"), options: .continueInBackground) {[weak self] (_, _, _, _) in
+                posterImageView.sd_setImage(with: url, placeholderImage: ImageAssets.imgDefault1.image, options: .continueInBackground) {[weak self] (_, _, _, _) in
                     self?.spinerView.stopAnimating()
                 }
             }
@@ -46,7 +46,7 @@ class MovieCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         spinerView.startAnimating()
-        posterImageView.image = UIImage(named: "img-default-1")
+        posterImageView.image = ImageAssets.imgDefault1.image
         spinerView.hidesWhenStopped = true
         titleLabel.text = nil
     }

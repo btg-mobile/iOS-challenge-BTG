@@ -35,8 +35,8 @@ class MovieDetailVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.checkIsFavorited()
         hideNavigationBar()
+        headerView.favoriteButton.favoriteButtonVM.checkIsFavorited()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -82,7 +82,6 @@ class MovieDetailVC: UIViewController {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] genres in
                 guard let self = self else { return }
-                self.viewModel.heightHeaderRelative.accept(self.view.frame.height * 0.3)
                 self.headerView.viewModel = self.viewModel
                 self.view.bringSubviewToFront(self.headerView)
             }).disposed(by: viewModel.disposeBag)

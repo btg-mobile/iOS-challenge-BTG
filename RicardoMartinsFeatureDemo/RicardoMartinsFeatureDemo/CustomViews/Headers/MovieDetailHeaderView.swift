@@ -19,50 +19,18 @@ class MovieDetailHeaderView: UIView {
     fileprivate let translucidView = UIView()
     
     let backButton = UIButton(type: .system)
-    let favoriteButton = UIButton(type: .system)
+    lazy var favoriteButton = FavoriteButton(movie: viewModel.movie.value)
     
     var viewModel:MovieDetailVM! {
         didSet{
             setupView()
-            setupBind()
             setupImagesAnimation()
         }
     }
     
-    fileprivate func setupBind() {
-        favoriteButton.rx.tap
-            .bind { [weak self] in
-                guard let self = self else { return }
-                self.viewModel.isFavorited.accept(!self.viewModel.isFavorited.value)
-                self.viewModel.setFavorite()
-            }.disposed(by: viewModel.disposeBag)
-        
-        viewModel.isFavorited
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: {[weak self] value in
-                guard let self = self else { return }
-                UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: { [weak self] in
-                    guard let self = self else { return }
-                    self.favoriteButton.layer.transform = CATransform3DMakeScale(1.2, 1.2, 0)
-                    if(self.viewModel.isFavorited.value){
-                        self.favoriteButton.setImage(UIImage(named: "icon-favorite-style")?.withRenderingMode(.alwaysOriginal), for: .normal)
-                        self.favoriteButton.setShadow(color: .yellow, offset: .init(width: 2, height: 2), radius: 5, opacity: 0.6)
-                    }else{
-                        self.favoriteButton.setShadow(color: .black, offset: .init(width: 2, height: 2), radius: 5, opacity: 0.6)
-                        self.favoriteButton.setImage(UIImage(named: "icon-favorite-style")?.withRenderingMode(.alwaysTemplate), for: .normal)
-                    }
-                    }, completion: { ( _ ) in
-                        UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: { [weak self] in
-                            guard let self = self else { return }
-                            self.favoriteButton.layer.transform = CATransform3DIdentity
-                        })
-                })
-            }).disposed(by: viewModel.disposeBag)
-    }
-    
     fileprivate func setupImagesAnimation(){
         if let url = APIResourceEnum.image(path: viewModel.movie.value?.poster_path, size: .original).url{
-            posterImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "img-default-1"), options: .continueInBackground)
+            posterImageView.sd_setImage(with: url, placeholderImage: ImageAssets.imgDefault1.image, options: .continueInBackground)
         }
         
         if let url = APIResourceEnum.image(path: viewModel.movie.value?.backdrop_path ?? viewModel.movie.value?.poster_path, size: .w500).url{
@@ -84,7 +52,7 @@ class MovieDetailHeaderView: UIView {
             UIView.animate(withDuration: 3, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1, options: .curveEaseOut, animations: { [weak self] in
                 guard let self = self else { return }
                 self.spinerView.stopAnimating()
-                self.backdropImageView.image = UIImage(named: "img-default-2")
+                self.backdropImageView.image = ImageAssets.imgDefault2.image
                 self.backdropImageView.alpha = 1
                 self.translucidView.alpha = 1
             })
@@ -120,7 +88,7 @@ class MovieDetailHeaderView: UIView {
         addSubview(posterImageView)
         posterImageView.setShadow(color: .black, offset: .init(width: 2, height: 2), radius: 5, opacity: 0.6)
         posterImageView.backgroundColor = .red
-        posterImageView.image = UIImage(named: "img-default-1")
+        posterImageView.image = ImageAssets.imgDefault1.image
         posterImageView.contentMode = .scaleAspectFill
         posterImageView.layer.cornerRadius = 5
         posterImageView.anchor(
@@ -132,7 +100,7 @@ class MovieDetailHeaderView: UIView {
         
         // backButton
         addSubview(backButton)
-        backButton.setImage(UIImage(named: "icon-back")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        backButton.setImage(ImageAssets.iconBack.image.withRenderingMode(.alwaysTemplate), for: .normal)
         backButton.anchor(
             top: (topAnchor, 50),
             left: (leftAnchor, 0),
@@ -163,13 +131,9 @@ class MovieDetailHeaderView: UIView {
         
         // favoriteButton
         addSubview(favoriteButton)
-        favoriteButton.setImage(UIImage(named: "icon-favorite-style")?.withRenderingMode(.alwaysTemplate), for: .normal)
-        favoriteButton.tintColor = UIColor(r: 210, g: 210, b: 210)
         favoriteButton.anchor(
             right: (rightAnchor, 30),
-            bottom: (bottomAnchor, 30),
-            width: 50,
-            height: 50
+            bottom: (bottomAnchor, 30)
         )
     }
 }
