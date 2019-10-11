@@ -47,11 +47,10 @@ class MovieDetailVC: UIViewController {
     fileprivate func setupView(){
         view.backgroundColor = .white
     }
-    
+
     fileprivate func setupTableView(){
         view.addSubview(tableView)
         tableView.anchorFillSuperView(topSafeArea: false)
-        tableView.delegate = self
         tableView.separatorStyle = . none
         tableView.keyboardDismissMode = .onDrag
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.identifier)
@@ -113,21 +112,6 @@ class MovieDetailVC: UIViewController {
             }
             return defaultCell
             }.disposed(by: viewModel.disposeBag)
-    }
-}
-
-
-extension MovieDetailVC: UITableViewDelegate, UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-
-    }
-    
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-
-    }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-
     }
 }
 
