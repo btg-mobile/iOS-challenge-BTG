@@ -12,9 +12,8 @@ import RxCocoa
 import SDWebImage
 
 class MovieDetailVC: UIViewController {
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var headerView: MovieDetailHeaderView!
-    @IBOutlet weak var headerViewConstraint: NSLayoutConstraint!
+    let tableView = UITableView()
+    let headerView = MovieDetailHeaderView()
     
     var viewModel = MovieDetailVM(movie: nil)
     
@@ -50,27 +49,26 @@ class MovieDetailVC: UIViewController {
     }
     
     fileprivate func setupTableView(){
-        tableView.separatorStyle = . none
+        view.addSubview(tableView)
+        tableView.anchorFillSuperView(topSafeArea: false)
         tableView.delegate = self
+        tableView.separatorStyle = . none
         tableView.keyboardDismissMode = .onDrag
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.identifier)
         tableView.register(MovieDetailInfoCell.self, forCellReuseIdentifier: MovieDetailInfoCell.identifier)
         tableView.register(MovieDetailOverviewCell.self, forCellReuseIdentifier: MovieDetailOverviewCell.identifier)
         tableView.tableFooterView = UIView()
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 300))
+        tableView.tableHeaderView?.addSubview(headerView)
+
+        headerView.anchor(
+            top: (view.topAnchor, 0),
+            left: (tableView.tableHeaderView!.leftAnchor, 0),
+            right: (tableView.tableHeaderView!.rightAnchor, 0),
+            bottom: (tableView.tableHeaderView!.bottomAnchor, 0)
+        )
     }
-    
-    func animateHeader() {
-        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
-            self.headerViewConstraint.constant = self.viewModel.heightHeaderRelative.value
-            self.view.layoutIfNeeded()
-        })
-    }
-    
-    func scrollToFirstRow() {
-        let indexPath = IndexPath(row: 0, section: 0)
-        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-    }
-    
+
     fileprivate func setupBind() {
         viewModel.loading
             .bind(to: rx.isAnimating)
@@ -86,7 +84,6 @@ class MovieDetailVC: UIViewController {
             .subscribe(onNext: { [weak self] genres in
                 guard let self = self else { return }
                 self.viewModel.heightHeaderRelative.accept(self.view.frame.height * 0.3)
-                self.headerViewConstraint.constant = self.viewModel.heightHeaderRelative.value
                 self.headerView.viewModel = self.viewModel
                 self.view.bringSubviewToFront(self.headerView)
             }).disposed(by: viewModel.disposeBag)
@@ -119,24 +116,18 @@ class MovieDetailVC: UIViewController {
     }
 }
 
+
 extension MovieDetailVC: UITableViewDelegate, UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y < 0 {
-            headerViewConstraint.constant += abs(scrollView.contentOffset.y)
-        }
+
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if headerViewConstraint.constant > viewModel.heightHeaderRelative.value {
-            animateHeader()
-        }
+
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        scrollToFirstRow()
-        if headerViewConstraint.constant > viewModel.heightHeaderRelative.value {
-            animateHeader()
-        }
+
     }
 }
 

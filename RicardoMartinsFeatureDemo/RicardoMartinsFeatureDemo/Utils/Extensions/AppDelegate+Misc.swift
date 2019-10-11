@@ -11,7 +11,7 @@ import UIKit
 extension AppDelegate {
     func setupApp() -> Bool{
         window = UIWindow()
-        window?.rootViewController = LaunchScreen()
+        window?.rootViewController = MainTabBarVC()//  LaunchScreen()
         window?.makeKeyAndVisible()
         return true
     }

@@ -174,3 +174,4 @@ class MovieDetailHeaderView: UIView {
     }
 }
 
+
