@@ -2,23 +2,24 @@
 //  Helper.swift
 //  RicardoMartinsFeatureDemo
 //
-//  Created by Ricardo Martins on 08/10/19.
+//  Created by Ricardo Martins on 12/10/19.
 //  Copyright © 2019 https://ricardo.dev - Ricardo Martins. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class Helper {
-    static func removeSpecialChars(text: String) -> String {
-        let replaceChars = "+-*=(),.:;\"\'!?&@#$%<>/|\\{}[]_ "
-        let okayChars : Set<Character> = Set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890" + replaceChars)
+class Helper {    
+    func getFullScreenFrame() -> CGRect {
+        let screenFrame = UIScreen.main.bounds
+        let statusBarFrame = UIApplication.shared.statusBarFrame
         
-        var string = String(text.filter { okayChars.contains($0) })
+        let frame = CGRect(
+            x: 0,
+            y: screenFrame.origin.y - statusBarFrame.height,
+            width: screenFrame.width,
+            height: screenFrame.height + statusBarFrame.height
+        )
         
-        replaceChars.forEach { c in
-            string = string.replacingOccurrences(of: String(c), with: " ")
-        }
-        
-        return string
+        return frame
     }
 }

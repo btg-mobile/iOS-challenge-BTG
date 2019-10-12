@@ -17,12 +17,14 @@ class MovieDetailOverviewCell: UITableViewCell {
     }
     
     fileprivate func setupView(){
+        // self
         selectionStyle = .none
+        
+        // textLabel
         textLabel?.text = viewModel.movie.value?.overview
         textLabel?.textColor = .darkGray
         textLabel?.font = UIFont.systemFont(ofSize: 22)
         textLabel?.numberOfLines = 0
-        layoutIfNeeded()
     }
     
     override func prepareForReuse() {

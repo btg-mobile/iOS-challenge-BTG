@@ -56,13 +56,13 @@ enum APIError: Error {
     var description: String {
         switch self {
         case .unknown:
-            return "Erro desconhecido."
+            return String.Localizable.error.getValue(code: 0)
         case .invalidJson:
-            return "Json inválido."
+            return String.Localizable.error.getValue(code: 1)
         case .decodeObject:
-            return "Erro ao realializar o parse."
+            return String.Localizable.error.getValue(code: 2)
         case .invalidResponse:
-            return "Response inválido."
+            return String.Localizable.error.getValue(code: 3)
         case .server(let error):
             return error.status_message
         }

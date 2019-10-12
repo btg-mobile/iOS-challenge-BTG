@@ -10,12 +10,21 @@ import UIKit
 import Lottie
 
 class NoResultsAnimationView: UIView {
-    fileprivate let animationView = AnimationView(name: "no-results")
+    fileprivate let animationView = AnimationView(name: Assets.Animations.aniNoResults.animation)
     fileprivate let titleLabel = UILabel()
     
-    enum TypeEnum:String {
-        case noResultsInSearch = "Desculpe! Não encontramos resultados para a sua busca."
-        case favoriteIsEmpty = "Você ainda não possui filmes favoritos."
+    enum TypeEnum {
+        case noResultsInSearch
+        case favoriteIsEmpty
+        
+        func getString() -> String {
+            switch self {
+            case .noResultsInSearch:
+                return String.Localizable.app.getValue(code: 9)
+            case .favoriteIsEmpty:
+                return String.Localizable.app.getValue(code: 10)
+            }
+        }
     }
     
     override var isHidden: Bool {
@@ -30,24 +39,20 @@ class NoResultsAnimationView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        isUserInteractionEnabled = false
-        setup()
+        setupView()
     }
     
     func setText(type: NoResultsAnimationView.TypeEnum){
-        titleLabel.text = type.rawValue
+        titleLabel.text = type.getString()
     }
     
-    fileprivate func setup() {
+    fileprivate func setupView() {
+        // self
+        isUserInteractionEnabled = false
+        
+        // animationView
         animationView.loopMode = .loop
-        
-        titleLabel.textAlignment = .center
-        titleLabel.numberOfLines = 0
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        titleLabel.textColor = .gray
-        
         addSubview(animationView)
-        addSubview(titleLabel)
         
         animationView.anchor(
             centerX: (centerXAnchor, 0),
@@ -55,6 +60,13 @@ class NoResultsAnimationView: UIView {
             width: 100,
             height: 100
         )
+        
+        // titleLabel
+        titleLabel.textAlignment = .center
+        titleLabel.numberOfLines = 0
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel.textColor = .gray
+        addSubview(titleLabel)
         
         titleLabel.anchor(
             centerX: (centerXAnchor, 0),

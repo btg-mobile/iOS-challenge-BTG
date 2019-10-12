@@ -49,8 +49,8 @@ class MoviesFavoriteVC: UIViewController {
             }).disposed(by: viewModel.disposeBag)
         
         viewModel.favorites
-            .bind(to: tableView.rx.items(cellIdentifier: MovieFavoriteCell.identifier, cellType: MovieFavoriteCell.self)) {  (row, favorite, cell) in
-                cell.favorite = favorite
+            .bind(to: tableView.rx.items(cellIdentifier: MovieFavoriteCell.identifier, cellType: MovieFavoriteCell.self)) {  (row, movie, cell) in
+                cell.favoriteButtonVM = FavoriteButtonVM(movie: movie)
             }.disposed(by: viewModel.disposeBag)
         
         searchController.searchBar.rx.selectedScopeButtonIndex
@@ -73,11 +73,12 @@ class MoviesFavoriteVC: UIViewController {
             }).disposed(by: viewModel.disposeBag)
         
         tableView.rx.itemDeleted
-            .subscribe { [weak self]indexPath in
+            .subscribe { [weak self] indexPath in
                 guard let self = self else { return }
-                if let row = indexPath.element?.row {
-                    let favorite = self.viewModel.favorites.value[row]
-                    self.viewModel.removeFavorite(favorite: favorite)
+            
+                if let indexPath = indexPath.element, let cell = self.tableView.cellForRow(at: indexPath) as? MovieFavoriteCell{
+                    cell.favoriteButtonVM.isFavorited.accept(false)
+                    cell.favoriteButtonVM.setFavorite()
                     self.viewModel.getFavorites()
                 }
             }
@@ -112,8 +113,8 @@ class MoviesFavoriteVC: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.searchBar.tintColor = .black
         searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Pesquisar filmes favoritos"
-        searchController.searchBar.scopeButtonTitles = ["A -> Z", "Z -> A"]
+        searchController.searchBar.placeholder = String.Localizable.app.getValue(code: 5)
+        searchController.searchBar.scopeButtonTitles = [String.Localizable.app.getValue(code: 6), String.Localizable.app.getValue(code: 7)]
         searchController.searchBar.showsScopeBar = true
     }
     

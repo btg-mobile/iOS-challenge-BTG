@@ -11,7 +11,6 @@ import UIKit
 class MainTabBarVC: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        MovieDetailVM().getGenres() // Just to advance the search in the API of the list of movie genres that will be persisted locally.
         setupViewControllers()
         setupUI()
     }
@@ -23,8 +22,9 @@ class MainTabBarVC: UITabBarController {
     
     fileprivate func setupViewControllers() {
         viewControllers = [
-            setupNavController(for: MoviesPopularVC(viewModel: MovieVM()), title: "Filmes", icon: UIImage(named: "icon-movie") ?? UIImage()),
-            setupNavController(for: MoviesFavoriteVC(viewModel: FavoriteVM()), title: "Favoritos", icon: UIImage(named: "icon-favorite") ?? UIImage()),
+            setupNavController(for: MoviesPopularVC(viewModel: MovieVM()), title: String.Localizable.app.getValue(code: 2), icon: Assets.Icons.iconMovie.image),
+            setupNavController(for: MoviesFavoriteVC(viewModel: FavoriteVM()), title: String.Localizable.app.getValue(code: 3), icon: Assets.Icons.iconFavoriteFlat.image),
+            setupNavController(for: WebPageVC(page: .ricardoMartins), title: String.Localizable.app.getValue(code: 11), icon: Assets.Icons.iconAbout.image),
         ]
     }
     
