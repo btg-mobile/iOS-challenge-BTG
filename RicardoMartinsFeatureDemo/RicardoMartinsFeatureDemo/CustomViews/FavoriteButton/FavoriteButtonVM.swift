@@ -23,7 +23,7 @@ class FavoriteButtonVM {
     }
     
     func checkIsFavorited(){
-        if let favorites:[Movie] = try? UserDefaultsService.shared.decode(key: Constants.UserDefaultsKeys.favorites), let movie = movie.value {
+        if let favorites:[Movie] = try? UserDefaultsService.shared.decode(key: Constants.UserDefaultsKeysEnum.favorites.key), let movie = movie.value {
             let isFavorited = !favorites.filter { $0.id == movie.id }.isEmpty
             self.isFavorited.accept(isFavorited)
         }else{
@@ -40,21 +40,21 @@ class FavoriteButtonVM {
     }
     
     fileprivate func saveFavorite(){
-        if var favorites:[Movie] = try? UserDefaultsService.shared.decode(key: Constants.UserDefaultsKeys.favorites), let movie = movie.value {
+        if var favorites:[Movie] = try? UserDefaultsService.shared.decode(key: Constants.UserDefaultsKeysEnum.favorites.key), let movie = movie.value {
             favorites.append(movie)
-            UserDefaultsService.shared.encode(obj: favorites, key: Constants.UserDefaultsKeys.favorites)
+            UserDefaultsService.shared.encode(obj: favorites, key: Constants.UserDefaultsKeysEnum.favorites.key)
         }else if let movie = movie.value{
-            UserDefaultsService.shared.encode(obj: [movie], key: Constants.UserDefaultsKeys.favorites)
+            UserDefaultsService.shared.encode(obj: [movie], key: Constants.UserDefaultsKeysEnum.favorites.key)
         }
     }
     
     fileprivate func deleteFavorite(){
-        if var favorites:[Movie] = try? UserDefaultsService.shared.decode(key: Constants.UserDefaultsKeys.favorites), let movie = movie.value {
+        if var favorites:[Movie] = try? UserDefaultsService.shared.decode(key: Constants.UserDefaultsKeysEnum.favorites.key), let movie = movie.value {
             favorites.removeAll{ $0.id == movie.id }
             if(favorites.isEmpty){
-                UserDefaultsService.shared.remove(key: Constants.UserDefaultsKeys.favorites)
+                UserDefaultsService.shared.remove(key: Constants.UserDefaultsKeysEnum.favorites.key)
             }else{
-                UserDefaultsService.shared.encode(obj: favorites, key: Constants.UserDefaultsKeys.favorites)
+                UserDefaultsService.shared.encode(obj: favorites, key: Constants.UserDefaultsKeysEnum.favorites.key)
             }
         }
     }
