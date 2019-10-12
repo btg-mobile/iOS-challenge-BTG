@@ -13,7 +13,7 @@ import RxCocoa
 class MoviesPopularVC: UIViewController {
     
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    
+    let refreshControl = UIRefreshControl()
     let noResultsAnimationView = NoResultsAnimationView()
     let searchController = UISearchController(searchResultsController: nil)
     var viewModel = MovieVM()
@@ -67,6 +67,12 @@ class MoviesPopularVC: UIViewController {
                 
                 return .init(width: width, height: height)
             }()
+        }
+        
+        if #available(iOS 10.0, *) {
+            collectionView.refreshControl = refreshControl
+        } else {
+            collectionView.addSubview(refreshControl)
         }
         
         collectionView.keyboardDismissMode = .onDrag
@@ -126,6 +132,12 @@ class MoviesPopularVC: UIViewController {
             .bind(to: noResultsAnimationView.rx.isHidden)
             .disposed(by: viewModel.disposeBag)
         
+        refreshControl.rx.controlEvent(.valueChanged)
+            .subscribe{ [weak self] _ in
+                guard let self = self else { return }
+                self.searchMovies(query: "")
+            }.disposed(by: viewModel.disposeBag)
+        
         searchController.searchBar
             .rx.text
             .orEmpty
@@ -133,6 +145,14 @@ class MoviesPopularVC: UIViewController {
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] query in
                 self?.searchMovies(query: query)
+            }).disposed(by: viewModel.disposeBag)
+        
+        viewModel.movies
+            .observeOn(MainScheduler.instance)
+            .subscribe({ [weak self] movies in
+                if(!(movies.element?.isEmpty ?? true)){
+                    self?.refreshControl.endRefreshing()
+                }
             }).disposed(by: viewModel.disposeBag)
         
         viewModel.error
