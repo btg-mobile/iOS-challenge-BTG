@@ -274,10 +274,6 @@
 		72E139D1234C8C8B00521748 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				72830A28235130C300AB64B1 /* FavoriteButton */,
-				7264E2B3234CA0C7007BFF0F /* StarsView */,
-				7215E5CB234C986600161CF4 /* LoadingView */,
-				7215E5C6234C97CE00161CF4 /* NoResultsView */,
 				72E139D6234C8D4E00521748 /* Extensions */,
 			);
 			path = Utils;
@@ -288,6 +284,10 @@
 			children = (
 				7215E5D5234C98B400161CF4 /* Headers */,
 				7215E5D4234C98AB00161CF4 /* Cells */,
+				72830A28235130C300AB64B1 /* FavoriteButton */,
+				7264E2B3234CA0C7007BFF0F /* StarsView */,
+				7215E5CB234C986600161CF4 /* LoadingView */,
+				7215E5C6234C97CE00161CF4 /* NoResultsView */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
