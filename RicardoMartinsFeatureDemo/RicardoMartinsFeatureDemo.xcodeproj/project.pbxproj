@@ -30,6 +30,7 @@
 		7283C1842351933D00E560C7 /* String+Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7283C1832351933D00E560C7 /* String+Misc.swift */; };
 		7283C1882351940B00E560C7 /* AppLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7283C18A2351940B00E560C7 /* AppLocalizable.strings */; };
 		7283C18E2351992600E560C7 /* ErrorLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7283C1902351992600E560C7 /* ErrorLocalizable.strings */; };
+		72C04B642351AA7B00DC5D1F /* WebPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C04B632351AA7B00DC5D1F /* WebPageVC.swift */; };
 		72C6952523514ABF00B15810 /* FavoriteButtonVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C6952423514ABF00B15810 /* FavoriteButtonVM.swift */; };
 		72D99F2723517E15001D5DE0 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D99F2623517E15001D5DE0 /* Helper.swift */; };
 		72E139BE234C8B4A00521748 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E139BD234C8B4A00521748 /* AppDelegate.swift */; };
@@ -81,6 +82,7 @@
 		7283C18B2351940D00E560C7 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/AppLocalizable.strings"; sourceTree = "<group>"; };
 		7283C18F2351992600E560C7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ErrorLocalizable.strings; sourceTree = "<group>"; };
 		7283C1912351992800E560C7 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/ErrorLocalizable.strings"; sourceTree = "<group>"; };
+		72C04B632351AA7B00DC5D1F /* WebPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPageVC.swift; sourceTree = "<group>"; };
 		72C6952423514ABF00B15810 /* FavoriteButtonVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButtonVM.swift; sourceTree = "<group>"; };
 		72D99F2623517E15001D5DE0 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		72E139BA234C8B4A00521748 /* Ricardo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ricardo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -323,6 +325,7 @@
 				7215E5C3234C977800161CF4 /* MoviesPopularVC.swift */,
 				7264E2A8234C9FDE007BFF0F /* MovieDetailVC.swift */,
 				72E139EF234C907800521748 /* MoviesFavoriteVC.swift */,
+				72C04B632351AA7B00DC5D1F /* WebPageVC.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -523,6 +526,7 @@
 				7264E2B8234CA118007BFF0F /* MovieDetailOverviewCell.swift in Sources */,
 				72E139E6234C8F7700521748 /* MainTabBarVC.swift in Sources */,
 				7215E5CA234C982100161CF4 /* Reactive+Misc.swift in Sources */,
+				72C04B642351AA7B00DC5D1F /* WebPageVC.swift in Sources */,
 				7215E5D3234C986600161CF4 /* LoadingView.swift in Sources */,
 				7215E5C8234C97E300161CF4 /* NoResultsAnimationView.swift in Sources */,
 				72E139D8234C8D6000521748 /* AppDelegate+Misc.swift in Sources */,
