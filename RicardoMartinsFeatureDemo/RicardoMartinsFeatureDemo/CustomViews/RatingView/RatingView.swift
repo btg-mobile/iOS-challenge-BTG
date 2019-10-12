@@ -1,5 +1,5 @@
 //
-//  StarsView.swift
+//  RatingView.swift
 //  RicardoMartinsFeatureDemo
 //
 //  Created by Ricardo Martins on 08/10/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StarsView: UIStackView {
+class RatingView: UIStackView {
     fileprivate var average: Double = 0
     fileprivate var size: CGFloat = 0
     
@@ -42,7 +42,7 @@ class StarsView: UIStackView {
             }else{
                 iconImageView.tintColor = UIColor(r: 210, g: 210, b: 210)
             }
-            
+
             addArrangedSubview(iconImageView)
         }
         addArrangedSubview(UIView())

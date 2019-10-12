@@ -13,6 +13,8 @@ extension AppDelegate {
         window = UIWindow()
         window?.rootViewController = MainTabBarVC()//  LaunchScreen()
         window?.makeKeyAndVisible()
+        
+        MovieDetailVM().getGenres() // Just to advance the search
         return true
     }
 }

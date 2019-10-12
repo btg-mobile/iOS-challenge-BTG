@@ -17,27 +17,31 @@ class MovieFavoriteCell: UITableViewCell {
     var favoriteButtonVM:FavoriteButtonVM! {
         didSet{
             setupView()
-            setupBind()
+            configure()
         }
     }
     
     fileprivate func setupView() {
+        // spinerView
         spinerView.color = .black
         
+        // backdropImageView
         backdropImageView.contentMode = .scaleToFill
         backdropImageView.layer.cornerRadius = 5
         backdropImageView.clipsToBounds = true
         backdropImageView.anchor(width: UIScreen.main.bounds.width / 3.5)
         
+        // titleLabel
         titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        overviewLabel.font = UIFont.systemFont(ofSize: 14)
-        
         titleLabel.textColor = .black
-        overviewLabel.textColor = .gray
-        
         titleLabel.numberOfLines = 1
+        
+        // overviewLabel
+        overviewLabel.font = UIFont.systemFont(ofSize: 14)
+        overviewLabel.textColor = .gray
         overviewLabel.numberOfLines = 0
         
+        // stackViews
         let vStackView = UIStackView(arrangedSubviews: [titleLabel, overviewLabel])
         let hStackView = UIStackView(arrangedSubviews: [backdropImageView, vStackView])
         
@@ -47,6 +51,7 @@ class MovieFavoriteCell: UITableViewCell {
         addSubview(hStackView)
         hStackView.anchorFillSuperView(padding: 10)
         
+        // spinerView
         addSubview(spinerView)
         spinerView.anchor(
             centerX: (backdropImageView.centerXAnchor, 0),
@@ -54,7 +59,7 @@ class MovieFavoriteCell: UITableViewCell {
         )
     }
     
-    fileprivate func setupBind(){
+    fileprivate func configure(){
         titleLabel.text = favoriteButtonVM.movie.value?.title
         overviewLabel.text = favoriteButtonVM.movie.value?.overview
         

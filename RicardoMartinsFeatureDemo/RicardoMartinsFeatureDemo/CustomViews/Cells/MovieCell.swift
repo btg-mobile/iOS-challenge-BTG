@@ -18,16 +18,23 @@ class MovieCell: UICollectionViewCell {
     
     var viewModel:MovieDetailVM! {
         didSet{
-            configureCell()
+            configure()
             setupView()
         }
     }
     
-    fileprivate func configureCell(){
+    fileprivate func configure(){
+        // self
+        setShadow(color: .black, offset: .init(width: 2, height: 2), radius: 5, opacity: 0.6)
+        
+        // favoriteButton
         favoriteButton = FavoriteButton(movie: viewModel.movie.value)
         
+        // spinerView
         spinerView.color = .black
         spinerView.startAnimating()
+        
+        // yearLabel
         let year = viewModel.movie.value?.release_date?.components(separatedBy: "-")[0] ?? ""
         yearLabel.text = year
         yearLabel.font = UIFont.boldSystemFont(ofSize: 20)
@@ -37,11 +44,13 @@ class MovieCell: UICollectionViewCell {
         yearLabel.layer.cornerRadius = 5
         yearLabel.clipsToBounds = true
         
+        // titleLabel
         titleLabel.text = viewModel.movie.value?.title?.uppercased() ?? "-"
         titleLabel.textAlignment = .center
         titleLabel.numberOfLines = 2
         titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
         
+        // posterImageView
         posterImageView.contentMode = .scaleAspectFill
         posterImageView.layer.cornerRadius = 5
         posterImageView.clipsToBounds = true
@@ -51,8 +60,6 @@ class MovieCell: UICollectionViewCell {
                 self?.spinerView.stopAnimating()
             }
         }
-        
-        setShadow(color: .black, offset: .init(width: 2, height: 2), radius: 5, opacity: 0.6)
     }
     
     fileprivate func setupView(){

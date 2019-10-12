@@ -11,7 +11,6 @@ import UIKit
 class MainTabBarVC: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        MovieDetailVM().getGenres() // Just to advance the search
         setupViewControllers()
         setupUI()
     }

@@ -59,7 +59,7 @@ class MovieDetailHeaderView: UIView {
         }
     }
     fileprivate func setupView(){
-        // Self
+        // self
         tintColor = .white
         
         // backdropImageView
@@ -79,12 +79,11 @@ class MovieDetailHeaderView: UIView {
         translucidView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         translucidView.anchorFillSuperView(topSafeArea: false)
         
-        // posterImageView and shadowPosterImageView
+        // posterImageView
         let widthRelative = UIScreen.main.bounds.width / 3
         let heightRelative = widthRelative * 1.4
         let bottomRelative = -heightRelative / 2
-        
-        // posterImageView
+    
         addSubview(posterImageView)
         posterImageView.setShadow(color: .black, offset: .init(width: 2, height: 2), radius: 5, opacity: 0.6)
         posterImageView.backgroundColor = .red
@@ -137,5 +136,3 @@ class MovieDetailHeaderView: UIView {
         )
     }
 }
-
-

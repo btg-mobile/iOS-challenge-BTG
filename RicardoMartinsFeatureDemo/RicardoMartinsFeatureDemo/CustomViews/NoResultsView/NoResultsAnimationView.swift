@@ -30,24 +30,20 @@ class NoResultsAnimationView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        isUserInteractionEnabled = false
-        setup()
+        setupView()
     }
     
     func setText(type: NoResultsAnimationView.TypeEnum){
         titleLabel.text = type.rawValue
     }
     
-    fileprivate func setup() {
+    fileprivate func setupView() {
+        // self
+        isUserInteractionEnabled = false
+        
+        // animationView
         animationView.loopMode = .loop
-        
-        titleLabel.textAlignment = .center
-        titleLabel.numberOfLines = 0
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        titleLabel.textColor = .gray
-        
         addSubview(animationView)
-        addSubview(titleLabel)
         
         animationView.anchor(
             centerX: (centerXAnchor, 0),
@@ -55,6 +51,13 @@ class NoResultsAnimationView: UIView {
             width: 100,
             height: 100
         )
+        
+        // titleLabel
+        titleLabel.textAlignment = .center
+        titleLabel.numberOfLines = 0
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel.textColor = .gray
+        addSubview(titleLabel)
         
         titleLabel.anchor(
             centerX: (centerXAnchor, 0),

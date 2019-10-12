@@ -31,7 +31,6 @@ extension UIView{
     }
 }
 
-// MARK: - Anchors
 extension UIView {
     @discardableResult
     func anchor(centerX: (anchor: NSLayoutXAxisAnchor, padding: CGFloat)? = nil,
@@ -90,7 +89,6 @@ extension UIView {
     }
 }
 
-// MARK: - Auxiliary Entities
 struct AnchoredConstraint {
     var centerX, centerY, top, left, right, bottom, width, height: NSLayoutConstraint?
 }
