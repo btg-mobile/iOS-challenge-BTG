@@ -64,7 +64,7 @@ class MovieFavoriteCell: UITableViewCell {
         overviewLabel.text = favoriteButtonVM.movie.value?.overview
         
         if let url = APIResourceEnum.image(path: favoriteButtonVM.movie.value?.backdrop_path, size: .w500).url{
-            backdropImageView.sd_setImage(with: url, placeholderImage: ImageAssets.imgDefault2.image, options: .continueInBackground){[weak self] (_, _, _, _) in
+            backdropImageView.sd_setImage(with: url, placeholderImage: Assets.DefaultsImages.imgDefault2.image, options: .continueInBackground){[weak self] (_, _, _, _) in
                 self?.spinerView.stopAnimating()
             }
         }
@@ -74,6 +74,6 @@ class MovieFavoriteCell: UITableViewCell {
         spinerView.startAnimating()
         titleLabel.text = nil
         overviewLabel.text = nil
-        backdropImageView.image = ImageAssets.imgDefault2.image
+        backdropImageView.image = Assets.DefaultsImages.imgDefault2.image
     }
 }

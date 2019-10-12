@@ -10,7 +10,7 @@ import UIKit
 import Lottie
 
 class NoResultsAnimationView: UIView {
-    fileprivate let animationView = AnimationView(name: "no-results")
+    fileprivate let animationView = AnimationView(name: Assets.Animations.aniNoResults.animation)
     fileprivate let titleLabel = UILabel()
     
     enum TypeEnum:String {

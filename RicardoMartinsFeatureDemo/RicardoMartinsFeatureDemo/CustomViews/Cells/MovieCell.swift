@@ -56,7 +56,7 @@ class MovieCell: UICollectionViewCell {
         posterImageView.clipsToBounds = true
         
         if let url = APIResourceEnum.image(path: viewModel.movie.value?.poster_path, size: .original).url{
-            posterImageView.sd_setImage(with: url, placeholderImage: ImageAssets.imgDefault1.image, options: .continueInBackground) {[weak self] (_, _, _, _) in
+            posterImageView.sd_setImage(with: url, placeholderImage: Assets.DefaultsImages.imgDefault1.image, options: .continueInBackground) {[weak self] (_, _, _, _) in
                 self?.spinerView.stopAnimating()
             }
         }
@@ -103,7 +103,7 @@ class MovieCell: UICollectionViewCell {
     override func prepareForReuse() {
         favoriteButton = FavoriteButton()
         spinerView.startAnimating()
-        posterImageView.image = ImageAssets.imgDefault1.image
+        posterImageView.image = Assets.DefaultsImages.imgDefault1.image
         spinerView.hidesWhenStopped = true
         titleLabel.text = nil
     }

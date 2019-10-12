@@ -12,7 +12,7 @@ import Lottie
 class LaunchScreen: UIViewController {
     lazy var stackView = UIStackView(arrangedSubviews: [
         setupLabel(text: "Feature Demo"),
-        AnimationView(name: "launch-movies"),
+        AnimationView(name: Assets.Animations.aniLaunchMovies.animation),
         setupLabel(text: "Ricardo Martins")
         ]
     )

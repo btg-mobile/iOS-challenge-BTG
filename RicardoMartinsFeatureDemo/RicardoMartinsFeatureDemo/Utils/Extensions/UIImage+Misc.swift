@@ -8,22 +8,34 @@
 
 import UIKit
 
-enum ImageAssets: String {
-    case iconBack = "icon-back"
-    case iconFavoriteStyle = "icon-favorite-style"
-    case iconFavoriteFlat = "icon-favorite-flat"
-    case iconMovie = "icon-movie"
-    case iconStar = "icon-star"
-    case imgDefault1 = "img-default-1"
-    case imgDefault2 = "img-default-2"
-
-    var image: UIImage {
-        return UIImage(asset: self)
+enum Assets {
+    enum Icons: String {
+        case iconBack = "icon-back"
+        case iconFavoriteStyle = "icon-favorite-style"
+        case iconFavoriteFlat = "icon-favorite-flat"
+        case iconMovie = "icon-movie"
+        case iconStar = "icon-star"
+        
+        var image: UIImage {
+            return UIImage(named: rawValue) ?? UIImage()
+        }
     }
-}
-
-extension UIImage {
-    convenience init!(asset: ImageAssets) {
-        self.init(named: asset.rawValue)
+    
+    enum Animations: String {
+        case aniLaunchMovies = "animation-launch-movies"
+        case aniNoResults = "animation-no-results"
+        
+        var animation: String {
+            return rawValue
+        }
+    }
+    
+    enum DefaultsImages: String {
+        case imgDefault1 = "img-default-1"
+        case imgDefault2 = "img-default-2"
+        
+        var image: UIImage {
+            return UIImage(named: rawValue) ?? UIImage()
+        }
     }
 }

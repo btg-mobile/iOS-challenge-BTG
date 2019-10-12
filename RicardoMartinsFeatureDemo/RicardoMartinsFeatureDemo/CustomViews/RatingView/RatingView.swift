@@ -32,7 +32,7 @@ class RatingView: UIStackView {
         addArrangedSubview(averageLabel)
         
         for i in 1...5 {
-            let iconImageView = UIImageView(image: ImageAssets.iconStar.image.withRenderingMode(.alwaysTemplate))
+            let iconImageView = UIImageView(image: Assets.Icons.iconStar.image.withRenderingMode(.alwaysTemplate))
             iconImageView.contentMode = .scaleAspectFit
             iconImageView.anchor(width: size)
             let stars = Int(average / 2)

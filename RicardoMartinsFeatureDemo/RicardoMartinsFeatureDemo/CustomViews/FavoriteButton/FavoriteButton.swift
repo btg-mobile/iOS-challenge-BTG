@@ -51,11 +51,11 @@ class FavoriteButton: UIButton {
                     }
                     
                     if(self.favoriteButtonVM.isFavorited.value){
-                        self.setImage(ImageAssets.iconFavoriteStyle.image.withRenderingMode(.alwaysOriginal), for: .normal)
+                        self.setImage(Assets.Icons.iconFavoriteStyle.image.withRenderingMode(.alwaysOriginal), for: .normal)
                         self.setShadow(color: .yellow, offset: .init(width: 2, height: 2), radius: 5, opacity: 0.6)
                     }else{
                         self.setShadow(color: .black, offset: .init(width: 2, height: 2), radius: 5, opacity: 0.6)
-                        self.setImage(ImageAssets.iconFavoriteStyle.image.withRenderingMode(.alwaysTemplate), for: .normal)
+                        self.setImage(Assets.Icons.iconFavoriteStyle.image.withRenderingMode(.alwaysTemplate), for: .normal)
                     }
                     }, completion: { ( _ ) in
                         if(self.favoriteButtonVM.isTapAnimation.value){

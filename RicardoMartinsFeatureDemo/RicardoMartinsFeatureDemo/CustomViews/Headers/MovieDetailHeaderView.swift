@@ -30,7 +30,7 @@ class MovieDetailHeaderView: UIView {
     
     fileprivate func setupImagesAnimation(){
         if let url = APIResourceEnum.image(path: viewModel.movie.value?.poster_path, size: .original).url{
-            posterImageView.sd_setImage(with: url, placeholderImage: ImageAssets.imgDefault1.image, options: .continueInBackground)
+            posterImageView.sd_setImage(with: url, placeholderImage: Assets.DefaultsImages.imgDefault1.image, options: .continueInBackground)
         }
         
         if let url = APIResourceEnum.image(path: viewModel.movie.value?.backdrop_path ?? viewModel.movie.value?.poster_path, size: .w500).url{
@@ -52,7 +52,7 @@ class MovieDetailHeaderView: UIView {
             UIView.animate(withDuration: 3, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1, options: .curveEaseOut, animations: { [weak self] in
                 guard let self = self else { return }
                 self.spinerView.stopAnimating()
-                self.backdropImageView.image = ImageAssets.imgDefault2.image
+                self.backdropImageView.image = Assets.DefaultsImages.imgDefault2.image
                 self.backdropImageView.alpha = 1
                 self.translucidView.alpha = 1
             })
@@ -87,7 +87,7 @@ class MovieDetailHeaderView: UIView {
         addSubview(posterImageView)
         posterImageView.setShadow(color: .black, offset: .init(width: 2, height: 2), radius: 5, opacity: 0.6)
         posterImageView.backgroundColor = .red
-        posterImageView.image = ImageAssets.imgDefault1.image
+        posterImageView.image = Assets.DefaultsImages.imgDefault1.image
         posterImageView.contentMode = .scaleAspectFill
         posterImageView.layer.cornerRadius = 5
         posterImageView.anchor(
@@ -99,7 +99,7 @@ class MovieDetailHeaderView: UIView {
         
         // backButton
         addSubview(backButton)
-        backButton.setImage(ImageAssets.iconBack.image.withRenderingMode(.alwaysTemplate), for: .normal)
+        backButton.setImage(Assets.Icons.iconBack.image.withRenderingMode(.alwaysTemplate), for: .normal)
         backButton.anchor(
             top: (topAnchor, 50),
             left: (leftAnchor, 0),
