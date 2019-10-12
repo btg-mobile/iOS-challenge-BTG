@@ -32,6 +32,11 @@ class MoviesPopularVC: UIViewController {
         setupBind()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateVisibleFavoriteCells()
+    }
+    
     fileprivate func setupView(){
         view.backgroundColor = .white
     }
@@ -45,7 +50,8 @@ class MoviesPopularVC: UIViewController {
         collectionView.keyboardDismissMode = .onDrag
         collectionView.backgroundColor = navigationController?.navigationBar.backgroundColor
         collectionView.contentInset = .init(top: 10, left: 10, bottom: 10, right: 10)
-        collectionView.register(MovieCell.nib, forCellWithReuseIdentifier: MovieCell.identifier)
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: UICollectionViewCell.identifier)
+        collectionView.register(MovieCell.self, forCellWithReuseIdentifier: MovieCell.identifier)
     }
     
     fileprivate func setupSearchBar() {
@@ -81,6 +87,14 @@ class MoviesPopularVC: UIViewController {
         )
     }
     
+    fileprivate func updateVisibleFavoriteCells(){
+        collectionView.visibleCells.forEach { cell in
+            if let cell = cell as? MovieCell{
+                cell.favoriteButton.favoriteButtonVM.checkIsFavorited()
+            }
+        }
+    }
+    
     fileprivate func setupBind() {
         viewModel.loading
             .bind(to: rx.isAnimating)
@@ -89,11 +103,6 @@ class MoviesPopularVC: UIViewController {
         viewModel.isHiddenNoResults
             .bind(to: noResultsAnimationView.rx.isHidden)
             .disposed(by: viewModel.disposeBag)
-        
-        searchController.searchBar.rx.cancelButtonClicked
-            .subscribe(onNext: { [weak self] _ in
-                self?.searchController.searchBar.text = ""
-            }).disposed(by: viewModel.disposeBag)
         
         searchController.searchBar
             .rx.text
@@ -110,10 +119,16 @@ class MoviesPopularVC: UIViewController {
                 debugPrint(error)
             }).disposed(by: viewModel.disposeBag)
         
-        viewModel.movies
-            .bind(to: collectionView.rx.items(cellIdentifier: MovieCell.identifier, cellType: MovieCell.self)) {  (row, movie, cell) in
-                cell.movie = movie
+        viewModel.movies.bind(to: collectionView.rx.items){ (cl, row, movie) -> UICollectionViewCell in
+            if let cell = cl.dequeueReusableCell(withReuseIdentifier: MovieCell.identifier, for: IndexPath.init(row: row, section: 0)) as? MovieCell{
+                cell.viewModel = MovieDetailVM(movie: movie)
+                return cell
+            }else{
+                let defaultCell = cl.dequeueReusableCell(withReuseIdentifier: UICollectionViewCell.identifier, for: IndexPath.init(row: row, section: 0))
+                return defaultCell
+            }
             }.disposed(by: viewModel.disposeBag)
+        
         
         collectionView.rx.itemSelected
             .subscribe(onNext: { [weak self] indexPath in
@@ -134,6 +149,7 @@ class MoviesPopularVC: UIViewController {
         collectionView.rx.willDisplayCell
             .subscribe(onNext: { [weak self] (cell, indexPath) in
                 guard let self = self else { return }
+                
                 if(self.viewModel.page.value == 1 && indexPath.row <= 3){
                     cell.alpha = 0
                     cell.layer.transform = CATransform3DTranslate(CATransform3DIdentity, 0, 150, 0)

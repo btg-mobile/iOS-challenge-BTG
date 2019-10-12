@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 
 class FavoriteButtonVM {
+    var isTapAnimation = BehaviorRelay<Bool>(value: false)
     var isFavorited = BehaviorRelay<Bool>(value: false)
     var movie = BehaviorRelay<Movie?>(value: nil)
     
