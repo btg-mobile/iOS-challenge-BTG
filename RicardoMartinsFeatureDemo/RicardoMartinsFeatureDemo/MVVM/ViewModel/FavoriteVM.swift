@@ -19,17 +19,6 @@ class FavoriteVM {
     
     let disposeBag = DisposeBag()
     
-    func removeFavorite(favorite:Movie){
-        if var favorites:[Movie] = try? UserDefaultsService.shared.decode(key: Constants.UserDefaultsKeys.favorites){
-            favorites.removeAll{ $0.id == favorite.id }
-            if(favorites.isEmpty){
-                UserDefaultsService.shared.remove(key: Constants.UserDefaultsKeys.favorites)
-            }else{
-                UserDefaultsService.shared.encode(obj: favorites, key: Constants.UserDefaultsKeys.favorites)
-            }
-        }
-    }
-    
     func getFavorites(){
         if let favorites:[Movie] = try? UserDefaultsService.shared.decode(key: Constants.UserDefaultsKeys.favorites){
             if(query.value.isEmpty){

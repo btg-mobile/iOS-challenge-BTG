@@ -14,30 +14,34 @@ class MovieFavoriteCell: UITableViewCell {
     fileprivate let spinerView = UIActivityIndicatorView(style: .whiteLarge)
     fileprivate let backdropImageView = UIImageView()
     
-    var favorite:Movie! {
+    var favoriteButtonVM:FavoriteButtonVM! {
         didSet{
             setupView()
-            setupBind()
+            configure()
         }
     }
     
     fileprivate func setupView() {
+        // spinerView
         spinerView.color = .black
         
+        // backdropImageView
         backdropImageView.contentMode = .scaleToFill
         backdropImageView.layer.cornerRadius = 5
         backdropImageView.clipsToBounds = true
         backdropImageView.anchor(width: UIScreen.main.bounds.width / 3.5)
         
+        // titleLabel
         titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        overviewLabel.font = UIFont.systemFont(ofSize: 14)
-        
         titleLabel.textColor = .black
-        overviewLabel.textColor = .gray
-        
         titleLabel.numberOfLines = 1
+        
+        // overviewLabel
+        overviewLabel.font = UIFont.systemFont(ofSize: 14)
+        overviewLabel.textColor = .gray
         overviewLabel.numberOfLines = 0
         
+        // stackViews
         let vStackView = UIStackView(arrangedSubviews: [titleLabel, overviewLabel])
         let hStackView = UIStackView(arrangedSubviews: [backdropImageView, vStackView])
         
@@ -47,6 +51,7 @@ class MovieFavoriteCell: UITableViewCell {
         addSubview(hStackView)
         hStackView.anchorFillSuperView(padding: 10)
         
+        // spinerView
         addSubview(spinerView)
         spinerView.anchor(
             centerX: (backdropImageView.centerXAnchor, 0),
@@ -54,12 +59,12 @@ class MovieFavoriteCell: UITableViewCell {
         )
     }
     
-    fileprivate func setupBind(){
-        titleLabel.text = favorite.title
-        overviewLabel.text = favorite.overview
+    fileprivate func configure(){
+        titleLabel.text = favoriteButtonVM.movie.value?.title
+        overviewLabel.text = favoriteButtonVM.movie.value?.overview
         
-        if let url = APIResourceEnum.image(path: favorite.backdrop_path, size: .w500).url{
-            backdropImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "img-default-2"), options: .continueInBackground){[weak self] (_, _, _, _) in
+        if let url = APIResourceEnum.image(path: favoriteButtonVM.movie.value?.backdrop_path, size: .w500).url{
+            backdropImageView.sd_setImage(with: url, placeholderImage: Assets.DefaultsImages.imgDefault2.image, options: .continueInBackground){[weak self] (_, _, _, _) in
                 self?.spinerView.stopAnimating()
             }
         }
@@ -69,6 +74,6 @@ class MovieFavoriteCell: UITableViewCell {
         spinerView.startAnimating()
         titleLabel.text = nil
         overviewLabel.text = nil
-        backdropImageView.image = UIImage(named: "img-default-2")
+        backdropImageView.image = Assets.DefaultsImages.imgDefault2.image
     }
 }
