@@ -12,7 +12,7 @@ import RxCocoa
 
 class MoviesPopularVC: UIViewController {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
     let noResultsAnimationView = NoResultsAnimationView()
     let searchController = UISearchController(searchResultsController: nil)
@@ -42,6 +42,9 @@ class MoviesPopularVC: UIViewController {
     }
     
     fileprivate func setupCollectionView(){
+        view.addSubview(collectionView)
+        collectionView.anchorFillSuperView()
+        
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.minimumLineSpacing = 10
         }
