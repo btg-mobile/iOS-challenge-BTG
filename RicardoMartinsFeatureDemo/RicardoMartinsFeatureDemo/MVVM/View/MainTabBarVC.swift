@@ -22,8 +22,8 @@ class MainTabBarVC: UITabBarController {
     
     fileprivate func setupViewControllers() {
         viewControllers = [
-            setupNavController(for: MoviesPopularVC(viewModel: MovieVM()), title: "Filmes", icon: Assets.Icons.iconMovie.image),
-            setupNavController(for: MoviesFavoriteVC(viewModel: FavoriteVM()), title: "Favoritos", icon: Assets.Icons.iconFavoriteFlat.image),
+            setupNavController(for: MoviesPopularVC(viewModel: MovieVM()), title: String.Localizable.app.getValue(code: 2), icon: Assets.Icons.iconMovie.image),
+            setupNavController(for: MoviesFavoriteVC(viewModel: FavoriteVM()), title: String.Localizable.app.getValue(code: 3), icon: Assets.Icons.iconFavoriteFlat.image),
         ]
     }
     

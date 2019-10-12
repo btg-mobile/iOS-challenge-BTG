@@ -36,7 +36,7 @@ class MovieDetailInfoCell: UITableViewCell {
         
         if let popularity = viewModel.movie.value?.popularity {
             let popularity = NSMutableAttributedString(
-                string:  "\(popularity) Popularidade",
+                string:  "\(popularity) \(String.Localizable.app    .getValue(code: 8))",
                 attributes: [
                     NSAttributedString.Key.foregroundColor: UIColor.black,
                     NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)

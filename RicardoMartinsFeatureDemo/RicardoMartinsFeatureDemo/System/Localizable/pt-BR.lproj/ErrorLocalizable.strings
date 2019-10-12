@@ -1,0 +1,12 @@
+/* 
+  ErrorLocalizable.strings
+  RicardoMartinsFeatureDemo
+
+  Created by Ricardo Martins on 12/10/19.
+  Copyright © 2019 https://ricardo.dev - Ricardo Martins. All rights reserved.
+*/
+
+"str-app-0" = "Erro desconhecido.";
+"str-app-1" = "Json inválido.";
+"str-app-2" = "Erro ao realizar o parse.";
+"str-app-3" = "Response inválido.";

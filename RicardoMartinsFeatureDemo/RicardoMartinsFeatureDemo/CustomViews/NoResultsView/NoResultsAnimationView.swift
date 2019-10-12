@@ -13,9 +13,18 @@ class NoResultsAnimationView: UIView {
     fileprivate let animationView = AnimationView(name: Assets.Animations.aniNoResults.animation)
     fileprivate let titleLabel = UILabel()
     
-    enum TypeEnum:String {
-        case noResultsInSearch = "Desculpe! Não encontramos resultados para a sua busca."
-        case favoriteIsEmpty = "Você ainda não possui filmes favoritos."
+    enum TypeEnum {
+        case noResultsInSearch
+        case favoriteIsEmpty
+        
+        func getString() -> String {
+            switch self {
+            case .noResultsInSearch:
+                return String.Localizable.app.getValue(code: 9)
+            case .favoriteIsEmpty:
+                return String.Localizable.app.getValue(code: 10)
+            }
+        }
     }
     
     override var isHidden: Bool {
@@ -34,7 +43,7 @@ class NoResultsAnimationView: UIView {
     }
     
     func setText(type: NoResultsAnimationView.TypeEnum){
-        titleLabel.text = type.rawValue
+        titleLabel.text = type.getString()
     }
     
     fileprivate func setupView() {

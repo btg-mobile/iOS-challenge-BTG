@@ -113,8 +113,8 @@ class MoviesFavoriteVC: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.searchBar.tintColor = .black
         searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Pesquisar filmes favoritos"
-        searchController.searchBar.scopeButtonTitles = ["A -> Z", "Z -> A"]
+        searchController.searchBar.placeholder = String.Localizable.app.getValue(code: 5)
+        searchController.searchBar.scopeButtonTitles = [String.Localizable.app.getValue(code: 6), String.Localizable.app.getValue(code: 7)]
         searchController.searchBar.showsScopeBar = true
     }
     

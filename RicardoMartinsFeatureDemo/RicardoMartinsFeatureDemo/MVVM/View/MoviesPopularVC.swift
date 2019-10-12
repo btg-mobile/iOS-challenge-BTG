@@ -82,7 +82,7 @@ class MoviesPopularVC: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.searchBar.tintColor = .black
         searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Pesquisar filmes"
+        searchController.searchBar.placeholder = String.Localizable.app.getValue(code: 4)
     }
     
     fileprivate func nextPage(currentRow:Int){

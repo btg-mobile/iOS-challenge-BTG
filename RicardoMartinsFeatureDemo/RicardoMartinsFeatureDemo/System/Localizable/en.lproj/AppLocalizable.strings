@@ -1,0 +1,19 @@
+/* 
+  AppLocalizable.strings
+  RicardoMartinsFeatureDemo
+
+  Created by Ricardo Martins on 12/10/19.
+  Copyright © 2019 https://ricardo.dev - Ricardo Martins. All rights reserved.
+*/
+
+"str-app-0" = "Feature Demo";
+"str-app-1" = "Ricardo Martins";
+"str-app-2" = "Movies";
+"str-app-3" = "Favorites";
+"str-app-4" = "Search movies";
+"str-app-5" = "Search favorite movies";
+"str-app-6" = "A -> Z";
+"str-app-7" = "Z -> A";
+"str-app-8" = "Popularity";
+"str-app-9" = "Excuse me! We couldn't find any results for your search.";
+"str-app-10" = "You don't have favorite movies yet.";
