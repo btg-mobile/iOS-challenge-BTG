@@ -12,7 +12,7 @@ import RxCocoa
 
 class MoviesPopularVC: UIViewController {
     
-    var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
     let noResultsAnimationView = NoResultsAnimationView()
     let searchController = UISearchController(searchResultsController: nil)
@@ -47,9 +47,28 @@ class MoviesPopularVC: UIViewController {
         
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.minimumLineSpacing = 10
+            
+            layout.itemSize  = {
+                let width = (view.frame.width - 30) / 2
+                var height:CGFloat = 0
+                
+                switch UIDevice.screenType {
+                case .iPhone_XR, .iPhone_XSMax:
+                     height = width * 1.55
+                case .iPhones_X_XS:
+                    height = width * 1.50
+                case .iPhones_6_6s_7_8, .iPhones_6Plus_6sPlus_7Plus_8Plus:
+                    height = width * 1.65
+                case .iPhones_4_4S, .iPhones_5_5s_5c_SE:
+                    height = width * 1.60
+                default:
+                    height = width * 1.55
+                }
+                
+                return .init(width: width, height: height)
+            }()
         }
         
-        collectionView.delegate = self
         collectionView.keyboardDismissMode = .onDrag
         collectionView.backgroundColor = navigationController?.navigationBar.backgroundColor
         collectionView.contentInset = .init(top: 10, left: 10, bottom: 10, right: 10)
@@ -166,24 +185,5 @@ class MoviesPopularVC: UIViewController {
                     self.nextPage(currentRow: indexPath.row)
                 }
             }).disposed(by: viewModel.disposeBag)
-    }
-}
-
-extension MoviesPopularVC: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (view.frame.width - 30) / 2
-        var height:CGFloat = 0
-        let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
-        
-        switch UIDevice.screenType {
-        case .iPhone_XR, .iPhones_X_XS, .iPhone_XSMax:
-            height = (collectionView.frame.height - tabBarHeight - 30) / 2
-        case .iPhones_6_6s_7_8, .iPhones_6Plus_6sPlus_7Plus_8Plus:
-            height = width * 1.65
-        default:
-            height = width * 1.60
-        }
-        
-        return .init(width: width, height: height)
     }
 }
