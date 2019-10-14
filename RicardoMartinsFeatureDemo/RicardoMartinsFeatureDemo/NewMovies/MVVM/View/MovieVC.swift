@@ -37,7 +37,7 @@ class MovieVC: UIViewController {
         collectionView.dataSource = self
         collectionView.anchorFillSuperView(topSafeArea: false)
         collectionView.backgroundColor = .white
-        collectionView.register(MovieGroupCell.self, forCellWithReuseIdentifier: MovieGroupCell.identifier)
+        collectionView.register(SectionCell.self, forCellWithReuseIdentifier: SectionCell.identifier)
     }
     
     fileprivate func bind() {
@@ -56,7 +56,7 @@ class MovieVC: UIViewController {
     
     func updateVisibleFavoriteCells(){
         collectionView.visibleCells.forEach { cell in
-            if let cell = cell as? MovieGroupCell{
+            if let cell = cell as? SectionCell{
                 cell.movieHorizontalVC.updateVisibleFavoriteCells()
             }
         }
@@ -69,7 +69,7 @@ extension MovieVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieGroupCell.identifier, for: indexPath) as! MovieGroupCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SectionCell.identifier, for: indexPath) as! SectionCell
         let section = viewModel.sections.value[indexPath.row]
         cell.section = section
         return cell

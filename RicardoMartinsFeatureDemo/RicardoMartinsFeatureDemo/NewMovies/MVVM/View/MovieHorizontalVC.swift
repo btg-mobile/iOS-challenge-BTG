@@ -30,7 +30,6 @@ class MovieHorizontalVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        
     }
     
     fileprivate func setupView() {
@@ -40,7 +39,9 @@ class MovieHorizontalVC: UIViewController {
         collectionView.anchorFillSuperView()
         collectionView.backgroundColor = .white
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.register(MovieCell2.self, forCellWithReuseIdentifier: MovieCell2.identifier)
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: UICollectionViewCell.identifier)
+        collectionView.register(MovieHorizontalCell.self, forCellWithReuseIdentifier: MovieHorizontalCell.identifier)
+        collectionView.register(MovieLoadingCell.self, forCellWithReuseIdentifier: MovieLoadingCell.identifier)
         
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
@@ -96,14 +97,25 @@ class MovieHorizontalVC: UIViewController {
 
 extension MovieHorizontalVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.section.value.movies.count
+        return viewModel.section.value.movies.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell2.identifier, for: indexPath) as! MovieCell2
-        let movie = viewModel.section.value.movies[indexPath.row]
-        cell.viewModel = MovieDetailVM(movie: movie)
-        return cell
+        let defaultCell = collectionView.dequeueReusableCell(withReuseIdentifier: UICollectionViewCell.identifier, for: indexPath)
+        
+        if(indexPath.row == viewModel.section.value.movies.count){
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieLoadingCell.identifier, for: indexPath) as? MovieLoadingCell {
+                return cell
+            }
+        }else{
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieHorizontalCell.identifier, for: indexPath) as? MovieHorizontalCell {
+                let movie = viewModel.section.value.movies[indexPath.row]
+                cell.viewModel = MovieDetailVM(movie: movie)
+                return cell
+            }
+        }
+
+        return defaultCell
     }
 }
 

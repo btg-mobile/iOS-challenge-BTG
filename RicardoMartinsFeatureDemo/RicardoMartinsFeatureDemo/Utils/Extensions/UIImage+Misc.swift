@@ -25,6 +25,7 @@ enum Assets {
     enum Animations: String {
         case aniLaunchMovies = "animation-launch-movies"
         case aniNoResults = "animation-no-results"
+        case aniLoading = "animation-loading"
         
         var animation: String {
             return rawValue

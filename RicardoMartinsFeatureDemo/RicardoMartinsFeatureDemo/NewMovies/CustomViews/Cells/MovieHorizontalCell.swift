@@ -1,5 +1,5 @@
 //
-//  MovieCell2.swift
+//  MovieHorizontalCell.swift
 //  RicardoMartinsFeatureDemo
 //
 //  Created by Ricardo Martins on 13/10/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieCell2: UICollectionViewCell {
+class MovieHorizontalCell: UICollectionViewCell {
     fileprivate let spinerView = UIActivityIndicatorView(style: .whiteLarge)
     fileprivate let posterImageView = UIImageView()
     fileprivate let yearLabel = UILabel()
