@@ -14,12 +14,36 @@ class MovieCell: UICollectionViewCell {
     let posterImageView = UIImageView()
     let yearLabel = UILabel()
     let titleLabel = UILabel()
-    var favoriteButton = FavoriteButton()
+    let favoriteButton = FavoriteButton(size: .init(width: 50, height: 50))
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+        configure()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     var viewModel:MovieDetailVM! {
         didSet{
-            configure()
-            setupView()
+            bind()
+        }
+    }
+    
+    func checkIsFavorited() {
+        favoriteButton.favoriteButtonVM.checkIsFavorited()
+    }
+    
+    fileprivate func bind(){
+        favoriteButton.favoriteButtonVM = FavoriteButtonVM(movie: viewModel.movie.value)
+        titleLabel.text = viewModel.movie.value?.title?.uppercased()
+        yearLabel.text = viewModel.movie.value?.release_date?.components(separatedBy: "-")[0]
+        if let url = APIResourceEnum.image(path: viewModel.movie.value?.poster_path, size: .original).url{
+            posterImageView.sd_setImage(with: url, placeholderImage: Assets.DefaultsImages.imgDefault1.image, options: .continueInBackground) {[weak self] (_, _, _, _) in
+                self?.spinerView.stopAnimating()
+            }
         }
     }
     
@@ -27,16 +51,12 @@ class MovieCell: UICollectionViewCell {
         // self
         setShadow(color: .black, offset: .init(width: 2, height: 2), radius: 5, opacity: 0.6)
         
-        // favoriteButton
-        favoriteButton = FavoriteButton(movie: viewModel.movie.value)
-        
         // spinerView
         spinerView.color = .black
         spinerView.startAnimating()
+        spinerView.hidesWhenStopped = true
         
         // yearLabel
-        let year = viewModel.movie.value?.release_date?.components(separatedBy: "-")[0] ?? ""
-        yearLabel.text = year
         yearLabel.font = UIFont.boldSystemFont(ofSize: 20)
         yearLabel.textAlignment = .center
         yearLabel.textColor = .white
@@ -45,21 +65,15 @@ class MovieCell: UICollectionViewCell {
         yearLabel.clipsToBounds = true
         
         // titleLabel
-        titleLabel.text = viewModel.movie.value?.title?.uppercased() ?? "-"
         titleLabel.textAlignment = .center
         titleLabel.numberOfLines = 2
         titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
         
         // posterImageView
+        posterImageView.image = Assets.DefaultsImages.imgDefault1.image
         posterImageView.contentMode = .scaleAspectFill
         posterImageView.layer.cornerRadius = 5
         posterImageView.clipsToBounds = true
-        
-        if let url = APIResourceEnum.image(path: viewModel.movie.value?.poster_path, size: .original).url{
-            posterImageView.sd_setImage(with: url, placeholderImage: Assets.DefaultsImages.imgDefault1.image, options: .continueInBackground) {[weak self] (_, _, _, _) in
-                self?.spinerView.stopAnimating()
-            }
-        }
     }
     
     fileprivate func setupView(){
@@ -101,10 +115,8 @@ class MovieCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
-        favoriteButton = FavoriteButton()
+        spinerView.isHidden = false
         spinerView.startAnimating()
         posterImageView.image = Assets.DefaultsImages.imgDefault1.image
-        spinerView.hidesWhenStopped = true
-        titleLabel.text = nil
     }
 }

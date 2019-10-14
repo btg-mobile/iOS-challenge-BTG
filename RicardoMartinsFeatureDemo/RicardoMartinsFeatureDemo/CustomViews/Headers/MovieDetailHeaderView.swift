@@ -19,13 +19,65 @@ class MovieDetailHeaderView: UIView {
     fileprivate let translucidView = UIView()
     
     let backButton = UIButton(type: .system)
-    lazy var favoriteButton = FavoriteButton(movie: viewModel.movie.value)
+    let favoriteButton = FavoriteButton(size: .init(width: 50, height: 50))
     
     var viewModel:MovieDetailVM! {
         didSet{
-            setupView()
-            setupImagesAnimation()
+            bind()
         }
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+        configure()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    fileprivate func bind() {
+        titleLabel.text = viewModel.movie.value?.title
+        
+        // backdropImageView -> is configuration but needs viewModel
+        if(viewModel.movie.value?.vote_average == nil && viewModel.movie.value?.genre_ids == nil){
+            backdropImageView.contentMode = .scaleAspectFit
+        }else{
+            backdropImageView.contentMode = .scaleAspectFill
+        }
+        
+        setupImagesAnimation()
+        favoriteButton.favoriteButtonVM = FavoriteButtonVM(movie: viewModel.movie.value)
+    }
+    
+    fileprivate func configure(){
+        // self
+        tintColor = .white
+        backdropImageView.clipsToBounds = true
+        
+        // spinerView
+        spinerView.color = .black
+        spinerView.startAnimating()
+        
+        // translucidView
+        translucidView.alpha = 0
+        translucidView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        
+        // posterImageView
+        posterImageView.setShadow(color: .black, offset: .init(width: 2, height: 2), radius: 5, opacity: 0.6)
+        posterImageView.backgroundColor = .red
+        posterImageView.image = Assets.DefaultsImages.imgDefault1.image
+        posterImageView.contentMode = .scaleAspectFill
+        posterImageView.layer.cornerRadius = 5
+        
+        // backButton
+        backButton.setImage(Assets.Icons.iconBack.image.withRenderingMode(.alwaysTemplate), for: .normal)
+        
+        // titleLabel
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 30)
+        titleLabel.textColor = .white
+        titleLabel.numberOfLines = 3
     }
     
     fileprivate func setupImagesAnimation(){
@@ -59,37 +111,19 @@ class MovieDetailHeaderView: UIView {
         }
     }
     fileprivate func setupView(){
-        // self
-        tintColor = .white
-        
         // backdropImageView
         addSubview(backdropImageView)
-        backdropImageView.clipsToBounds = true
         backdropImageView.anchorFillSuperView(topSafeArea: false)
-        
-        if(viewModel.movie.value?.vote_average == nil && viewModel.movie.value?.genre_ids == nil){
-            backdropImageView.contentMode = .scaleAspectFit
-        }else{
-            backdropImageView.contentMode = .scaleAspectFill
-        }
         
         // translucidView
         addSubview(translucidView)
-        translucidView.alpha = 0
-        translucidView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         translucidView.anchorFillSuperView(topSafeArea: false)
         
         // posterImageView
+        addSubview(posterImageView)
         let widthRelative = UIScreen.main.bounds.width / 3
         let heightRelative = widthRelative * 1.4
         let bottomRelative = -heightRelative / 2
-    
-        addSubview(posterImageView)
-        posterImageView.setShadow(color: .black, offset: .init(width: 2, height: 2), radius: 5, opacity: 0.6)
-        posterImageView.backgroundColor = .red
-        posterImageView.image = Assets.DefaultsImages.imgDefault1.image
-        posterImageView.contentMode = .scaleAspectFill
-        posterImageView.layer.cornerRadius = 5
         posterImageView.anchor(
             left: (leftAnchor, 20),
             bottom: (bottomAnchor, bottomRelative),
@@ -99,7 +133,6 @@ class MovieDetailHeaderView: UIView {
         
         // backButton
         addSubview(backButton)
-        backButton.setImage(Assets.Icons.iconBack.image.withRenderingMode(.alwaysTemplate), for: .normal)
         backButton.anchor(
             top: (topAnchor, 50),
             left: (leftAnchor, 0),
@@ -109,10 +142,6 @@ class MovieDetailHeaderView: UIView {
         
         // titleLabel
         addSubview(titleLabel)
-        titleLabel.text = viewModel.movie.value?.title
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 30)
-        titleLabel.textColor = .white
-        titleLabel.numberOfLines = 3
         titleLabel.anchor(
             top: (topAnchor, 55),
             left: (backButton.rightAnchor, 30),
@@ -121,8 +150,6 @@ class MovieDetailHeaderView: UIView {
         
         // spinerView
         addSubview(spinerView)
-        spinerView.color = .black
-        spinerView.startAnimating()
         spinerView.anchor(
             centerX: (centerXAnchor, 0),
             bottom: (bottomAnchor, 40)

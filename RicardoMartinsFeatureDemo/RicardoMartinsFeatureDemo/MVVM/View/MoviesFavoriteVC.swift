@@ -29,7 +29,7 @@ class MoviesFavoriteVC: UIViewController {
         setupTableView()
         setupSearchBar()
         setupNoResultsAnimationView()
-        setupBind()
+        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,7 +37,7 @@ class MoviesFavoriteVC: UIViewController {
         viewModel.getFavorites()
     }
     
-    fileprivate func setupBind() {
+    fileprivate func bind() {
         viewModel.isHiddenNoResults
             .bind(to: noResultsAnimationView.rx.isHidden)
             .disposed(by: viewModel.disposeBag)

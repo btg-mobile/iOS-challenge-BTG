@@ -20,7 +20,7 @@ class FavoriteVM {
     let disposeBag = DisposeBag()
     
     func getFavorites(){
-        if let favorites:[Movie] = try? UserDefaultsService.shared.decode(key: Constants.UserDefaultsKeys.favorites){
+        if let favorites:[Movie] = try? UserDefaultsService.shared.decode(key: Constants.UserDefaultsKeysEnum.favorites.key){
             if(query.value.isEmpty){
                 self.favorites.accept(sortMovieList(movies: favorites))
                 isHiddenNoResults.accept(true)
