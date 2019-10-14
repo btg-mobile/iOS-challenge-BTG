@@ -16,6 +16,7 @@ protocol MoviesListViewModelProtocol {
     func movieForIndex(_ index: Int) -> Movie?
     func didReceiveMemoryWarning()
     func hasNext() -> Bool
+    func refreshIfNeeded()
 }
 extension MoviesListViewModelProtocol {
     func getNextPage() {}
@@ -26,4 +27,5 @@ extension MoviesListViewModelProtocol {
     func hasNext() -> Bool {
         return false
     }
+    func refreshIfNeeded() {}
 }

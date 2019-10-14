@@ -24,13 +24,10 @@ class MoviesService {
     private func getMoviesList(_ page: Int, success: @escaping (MoviePage) -> (), failed: @escaping (Error) -> ()) {
         let url = "https://api.themoviedb.org/3/movie/popular?api_key=\(apiKey)&language=en-US&page=\(page)"
         
-        print("url - " + url)
         Alamofire.request(url, method: .get).responseData(completionHandler: { (response) in
             switch response.result {
             case .success(let value):
-                print(value)
                 let string1 = String(data: value, encoding: String.Encoding.utf8) ?? "Data could not be printed"
-                print(string1)
                 let decoder = JSONDecoder()
                 do {
                     let model = try decoder.decode(MoviePage.self, from: value)

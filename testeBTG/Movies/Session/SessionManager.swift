@@ -33,12 +33,10 @@ class SessionManager {
                 self.genreList = info
                 success()
             }, failed: { (error) in
-                print(error)
                 failed(error)
             })
             
         }) { (error) in
-            print(error)
 
             failed(error)
         }

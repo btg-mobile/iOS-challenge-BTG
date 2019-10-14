@@ -37,7 +37,7 @@ extension MoviesListViewModel: MoviesListViewModelProtocol {
             guard let self = self else {
                 return
             }
-            self.pageList.append(page)
+            self.pageList = [page]
             self.movieList = page.results
             self.firstPageIndex = 1
             self.lastPageIndex = 1
@@ -63,7 +63,6 @@ extension MoviesListViewModel: MoviesListViewModelProtocol {
             guard let self = self else {
                 return
             }
-            print(error)
             self.delegate?.viewModelReceivedError(self, error: error)
         }
     }

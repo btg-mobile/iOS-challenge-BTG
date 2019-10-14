@@ -31,20 +31,21 @@ class MovieListViewController: BaseViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        showSpinner()
+        viewModel.getMoviesList("")
+
         setup()
         
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.getMoviesList("")
+        viewModel.refreshIfNeeded()
 
     }
     func setup() {
         tableView.register(UINib(nibName: "MovieTableViewCell", bundle: nil), forCellReuseIdentifier: "movieCell")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100
-        showSpinner()
     }
     
     override func didReceiveMemoryWarning() {

@@ -12,7 +12,10 @@ class FavouriteViewModel {
     var movieList: [Movie] = []
     var showingList: [Movie] = []
     weak var delegate: MoviesListViewModelDelegate?
+    var searchString: String = ""
+
     init() {}
+    
     
 }
 extension FavouriteViewModel: MoviesListViewModelProtocol {
@@ -27,7 +30,6 @@ extension FavouriteViewModel: MoviesListViewModelProtocol {
     }
     
     func getMoviesList(_ text: String) {
-        
         self.movieList = SessionManager.shared.getAllFavourites().map({ (fav) -> Movie in
             let temp = Movie(posterPath: fav.posterPath, movieId: Int(fav.movieId ), originalTitle: fav.originalTitle, genreIds: fav.genreIds?.map({
                 $0.intValue
@@ -44,8 +46,13 @@ extension FavouriteViewModel: MoviesListViewModelProtocol {
             showingList = movieList
         }
         
+        searchString = text
+
         self.delegate?.viewModelListChanged(self)
 
+    }
+    func refreshIfNeeded() {
+        getMoviesList(searchString)
     }
 
     func numberOfRows() -> Int {
