@@ -50,7 +50,7 @@ class MovieHorizontalVC: UIViewController {
     
     func updateVisibleFavoriteCells(){
         collectionView.visibleCells.forEach { cell in
-            if let cell = cell as? MovieCell{
+            if let cell = cell as? MovieHorizontalCell{
                 cell.checkIsFavorited()
             }
         }

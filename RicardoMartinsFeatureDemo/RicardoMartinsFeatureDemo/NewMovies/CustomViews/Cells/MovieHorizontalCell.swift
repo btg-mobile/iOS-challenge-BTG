@@ -17,6 +17,7 @@ class MovieHorizontalCell: UICollectionViewCell {
     var viewModel:MovieDetailVM! {
         didSet{
             bind()
+            checkIsFavorited()
         }
     }
     
@@ -98,6 +99,7 @@ class MovieHorizontalCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
+        favoriteButton.favoriteButtonVM.isFavorited.accept(false)
         spinerView.isHidden = false
         spinerView.startAnimating()
         posterImageView.image = Assets.DefaultsImages.imgDefault1.image
