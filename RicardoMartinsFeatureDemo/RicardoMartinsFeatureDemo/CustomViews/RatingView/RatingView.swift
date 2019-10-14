@@ -9,42 +9,55 @@
 import UIKit
 
 class RatingView: UIStackView {
-    fileprivate var average: Double = 0
+    fileprivate let averageLabel = UILabel()
+    
     fileprivate var size: CGFloat = 0
     
-    convenience init(average: Double, size:CGFloat = 20){
+    var average: Double = 0{
+        didSet{
+            bind()
+        }
+    }
+
+    convenience init(size:CGFloat){
         self.init()
-        self.average = average
         self.size = size
-        
         setupView()
     }
     
-    func setupView() {
+    fileprivate func bind(){
+        averageLabel.text = "\(average)"
+        configureAvarage()
+    }
+    
+    fileprivate func setupView() {
+        // self
         spacing = 5
         anchor(height: size)
         
-        let averageLabel = UILabel()
-        averageLabel.text = "\(average)"
+        // averageLabel
         averageLabel.font = UIFont.boldSystemFont(ofSize: 20)
         averageLabel.textColor = UIColor(r: 214, g: 24, b: 42)
         averageLabel.anchor(width: 35)
         addArrangedSubview(averageLabel)
-        
+    }
+    
+    fileprivate func configureAvarage(){
         for i in 1...5 {
             let iconImageView = UIImageView(image: Assets.Icons.iconStar.image.withRenderingMode(.alwaysTemplate))
             iconImageView.contentMode = .scaleAspectFit
             iconImageView.anchor(width: size)
-            let stars = Int(average / 2)
             
+            let stars = Int(average / 2)
+
             if(i <= stars){
                 iconImageView.tintColor = UIColor(r: 214, g: 24, b: 42)
             }else{
                 iconImageView.tintColor = UIColor(r: 210, g: 210, b: 210)
             }
-
             addArrangedSubview(iconImageView)
         }
         addArrangedSubview(UIView())
     }
 }
+

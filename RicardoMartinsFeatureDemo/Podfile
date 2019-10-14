@@ -6,10 +6,10 @@ target 'RicardoMartinsFeatureDemo' do
   use_frameworks!
 
   # Pods for RicardoMartinsFeatureDemo
-  pod 'RxSwift', '~> 5'
-  pod 'RxCocoa', '~> 5'
+  pod 'RxSwift', '~> 5.0.0'
+  pod 'RxCocoa', '~> 5.0.0'
   pod 'Alamofire', '~> 4.9.0'
-  pod 'SDWebImage', '~> 5'
+  pod 'SDWebImage', '~> 5.0.0'
   pod 'lottie-ios'
 
 end

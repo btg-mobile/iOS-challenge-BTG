@@ -1,5 +1,5 @@
 //
-//  MovieVM.swift
+//  MoviePopularVM.swift
 //  RicardoMartinsFeatureDemo
 //
 //  Created by Ricardo Martins on 08/10/19.
@@ -10,13 +10,13 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class MovieVM {
-    var error = PublishSubject<APIError>()
-    var query = BehaviorRelay<String>(value: "")
-    var page = BehaviorRelay<Int>(value: 0)
-    var totalPage = BehaviorRelay<Int>(value: 0)
-    var loading = BehaviorRelay<Bool>(value: false)
-    var isHiddenNoResults = BehaviorRelay<Bool>(value: true)
+class MoviePopularVM {
+    let error = PublishSubject<APIError>()
+    let query = BehaviorRelay<String>(value: "")
+    let page = BehaviorRelay<Int>(value: 0)
+    let totalPage = BehaviorRelay<Int>(value: 0)
+    let loading = BehaviorRelay<Bool>(value: false)
+    let isHiddenNoResults = BehaviorRelay<Bool>(value: true)
     let movies = BehaviorRelay<[Movie]>(value: [])
     
     let disposeBag = DisposeBag()

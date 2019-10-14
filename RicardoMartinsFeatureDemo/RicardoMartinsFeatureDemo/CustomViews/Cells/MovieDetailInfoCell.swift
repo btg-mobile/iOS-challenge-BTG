@@ -12,31 +12,43 @@ import RxCocoa
 
 class MovieDetailInfoCell: UITableViewCell {
     fileprivate let infoLabel = UILabel()
-    fileprivate lazy var ratingView = RatingView(average: viewModel.movie.value?.vote_average ?? 0)
+    fileprivate var ratingView = RatingView(size: 20)
     fileprivate lazy var containerStackView = UIStackView(arrangedSubviews: [ratingView, infoLabel])
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupView()
+        configure()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     var viewModel:MovieDetailVM! {
         didSet{
-            setupView()
-            setupBind()
+            bind()
         }
     }
     
-    fileprivate func setupBind() {
+    fileprivate func bind() {
+        infoLabel.attributedText = makeInfoText()
         viewModel.genres
             .observeOn(MainScheduler.instance)
             .subscribe{ [weak self] genres in
                 guard let self = self else { return }
                 self.infoLabel.attributedText = self.makeInfoText()
             }.disposed(by: viewModel.disposeBag)
+        
+        ratingView.average = viewModel.movie.value?.vote_average ?? 0
     }
     
-    fileprivate func makeInfoText() -> NSMutableAttributedString{
+    fileprivate func makeInfoText() -> NSMutableAttributedString {
         let infoAttributedString = NSMutableAttributedString(string: "")
         
         if let popularity = viewModel.movie.value?.popularity {
             let popularity = NSMutableAttributedString(
-                string:  "\(popularity) \(String.Localizable.app    .getValue(code: 8))",
+                string:  "\(popularity) \(String.Localizable.app.getValue(code: 8))",
                 attributes: [
                     NSAttributedString.Key.foregroundColor: UIColor.black,
                     NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)
@@ -60,22 +72,23 @@ class MovieDetailInfoCell: UITableViewCell {
         return infoAttributedString
     }
     
-    fileprivate func setupView(){
+    fileprivate func configure(){
         // self
         selectionStyle = .none
         
         // infoLabel
         infoLabel.lineBreakMode = .byWordWrapping
         infoLabel.numberOfLines = 0
-        infoLabel.attributedText = makeInfoText()
         
         // containerStackView
-        let relativeLeft = UIScreen.main.bounds.width / 2.3
-        
         containerStackView.spacing = 10
         containerStackView.axis = .vertical
-        
+    }
+    
+    fileprivate func setupView(){
+        // containerStackView
         addSubview(containerStackView)
+        let relativeLeft = UIScreen.main.bounds.width / 2.3
         containerStackView.anchor(
             top: (topAnchor, 10),
             left: (leftAnchor, relativeLeft),
@@ -94,10 +107,7 @@ class MovieDetailInfoCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        containerStackView = RatingView(average: viewModel.movie.value?.vote_average ?? 0)
-        containerStackView = UIStackView()
-        infoLabel.text = nil
-        textLabel?.text = nil
+        ratingView = RatingView(size: 20)
     }
 }
 

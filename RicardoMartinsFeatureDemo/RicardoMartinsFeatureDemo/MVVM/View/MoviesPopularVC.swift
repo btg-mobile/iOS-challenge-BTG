@@ -16,9 +16,9 @@ class MoviesPopularVC: UIViewController {
     let refreshControl = UIRefreshControl()
     let noResultsAnimationView = NoResultsAnimationView()
     let searchController = UISearchController(searchResultsController: nil)
-    var viewModel = MovieVM()
+    var viewModel = MoviePopularVM()
     
-    convenience init(viewModel:MovieVM){
+    convenience init(viewModel:MoviePopularVM){
         self.init()
         self.viewModel = viewModel
     }
@@ -29,7 +29,7 @@ class MoviesPopularVC: UIViewController {
         setupCollectionView()
         setupSearchBar()
         setupNoResultsAnimationView()
-        setupBind()
+        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -118,12 +118,12 @@ class MoviesPopularVC: UIViewController {
     fileprivate func updateVisibleFavoriteCells(){
         collectionView.visibleCells.forEach { cell in
             if let cell = cell as? MovieCell{
-                cell.favoriteButton.favoriteButtonVM.checkIsFavorited()
+                cell.checkIsFavorited()
             }
         }
     }
     
-    fileprivate func setupBind() {
+    fileprivate func bind() {
         viewModel.loading
             .bind(to: rx.isAnimating)
             .disposed(by: viewModel.disposeBag)
@@ -157,8 +157,8 @@ class MoviesPopularVC: UIViewController {
         
         viewModel.error
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { error in
-                debugPrint(error)
+            .subscribe(onNext: { _ in
+                // No need to present a message to the user
             }).disposed(by: viewModel.disposeBag)
         
         viewModel.movies.bind(to: collectionView.rx.items){ (cl, row, movie) -> UICollectionViewCell in

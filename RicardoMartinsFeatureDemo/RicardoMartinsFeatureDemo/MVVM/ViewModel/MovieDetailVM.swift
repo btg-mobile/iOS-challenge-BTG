@@ -49,8 +49,9 @@ class MovieDetailVM {
         }else{
             MovieManager.getListGenres {[weak self] result in
                 switch result {
-                case .failure(let error):
-                    debugPrint(error)
+                case .failure: // case .failure(let error):
+                    // No need to present a message to the user
+                    break
                 case .success(let allGenres):
                     UserDefaultsService.shared.encode(obj: allGenres, key: Constants.UserDefaultsKeysEnum.genres.key)
                     self?.filterGenres(allGenres: allGenres)
