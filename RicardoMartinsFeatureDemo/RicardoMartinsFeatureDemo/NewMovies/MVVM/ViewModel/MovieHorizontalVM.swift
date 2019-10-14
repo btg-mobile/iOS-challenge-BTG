@@ -23,7 +23,7 @@ class MovieHorizontalVM {
     }
     
     func getMovies(){
-        MovieManager.getListMovies(query: "", page: section.value.nextPage()) { [weak self] result in
+        MovieManager.getListMovies(section: section.value.info, query: "", page: section.value.nextPage()) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .failure(let error):

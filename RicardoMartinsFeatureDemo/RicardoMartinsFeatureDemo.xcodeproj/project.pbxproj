@@ -266,8 +266,8 @@
 		7296480B235422D900D95B4D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				7296480C235422D900D95B4D /* MovieHorizontalVM.swift */,
 				7296480D235422D900D95B4D /* MovieVM.swift */,
+				7296480C235422D900D95B4D /* MovieHorizontalVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";

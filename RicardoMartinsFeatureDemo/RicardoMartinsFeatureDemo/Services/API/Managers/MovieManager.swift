@@ -9,14 +9,16 @@
 import Alamofire
 
 class MovieManager {
-    static func getListMovies(query:String?, page: Int, completion: @escaping (Swift.Result<APIResultList<Movie>, APIError>) -> ()){
+    static func getListMovies(section: SectionInfoEnum?, query:String?, page: Int, completion: @escaping (Swift.Result<APIResultList<Movie>, APIError>) -> ()){
         
         var route:APIEndpointible
         
         if let query = query, !query.isEmpty{
             route = MovieEndpoint.search(query: query, page: page)
+        }else if let section = section{
+            route = MovieEndpoint.list(section: section, page: page)
         }else{
-            route = MovieEndpoint.list(page: page)
+            route = MovieEndpoint.list(section: .popular, page: page)
         }
         
         APIService.shared.performRequest(route: route) { (response) in

@@ -79,6 +79,14 @@ class MovieHorizontalVC: UIViewController {
                 // No need to present a message to the user
             }).disposed(by: viewModel.disposeBag)
         
+        collectionView.rx.itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
+                guard let self = self else { return }
+                let movie = self.viewModel.section.value.movies[indexPath.row]
+                let vc = MovieDetailVC(viewModel: MovieDetailVM(movie: movie))
+                self.navigationController?.pushViewController(vc, animated: true)
+            }).disposed(by: viewModel.disposeBag)
+        
         collectionView.rx.willDisplayCell
             .subscribe(onNext: { [weak self] (cell, indexPath) in
                 guard let self = self else { return }

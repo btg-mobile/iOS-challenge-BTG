@@ -15,7 +15,6 @@ class MovieVM {
     let disposeBag = DisposeBag()
     
     let sections = BehaviorRelay<[Section]>(value: [
-        Section(info: .latest),
         Section(info: .nowPlaying),
         Section(info: .popular),
         Section(info: .topRated),

@@ -9,7 +9,7 @@
 import Alamofire
 
 enum MovieEndpoint: APIEndpointible {
-    case list (page: Int)
+    case list (sectionInfo:SectionInfoEnum, page: Int)
     case search(query: String, page: Int)
     case genre
     
@@ -22,8 +22,8 @@ enum MovieEndpoint: APIEndpointible {
     
     var path: String {
         switch self {
-        case .list(let page):
-            return "/movie/popular?api_key=\(Constants.API.key)&language=\(Constants.currentLanguage.rawValue)&page=\(page)"
+        case .list(let section, let page):
+            return "/movie/\(section.path)?api_key=\(Constants.API.key)&language=\(Constants.currentLanguage.rawValue)&page=\(page)"
         case .search(let query, let page):
             return "/search/movie?api_key=\(Constants.API.key)&language=\(Constants.currentLanguage.rawValue)&page=\(page)&query=\(query.replacingOccurrences(of: " ", with: "+"))"
         case .genre:
