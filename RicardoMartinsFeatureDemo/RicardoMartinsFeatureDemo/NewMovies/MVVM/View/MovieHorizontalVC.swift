@@ -20,15 +20,17 @@ class MovieHorizontalVC: UIViewController {
         return numberOfVisibleCells > 1 ? (numberOfVisibleCells - 1) : numberOfVisibleCells
     }
     
-    var viewModel: MovieHorizontalVM!{
+    var viewModel:MovieHorizontalVM!{
         didSet{
             bind()
+            viewModel.getMovies()
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        
     }
     
     fileprivate func setupView() {
@@ -53,8 +55,18 @@ class MovieHorizontalVC: UIViewController {
         }
     }
     
+    fileprivate func nextPage(currentRow:Int){
+        let page = viewModel.section.value.page
+        let totalPage = viewModel.section.value.totalPages
+        
+        let isEndList = currentRow >= viewModel.section.value.movies.count - 1
+        let isEndPagination = page == totalPage
+        
+        if(isEndList && !isEndPagination){ self.viewModel.getMovies() }
+    }
+    
     fileprivate func bind() {
-        viewModel.movies
+        viewModel.section
             .observeOn(MainScheduler.instance)
             .subscribe({ [weak self] sections in
                 self?.collectionView.reloadData()
@@ -65,17 +77,31 @@ class MovieHorizontalVC: UIViewController {
             .subscribe(onNext: { _ in
                 // No need to present a message to the user
             }).disposed(by: viewModel.disposeBag)
+        
+        collectionView.rx.willDisplayCell
+            .subscribe(onNext: { [weak self] (cell, indexPath) in
+                guard let self = self else { return }
+                cell.alpha = 0
+                cell.layer.transform = CATransform3DTranslate(CATransform3DIdentity, 0, 150, 0)
+                UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                    cell.alpha = 1
+                    cell.layer.transform = CATransform3DIdentity
+                }, completion: { ( _ ) in
+                    self.nextPage(currentRow: indexPath.row)
+                })
+            }).disposed(by: viewModel.disposeBag)
+        
     }
 }
 
 extension MovieHorizontalVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.movies.value.count
+        return viewModel.section.value.movies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell2.identifier, for: indexPath) as! MovieCell2
-        let movie = viewModel.movies.value[indexPath.row]
+        let movie = viewModel.section.value.movies[indexPath.row]
         cell.viewModel = MovieDetailVM(movie: movie)
         return cell
     }

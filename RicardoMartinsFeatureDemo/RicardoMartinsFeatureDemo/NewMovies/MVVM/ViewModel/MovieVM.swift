@@ -12,6 +12,8 @@ import RxCocoa
 class MovieVM {
     let error = PublishSubject<APIError>()
     
+    let disposeBag = DisposeBag()
+    
     let sections = BehaviorRelay<[Section]>(value: [
         Section(info: .latest),
         Section(info: .nowPlaying),
@@ -19,27 +21,6 @@ class MovieVM {
         Section(info: .topRated),
         Section(info: .upcoming)
     ])
-    
-    let disposeBag = DisposeBag()
-    
-    func getAllSections(){
-        sections.value.forEach { (section) in
-            getMovies(section: section)
-        }
-    }
-    
-    func getMovies(section:Section){
-        MovieManager.getListMovies(query: "", page: section.nextPage()) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .failure(let error):
-                self.error.onNext(error)
-            case .success(let data):
-                section.update(page: data.page, totalPages: data.total_pages, movies: data.results)
-                self.sections.accept(self.sections.value)
-            }
-        }
-    }
 }
 
 enum SectionInfoEnum{

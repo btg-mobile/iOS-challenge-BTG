@@ -86,7 +86,7 @@ class MovieCell2: UICollectionViewCell {
         addSubview(spinerView)
         spinerView.anchor(
             centerX: (centerXAnchor, 0),
-            centerY: (centerYAnchor, 30)
+            centerY: (centerYAnchor, 0)
         )
         
         // favoriteButton

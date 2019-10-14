@@ -29,7 +29,7 @@ class MovieGroupCell: UICollectionViewCell {
     }
     
     fileprivate func bind(){
-        sectionLabel.text = section.info.title
+        sectionLabel.text = section.info?.title
         movieHorizontalVC.viewModel = MovieHorizontalVM(section: section)
     }
     

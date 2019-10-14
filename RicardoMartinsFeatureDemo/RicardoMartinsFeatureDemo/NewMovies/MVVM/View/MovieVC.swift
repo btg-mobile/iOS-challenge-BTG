@@ -41,8 +41,6 @@ class MovieVC: UIViewController {
     }
     
     fileprivate func bind() {
-        viewModel.getAllSections()
-        
         viewModel.sections
             .observeOn(MainScheduler.instance)
             .subscribe({ [weak self] sections in

@@ -9,12 +9,12 @@
 import Foundation
 
 class Section {
-    let info: SectionInfoEnum
+    let info: SectionInfoEnum?
     var page:Int
     var totalPages:Int
     var movies:[Movie]
     
-    init(info:SectionInfoEnum){
+    init(info:SectionInfoEnum? = nil){
         self.info = info
         self.page = 0
         self.totalPages = 0
