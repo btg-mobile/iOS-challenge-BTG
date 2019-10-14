@@ -13,41 +13,37 @@ class MovieFavoriteCell: UITableViewCell {
     fileprivate let overviewLabel = UILabel()
     fileprivate let spinerView = UIActivityIndicatorView(style: .whiteLarge)
     fileprivate let backdropImageView = UIImageView()
+    fileprivate lazy var vStackView = UIStackView(arrangedSubviews: [titleLabel, overviewLabel])
+    fileprivate lazy var hStackView = UIStackView(arrangedSubviews: [backdropImageView, vStackView])
     
     var favoriteButtonVM:FavoriteButtonVM! {
         didSet{
-            setupView()
-            configure()
+            bind()
+        }
+    }
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupView()
+        configure()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    fileprivate func bind(){
+        titleLabel.text = favoriteButtonVM.movie.value?.title
+        overviewLabel.text = favoriteButtonVM.movie.value?.overview
+        if let url = APIResourceEnum.image(path: favoriteButtonVM.movie.value?.backdrop_path, size: .w500).url{
+            backdropImageView.sd_setImage(with: url, placeholderImage: Assets.DefaultsImages.imgDefault2.image, options: .continueInBackground){[weak self] (_, _, _, _) in
+                self?.spinerView.stopAnimating()
+            }
         }
     }
     
     fileprivate func setupView() {
-        // spinerView
-        spinerView.color = .black
-        
-        // backdropImageView
-        backdropImageView.contentMode = .scaleToFill
-        backdropImageView.layer.cornerRadius = 5
-        backdropImageView.clipsToBounds = true
-        backdropImageView.anchor(width: UIScreen.main.bounds.width / 3.5)
-        
-        // titleLabel
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        titleLabel.textColor = .black
-        titleLabel.numberOfLines = 1
-        
-        // overviewLabel
-        overviewLabel.font = UIFont.systemFont(ofSize: 14)
-        overviewLabel.textColor = .gray
-        overviewLabel.numberOfLines = 0
-        
-        // stackViews
-        let vStackView = UIStackView(arrangedSubviews: [titleLabel, overviewLabel])
-        let hStackView = UIStackView(arrangedSubviews: [backdropImageView, vStackView])
-        
-        vStackView.axis = .vertical
-        hStackView.spacing = 10
-        
+        // hStackView
         addSubview(hStackView)
         hStackView.anchorFillSuperView(padding: 10)
         
@@ -57,23 +53,42 @@ class MovieFavoriteCell: UITableViewCell {
             centerX: (backdropImageView.centerXAnchor, 0),
             centerY: (backdropImageView.centerYAnchor, 0)
         )
+        
+        // backdropImageView
+        backdropImageView.anchor(width: UIScreen.main.bounds.width / 3.5)
     }
     
     fileprivate func configure(){
-        titleLabel.text = favoriteButtonVM.movie.value?.title
-        overviewLabel.text = favoriteButtonVM.movie.value?.overview
+        // stacksViews
+        vStackView.axis = .vertical
+        hStackView.spacing = 10
         
-        if let url = APIResourceEnum.image(path: favoriteButtonVM.movie.value?.backdrop_path, size: .w500).url{
-            backdropImageView.sd_setImage(with: url, placeholderImage: Assets.DefaultsImages.imgDefault2.image, options: .continueInBackground){[weak self] (_, _, _, _) in
-                self?.spinerView.stopAnimating()
-            }
-        }
+        // spinerView
+        spinerView.color = .black
+        spinerView.startAnimating()
+        spinerView.hidesWhenStopped = true
+        
+        // backdropImageView
+        backdropImageView.contentMode = .scaleToFill
+        backdropImageView.layer.cornerRadius = 5
+        backdropImageView.clipsToBounds = true
+       
+        // titleLabel
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        titleLabel.textColor = .black
+        titleLabel.numberOfLines = 1
+        
+        // overviewLabel
+        overviewLabel.font = UIFont.systemFont(ofSize: 14)
+        overviewLabel.textColor = .gray
+        overviewLabel.numberOfLines = 0
     }
     
     override func prepareForReuse() {
+        spinerView.isHidden = false
         spinerView.startAnimating()
-        titleLabel.text = nil
-        overviewLabel.text = nil
         backdropImageView.image = Assets.DefaultsImages.imgDefault2.image
     }
+    
+
 }

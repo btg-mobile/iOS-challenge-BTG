@@ -11,26 +11,26 @@ import RxSwift
 import RxCocoa
 
 class FavoriteButton: UIButton {
-    var favoriteButtonVM = FavoriteButtonVM(movie: nil)
-    
-    let starImage = UIImageView()
-    
-    convenience init(movie: Movie?){
-        self.init(type: .system)
-        self.favoriteButtonVM = FavoriteButtonVM(movie: movie)
-        setupView()
-        setupBind()
+    var favoriteButtonVM: FavoriteButtonVM! {
+        didSet{
+            bind()
+        }
     }
     
-    fileprivate func setupView(){
+    convenience init(size:CGSize){
+        self.init(type: .system)
+        setupView(size:size)
+    }
+    
+    fileprivate func setupView(size:CGSize){
         tintColor = UIColor(r: 210, g: 210, b: 210)
         anchor(
-            width: 50,
-            height: 50
+            width: size.width,
+            height: size.width
         )
     }
     
-    fileprivate func setupBind(){
+    fileprivate func bind(){
         rx.tap
             .bind { [weak self] in
                 guard let self = self else { return }

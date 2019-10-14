@@ -30,7 +30,7 @@ class MovieDetailVC: UIViewController {
         super.viewDidLoad()
         setupView()
         setupTableView()
-        setupBind()
+        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,7 +68,7 @@ class MovieDetailVC: UIViewController {
         )
     }
 
-    fileprivate func setupBind() {
+    fileprivate func bind() {
         viewModel.loading
             .bind(to: rx.isAnimating)
             .disposed(by: viewModel.disposeBag)

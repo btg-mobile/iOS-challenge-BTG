@@ -20,9 +20,18 @@ struct Constants {
         static let baseImageURL = "https://image.tmdb.org/t/p"
     }
     
-    struct UserDefaultsKeys {
-        static let genres = "genres"
-        static let favorites = "favorites"
+    enum UserDefaultsKeysEnum {
+        case genres
+        case favorites
+        
+        var key:String {
+            switch self {
+            case .genres:
+                return "\(self)-\(currentLanguage.rawValue)"
+            default:
+                return  "\(self)"
+            }
+        }
     }
     
     static var currentLanguage: LanguagesEnum {

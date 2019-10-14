@@ -12,23 +12,30 @@ class MovieDetailOverviewCell: UITableViewCell {
     
     var viewModel:MovieDetailVM! {
         didSet{
-            setupView()
+            bind()
         }
     }
     
-    fileprivate func setupView(){
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        configure()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    fileprivate func bind(){
+        textLabel?.text = viewModel.movie.value?.overview
+    }
+    
+    fileprivate func configure(){
         // self
         selectionStyle = .none
         
         // textLabel
-        textLabel?.text = viewModel.movie.value?.overview
         textLabel?.textColor = .darkGray
         textLabel?.font = UIFont.systemFont(ofSize: 22)
         textLabel?.numberOfLines = 0
     }
-    
-    override func prepareForReuse() {
-        textLabel?.text = nil
-    }
 }
-

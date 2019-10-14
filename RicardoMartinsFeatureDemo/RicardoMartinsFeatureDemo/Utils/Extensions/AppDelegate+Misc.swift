@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 extension AppDelegate {
     func setupApp() -> Bool{
