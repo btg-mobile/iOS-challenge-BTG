@@ -23,7 +23,6 @@ class MovieHorizontalVC: UIViewController {
     var viewModel: MovieHorizontalVM!{
         didSet{
             bind()
-            viewModel.getMovies()
         }
     }
 
@@ -35,6 +34,7 @@ class MovieHorizontalVC: UIViewController {
     fileprivate func setupView() {
         view.addSubview(collectionView)
         collectionView.delegate = self
+        collectionView.dataSource = self
         collectionView.anchorFillSuperView()
         collectionView.backgroundColor = .white
         collectionView.showsHorizontalScrollIndicator = false
@@ -54,19 +54,34 @@ class MovieHorizontalVC: UIViewController {
     }
     
     fileprivate func bind() {
-        viewModel.movies.bind(to: collectionView.rx.items(cellIdentifier: MovieCell2.identifier, cellType: MovieCell2.self)) { row, movie, cell in
-            cell.viewModel = MovieDetailVM(movie: movie)
-            }.disposed(by: viewModel.disposeBag)
+        viewModel.movies
+            .observeOn(MainScheduler.instance)
+            .subscribe({ [weak self] sections in
+                self?.collectionView.reloadData()
+            }).disposed(by: viewModel.disposeBag)
         
         viewModel.error
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { error in
-                debugPrint(error)
+            .subscribe(onNext: { _ in
+                // No need to present a message to the user
             }).disposed(by: viewModel.disposeBag)
     }
 }
 
-extension MovieHorizontalVC: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension MovieHorizontalVC: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.movies.value.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell2.identifier, for: indexPath) as! MovieCell2
+        let movie = viewModel.movies.value[indexPath.row]
+        cell.viewModel = MovieDetailVM(movie: movie)
+        return cell
+    }
+}
+
+extension MovieHorizontalVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return lineSpace
     }

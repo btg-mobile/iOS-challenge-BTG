@@ -18,13 +18,14 @@ class MovieHorizontalVM {
     let isHiddenNoResults = BehaviorRelay<Bool>(value: true)
     let movies = BehaviorRelay<[Movie]>(value: [])
     
-    var type:SectionMovieEnum? = .popular
+    var section:Section!
     
     let disposeBag = DisposeBag()
     
-    convenience init(type: SectionMovieEnum?){
+    convenience init(section: Section){
         self.init()
-        self.type = type
+        self.section = section
+        movies.accept(section.movies)
     }
     
     func getMovies(){

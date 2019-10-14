@@ -11,28 +11,38 @@ import RxCocoa
 
 class MovieVM {
     let error = PublishSubject<APIError>()
-    let query = BehaviorRelay<String>(value: "")
-    let page = BehaviorRelay<Int>(value: 0)
-    let totalPage = BehaviorRelay<Int>(value: 0)
-    let loading = BehaviorRelay<Bool>(value: false)
-    let isHiddenNoResults = BehaviorRelay<Bool>(value: true)
+    
+    let sections = BehaviorRelay<[Section]>(value: [
+        Section(info: .latest),
+        Section(info: .nowPlaying),
+        Section(info: .popular),
+        Section(info: .topRated),
+        Section(info: .upcoming)
+    ])
     
     let disposeBag = DisposeBag()
     
-    let multipleMovies = BehaviorRelay<[SectionMovieEnum]>(value: [
-        .latest,
-        .nowPlaying,
-        .popular,
-        .topRated,
-        .upcoming
-    ])
+    func getAllSections(){
+        sections.value.forEach { (section) in
+            getMovies(section: section)
+        }
+    }
     
-    func getMovies(section:SectionMovieEnum){
-        // ToDo
+    func getMovies(section:Section){
+        MovieManager.getListMovies(query: "", page: section.nextPage()) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .failure(let error):
+                self.error.onNext(error)
+            case .success(let data):
+                section.update(page: data.page, totalPages: data.total_pages, movies: data.results)
+                self.sections.accept(self.sections.value)
+            }
+        }
     }
 }
 
-enum SectionMovieEnum{
+enum SectionInfoEnum{
     case latest
     case nowPlaying
     case popular

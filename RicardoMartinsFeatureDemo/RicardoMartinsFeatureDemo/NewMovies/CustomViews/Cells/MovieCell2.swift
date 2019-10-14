@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class MovieCell2: UICollectionViewCell {
     fileprivate let spinerView = UIActivityIndicatorView(style: .whiteLarge)
     fileprivate let posterImageView = UIImageView()

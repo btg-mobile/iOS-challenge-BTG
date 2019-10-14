@@ -12,7 +12,7 @@ class MovieGroupCell: UICollectionViewCell {
     fileprivate let sectionLabel = UILabel()
     var movieHorizontalVC = MovieHorizontalVC()
     
-    var section:SectionMovieEnum?{
+    var section:Section!{
         didSet{
             bind()
         }
@@ -29,8 +29,8 @@ class MovieGroupCell: UICollectionViewCell {
     }
     
     fileprivate func bind(){
-        sectionLabel.text = section?.title
-        movieHorizontalVC.viewModel = MovieHorizontalVM(type: section)
+        sectionLabel.text = section.info.title
+        movieHorizontalVC.viewModel = MovieHorizontalVM(section: section)
     }
     
     fileprivate func configure() {
