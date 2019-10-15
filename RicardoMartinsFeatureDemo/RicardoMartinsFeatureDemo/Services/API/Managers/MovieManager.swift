@@ -12,13 +12,11 @@ class MovieManager {
     static func getListMovies(section: SectionInfoEnum?, query:String?, page: Int, completion: @escaping (Swift.Result<APIResultList<Movie>, APIError>) -> ()){
         
         var route:APIEndpointible
-        
-        if let query = query, !query.isEmpty{
-            route = MovieEndpoint.search(query: query, page: page)
-        }else if let section = section{
+
+        if let section = section {
             route = MovieEndpoint.list(sectionInfo: section, page: page)
         }else{
-            route = MovieEndpoint.list(sectionInfo: .popular, page: page)
+            route = MovieEndpoint.search(query: query ?? "", page: page)
         }
         
         APIService.shared.performRequest(route: route) { (response) in
