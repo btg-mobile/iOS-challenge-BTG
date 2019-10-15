@@ -13,7 +13,6 @@ import RxCocoa
 class MovieSearchVC: UIViewController {
     
     fileprivate let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    fileprivate let refreshControl = UIRefreshControl()
     fileprivate let noResultsAnimationView = NoResultsAnimationView()
     fileprivate let searchController = UISearchController(searchResultsController: nil)
     fileprivate var viewModel = MovieSearchVM()
@@ -67,12 +66,6 @@ class MovieSearchVC: UIViewController {
                 
                 return .init(width: width, height: height)
             }()
-        }
-        
-        if #available(iOS 10.0, *) {
-            collectionView.refreshControl = refreshControl
-        } else {
-            collectionView.addSubview(refreshControl)
         }
         
         collectionView.keyboardDismissMode = .onDrag
@@ -132,36 +125,32 @@ class MovieSearchVC: UIViewController {
             .bind(to: noResultsAnimationView.rx.isHidden)
             .disposed(by: viewModel.disposeBag)
         
-        refreshControl.rx.controlEvent(.valueChanged)
-            .subscribe{ [weak self] _ in
-                guard let self = self else { return }
-                self.searchMovies(query: "")
-            }.disposed(by: viewModel.disposeBag)
-        
         searchController.searchBar
             .rx.text
             .orEmpty
             .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] query in
-                self?.searchMovies(query: query)
+                guard let self = self else { return }
+                self.searchMovies(query: query)
             }).disposed(by: viewModel.disposeBag)
         
-        viewModel.movies
+        Observable.combineLatest(
+            searchController.searchBar.rx.cancelButtonClicked,
+            viewModel.query)
             .observeOn(MainScheduler.instance)
-            .subscribe({ [weak self] movies in
-                if(!(movies.element?.isEmpty ?? true)){
-                    self?.refreshControl.endRefreshing()
-                }
+            .subscribe(onNext: { [weak self] (_ , query) in
+                guard let self = self else { return }
+                if(query.isEmpty){ self.viewModel.isHiddenNoResults.accept(true) }
             }).disposed(by: viewModel.disposeBag)
         
         viewModel.error
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
-                // No need to present a message to the user
-            }).disposed(by: viewModel.disposeBag)
+            .subscribe { _ in // No need to present a message to the user
+            }.disposed(by: viewModel.disposeBag)
         
-        viewModel.movies.bind(to: collectionView.rx.items){ (cl, row, movie) -> UICollectionViewCell in
+        viewModel.movies
+            .bind(to: collectionView.rx.items){ (cl, row, movie) -> UICollectionViewCell in
             if let cell = cl.dequeueReusableCell(withReuseIdentifier: MovieCell.identifier, for: IndexPath.init(row: row, section: 0)) as? MovieCell{
                 cell.viewModel = MovieDetailVM(movie: movie)
                 return cell
@@ -171,22 +160,16 @@ class MovieSearchVC: UIViewController {
             }
             }.disposed(by: viewModel.disposeBag)
         
-        
         collectionView.rx.itemSelected
             .subscribe(onNext: { [weak self] indexPath in
                 guard let self = self else { return }
                 let movie = self.viewModel.movies.value[indexPath.row]
                 let vc = MovieDetailVC(viewModel: MovieDetailVM(movie: movie))
-                
-                if(self.searchController.isActive){
-                    self.searchController.isActive = false
-                    self.searchController.searchBar.text = ""
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: { [weak self] in
-                        self?.navigationController?.pushViewController(vc, animated: true)
-                    })
-                }else{
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
+        
+                self.searchController.isActive = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: { [weak self] in
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                })
             }).disposed(by: viewModel.disposeBag)
         
         collectionView.rx.willDisplayCell
