@@ -87,16 +87,9 @@ class MovieSearchVC: UIViewController {
     fileprivate func nextPage(currentRow:Int){
         let isEndList = currentRow >= self.viewModel.movies.value.count - 1
         let isEndPagination = self.viewModel.page.value == self.viewModel.totalPage.value
-        if(isEndList && !isEndPagination){ self.viewModel.getMovies() }
+        if(isEndList && !isEndPagination){ self.viewModel.searchMovies() }
     }
-    
-    fileprivate func searchMovies(query:String){
-        viewModel.query.accept(query)
-        viewModel.page.accept(0)
-        viewModel.movies.accept([])
-        viewModel.getMovies()
-    }
-    
+
     fileprivate func setupNoResultsAnimationView(){
         noResultsAnimationView.setText(type: .noResultsInSearch)
         view.addSubview(noResultsAnimationView)
@@ -116,6 +109,12 @@ class MovieSearchVC: UIViewController {
         }
     }
     
+    fileprivate func search(query: String){
+        viewModel.clear()
+        viewModel.query.accept(query)
+        viewModel.searchMovies()
+    }
+    
     fileprivate func bind() {
         viewModel.loading
             .bind(to: rx.isAnimating)
@@ -132,17 +131,14 @@ class MovieSearchVC: UIViewController {
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] query in
                 guard let self = self else { return }
-                self.searchMovies(query: query)
+                self.search(query: query)
             }).disposed(by: viewModel.disposeBag)
         
-        Observable.combineLatest(
-            searchController.searchBar.rx.cancelButtonClicked,
-            viewModel.query)
+        searchController.searchBar.rx.cancelButtonClicked
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] (_ , query) in
-                guard let self = self else { return }
-                if(query.isEmpty){ self.viewModel.isHiddenNoResults.accept(true) }
-            }).disposed(by: viewModel.disposeBag)
+            .subscribe { _ in
+                self.viewModel.clear()
+            }.disposed(by: viewModel.disposeBag)
         
         viewModel.error
             .observeOn(MainScheduler.instance)

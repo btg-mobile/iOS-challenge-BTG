@@ -21,7 +21,16 @@ class MovieSearchVM {
     
     let disposeBag = DisposeBag()
     
-    func getMovies(){
+    func clear() {
+        query.accept("")
+        page.accept(0)
+        totalPage.accept(0)
+        movies.accept([])
+        isHiddenNoResults.accept(true)
+        loading.accept(false)
+    }
+    
+    func searchMovies(){
         if query.value.isEmpty { return }
         page.accept(page.value + 1)
         if (page.value == 1) { loading.accept(true) }
