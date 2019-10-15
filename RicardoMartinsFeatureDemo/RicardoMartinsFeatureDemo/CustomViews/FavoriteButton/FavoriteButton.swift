@@ -30,6 +30,12 @@ class FavoriteButton: UIButton {
         )
     }
     
+    fileprivate func updateAllFavoritesInScreen() {
+        if let movieVC = Helper().getTopMostViewController() as? MovieVC{
+            movieVC.updateVisibleFavoriteCells()
+        }
+    }
+    
     fileprivate func bind(){
         rx.tap
             .bind { [weak self] in
@@ -37,6 +43,7 @@ class FavoriteButton: UIButton {
                 self.favoriteButtonVM.isTapAnimation.accept(true)
                 self.favoriteButtonVM.isFavorited.accept(!self.favoriteButtonVM.isFavorited.value)
                 self.favoriteButtonVM.setFavorite()
+                self.updateAllFavoritesInScreen()
             }.disposed(by: favoriteButtonVM.disposeBag)
         
         favoriteButtonVM.isFavorited

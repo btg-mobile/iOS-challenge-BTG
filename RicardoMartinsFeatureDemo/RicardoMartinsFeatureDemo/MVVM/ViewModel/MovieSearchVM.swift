@@ -1,5 +1,5 @@
 //
-//  MoviePopularVM.swift
+//  MovieSearchVM.swift
 //  RicardoMartinsFeatureDemo
 //
 //  Created by Ricardo Martins on 08/10/19.
@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class MoviePopularVM {
+class MovieSearchVM {
     let error = PublishSubject<APIError>()
     let query = BehaviorRelay<String>(value: "")
     let page = BehaviorRelay<Int>(value: 0)
@@ -20,12 +20,13 @@ class MoviePopularVM {
     let movies = BehaviorRelay<[Movie]>(value: [])
     
     let disposeBag = DisposeBag()
+    let section:SectionInfoEnum = .popular
     
     func getMovies(){
         page.accept(page.value + 1)
         if (page.value == 1) { loading.accept(true) }
         
-        MovieManager.getListMovies(query: query.value, page: page.value) { [weak self] result in
+        MovieManager.getListMovies(section: section, query: query.value, page: page.value) { [weak self] result in
             guard let self = self else { return }
             if (self.page.value == 1) { self.loading.accept(false) }
             switch result {

@@ -73,8 +73,10 @@ class MovieDetailHeaderView: UIView {
         
         // backButton
         backButton.setImage(Assets.Icons.iconBack.image.withRenderingMode(.alwaysTemplate), for: .normal)
+        backButton.setShadow(color: .black, offset: .init(width: 2, height: 2), radius: 5, opacity: 0.6)
         
         // titleLabel
+        titleLabel.setShadow(color: .black, offset: .init(width: 2, height: 2), radius: 5, opacity: 0.6)
         titleLabel.font = UIFont.boldSystemFont(ofSize: 30)
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 3

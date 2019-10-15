@@ -57,10 +57,10 @@ class MovieCell: UICollectionViewCell {
         spinerView.hidesWhenStopped = true
         
         // yearLabel
-        yearLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        yearLabel.font = UIFont.boldSystemFont(ofSize: 22)
         yearLabel.textAlignment = .center
         yearLabel.textColor = .white
-        yearLabel.backgroundColor = UIColor.darkText.withAlphaComponent(0.5)
+        yearLabel.setShadow(color: .black, offset: .init(width: 0, height: 2), radius: 5, opacity: 1)
         yearLabel.layer.cornerRadius = 5
         yearLabel.clipsToBounds = true
         

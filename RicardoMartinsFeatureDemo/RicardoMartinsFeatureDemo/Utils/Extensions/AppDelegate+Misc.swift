@@ -14,7 +14,7 @@ extension AppDelegate {
         window = UIWindow()
         window?.rootViewController = LaunchScreen()
         window?.makeKeyAndVisible()
-        MovieDetailVM().getGenres() // Just to advance the search
+        MovieDetailVM().getGenres()
         return true
     }
 }
