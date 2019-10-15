@@ -1,5 +1,5 @@
 //
-//  MoviePopularVM.swift
+//  MovieSearchVM.swift
 //  RicardoMartinsFeatureDemo
 //
 //  Created by Ricardo Martins on 08/10/19.
@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class MoviePopularVM {
+class MovieSearchVM {
     let error = PublishSubject<APIError>()
     let query = BehaviorRelay<String>(value: "")
     let page = BehaviorRelay<Int>(value: 0)

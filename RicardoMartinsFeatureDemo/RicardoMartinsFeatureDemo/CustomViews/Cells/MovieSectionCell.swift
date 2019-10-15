@@ -1,5 +1,5 @@
 //
-//  SectionCell.swift
+//  MovieSectionCell.swift
 //  RicardoMartinsFeatureDemo
 //
 //  Created by Ricardo Martins on 13/10/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SectionCell: UICollectionViewCell {
+class MovieSectionCell: UICollectionViewCell {
     fileprivate let sectionLabel = UILabel()
     var movieHorizontalVC = MovieHorizontalVC()
     

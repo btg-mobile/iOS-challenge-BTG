@@ -1,5 +1,5 @@
 //
-//  MoviesPopularVC.swift
+//  MovieSearchVC.swift
 //  RicardoMartinsFeatureDemo
 //
 //  Created by Ricardo Martins on 08/10/19.
@@ -10,15 +10,15 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class MoviesPopularVC: UIViewController {
+class MovieSearchVC: UIViewController {
     
     fileprivate let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     fileprivate let refreshControl = UIRefreshControl()
     fileprivate let noResultsAnimationView = NoResultsAnimationView()
     fileprivate let searchController = UISearchController(searchResultsController: nil)
-    fileprivate var viewModel = MoviePopularVM()
+    fileprivate var viewModel = MovieSearchVM()
     
-    convenience init(viewModel:MoviePopularVM){
+    convenience init(viewModel:MovieSearchVM){
         self.init()
         self.viewModel = viewModel
     }

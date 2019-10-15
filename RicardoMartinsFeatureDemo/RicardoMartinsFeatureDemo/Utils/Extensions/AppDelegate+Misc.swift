@@ -12,9 +12,9 @@ import SDWebImage
 extension AppDelegate {
     func setupApp() -> Bool{
         window = UIWindow()
-        window?.rootViewController =  MainTabBarVC()//LaunchScreen()
+        window?.rootViewController = LaunchScreen()
         window?.makeKeyAndVisible()
-        MovieDetailVM().getGenres() // Just to advance the search
+        MovieDetailVM().getGenres()
         return true
     }
 }

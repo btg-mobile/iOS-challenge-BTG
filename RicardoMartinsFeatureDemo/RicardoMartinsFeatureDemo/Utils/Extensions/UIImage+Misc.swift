@@ -16,6 +16,7 @@ enum Assets {
         case iconMovie = "icon-movie"
         case iconStar = "icon-star"
         case iconAbout = "icon-about"
+        case iconSearch = "icon-search"
         
         var image: UIImage {
             return UIImage(named: rawValue) ?? UIImage()

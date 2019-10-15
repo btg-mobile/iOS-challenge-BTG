@@ -23,7 +23,7 @@ class MainTabBarVC: UITabBarController {
     fileprivate func setupViewControllers() {
         viewControllers = [
             setupNavController(for: MovieVC(viewModel: MovieVM()), title: String.Localizable.app.getValue(code: 2), icon: Assets.Icons.iconMovie.image),
-            setupNavController(for: MoviesPopularVC(viewModel: MoviePopularVM()), title: String.Localizable.app.getValue(code: 2), icon: Assets.Icons.iconMovie.image),
+            setupNavController(for: MovieSearchVC(viewModel: MovieSearchVM()), title: String.Localizable.app.getValue(code: 18), icon: Assets.Icons.iconSearch.image),
             setupNavController(for: MoviesFavoriteVC(viewModel: FavoriteVM()), title: String.Localizable.app.getValue(code: 3), icon: Assets.Icons.iconFavoriteFlat.image),
             setupNavController(for: WebPageVC(page: .ricardoMartins), title: String.Localizable.app.getValue(code: 11), icon: Assets.Icons.iconAbout.image),
         ]
