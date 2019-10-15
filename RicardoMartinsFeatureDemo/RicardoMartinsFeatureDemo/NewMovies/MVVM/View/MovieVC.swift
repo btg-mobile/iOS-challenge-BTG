@@ -39,6 +39,7 @@ class MovieVC: UIViewController {
         collectionView.backgroundColor = .white
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: UICollectionViewCell.identifier)
         collectionView.register(SectionCell.self, forCellWithReuseIdentifier: SectionCell.identifier)
+        collectionView.register(MovieHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MovieHeader.identifier)
         
         if #available(iOS 10.0, *) {
             collectionView.refreshControl = refreshControl
@@ -92,6 +93,32 @@ extension MovieVC: UICollectionViewDelegate, UICollectionViewDataSource {
         }
         
         return defaultCell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        var height:CGFloat = 0
+        let width:CGFloat = view.frame.width
+        
+        switch UIDevice.screenType {
+        case .iPhone_XR, .iPhone_XSMax:
+            height = width * 0.59
+        case .iPhones_X_XS:
+            height = width * 0.53
+        case .iPhones_6_6s_7_8, .iPhones_6Plus_6sPlus_7Plus_8Plus:
+            height = width * 0.5
+        case .iPhones_4_4S, .iPhones_5_5s_5c_SE:
+            height = width * 0.52
+        default:
+            height = width * 0.6
+        }
+    
+        return .init(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MovieHeader.identifier, for: indexPath) as! MovieHeader
+        header.movieHeaderHorizontalVC
+        return header
     }
 }
 
