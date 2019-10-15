@@ -8,6 +8,7 @@
 
 import Foundation
 
+typealias Header = Section
 class Section {
     let info: SectionInfoEnum?
     var page:Int

@@ -96,28 +96,18 @@ extension MovieVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        var height:CGFloat = 0
-        let width:CGFloat = view.frame.width
-        
-        switch UIDevice.screenType {
-        case .iPhone_XR, .iPhone_XSMax:
-            height = width * 0.59
-        case .iPhones_X_XS:
-            height = width * 0.53
-        case .iPhones_6_6s_7_8, .iPhones_6Plus_6sPlus_7Plus_8Plus:
-            height = width * 0.5
-        case .iPhones_4_4S, .iPhones_5_5s_5c_SE:
-            height = width * 0.52
-        default:
-            height = width * 0.6
-        }
-    
-        return .init(width: width, height: height)
+        return .init(width: view.frame.width, height: view.frame.width * 0.65)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MovieHeader.identifier, for: indexPath) as! MovieHeader
-        header.movieHeaderHorizontalVC
+        
+        header.header = viewModel.header.value
+        header.movieHeaderHorizontalVC.didSelectHandler = { [weak self] movie in
+            let vc = MovieDetailVC(viewModel: MovieDetailVM(movie: movie))
+            self?.navigationController?.pushViewController(vc, animated: true)
+        }
+        
         return header
     }
 }

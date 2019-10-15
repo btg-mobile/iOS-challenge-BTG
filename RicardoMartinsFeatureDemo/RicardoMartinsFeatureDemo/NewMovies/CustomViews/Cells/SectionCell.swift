@@ -56,8 +56,4 @@ class SectionCell: UICollectionViewCell {
             bottom: (bottomAnchor, 0)
         )
     }
-//    
-//    override func prepareForReuse() {
-//        movieHorizontalVC = MovieHorizontalVC()
-//    }
 }

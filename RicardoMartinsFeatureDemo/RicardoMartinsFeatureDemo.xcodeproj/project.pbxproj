@@ -31,8 +31,8 @@
 		7264E2BA234CA197007BFF0F /* UINavigationController+Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7264E2B9234CA197007BFF0F /* UINavigationController+Misc.swift */; };
 		7264E2C0234CAAA8007BFF0F /* MovieFavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7264E2BF234CAAA8007BFF0F /* MovieFavoriteCell.swift */; };
 		727074172355626A00B35C24 /* MovieHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727074162355626A00B35C24 /* MovieHeader.swift */; };
-		727074192355631700B35C24 /* MovieHeaderHorizontalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727074182355631700B35C24 /* MovieHeaderHorizontalVC.swift */; };
 		7270741B2355645F00B35C24 /* MovieHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7270741A2355645F00B35C24 /* MovieHeaderCell.swift */; };
+		7282989023557AD70081D610 /* MovieHeaderHorizontalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7282988F23557AD70081D610 /* MovieHeaderHorizontalVC.swift */; };
 		72830A2A235130DA00AB64B1 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72830A29235130DA00AB64B1 /* FavoriteButton.swift */; };
 		72830A2C2351339000AB64B1 /* UIImage+Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72830A2B2351339000AB64B1 /* UIImage+Misc.swift */; };
 		7283C1842351933D00E560C7 /* String+Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7283C1832351933D00E560C7 /* String+Misc.swift */; };
@@ -96,8 +96,8 @@
 		7264E2BB234CA8C1007BFF0F /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7264E2BF234CAAA8007BFF0F /* MovieFavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieFavoriteCell.swift; sourceTree = "<group>"; };
 		727074162355626A00B35C24 /* MovieHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieHeader.swift; sourceTree = "<group>"; };
-		727074182355631700B35C24 /* MovieHeaderHorizontalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieHeaderHorizontalVC.swift; sourceTree = "<group>"; };
 		7270741A2355645F00B35C24 /* MovieHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieHeaderCell.swift; sourceTree = "<group>"; };
+		7282988F23557AD70081D610 /* MovieHeaderHorizontalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieHeaderHorizontalVC.swift; sourceTree = "<group>"; };
 		72830A29235130DA00AB64B1 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
 		72830A2B2351339000AB64B1 /* UIImage+Misc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Misc.swift"; sourceTree = "<group>"; };
 		7283C1832351933D00E560C7 /* String+Misc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Misc.swift"; sourceTree = "<group>"; };
@@ -262,8 +262,8 @@
 			isa = PBXGroup;
 			children = (
 				7270741A2355645F00B35C24 /* MovieHeaderCell.swift */,
-				72964808235422D900D95B4D /* MovieHorizontalCell.swift */,
 				72964809235422D900D95B4D /* SectionCell.swift */,
+				72964808235422D900D95B4D /* MovieHorizontalCell.swift */,
 				723A3CD723552A1900AC61E8 /* MovieLoadingCell.swift */,
 			);
 			path = Cells;
@@ -293,7 +293,7 @@
 			children = (
 				7296480F235422D900D95B4D /* MovieVC.swift */,
 				72964810235422D900D95B4D /* MovieHorizontalVC.swift */,
-				727074182355631700B35C24 /* MovieHeaderHorizontalVC.swift */,
+				7282988F23557AD70081D610 /* MovieHeaderHorizontalVC.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -670,13 +670,13 @@
 				72964812235422D900D95B4D /* MovieHorizontalCell.swift in Sources */,
 				722F9206235272E000F0CC50 /* AnimateloadingView.swift in Sources */,
 				7264E2B2234CA08A007BFF0F /* MovieDetailInfoCell.swift in Sources */,
-				727074192355631700B35C24 /* MovieHeaderHorizontalVC.swift in Sources */,
 				72E139BE234C8B4A00521748 /* AppDelegate.swift in Sources */,
 				72964814235422D900D95B4D /* MovieHorizontalVM.swift in Sources */,
 				72E139F2234C913D00521748 /* UIViewController+Misc.swift in Sources */,
 				722F920B23529CE700F0CC50 /* UILabel+Misc.swift in Sources */,
 				72E139FE234C93CD00521748 /* APIService.swift in Sources */,
 				72E139DD234C8E1900521748 /* LaunchScreenVC.swift in Sources */,
+				7282989023557AD70081D610 /* MovieHeaderHorizontalVC.swift in Sources */,
 				7215E5DE234C996C00161CF4 /* FavoriteVM.swift in Sources */,
 				7215E5C5234C977900161CF4 /* MoviesPopularVC.swift in Sources */,
 				7215E5E0234C9A1500161CF4 /* UIDevice+Misc.swift in Sources */,

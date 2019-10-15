@@ -13,6 +13,7 @@ import RxCocoa
 class MovieHorizontalVC: UIViewController {
     fileprivate let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
+    fileprivate let numberOfVisibleHeader: CGFloat = 1.06
     fileprivate let numberOfVisibleCells: CGFloat = 3.2
     fileprivate let secttionPadding:UIEdgeInsets = .init(top: 10, left: 15, bottom: 10, right: 15)
     fileprivate let lineSpace: CGFloat = 15
@@ -92,7 +93,7 @@ class MovieHorizontalVC: UIViewController {
             .subscribe(onNext: { [weak self] (cell, indexPath) in
                 guard let self = self else { return }
                 cell.alpha = 0
-                cell.layer.transform = CATransform3DTranslate(CATransform3DIdentity, 0, 150, 0)
+                cell.layer.transform = CATransform3DTranslate(CATransform3DIdentity, 0, 50, 0)
                 UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                     cell.alpha = 1
                     cell.layer.transform = CATransform3DIdentity

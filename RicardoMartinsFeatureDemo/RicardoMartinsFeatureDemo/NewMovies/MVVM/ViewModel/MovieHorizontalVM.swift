@@ -12,7 +12,6 @@ import RxCocoa
 
 class MovieHorizontalVM {
     let error = PublishSubject<APIError>()
-    
     var section = BehaviorRelay<Section>(value: Section())
     
     let disposeBag = DisposeBag()
@@ -20,6 +19,11 @@ class MovieHorizontalVM {
     convenience init(section: Section){
         self.init()
         self.section.accept(section)
+    }
+    
+    convenience init(header: Header){
+        self.init()
+        self.section.accept(header) // it's the same object, just a typealias
     }
     
     func getMovies(){

@@ -12,16 +12,17 @@ import RxCocoa
 class MovieVM {
     let disposeBag = DisposeBag()
     
+    let header = BehaviorRelay<Header>(value: Header(info: .nowPlaying))
+    
     let sections = BehaviorRelay<[Section]>(value: [
-        Section(info: .nowPlaying),
         Section(info: .popular),
         Section(info: .topRated),
         Section(info: .upcoming)
     ])
     
     func clear(){
+        header.accept(Header(info: .nowPlaying))
         sections.accept([
-            Section(info: .nowPlaying),
             Section(info: .popular),
             Section(info: .topRated),
             Section(info: .upcoming)

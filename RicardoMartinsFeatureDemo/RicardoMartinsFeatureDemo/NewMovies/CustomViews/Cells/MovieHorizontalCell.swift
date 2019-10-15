@@ -52,7 +52,6 @@ class MovieHorizontalCell: UICollectionViewCell {
         setShadow(color: .black, offset: .init(width: 2, height: 2), radius: 5, opacity: 0.6)
         
         // posterImageView
-        posterImageView.contentMode = .scaleAspectFit
         posterImageView.image = Assets.DefaultsImages.imgDefault1.image
         posterImageView.contentMode = .scaleAspectFill
         posterImageView.layer.cornerRadius = 5
