@@ -262,8 +262,8 @@
 				72E139D3234C8C9D00521748 /* MVVM */,
 				72E139D2234C8C9200521748 /* CustomViews */,
 				72E139D1234C8C8B00521748 /* Utils */,
-				72E139D0234C8C7F00521748 /* Resources */,
 				72E139CF234C8C1E00521748 /* Services */,
+				72E139D0234C8C7F00521748 /* Resources */,
 			);
 			path = RicardoMartinsFeatureDemo;
 			sourceTree = "<group>";

@@ -13,7 +13,6 @@ import RxCocoa
 class MovieSearchVC: UIViewController {
     
     fileprivate let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    fileprivate let refreshControl = UIRefreshControl()
     fileprivate let noResultsAnimationView = NoResultsAnimationView()
     fileprivate let searchController = UISearchController(searchResultsController: nil)
     fileprivate var viewModel = MovieSearchVM()
@@ -69,12 +68,6 @@ class MovieSearchVC: UIViewController {
             }()
         }
         
-        if #available(iOS 10.0, *) {
-            collectionView.refreshControl = refreshControl
-        } else {
-            collectionView.addSubview(refreshControl)
-        }
-        
         collectionView.keyboardDismissMode = .onDrag
         collectionView.backgroundColor = navigationController?.navigationBar.backgroundColor
         collectionView.contentInset = .init(top: 10, left: 10, bottom: 10, right: 10)
@@ -94,16 +87,9 @@ class MovieSearchVC: UIViewController {
     fileprivate func nextPage(currentRow:Int){
         let isEndList = currentRow >= self.viewModel.movies.value.count - 1
         let isEndPagination = self.viewModel.page.value == self.viewModel.totalPage.value
-        if(isEndList && !isEndPagination){ self.viewModel.getMovies() }
+        if(isEndList && !isEndPagination){ self.viewModel.searchMovies() }
     }
-    
-    fileprivate func searchMovies(query:String){
-        viewModel.query.accept(query)
-        viewModel.page.accept(0)
-        viewModel.movies.accept([])
-        viewModel.getMovies()
-    }
-    
+
     fileprivate func setupNoResultsAnimationView(){
         noResultsAnimationView.setText(type: .noResultsInSearch)
         view.addSubview(noResultsAnimationView)
@@ -123,6 +109,12 @@ class MovieSearchVC: UIViewController {
         }
     }
     
+    fileprivate func search(query: String){
+        viewModel.clear()
+        viewModel.query.accept(query)
+        viewModel.searchMovies()
+    }
+    
     fileprivate func bind() {
         viewModel.loading
             .bind(to: rx.isAnimating)
@@ -132,36 +124,29 @@ class MovieSearchVC: UIViewController {
             .bind(to: noResultsAnimationView.rx.isHidden)
             .disposed(by: viewModel.disposeBag)
         
-        refreshControl.rx.controlEvent(.valueChanged)
-            .subscribe{ [weak self] _ in
-                guard let self = self else { return }
-                self.searchMovies(query: "")
-            }.disposed(by: viewModel.disposeBag)
-        
         searchController.searchBar
             .rx.text
             .orEmpty
             .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] query in
-                self?.searchMovies(query: query)
+                guard let self = self else { return }
+                self.search(query: query)
             }).disposed(by: viewModel.disposeBag)
         
-        viewModel.movies
+        searchController.searchBar.rx.cancelButtonClicked
             .observeOn(MainScheduler.instance)
-            .subscribe({ [weak self] movies in
-                if(!(movies.element?.isEmpty ?? true)){
-                    self?.refreshControl.endRefreshing()
-                }
-            }).disposed(by: viewModel.disposeBag)
+            .subscribe { _ in
+                self.viewModel.clear()
+            }.disposed(by: viewModel.disposeBag)
         
         viewModel.error
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
-                // No need to present a message to the user
-            }).disposed(by: viewModel.disposeBag)
+            .subscribe { _ in // No need to present a message to the user
+            }.disposed(by: viewModel.disposeBag)
         
-        viewModel.movies.bind(to: collectionView.rx.items){ (cl, row, movie) -> UICollectionViewCell in
+        viewModel.movies
+            .bind(to: collectionView.rx.items){ (cl, row, movie) -> UICollectionViewCell in
             if let cell = cl.dequeueReusableCell(withReuseIdentifier: MovieCell.identifier, for: IndexPath.init(row: row, section: 0)) as? MovieCell{
                 cell.viewModel = MovieDetailVM(movie: movie)
                 return cell
@@ -171,22 +156,16 @@ class MovieSearchVC: UIViewController {
             }
             }.disposed(by: viewModel.disposeBag)
         
-        
         collectionView.rx.itemSelected
             .subscribe(onNext: { [weak self] indexPath in
                 guard let self = self else { return }
                 let movie = self.viewModel.movies.value[indexPath.row]
                 let vc = MovieDetailVC(viewModel: MovieDetailVM(movie: movie))
-                
-                if(self.searchController.isActive){
-                    self.searchController.isActive = false
-                    self.searchController.searchBar.text = ""
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: { [weak self] in
-                        self?.navigationController?.pushViewController(vc, animated: true)
-                    })
-                }else{
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
+        
+                self.searchController.isActive = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: { [weak self] in
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                })
             }).disposed(by: viewModel.disposeBag)
         
         collectionView.rx.willDisplayCell
