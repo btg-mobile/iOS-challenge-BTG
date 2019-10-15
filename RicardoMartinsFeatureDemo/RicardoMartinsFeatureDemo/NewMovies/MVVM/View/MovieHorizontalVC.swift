@@ -20,6 +20,8 @@ class MovieHorizontalVC: UIViewController {
         return numberOfVisibleCells > 1 ? (numberOfVisibleCells - 1) : numberOfVisibleCells
     }
     
+    var didSelectHandler: ((Movie) -> ())?
+    
     var viewModel:MovieHorizontalVM!{
         didSet{
             bind()
@@ -83,8 +85,7 @@ class MovieHorizontalVC: UIViewController {
             .subscribe(onNext: { [weak self] indexPath in
                 guard let self = self else { return }
                 let movie = self.viewModel.section.value.movies[indexPath.row]
-                let vc = MovieDetailVC(viewModel: MovieDetailVM(movie: movie))
-                self.navigationController?.pushViewController(vc, animated: true)
+                self.didSelectHandler?(movie)
             }).disposed(by: viewModel.disposeBag)
         
         collectionView.rx.willDisplayCell

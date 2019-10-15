@@ -10,8 +10,6 @@ import RxSwift
 import RxCocoa
 
 class MovieVM {
-    let error = PublishSubject<APIError>()
-    
     let disposeBag = DisposeBag()
     
     let sections = BehaviorRelay<[Section]>(value: [
@@ -20,6 +18,15 @@ class MovieVM {
         Section(info: .topRated),
         Section(info: .upcoming)
     ])
+    
+    func clear(){
+        sections.accept([
+            Section(info: .nowPlaying),
+            Section(info: .popular),
+            Section(info: .topRated),
+            Section(info: .upcoming)
+        ])
+    }
 }
 
 enum SectionInfoEnum{

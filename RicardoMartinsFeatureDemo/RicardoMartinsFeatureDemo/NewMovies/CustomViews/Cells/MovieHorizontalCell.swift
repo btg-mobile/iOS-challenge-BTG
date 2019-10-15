@@ -93,8 +93,8 @@ class MovieHorizontalCell: UICollectionViewCell {
         // favoriteButton
         addSubview(favoriteButton)
         favoriteButton.anchor(
-            centerX: (centerXAnchor, 0),
-            bottom: (bottomAnchor, 10)
+            right:(rightAnchor, 5),
+            bottom: (bottomAnchor, 5)
         )
     }
     

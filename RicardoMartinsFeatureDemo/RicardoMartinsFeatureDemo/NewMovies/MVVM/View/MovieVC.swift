@@ -12,7 +12,7 @@ import RxCocoa
 
 class MovieVC: UIViewController {
     fileprivate let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    
+    fileprivate let refreshControl = UIRefreshControl()
     fileprivate var viewModel:MovieVM!
     
     convenience init(viewModel: MovieVM){
@@ -39,19 +39,27 @@ class MovieVC: UIViewController {
         collectionView.backgroundColor = .white
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: UICollectionViewCell.identifier)
         collectionView.register(SectionCell.self, forCellWithReuseIdentifier: SectionCell.identifier)
+        
+        if #available(iOS 10.0, *) {
+            collectionView.refreshControl = refreshControl
+        } else {
+            collectionView.addSubview(refreshControl)
+        }
     }
     
     fileprivate func bind() {
+        refreshControl.rx.controlEvent(.valueChanged)
+            .subscribe{ [weak self] _ in
+                guard let self = self else { return }
+                self.viewModel.clear()
+            }.disposed(by: viewModel.disposeBag)
+        
         viewModel.sections
             .observeOn(MainScheduler.instance)
             .subscribe({ [weak self] sections in
-                self?.collectionView.reloadData()
-            }).disposed(by: viewModel.disposeBag)
-        
-        viewModel.error
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
-                // No need to present a message to the user
+                guard let self = self else { return }
+                self.collectionView.reloadData()
+                self.refreshControl.endRefreshing()
             }).disposed(by: viewModel.disposeBag)
     }
     
@@ -75,6 +83,11 @@ extension MovieVC: UICollectionViewDelegate, UICollectionViewDataSource {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SectionCell.identifier, for: indexPath) as? SectionCell{
             let section = viewModel.sections.value[indexPath.row]
             cell.section = section
+            cell.movieHorizontalVC.didSelectHandler = { [weak self] movie in
+                let vc = MovieDetailVC(viewModel: MovieDetailVM(movie: movie))
+                self?.navigationController?.pushViewController(vc, animated: true)
+            }
+        
             return cell
         }
         

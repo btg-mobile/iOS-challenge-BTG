@@ -12,11 +12,11 @@ import RxCocoa
 
 class MoviesPopularVC: UIViewController {
     
-    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    let refreshControl = UIRefreshControl()
-    let noResultsAnimationView = NoResultsAnimationView()
-    let searchController = UISearchController(searchResultsController: nil)
-    var viewModel = MoviePopularVM()
+    fileprivate let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    fileprivate let refreshControl = UIRefreshControl()
+    fileprivate let noResultsAnimationView = NoResultsAnimationView()
+    fileprivate let searchController = UISearchController(searchResultsController: nil)
+    fileprivate var viewModel = MoviePopularVM()
     
     convenience init(viewModel:MoviePopularVM){
         self.init()

@@ -16,9 +16,9 @@ class MovieManager {
         if let query = query, !query.isEmpty{
             route = MovieEndpoint.search(query: query, page: page)
         }else if let section = section{
-            route = MovieEndpoint.list(section: section, page: page)
+            route = MovieEndpoint.list(sectionInfo: section, page: page)
         }else{
-            route = MovieEndpoint.list(section: .popular, page: page)
+            route = MovieEndpoint.list(sectionInfo: .popular, page: page)
         }
         
         APIService.shared.performRequest(route: route) { (response) in
