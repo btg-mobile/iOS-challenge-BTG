@@ -50,6 +50,7 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell") as? MovieTableViewCell ?? MovieTableViewCell()
         cell.title.text = array[indexPath.row].original_title
         cell.yearLable.text = array[indexPath.row].release_date
+        cell.picture.imageFromURL(urlString: API().getPictureString(path: array[indexPath.row].poster_path ?? ""))
         print(array[indexPath.row].poster_path)
         return cell
     }
