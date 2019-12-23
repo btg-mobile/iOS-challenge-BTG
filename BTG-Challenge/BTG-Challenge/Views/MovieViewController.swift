@@ -54,6 +54,5 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "movieDetail", sender: nil)
-       
     }
 }
