@@ -73,6 +73,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Favorites" image="star" catalog="system" id="1ar-Gp-KRS"/>
                     <connections>
+                        <outlet property="searchBar" destination="Rkb-fw-JfJ" id="0aA-QO-kdC"/>
                         <outlet property="tableView" destination="GHa-C9-HiC" id="4WE-YA-XN7"/>
                         <segue destination="Xs8-DN-LC8" kind="show" identifier="showDetail" id="CHC-zh-UPZ"/>
                     </connections>
@@ -273,6 +274,6 @@
         <image name="star" catalog="system" width="64" height="58"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="T8r-HZ-1Ur"/>
+        <segue reference="CHC-zh-UPZ"/>
     </inferredMetricsTieBreakers>
 </document>
