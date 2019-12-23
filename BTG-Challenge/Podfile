@@ -8,6 +8,7 @@ target 'BTG-Challenge' do
   # Pods for BTG-Challenge
   pod 'ObjectMapper'
   pod 'Alamofire'
+  pod 'NVActivityIndicatorView'
 
   target 'BTG-ChallengeTests' do
     inherit! :search_paths
