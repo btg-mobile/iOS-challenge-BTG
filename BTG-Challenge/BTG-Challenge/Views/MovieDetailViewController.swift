@@ -32,18 +32,27 @@ class MovieDetailViewController: UIViewController {
         descriptionArea.text = movieDetail?.overview
         categoriesLabel.text = "[\( movieDetail?.genre_ids?.map({"\(allGenres[$0]!)"}).joined(separator: ",") ?? "")]"
         picture.imageFromURL(urlString: API().getPictureString(path: movieDetail?.poster_path ?? ""))
+            loadButtonState()
+        
     }
 
-    @IBAction func favoritePressed(_ sender: Any) {
+    private func loadButtonState() {
         let star = UIImage(systemName: "star")
         let starFill = UIImage(systemName: "star.fill")
+        isFavorite = UserData.sharedInstance.isFavorite(r: movieDetail!)
         if isFavorite {
-            favButton.setImage(star, for: .normal)
-        } else {
             favButton.setImage(starFill, for: .normal)
+        } else {
+            favButton.setImage(star, for: .normal)
         }
-        isFavorite = !isFavorite
-        
+    }
+    @IBAction func favoritePressed(_ sender: Any) {
+        if isFavorite {
+                UserData.sharedInstance.removeFavorite(r: self.movieDetail!)
+              } else {
+                  UserData.sharedInstance.addFavorite(r: self.movieDetail!)
+        }
+        loadButtonState()
     }
     
     /*
