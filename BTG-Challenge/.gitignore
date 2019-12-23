@@ -1,3 +1,4 @@
 BTG-Challenge.xcodeproj/project.xcworkspace/*
-BTG-Challenge.xcodeproj/xcuserdata/*
+BTG-Challenge.xcworkspace/
+*/xcuserdata/*
 Pods/
