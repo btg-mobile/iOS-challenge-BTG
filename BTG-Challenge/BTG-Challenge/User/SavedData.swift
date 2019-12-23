@@ -35,6 +35,9 @@ class UserData {
     func isFavorite(r: Results) -> Bool{
         return favorites.contains(where: {$0.id == r.id})
     }
+    func getFavorites() -> [Results] {
+        return favorites
+    }
     private init() {
         
     }
