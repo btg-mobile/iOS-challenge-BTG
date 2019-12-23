@@ -10,6 +10,7 @@ import UIKit
 
 class MovieDetailViewController: UIViewController {
 
+    @IBOutlet weak var picture: UIImageView!
     @IBOutlet weak var descriptionArea: UITextView!
     @IBOutlet weak var favButton: UIButton!
     @IBOutlet weak var popularity: UILabel!
@@ -29,7 +30,8 @@ class MovieDetailViewController: UIViewController {
         popularity.text = String(format: "%.2f", (movieDetail?.popularity ?? 0))
         titleLabel.text = movieDetail?.title
         descriptionArea.text = movieDetail?.overview
-        categoriesLabel.text = "Categories = [\( movieDetail?.genre_ids?.map({"\($0)"}).joined(separator: ",") ?? "")]"
+        categoriesLabel.text = "[\( movieDetail?.genre_ids?.map({"\(allGenres[$0]!)"}).joined(separator: ",") ?? "")]"
+        picture.imageFromURL(urlString: API().getPictureString(path: movieDetail?.poster_path ?? ""))
     }
 
     @IBAction func favoritePressed(_ sender: Any) {

@@ -15,6 +15,7 @@ final class API {
     
     let baseURL = "https://api.themoviedb.org/3/"
     let popularURL = "movie/popular"
+    let genresURL = "genre/movie/list"
     func requestPopular( completion : @escaping ([Results]?) -> ()){
         print("Calling Alamo")
         let url = "\(baseURL)\(popularURL)?api_key=\(getToken())"
@@ -29,6 +30,25 @@ final class API {
             if let parsed = PopularResponse(JSON: res as! [String : Any]){
                 
                 completion(parsed.results)
+                return
+            }
+            completion(nil)
+           
+        }
+    }
+    func requestGenres(completion : @escaping ([Genre]?) -> ()) {
+        let url = "\(baseURL)\(genresURL)?api_key=\(getToken())"
+        print(url)
+        Alamofire.request(url, method: .get, parameters: nil).responseJSON { (response) in
+            guard response.result.isSuccess,
+                let res = response.result.value
+            else {
+                    completion(nil)
+                    return
+            }
+            if let parsed = genreResponse(JSON: res as! [String : Any]){
+                
+                completion(parsed.genres)
                 return
             }
             completion(nil)

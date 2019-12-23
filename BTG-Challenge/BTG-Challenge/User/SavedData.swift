@@ -10,5 +10,10 @@ import Foundation
 
 
 class UserData {
+    static let sharedInstance = UserData()
     var favorites : [Results] = []
+    
+    private init() {
+        
+    }
 }
