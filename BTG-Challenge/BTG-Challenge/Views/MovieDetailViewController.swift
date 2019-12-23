@@ -8,7 +8,6 @@
 
 import UIKit
 
-@available(iOS 13.0, *)
 class MovieDetailViewController: UIViewController {
 
     @IBOutlet weak var picture: UIImageView!
@@ -38,14 +37,25 @@ class MovieDetailViewController: UIViewController {
     }
 
     private func loadButtonState() {
-        let star = UIImage(systemName: "star")
-        let starFill = UIImage(systemName: "star.fill")
-        isFavorite = UserData.sharedInstance.isFavorite(r: movieDetail!)
-        if isFavorite {
-            favButton.setImage(starFill, for: .normal)
+        if #available(iOS 13.0, *) {
+            let star = UIImage(systemName: "star")
+            let starFill = UIImage(systemName: "star.fill")
+            isFavorite = UserData.sharedInstance.isFavorite(r: movieDetail!)
+            if isFavorite {
+                favButton.setImage(starFill, for: .normal)
+            } else {
+                favButton.setImage(star, for: .normal)
+            }
         } else {
-            favButton.setImage(star, for: .normal)
+            isFavorite = UserData.sharedInstance.isFavorite(r: movieDetail!)
+            if isFavorite {
+                favButton.setTitle("👍", for: .normal)
+            } else {
+                favButton.setTitle("👎", for: .normal)
+            }
         }
+        
+        
     }
     @IBAction func favoritePressed(_ sender: Any) {
         if isFavorite {
