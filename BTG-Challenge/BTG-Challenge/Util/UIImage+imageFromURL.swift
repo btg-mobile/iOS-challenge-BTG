@@ -10,7 +10,6 @@ import UIKit
 //from https://stackoverflow.com/questions/39813497/swift-3-display-image-from-url
 extension UIImageView {
     public func imageFromURL(urlString: String) {
-
         if #available(iOS 13.0, *) {
             let activityIndicator = UIActivityIndicatorView(style: .medium)
             activityIndicator.frame = CGRect.init(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
@@ -18,7 +17,6 @@ extension UIImageView {
             if self.image == nil{
                 self.addSubview(activityIndicator)
             }
-
             URLSession.shared.dataTask(with: NSURL(string: urlString)! as URL, completionHandler: { (data, response, error) -> Void in
 
                 if error != nil {
@@ -33,7 +31,18 @@ extension UIImageView {
 
             }).resume()
         } else {
-            // Fallback on earlier versions
+                       URLSession.shared.dataTask(with: NSURL(string: urlString)! as URL, completionHandler: { (data, response, error) -> Void in
+
+                           if error != nil {
+                               print(error ?? "No Error")
+                               return
+                           }
+                           DispatchQueue.main.async(execute: { () -> Void in
+                               let image = UIImage(data: data!)
+                               self.image = image
+                           })
+
+                       }).resume()
         }
         
     }
