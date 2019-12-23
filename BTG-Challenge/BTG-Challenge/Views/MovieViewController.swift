@@ -39,15 +39,24 @@ class MovieViewController: UIViewController, NVActivityIndicatorViewable{
         }
         // Do any additional setup after loading the view.
     }
-
+    var noResultToShow: Bool {
+        print(displayArray.count, displayArray.count < 1)
+        return displayArray.count < 1
+    }
 }
 extension MovieViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if noResultToShow{
+            return 1
+        }
         return displayArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if noResultToShow {
+            return tableView.dequeueReusableCell(withIdentifier: "NoResultCell") ?? UITableViewCell()
+        }
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell") as? MovieTableViewCell ?? MovieTableViewCell()
         cell.title.text = displayArray[indexPath.row].title
         cell.yearLable.text = displayArray[indexPath.row].release_date
@@ -55,6 +64,9 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if noResultToShow{
+            return
+        }
         performSegue(withIdentifier: "movieDetail", sender: nil)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -87,7 +99,10 @@ extension MovieViewController : UISearchBarDelegate, UISearchControllerDelegate 
                if filtered.isEmpty == false {
                    self.displayArray = filtered
                } else {
+                self.displayArray = []
+                if searchText.isEmpty {
                    self.displayArray = array
+                }
                 
                }
         self.tableView.reloadData()
