@@ -163,6 +163,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Movies" image="film" catalog="system" id="mrN-I0-hG5"/>
                     <connections>
+                        <outlet property="searchBar" destination="wF3-lX-E57" id="n9y-VO-cYP"/>
                         <outlet property="tableView" destination="elK-Le-xdc" id="M9F-lI-Key"/>
                         <segue destination="Xs8-DN-LC8" kind="show" identifier="movieDetail" id="T8r-HZ-1Ur"/>
                     </connections>
@@ -272,6 +273,6 @@
         <image name="star" catalog="system" width="64" height="58"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CHC-zh-UPZ"/>
+        <segue reference="T8r-HZ-1Ur"/>
     </inferredMetricsTieBreakers>
 </document>
