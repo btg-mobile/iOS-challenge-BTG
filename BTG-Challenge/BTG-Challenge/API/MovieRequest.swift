@@ -35,5 +35,12 @@ final class API {
            
         }
     }
+    func getPictureString(path : String) -> String {
+        let base = "https://image.tmdb.org/t/p/"
+        let size = "w500"
+        let result = "\(base)\(size)\(path)"
+        print(result)
+        return result
+    }
 }
 

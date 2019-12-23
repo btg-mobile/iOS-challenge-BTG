@@ -12,6 +12,7 @@ class MovieTableViewCell: UITableViewCell {
 
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var picture: UIImageView!
+    @IBOutlet weak var yearLable: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

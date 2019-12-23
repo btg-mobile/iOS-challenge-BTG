@@ -11,7 +11,6 @@ import UIKit
 class MovieViewController: UIViewController{
     
     var array = [Results]()
-    
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +41,7 @@ class MovieViewController: UIViewController{
 
 }
 extension MovieViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return array.count
     }
@@ -49,10 +49,19 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell") as? MovieTableViewCell ?? MovieTableViewCell()
         cell.title.text = array[indexPath.row].original_title
-        
+        cell.yearLable.text = array[indexPath.row].release_date
+        print(array[indexPath.row].poster_path)
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "movieDetail", sender: nil)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "movieDetail" {
+            guard let vc = segue.destination as? MovieDetailViewController else {
+                return
+            }
+            vc.movieDetail = array[tableView.indexPathForSelectedRow?.row ?? 0]
+        }
     }
 }

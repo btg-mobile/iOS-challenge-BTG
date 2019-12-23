@@ -10,7 +10,7 @@
         <!--Favorites-->
         <scene sceneID="Fbd-Za-ovd">
             <objects>
-                <viewController id="KFr-8b-u10" sceneMemberID="viewController">
+                <viewController title="Favorites" id="KFr-8b-u10" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qqX-BH-gX9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -66,7 +66,7 @@
         <!--Movies-->
         <scene sceneID="N4u-IH-LcQ">
             <objects>
-                <viewController id="gfL-03-MLz" customClass="MovieViewController" customModule="BTG_Challenge" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Movies" id="gfL-03-MLz" customClass="MovieViewController" customModule="BTG_Challenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ggi-BA-R3w">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -113,10 +113,16 @@
                                         <connections>
                                             <outlet property="picture" destination="tu6-0x-utn" id="v1m-LB-i6l"/>
                                             <outlet property="title" destination="9ZP-LX-99S" id="2Va-eA-Up4"/>
+                                            <outlet property="yearLable" destination="6gf-NK-zg3" id="ABW-B6-1d7"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wF3-lX-E57">
+                                <rect key="frame" x="2" y="128" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="9yZ-qq-XYV"/>
@@ -163,9 +169,12 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <state key="normal" image="star" catalog="system"/>
+                                <connections>
+                                    <action selector="favoritePressed:" destination="Xs8-DN-LC8" eventType="touchUpInside" id="ied-h7-8Jl"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10/10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJ0-mj-sBu">
-                                <rect key="frame" x="335" y="365" width="41" height="21"/>
+                                <rect key="frame" x="335" y="365" width="69" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -192,6 +201,13 @@
                         <viewLayoutGuide key="safeArea" id="SFJ-xg-IZY"/>
                     </view>
                     <navigationItem key="navigationItem" id="OqE-NR-k7K"/>
+                    <connections>
+                        <outlet property="categoriesLabel" destination="deu-hr-eaw" id="Q38-Ue-jh4"/>
+                        <outlet property="descriptionArea" destination="y5P-OO-6pO" id="QmM-SG-Pu8"/>
+                        <outlet property="favButton" destination="Kz0-uZ-quX" id="evV-2C-lsE"/>
+                        <outlet property="popularity" destination="KJ0-mj-sBu" id="nNr-IY-6oI"/>
+                        <outlet property="titleLabel" destination="Hpm-AR-5DD" id="uLg-Qb-NQ0"/>
+                    </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="360.86956521739131" y="-803.57142857142856"/>

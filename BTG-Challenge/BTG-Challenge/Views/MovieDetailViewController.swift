@@ -10,13 +10,40 @@ import UIKit
 
 class MovieDetailViewController: UIViewController {
 
+    @IBOutlet weak var descriptionArea: UITextView!
+    @IBOutlet weak var favButton: UIButton!
+    @IBOutlet weak var popularity: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var categoriesLabel: UILabel!
+    var isFavorite = false
+    var movieDetail : Results? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
          print("Load Movie Detail")
         // Do any additional setup after loading the view.
     }
+    override func viewWillAppear(_ animated: Bool) {
+        guard movieDetail != nil else {
+            return
+        }
+        popularity.text = String(format: "%.2f", (movieDetail?.popularity ?? 0))
+        titleLabel.text = movieDetail?.title
+        descriptionArea.text = movieDetail?.overview
+        categoriesLabel.text = "Categories = [\( movieDetail?.genre_ids?.map({"\($0)"}).joined(separator: ",") ?? "")]"
+    }
 
-
+    @IBAction func favoritePressed(_ sender: Any) {
+        let star = UIImage(systemName: "star")
+        let starFill = UIImage(systemName: "star.fill")
+        if isFavorite {
+            favButton.setImage(star, for: .normal)
+        } else {
+            favButton.setImage(starFill, for: .normal)
+        }
+        isFavorite = !isFavorite
+        
+    }
+    
     /*
     // MARK: - Navigation
 

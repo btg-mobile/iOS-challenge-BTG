@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+
+class UserData {
+    var favorites : [Results] = []
+}
