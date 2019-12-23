@@ -10,29 +10,33 @@ Você não precisa se preocupar tanto com o design. Esse não é o objetivo do d
 
 O único pré requisito é que o app seja feito em Swift, mas atente-se aos seguintes pontos:
 * Prefere-se a utilização de ferramentas nativas;
-* Caso opte por usar libs externas, prefira CocoaPods;
+* Caso opte por usar libs externas, prefira CocoaPods; ✅
 * É preferível que a interface seja feita utilizando Xibs;
+
+## NOTAS:
+ Testado no iOS 13 e iphone7;
+ Editado para rodar no iOS 10.0 e testado no iphone 5
 
 ## Features
 ### Obrigatórias:
 * Tab bar com dois ítens: Filmes e Favoritos, sendo a principal a tab de Filmes;
 * A tela de Filmes deverá conter:
-	* Uma lista dos [filmes populares](https://developers.themoviedb.org/3/movies/get-popular-movies) da API;
-	* Cada elemento da lista deve conter o poster, o nome e o ano que o filme foi produzido;
-	* Ao clicar em um ítem, deve ser apresentada a tela de detalhes (tela descrita abaixo);
-	* Search bar para pesquisar filmes por nome;
+	* Uma lista dos [filmes populares](https://developers.themoviedb.org/3/movies/get-popular-movies) da API; ✅
+	* Cada elemento da lista deve conter o poster, o nome e o ano que o filme foi produzido; ✅
+	* Ao clicar em um ítem, deve ser apresentada a tela de detalhes (tela descrita abaixo);✅
+	* Search bar para pesquisar filmes por nome; ✅
 * A tela de favoritos deverá conter:
-	* A lista de favoritos persistidos no app entre sessões;
-	* Search bar para pesquisar favoritos por nome e ano;
-	* Ao clicar em um ítem, deve ser apresentada a tela de detalhes (tela descrita abaixo);
+	* A lista de favoritos persistidos no app entre sessões; ✅
+	* Search bar para pesquisar favoritos por nome e ano; ✅
+	* Ao clicar em um ítem, deve ser apresentada a tela de detalhes (tela descrita abaixo); ✅
 * A tela de detalhes deve apresentar os seguintes dados do filme: *(não necessariamente nessa ordem)*
-	* Poster;
-	* Botão para favoritar/desfavoritar;
-	* Título;
-	* Sinopse;
-	* Nota do filme;
-	* E os gêneros por extenso.
-* É necessário fazer tratamento de erros e dos fluxos de exceção, como busca vazia, carregando e outros erros que possam ocorrer.
+	* Poster; ✅
+	* Botão para favoritar/desfavoritar; ✅
+	* Título; ✅
+	* Sinopse; ✅
+	* Nota do filme; ✅
+	* E os gêneros por extenso. ✅
+* É necessário fazer tratamento de erros e dos fluxos de exceção, como busca vazia, carregando e outros erros que possam ocorrer. ✅
   
 ### Opcionais:
 #### Não necessário, porém contam pontos.

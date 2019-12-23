@@ -1,0 +1,22 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'BTG-Challenge' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for BTG-Challenge
+  pod 'ObjectMapper'
+  pod 'Alamofire'
+  pod 'NVActivityIndicatorView'
+
+  target 'BTG-ChallengeTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'BTG-ChallengeUITests' do
+    # Pods for testing
+  end
+
+end
