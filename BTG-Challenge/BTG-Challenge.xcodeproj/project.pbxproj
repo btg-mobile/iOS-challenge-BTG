@@ -20,6 +20,7 @@
 		FFC2DC6123B0EA9100888721 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC2DC6023B0EA9100888721 /* Genre.swift */; };
 		FFC2DC6323B0EAD400888721 /* GenreResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC2DC6223B0EAD400888721 /* GenreResponse.swift */; };
 		FFC2DC6523B0F1BF00888721 /* AllGenres.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC2DC6423B0F1BF00888721 /* AllGenres.swift */; };
+		FFC2DC6723B15C9400888721 /* NoResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC2DC6623B15C9300888721 /* NoResultCell.swift */; };
 		FFE515D823A7B59F0023FE20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE515D723A7B59F0023FE20 /* AppDelegate.swift */; };
 		FFE515DA23A7B59F0023FE20 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE515D923A7B59F0023FE20 /* SceneDelegate.swift */; };
 		FFE515DC23A7B59F0023FE20 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE515DB23A7B59F0023FE20 /* ViewController.swift */; };
@@ -72,6 +73,7 @@
 		FFC2DC6023B0EA9100888721 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		FFC2DC6223B0EAD400888721 /* GenreResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreResponse.swift; sourceTree = "<group>"; };
 		FFC2DC6423B0F1BF00888721 /* AllGenres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGenres.swift; sourceTree = "<group>"; };
+		FFC2DC6623B15C9300888721 /* NoResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResultCell.swift; sourceTree = "<group>"; };
 		FFE515D423A7B59F0023FE20 /* BTG-Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BTG-Challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFE515D723A7B59F0023FE20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFE515D923A7B59F0023FE20 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				FFE5161023A7B6AB0023FE20 /* MovieDetailViewController.swift */,
 				FFE5161123A7B6AB0023FE20 /* MovieDetailViewController.xib */,
 				FFE5161423A7BFC00023FE20 /* FavoritesViewController.swift */,
+				FFC2DC6623B15C9300888721 /* NoResultCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 				FFE515DA23A7B59F0023FE20 /* SceneDelegate.swift in Sources */,
 				FFC2DC5A23B07A5100888721 /* SavedData.swift in Sources */,
 				FFC2DC4E23B06C3D00888721 /* Auth.swift in Sources */,
+				FFC2DC6723B15C9400888721 /* NoResultCell.swift in Sources */,
 				FFC2DC6123B0EA9100888721 /* Genre.swift in Sources */,
 				FFE5161523A7BFC00023FE20 /* FavoritesViewController.swift in Sources */,
 				FFC2DC5723B070FA00888721 /* MovieTableViewCell.swift in Sources */,
@@ -686,6 +690,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N39N6XW3TU;
 				INFOPLIST_FILE = "BTG-Challenge/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -705,6 +710,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N39N6XW3TU;
 				INFOPLIST_FILE = "BTG-Challenge/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
