@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pQl-M3-2yM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -62,7 +63,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No Result to Display" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jxe-Np-DOz">
-                                                    <rect key="frame" x="0.0" y="46" width="414" height="28"/>
+                                                    <rect key="frame" x="-1" y="45" width="415" height="28"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -179,7 +180,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No result to Display" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4YD-Ws-vLC">
-                                                    <rect key="frame" x="0.0" y="46" width="414" height="28"/>
+                                                    <rect key="frame" x="-1" y="46" width="415" height="28"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -200,7 +201,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="9yZ-qq-XYV"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Movies" id="mrN-I0-hG5"/>
+                    <tabBarItem key="tabBarItem" title="Movies" image="radio_button_checked" id="mrN-I0-hG5"/>
                     <connections>
                         <outlet property="searchBar" destination="wF3-lX-E57" id="n9y-VO-cYP"/>
                         <outlet property="tableView" destination="elK-Le-xdc" id="M9F-lI-Key"/>
@@ -214,7 +215,6 @@
         <!--Movie Detail View Controller-->
         <scene sceneID="J8M-LB-5Vy">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vcS-jS-fUY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="Xs8-DN-LC8" customClass="MovieDetailViewController" customModule="BTG_Challenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zEu-t0-g9Y">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -284,6 +284,7 @@
                         <outlet property="titleLabel" destination="Hpm-AR-5DD" id="uLg-Qb-NQ0"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vcS-jS-fUY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="360.86956521739131" y="-803.57142857142856"/>
         </scene>
@@ -308,6 +309,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="radio_button_checked" width="24" height="25"/>
         <image name="star" width="24" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
