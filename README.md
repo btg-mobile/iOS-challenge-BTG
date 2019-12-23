@@ -14,7 +14,8 @@ O único pré requisito é que o app seja feito em Swift, mas atente-se aos segu
 * É preferível que a interface seja feita utilizando Xibs;
 
 ## NOTAS:
- Testado no iOS 13 e iphone7
+ Testado no iOS 13 e iphone7;
+ Editado para rodar no iOS 10.0 e testado no iphone 5
 
 ## Features
 ### Obrigatórias:
