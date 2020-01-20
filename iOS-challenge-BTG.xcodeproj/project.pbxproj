@@ -97,12 +97,13 @@
 		C30FB5F023D5706300B8BFD4 /* iOS-challenge-BTG */ = {
 			isa = PBXGroup;
 			children = (
-				C30FB5F123D5706300B8BFD4 /* AppDelegate.swift */,
-				C30FB5F523D5706300B8BFD4 /* ViewController.swift */,
+				C39B9A7E23D5C54500562D14 /* App */,
+				C39B9A8323D5C5C400562D14 /* Models */,
+				C39B9A8223D5C5B300562D14 /* Controllers */,
+				C39B9A8123D5C57B00562D14 /* ViewModels */,
+				C39B9A8023D5C55E00562D14 /* Views */,
+				C39B9A7F23D5C55200562D14 /* Resources */,
 				C30FB5F723D5706300B8BFD4 /* Main.storyboard */,
-				C30FB5FA23D5706600B8BFD4 /* Assets.xcassets */,
-				C30FB5FC23D5706600B8BFD4 /* LaunchScreen.storyboard */,
-				C30FB5FF23D5706600B8BFD4 /* Info.plist */,
 			);
 			path = "iOS-challenge-BTG";
 			sourceTree = "<group>";
@@ -123,6 +124,53 @@
 				C30FB61523D5706600B8BFD4 /* Info.plist */,
 			);
 			path = "iOS-challenge-BTGUITests";
+			sourceTree = "<group>";
+		};
+		C39B9A7E23D5C54500562D14 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				C30FB5F123D5706300B8BFD4 /* AppDelegate.swift */,
+				C30FB5FC23D5706600B8BFD4 /* LaunchScreen.storyboard */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		C39B9A7F23D5C55200562D14 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C30FB5FA23D5706600B8BFD4 /* Assets.xcassets */,
+				C30FB5FF23D5706600B8BFD4 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C39B9A8023D5C55E00562D14 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C39B9A8123D5C57B00562D14 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		C39B9A8223D5C5B300562D14 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C30FB5F523D5706300B8BFD4 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C39B9A8323D5C5C400562D14 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -432,7 +480,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8KR33X63ZD;
-				INFOPLIST_FILE = "iOS-challenge-BTG/Info.plist";
+				INFOPLIST_FILE = "iOS-challenge-BTG/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -451,7 +499,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8KR33X63ZD;
-				INFOPLIST_FILE = "iOS-challenge-BTG/Info.plist";
+				INFOPLIST_FILE = "iOS-challenge-BTG/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
