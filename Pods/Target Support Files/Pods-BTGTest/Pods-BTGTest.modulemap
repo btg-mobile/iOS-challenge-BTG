@@ -1,0 +1,6 @@
+framework module Pods_BTGTest {
+  umbrella header "Pods-BTGTest-umbrella.h"
+
+  export *
+  module * { export * }
+}
