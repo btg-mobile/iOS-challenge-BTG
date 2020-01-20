@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol MoviesViewInteractionLogic {
+protocol MoviesViewInteractionLogic: class {
     func didSelect(movie: Movie)
 }
 
@@ -19,7 +19,7 @@ class MoviesView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
 
     private let cellIdentifier = "MoviesCollectionViewCell"
     var movies: [Movie] = []
-    var viewController: MoviesViewInteractionLogic?
+    weak var viewController: MoviesViewInteractionLogic?
 
     // MARK: - Object lifecycle
 

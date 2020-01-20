@@ -14,7 +14,7 @@ struct Movie: Codable {
     var releaseDate: Date = Date()
     var title: String = ""
     var overview: String = ""
-    var genreIds: [Int] = []
+    var genres: [Genre]? = []
     var voteAverage: Decimal = 0
     var smallPosterPath: String {
         return "https://image.tmdb.org/t/p/w300\(posterPath)"
@@ -25,6 +25,11 @@ struct Movie: Codable {
     var releaseYear: String {
         return "\(Calendar.current.component(.year, from: releaseDate))"
     }
+    var formatedReleaseDate: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        return formatter.string(from: releaseDate)
+    }
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -32,7 +37,7 @@ struct Movie: Codable {
         case releaseDate = "release_date"
         case title
         case overview
-        case genreIds = "genre_ids"
+        case genres
         case voteAverage = "vote_average"
     }
 }

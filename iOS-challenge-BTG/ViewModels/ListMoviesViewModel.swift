@@ -12,8 +12,9 @@ class ListMoviesViewModel {
 
     let viewTitle = "Filmes populares"
     let movieService = MovieService()
+    let genreService = GenreService()
     var movieViewModel = MovieViewModel()
-
+    var genres: [Genre] = []
 }
 
 // MARK: - Requests
@@ -34,6 +35,20 @@ extension ListMoviesViewModel {
                 self.movieViewModel.movies.append(contentsOf: viewModel.movies)
 
                 completion(self.movieViewModel)
+            }
+        }
+    }
+
+    func fetchGenres(completion: @escaping ([Genre]) -> ()) {
+        self.genreService.fetchGenres { (genres, serviceError) in
+            if serviceError != nil {
+                // TODO: Tratar erro
+                return
+            }
+
+            if let genres = genres {
+                self.genres = genres
+                completion(genres)
             }
         }
     }

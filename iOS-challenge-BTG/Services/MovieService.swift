@@ -41,6 +41,35 @@ class MovieService {
         }).resume()
     }
 
+    func fetchMovie(with
+        id: Int,
+        completion: @escaping (Movie?, MovieServiceError?) -> ()) {
+
+        let path = "/movie/\(id)"
+
+        guard let url = URL(string: createApiUrl(with: path)) else { return }
+        URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) -> () in
+            do {
+                if error != nil {
+                    completion(nil, MovieServiceError.CannotFetchMovie())
+                    return
+                }
+                guard let data = data else {
+                    completion(nil, MovieServiceError.CannotFetchMovie())
+                    return
+                }
+
+                let decoder = JSONDecoder()
+                decoder.setCustomDateDecodingStrategy()
+
+                let result = try decoder.decode(Movie.self, from: data)
+                completion(result, nil)
+            } catch {
+                completion(nil, MovieServiceError.CannotFetchMovie())
+            }
+        }).resume()
+    }
+
     // MARK: - Utility
 
     private func createApiUrl(with path: String) -> String {
@@ -48,9 +77,11 @@ class MovieService {
     }
 }
 
-// MARK: - CRUD operations errors
+// MARK: - Request errors
 
 enum MovieServiceError: Equatable, Error {
-  case CannotFetch(String = "Não foi possível obter a lista de filmes. " +
-                            "Por favor, verifique a sua conexão com a internet.")
+    case CannotFetch(String = "Não foi possível obter a lista de filmes. " +
+                              "Por favor, verifique a sua conexão com a internet.")
+    case CannotFetchMovie(String = "Não foi possível obter o filme. " +
+                                   "Por favor, verifique a sua conexão com a internet.")
 }

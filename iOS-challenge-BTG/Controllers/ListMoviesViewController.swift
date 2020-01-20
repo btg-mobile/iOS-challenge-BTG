@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ListMoviesViewController: UIViewController {
+class ListMoviesViewController: UIViewController, MoviesViewInteractionLogic {
 
     private var viewModel = ListMoviesViewModel()
 
@@ -17,24 +17,25 @@ class ListMoviesViewController: UIViewController {
     // MARK: - Object lifecycle
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-      super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-      setup()
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        title = viewModel.viewTitle
     }
 
     required init?(coder aDecoder: NSCoder) {
-      super.init(coder: aDecoder)
-      setup()
+        super.init(coder: aDecoder)
+        title = viewModel.viewTitle
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
         fetchMovies()
     }
 
     // MARK: - Setup
 
     private func setup() {
-        title = viewModel.viewTitle
+        moviesView.viewController = self
     }
 
     // MARK: - Display
@@ -46,5 +47,25 @@ class ListMoviesViewController: UIViewController {
                 self.moviesView.collectionView.reloadData()
             }
         }
+    }
+
+    func fetchGenres() {
+        viewModel.fetchGenres { (genres) in
+            DispatchQueue.main.async {
+                // TODO: mostrar filtro de categoria
+            }
+        }
+    }
+
+    func displayMovieDetail(movie: Movie) {
+        let controller = ShowMovieViewController(with: movie)
+        guard let navigation = self.navigationController else { return }
+        navigation.pushViewController(controller, animated: true)
+    }
+
+    // MARK: - Movies View Interaction Logic
+
+    func didSelect(movie: Movie) {
+        displayMovieDetail(movie: movie)
     }
 }

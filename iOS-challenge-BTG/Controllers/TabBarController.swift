@@ -51,6 +51,7 @@ class TabBarController: UITabBarController {
         navigation.navigationBar.titleTextAttributes = textAttributes
         navigation.navigationBar.largeTitleTextAttributes = textAttributes
         navigation.navigationBar.barStyle = .black
+        navigation.navigationBar.tintColor = .white
 
         return navigation
     }
