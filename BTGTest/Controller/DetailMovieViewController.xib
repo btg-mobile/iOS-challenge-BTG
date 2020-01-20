@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailMovieViewController" customModule="BTGTest" customModuleProvider="target">
+            <connections>
+                <outlet property="backBtn" destination="HbE-8o-Z5q" id="0rk-wF-qri"/>
+                <outlet property="favotiteBtn" destination="P4f-Dr-UIU" id="u3F-Dn-jvj"/>
+                <outlet property="tableView" destination="ojO-Ks-KnM" id="sQu-91-rgr"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="ghj-3t-hVx"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ojO-Ks-KnM">
+                    <rect key="frame" x="0.0" y="45" width="375" height="622"/>
+                    <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                </tableView>
+                <navigationBar contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rNv-OW-cp0">
+                    <rect key="frame" x="0.0" y="-1" width="375" height="44"/>
+                    <color key="barTintColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <items>
+                        <navigationItem title="Filmes" id="xzv-eY-Tlv">
+                            <barButtonItem key="leftBarButtonItem" style="plain" id="L9L-4M-ekT">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HbE-8o-Z5q">
+                                    <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Button"/>
+                                    <connections>
+                                        <action selector="back:" destination="-1" eventType="touchUpInside" id="7pr-AQ-aFd"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                            <barButtonItem key="rightBarButtonItem" title="Item" image="heart" catalog="system" landscapeImage="heart" id="P4f-Dr-UIU">
+                                <connections>
+                                    <action selector="favorite:" destination="-1" id="xIq-cA-gsz"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+            </subviews>
+            <color key="backgroundColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ojO-Ks-KnM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="A1Q-WW-n6w"/>
+                <constraint firstItem="ojO-Ks-KnM" firstAttribute="top" secondItem="rNv-OW-cp0" secondAttribute="bottom" constant="2" id="XoY-w7-IM8"/>
+                <constraint firstItem="rNv-OW-cp0" firstAttribute="leading" secondItem="ojO-Ks-KnM" secondAttribute="leading" id="ZAc-bt-TT5"/>
+                <constraint firstItem="rNv-OW-cp0" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="-1" id="g4f-9t-FWj"/>
+                <constraint firstItem="ojO-Ks-KnM" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="gja-DX-akR"/>
+                <constraint firstItem="rNv-OW-cp0" firstAttribute="trailing" secondItem="ojO-Ks-KnM" secondAttribute="trailing" id="kCG-6W-92d"/>
+                <constraint firstItem="ojO-Ks-KnM" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="md1-3G-Osj"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="138.40000000000001" y="97.601199400299862"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="heart" catalog="system" width="64" height="54"/>
+    </resources>
+</document>

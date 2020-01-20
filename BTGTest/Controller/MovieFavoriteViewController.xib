@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MovieFavoriteViewController" customModule="BTGTest" customModuleProvider="target">
+            <connections>
+                <outlet property="tableView" destination="wuT-TB-EJi" id="3K6-V4-jkH"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csj-5R-Jcs">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                    <color key="backgroundColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="barTintColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <textAttributes key="titleTextAttributes">
+                        <color key="textColor" red="1" green="0.98529404399999998" blue="0.92674475909999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </textAttributes>
+                    <items>
+                        <navigationItem title="Favorite" id="msV-1J-W4l"/>
+                    </items>
+                </navigationBar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wuT-TB-EJi">
+                    <rect key="frame" x="0.0" y="44" width="414" height="692"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="separatorColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="wuT-TB-EJi" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="9Tc-Xl-4KZ"/>
+                <constraint firstItem="wuT-TB-EJi" firstAttribute="top" secondItem="csj-5R-Jcs" secondAttribute="bottom" symbolic="YES" id="KPj-Hw-1ec"/>
+                <constraint firstItem="csj-5R-Jcs" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="WM7-am-Lmh"/>
+                <constraint firstItem="csj-5R-Jcs" firstAttribute="leading" secondItem="wuT-TB-EJi" secondAttribute="leading" id="YRy-iT-gYr"/>
+                <constraint firstItem="csj-5R-Jcs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="djP-ll-XtB"/>
+                <constraint firstItem="csj-5R-Jcs" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="eaS-Qo-bzY"/>
+                <constraint firstItem="csj-5R-Jcs" firstAttribute="trailing" secondItem="wuT-TB-EJi" secondAttribute="trailing" id="kMD-ov-LSe"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="192.75362318840581" y="67.663043478260875"/>
+        </view>
+    </objects>
+</document>
