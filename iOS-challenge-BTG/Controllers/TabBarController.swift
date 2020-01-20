@@ -22,16 +22,16 @@ class TabBarController: UITabBarController {
     private func setup() {
         let listMoviesItem = UITabBarItem(
             title: "Filmes",
-            image: nil,
-            selectedImage: nil)
+            image: UIImage(named: "icon-film"),
+            selectedImage: UIImage(named: "icon-film"))
         let listMoviesViewController = ListMoviesViewController(nibName: "ListMoviesViewController", bundle: nil)
         listMoviesViewController.tabBarItem = listMoviesItem
         let moviesNavigation = createNavigation(with: listMoviesViewController)
 
         let listFavoritesItem = UITabBarItem(
             title: "Favoritos",
-            image: nil,
-            selectedImage: nil)
+            image: UIImage(named: "icon-star"),
+            selectedImage: UIImage(named: "icon-star"))
         let listfavoritesViewController = ListFavoritesViewController(nibName: "ListFavoritesViewController", bundle: nil)
         listfavoritesViewController.tabBarItem = listFavoritesItem
         let favoritesNavigation = createNavigation(with: listfavoritesViewController)
@@ -40,7 +40,7 @@ class TabBarController: UITabBarController {
         self.selectedViewController = moviesNavigation
         self.selectedIndex = 0
         self.tabBar.barStyle = .black
-        self.tabBar.tintColor = .white
+        self.tabBar.tintColor = Constants.color().lightGreen
         self.tabBar.unselectedItemTintColor = .white
     }
 

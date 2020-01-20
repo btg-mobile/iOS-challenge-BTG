@@ -19,6 +19,8 @@
 		C39B9A8E23D5CB6B00562D14 /* ListFavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9A8C23D5CB6B00562D14 /* ListFavoritesViewController.swift */; };
 		C39B9A8F23D5CB6B00562D14 /* ListFavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C39B9A8D23D5CB6B00562D14 /* ListFavoritesViewController.xib */; };
 		C39B9A9123D5CB8900562D14 /* ListFavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9A9023D5CB8900562D14 /* ListFavoritesViewModel.swift */; };
+		C39B9A9323D5D06400562D14 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9A9223D5D06400562D14 /* Constants.swift */; };
+		C39B9A9623D5D09B00562D14 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9A9523D5D09B00562D14 /* UIColorExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		C39B9A8C23D5CB6B00562D14 /* ListFavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFavoritesViewController.swift; sourceTree = "<group>"; };
 		C39B9A8D23D5CB6B00562D14 /* ListFavoritesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListFavoritesViewController.xib; sourceTree = "<group>"; };
 		C39B9A9023D5CB8900562D14 /* ListFavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFavoritesViewModel.swift; sourceTree = "<group>"; };
+		C39B9A9223D5D06400562D14 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C39B9A9523D5D09B00562D14 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +142,7 @@
 		C39B9A7E23D5C54500562D14 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				C39B9A9223D5D06400562D14 /* Constants.swift */,
 				C30FB5F123D5706300B8BFD4 /* AppDelegate.swift */,
 				C30FB5FC23D5706600B8BFD4 /* LaunchScreen.storyboard */,
 			);
@@ -156,6 +161,7 @@
 		C39B9A8023D5C55E00562D14 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C39B9A9423D5D08C00562D14 /* Extensions */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -186,6 +192,14 @@
 			children = (
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		C39B9A9423D5D08C00562D14 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C39B9A9523D5D09B00562D14 /* UIColorExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,7 +337,9 @@
 				C39B9A9123D5CB8900562D14 /* ListFavoritesViewModel.swift in Sources */,
 				C39B9A8E23D5CB6B00562D14 /* ListFavoritesViewController.swift in Sources */,
 				C39B9A8823D5C83F00562D14 /* ListMoviesViewController.swift in Sources */,
+				C39B9A9623D5D09B00562D14 /* UIColorExtension.swift in Sources */,
 				C39B9A8523D5C6F400562D14 /* TabBarController.swift in Sources */,
+				C39B9A9323D5D06400562D14 /* Constants.swift in Sources */,
 				C30FB5F223D5706300B8BFD4 /* AppDelegate.swift in Sources */,
 				C39B9A8B23D5C96100562D14 /* ListMoviesViewModel.swift in Sources */,
 			);
