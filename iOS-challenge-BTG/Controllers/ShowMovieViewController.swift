@@ -39,7 +39,11 @@ class ShowMovieViewController: UIViewController {
 
     private func setup() {
         self.genresLabel.text = ""
-        fetchMovie()
+        if viewModel.movie.genres == nil {
+            fetchMovie()
+        } else {
+            displayGenres()
+        }
 
         navigationItem.largeTitleDisplayMode = .never
         posterImageView.loadImageUsing(path: viewModel.movie.largePosterPath)
@@ -54,14 +58,18 @@ class ShowMovieViewController: UIViewController {
     func fetchMovie() {
         viewModel.fetchMovie { (movie) in
             DispatchQueue.main.async {
-                guard let genres = movie.genres else { return }
-                var genresText = "Gêneros: "
-                for genre in genres {
-                    genresText += genre.name + ", "
-                }
-                self.genresLabel.text = String(genresText.dropLast(2))
+                self.displayGenres()
             }
         }
+    }
+
+    func displayGenres() {
+        guard let genres = viewModel.movie.genres else { return }
+        var genresText = "Gêneros: "
+        for genre in genres {
+            genresText += genre.name + ", "
+        }
+        self.genresLabel.text = String(genresText.dropLast(2))
     }
 
 }

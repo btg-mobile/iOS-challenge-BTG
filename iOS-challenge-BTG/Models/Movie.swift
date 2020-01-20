@@ -14,7 +14,7 @@ struct Movie: Codable {
     var releaseDate: Date = Date()
     var title: String = ""
     var overview: String = ""
-    var genres: [Genre]? = []
+    var genres: [Genre]?
     var voteAverage: Decimal = 0
     var smallPosterPath: String {
         return "https://image.tmdb.org/t/p/w300\(posterPath)"
