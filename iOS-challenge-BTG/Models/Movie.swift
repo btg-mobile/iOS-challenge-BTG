@@ -16,6 +16,15 @@ struct Movie: Codable {
     var overview: String = ""
     var genreIds: [Int] = []
     var voteAverage: Decimal = 0
+    var smallPosterPath: String {
+        return "https://image.tmdb.org/t/p/w300\(posterPath)"
+    }
+    var largePosterPath: String {
+        return "https://image.tmdb.org/t/p/original\(posterPath)"
+    }
+    var releaseYear: String {
+        return "\(Calendar.current.component(.year, from: releaseDate))"
+    }
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -25,18 +34,6 @@ struct Movie: Codable {
         case overview
         case genreIds = "genre_ids"
         case voteAverage = "vote_average"
-    }
-
-    func smallPosterPath() -> String {
-        return "https://image.tmdb.org/t/p/w300\(posterPath)"
-    }
-
-    func largePosterPath() -> String {
-        return "https://image.tmdb.org/t/p/original\(posterPath)"
-    }
-
-    func releaseYear() -> String {
-        return "\(Calendar.current.component(.year, from: releaseDate))"
     }
 }
 

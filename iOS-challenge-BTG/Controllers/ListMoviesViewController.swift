@@ -12,6 +12,8 @@ class ListMoviesViewController: UIViewController {
 
     private var viewModel = ListMoviesViewModel()
 
+    @IBOutlet private weak var moviesView: MoviesView!
+    
     // MARK: - Object lifecycle
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -39,7 +41,10 @@ class ListMoviesViewController: UIViewController {
 
     func fetchMovies() {
         viewModel.fetchPopularMovies { (movieViewModel) in
-            print(movieViewModel)
+            DispatchQueue.main.async {
+                self.moviesView.movies = movieViewModel.movies
+                self.moviesView.collectionView.reloadData()
+            }
         }
     }
 }
