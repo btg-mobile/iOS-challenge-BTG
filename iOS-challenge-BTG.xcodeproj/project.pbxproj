@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C30FB5F223D5706300B8BFD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FB5F123D5706300B8BFD4 /* AppDelegate.swift */; };
-		C30FB5F423D5706300B8BFD4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FB5F323D5706300B8BFD4 /* SceneDelegate.swift */; };
 		C30FB5F623D5706300B8BFD4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FB5F523D5706300B8BFD4 /* ViewController.swift */; };
 		C30FB5F923D5706300B8BFD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C30FB5F723D5706300B8BFD4 /* Main.storyboard */; };
 		C30FB5FB23D5706600B8BFD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C30FB5FA23D5706600B8BFD4 /* Assets.xcassets */; };
@@ -37,7 +36,6 @@
 /* Begin PBXFileReference section */
 		C30FB5EE23D5706300B8BFD4 /* iOS-challenge-BTG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-challenge-BTG.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C30FB5F123D5706300B8BFD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C30FB5F323D5706300B8BFD4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C30FB5F523D5706300B8BFD4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C30FB5F823D5706300B8BFD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C30FB5FA23D5706600B8BFD4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,7 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				C30FB5F123D5706300B8BFD4 /* AppDelegate.swift */,
-				C30FB5F323D5706300B8BFD4 /* SceneDelegate.swift */,
 				C30FB5F523D5706300B8BFD4 /* ViewController.swift */,
 				C30FB5F723D5706300B8BFD4 /* Main.storyboard */,
 				C30FB5FA23D5706600B8BFD4 /* Assets.xcassets */,
@@ -261,7 +258,6 @@
 			files = (
 				C30FB5F623D5706300B8BFD4 /* ViewController.swift in Sources */,
 				C30FB5F223D5706300B8BFD4 /* AppDelegate.swift in Sources */,
-				C30FB5F423D5706300B8BFD4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +433,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8KR33X63ZD;
 				INFOPLIST_FILE = "iOS-challenge-BTG/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -455,6 +452,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8KR33X63ZD;
 				INFOPLIST_FILE = "iOS-challenge-BTG/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
