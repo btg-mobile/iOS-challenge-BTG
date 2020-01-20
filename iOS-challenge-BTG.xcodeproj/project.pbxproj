@@ -8,12 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		C30FB5F223D5706300B8BFD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FB5F123D5706300B8BFD4 /* AppDelegate.swift */; };
-		C30FB5F623D5706300B8BFD4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FB5F523D5706300B8BFD4 /* ViewController.swift */; };
-		C30FB5F923D5706300B8BFD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C30FB5F723D5706300B8BFD4 /* Main.storyboard */; };
 		C30FB5FB23D5706600B8BFD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C30FB5FA23D5706600B8BFD4 /* Assets.xcassets */; };
 		C30FB5FE23D5706600B8BFD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C30FB5FC23D5706600B8BFD4 /* LaunchScreen.storyboard */; };
 		C30FB60923D5706600B8BFD4 /* iOS_challenge_BTGTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FB60823D5706600B8BFD4 /* iOS_challenge_BTGTests.swift */; };
 		C30FB61423D5706600B8BFD4 /* iOS_challenge_BTGUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FB61323D5706600B8BFD4 /* iOS_challenge_BTGUITests.swift */; };
+		C39B9A8523D5C6F400562D14 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9A8423D5C6F400562D14 /* TabBarController.swift */; };
+		C39B9A8823D5C83F00562D14 /* ListMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9A8623D5C83F00562D14 /* ListMoviesViewController.swift */; };
+		C39B9A8923D5C83F00562D14 /* ListMoviesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C39B9A8723D5C83F00562D14 /* ListMoviesViewController.xib */; };
+		C39B9A8B23D5C96100562D14 /* ListMoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9A8A23D5C96100562D14 /* ListMoviesViewModel.swift */; };
+		C39B9A8E23D5CB6B00562D14 /* ListFavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9A8C23D5CB6B00562D14 /* ListFavoritesViewController.swift */; };
+		C39B9A8F23D5CB6B00562D14 /* ListFavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C39B9A8D23D5CB6B00562D14 /* ListFavoritesViewController.xib */; };
+		C39B9A9123D5CB8900562D14 /* ListFavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9A9023D5CB8900562D14 /* ListFavoritesViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,8 +41,6 @@
 /* Begin PBXFileReference section */
 		C30FB5EE23D5706300B8BFD4 /* iOS-challenge-BTG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-challenge-BTG.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C30FB5F123D5706300B8BFD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C30FB5F523D5706300B8BFD4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C30FB5F823D5706300B8BFD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C30FB5FA23D5706600B8BFD4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C30FB5FD23D5706600B8BFD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C30FB5FF23D5706600B8BFD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +50,13 @@
 		C30FB60F23D5706600B8BFD4 /* iOS-challenge-BTGUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-challenge-BTGUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C30FB61323D5706600B8BFD4 /* iOS_challenge_BTGUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_challenge_BTGUITests.swift; sourceTree = "<group>"; };
 		C30FB61523D5706600B8BFD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C39B9A8423D5C6F400562D14 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		C39B9A8623D5C83F00562D14 /* ListMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMoviesViewController.swift; sourceTree = "<group>"; };
+		C39B9A8723D5C83F00562D14 /* ListMoviesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListMoviesViewController.xib; sourceTree = "<group>"; };
+		C39B9A8A23D5C96100562D14 /* ListMoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMoviesViewModel.swift; sourceTree = "<group>"; };
+		C39B9A8C23D5CB6B00562D14 /* ListFavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFavoritesViewController.swift; sourceTree = "<group>"; };
+		C39B9A8D23D5CB6B00562D14 /* ListFavoritesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListFavoritesViewController.xib; sourceTree = "<group>"; };
+		C39B9A9023D5CB8900562D14 /* ListFavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFavoritesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +113,6 @@
 				C39B9A8123D5C57B00562D14 /* ViewModels */,
 				C39B9A8023D5C55E00562D14 /* Views */,
 				C39B9A7F23D5C55200562D14 /* Resources */,
-				C30FB5F723D5706300B8BFD4 /* Main.storyboard */,
 			);
 			path = "iOS-challenge-BTG";
 			sourceTree = "<group>";
@@ -154,6 +163,8 @@
 		C39B9A8123D5C57B00562D14 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				C39B9A8A23D5C96100562D14 /* ListMoviesViewModel.swift */,
+				C39B9A9023D5CB8900562D14 /* ListFavoritesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -161,7 +172,11 @@
 		C39B9A8223D5C5B300562D14 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C30FB5F523D5706300B8BFD4 /* ViewController.swift */,
+				C39B9A8423D5C6F400562D14 /* TabBarController.swift */,
+				C39B9A8623D5C83F00562D14 /* ListMoviesViewController.swift */,
+				C39B9A8723D5C83F00562D14 /* ListMoviesViewController.xib */,
+				C39B9A8C23D5CB6B00562D14 /* ListFavoritesViewController.swift */,
+				C39B9A8D23D5CB6B00562D14 /* ListFavoritesViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -278,8 +293,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C30FB5FE23D5706600B8BFD4 /* LaunchScreen.storyboard in Resources */,
+				C39B9A8923D5C83F00562D14 /* ListMoviesViewController.xib in Resources */,
+				C39B9A8F23D5CB6B00562D14 /* ListFavoritesViewController.xib in Resources */,
 				C30FB5FB23D5706600B8BFD4 /* Assets.xcassets in Resources */,
-				C30FB5F923D5706300B8BFD4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,8 +320,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C30FB5F623D5706300B8BFD4 /* ViewController.swift in Sources */,
+				C39B9A9123D5CB8900562D14 /* ListFavoritesViewModel.swift in Sources */,
+				C39B9A8E23D5CB6B00562D14 /* ListFavoritesViewController.swift in Sources */,
+				C39B9A8823D5C83F00562D14 /* ListMoviesViewController.swift in Sources */,
+				C39B9A8523D5C6F400562D14 /* TabBarController.swift in Sources */,
 				C30FB5F223D5706300B8BFD4 /* AppDelegate.swift in Sources */,
+				C39B9A8B23D5C96100562D14 /* ListMoviesViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,14 +361,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		C30FB5F723D5706300B8BFD4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C30FB5F823D5706300B8BFD4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		C30FB5FC23D5706600B8BFD4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -481,7 +493,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8KR33X63ZD;
 				INFOPLIST_FILE = "iOS-challenge-BTG/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -500,7 +512,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8KR33X63ZD;
 				INFOPLIST_FILE = "iOS-challenge-BTG/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
