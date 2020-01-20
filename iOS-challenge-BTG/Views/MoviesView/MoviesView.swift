@@ -53,11 +53,14 @@ class MoviesView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
         collectionView.register(nib, forCellWithReuseIdentifier: cellIdentifier)
         collectionView.dataSource = self
 
-        let itemSize = UIScreen.main.bounds.width/2 - 24
+        let itemWidth = UIScreen.main.bounds.width/2 - 24
+        let heightProportion = CGFloat(1.83)
+        let itemHeight = itemWidth * heightProportion
 
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 20, left: 16, bottom: 20, right: 16)
-        layout.itemSize = CGSize(width: itemSize, height: 300)
+
+        layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
 
         layout.minimumInteritemSpacing = 8
         layout.minimumLineSpacing = 30
