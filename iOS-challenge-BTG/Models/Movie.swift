@@ -1,0 +1,53 @@
+//
+//  Movie.swift
+//  iOS-challenge-BTG
+//
+//  Created by Bruno on 17/01/20.
+//  Copyright © 2020 Bruno. All rights reserved.
+//
+
+import Foundation
+
+struct Movie: Codable {
+    var id: Int = 0
+    var posterPath: String = ""
+    var releaseDate: Date = Date()
+    var title: String = ""
+    var overview: String = ""
+    var genreIds: [Int] = []
+    var voteAverage: Decimal = 0
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case posterPath = "poster_path"
+        case releaseDate = "release_date"
+        case title
+        case overview
+        case genreIds = "genre_ids"
+        case voteAverage = "vote_average"
+    }
+
+    func smallPosterPath() -> String {
+        return "https://image.tmdb.org/t/p/w300\(posterPath)"
+    }
+
+    func largePosterPath() -> String {
+        return "https://image.tmdb.org/t/p/original\(posterPath)"
+    }
+
+    func releaseYear() -> String {
+        return "\(Calendar.current.component(.year, from: releaseDate))"
+    }
+}
+
+struct MovieViewModel: Codable {
+    var page: Int = 1
+    var totalPages: Int = 1
+    var movies: [Movie] = []
+
+    enum CodingKeys: String, CodingKey {
+        case page
+        case totalPages = "total_pages"
+        case movies = "results"
+    }
+}

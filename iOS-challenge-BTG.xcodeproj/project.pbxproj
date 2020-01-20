@@ -21,6 +21,9 @@
 		C39B9A9123D5CB8900562D14 /* ListFavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9A9023D5CB8900562D14 /* ListFavoritesViewModel.swift */; };
 		C39B9A9323D5D06400562D14 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9A9223D5D06400562D14 /* Constants.swift */; };
 		C39B9A9623D5D09B00562D14 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9A9523D5D09B00562D14 /* UIColorExtension.swift */; };
+		C39B9A9823D5E08700562D14 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9A9723D5E08700562D14 /* Movie.swift */; };
+		C39B9A9B23D5E0F500562D14 /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9A9A23D5E0F500562D14 /* MovieService.swift */; };
+		C39B9A9D23D5ED3800562D14 /* JSONDecoderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9A9C23D5ED3800562D14 /* JSONDecoderExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +64,9 @@
 		C39B9A9023D5CB8900562D14 /* ListFavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFavoritesViewModel.swift; sourceTree = "<group>"; };
 		C39B9A9223D5D06400562D14 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C39B9A9523D5D09B00562D14 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		C39B9A9723D5E08700562D14 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		C39B9A9A23D5E0F500562D14 /* MovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieService.swift; sourceTree = "<group>"; };
+		C39B9A9C23D5ED3800562D14 /* JSONDecoderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				C39B9A7E23D5C54500562D14 /* App */,
+				C39B9A9923D5E0D400562D14 /* Services */,
 				C39B9A8323D5C5C400562D14 /* Models */,
 				C39B9A8223D5C5B300562D14 /* Controllers */,
 				C39B9A8123D5C57B00562D14 /* ViewModels */,
@@ -190,6 +197,7 @@
 		C39B9A8323D5C5C400562D14 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C39B9A9723D5E08700562D14 /* Movie.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -198,8 +206,17 @@
 			isa = PBXGroup;
 			children = (
 				C39B9A9523D5D09B00562D14 /* UIColorExtension.swift */,
+				C39B9A9C23D5ED3800562D14 /* JSONDecoderExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C39B9A9923D5E0D400562D14 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C39B9A9A23D5E0F500562D14 /* MovieService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -336,9 +353,12 @@
 			files = (
 				C39B9A9123D5CB8900562D14 /* ListFavoritesViewModel.swift in Sources */,
 				C39B9A8E23D5CB6B00562D14 /* ListFavoritesViewController.swift in Sources */,
+				C39B9A9823D5E08700562D14 /* Movie.swift in Sources */,
 				C39B9A8823D5C83F00562D14 /* ListMoviesViewController.swift in Sources */,
+				C39B9A9B23D5E0F500562D14 /* MovieService.swift in Sources */,
 				C39B9A9623D5D09B00562D14 /* UIColorExtension.swift in Sources */,
 				C39B9A8523D5C6F400562D14 /* TabBarController.swift in Sources */,
+				C39B9A9D23D5ED3800562D14 /* JSONDecoderExtension.swift in Sources */,
 				C39B9A9323D5D06400562D14 /* Constants.swift in Sources */,
 				C30FB5F223D5706300B8BFD4 /* AppDelegate.swift in Sources */,
 				C39B9A8B23D5C96100562D14 /* ListMoviesViewModel.swift in Sources */,

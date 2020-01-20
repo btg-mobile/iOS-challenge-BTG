@@ -26,11 +26,20 @@ class ListMoviesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchMovies()
     }
 
     // MARK: - Setup
 
     private func setup() {
         title = viewModel.viewTitle
+    }
+
+    // MARK: - Display
+
+    func fetchMovies() {
+        viewModel.fetchPopularMovies { (movieViewModel) in
+            print(movieViewModel)
+        }
     }
 }
