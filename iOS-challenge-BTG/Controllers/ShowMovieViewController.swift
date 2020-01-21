@@ -78,6 +78,7 @@ class ShowMovieViewController: UIViewController {
             target: self,
             action: #selector(favoriteMovie))
         self.navigationItem.setRightBarButton(button, animated: true)
+        self.view.layoutIfNeeded()
     }
 
     // MARK: - Display
@@ -109,6 +110,7 @@ class ShowMovieViewController: UIViewController {
                 } else {
                     self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icon-star")
                 }
+                self.view.layoutIfNeeded()
             }
         }
     }

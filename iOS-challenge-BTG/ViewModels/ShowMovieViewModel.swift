@@ -45,11 +45,13 @@ extension ShowMovieViewModel {
             if movie != nil {
                 self.isFavorite = true
             }
+
+            completion(self.movie)
         }
     }
 
     func tougleIsfavorite(completion: @escaping (Movie) -> ()) {
-        if !isFavorite {
+        if isFavorite {
             movieDataSource.removeMovie(movie: movie) { (movie, dataSourceError) in
                 if dataSourceError != nil {
                     // TODO: tratar erro
@@ -63,8 +65,8 @@ extension ShowMovieViewModel {
                 if dataSourceError != nil {
                     // TODO: tratar erro
                 }
-                
-                self.isFavorite = false
+
+                self.isFavorite = true
                 completion(self.movie)
             }
         }

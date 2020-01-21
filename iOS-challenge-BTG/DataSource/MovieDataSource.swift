@@ -45,12 +45,12 @@ class MovieDataSource {
 
         let managedContext = appDelegate.container.viewContext
 
-        let fetchRequest = NSFetchRequest<CoreDataMovie>()
+        let fetchRequest = NSFetchRequest<CoreDataMovie>(entityName: Constants.coreData().movie)
         guard let id = movie.id else {
             completion(nil, MovieDataSourceError.CannotSave())
             return
         }
-        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        fetchRequest.predicate = NSPredicate(format: "id == %d", id)
 
         do {
             let fetchedResults = try managedContext.fetch(fetchRequest)
@@ -72,7 +72,7 @@ class MovieDataSource {
 
         let managedContext = appDelegate.container.viewContext
 
-        let fetchRequest = NSFetchRequest<CoreDataMovie>()
+        let fetchRequest = NSFetchRequest<CoreDataMovie>(entityName: Constants.coreData().movie)
 
         if !search.isEmpty {
             fetchRequest.predicate = NSPredicate(format: "title CONTAINS[c] %@", search)
@@ -115,12 +115,12 @@ class MovieDataSource {
 
         let managedContext = appDelegate.container.viewContext
 
-        let fetchRequest = NSFetchRequest<CoreDataMovie>()
+        let fetchRequest = NSFetchRequest<CoreDataMovie>(entityName: Constants.coreData().movie)
         guard let id = movie.id else {
             completion(nil, MovieDataSourceError.CannotRemove())
             return
         }
-        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        fetchRequest.predicate = NSPredicate(format: "id == %d", id)
 
         do {
             let fetchedResults = try managedContext.fetch(fetchRequest)
