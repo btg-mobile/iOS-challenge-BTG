@@ -21,9 +21,10 @@ class ShowMovieViewController: UIViewController {
 
     // MARK: - Object lifecycle
 
-    init(with movie: Movie) {
+    init(with movie: Movie, isFavorite: Bool = false) {
         super.init(nibName: nil, bundle: nil)
         viewModel.movie = movie
+        viewModel.isFavorite = isFavorite
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -38,14 +39,22 @@ class ShowMovieViewController: UIViewController {
     // MARK: - Setup
 
     private func setup() {
+        navigationItem.largeTitleDisplayMode = .never
+        checkFavorite()
+        checkGenres()
+        fillContent()
+    }
+
+    private func checkGenres() {
         self.genresLabel.text = ""
         if viewModel.movie.genres == nil {
             fetchMovie()
         } else {
             displayGenres()
         }
+    }
 
-        navigationItem.largeTitleDisplayMode = .never
+    private func fillContent() {
         posterImageView.loadImageUsing(path: viewModel.movie.largePosterPath)
         titleLabel.text = viewModel.movie.title
         releaseDateLabel.text = viewModel.movie.formatedReleaseDate
@@ -53,7 +62,25 @@ class ShowMovieViewController: UIViewController {
         overviewLabel.text = viewModel.movie.overview
     }
 
-    // MARK: - Displayin
+    private func checkFavorite() {
+        viewModel.checkFavorite { (movie) in
+            DispatchQueue.main.async {
+                self.createFavoriteButton()
+            }
+        }
+    }
+
+    private func createFavoriteButton() {
+        let image = viewModel.isFavorite ? UIImage(named: "icon-star-full") : UIImage(named: "icon-star")
+        let button = UIBarButtonItem(
+            image: image,
+            style: .plain,
+            target: self,
+            action: #selector(favoriteMovie))
+        self.navigationItem.setRightBarButton(button, animated: true)
+    }
+
+    // MARK: - Display
 
     func fetchMovie() {
         viewModel.fetchMovie { (movie) in
@@ -72,4 +99,17 @@ class ShowMovieViewController: UIViewController {
         self.genresLabel.text = String(genresText.dropLast(2))
     }
 
+    // MARK: - Actions
+
+    @objc func favoriteMovie() {
+        viewModel.tougleIsfavorite { (movie) in
+            DispatchQueue.main.async {
+                if self.viewModel.isFavorite {
+                    self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icon-star-full")
+                } else {
+                    self.navigationItem.rightBarButtonItem?.image = UIImage(named: "icon-star")
+                }
+            }
+        }
+    }
 }

@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 
 struct Constants {
+    struct coreData {
+        let movie = "CoreDataMovie"
+    }
+
     struct api {
         let key = "ddd54788bcb1b4f089ae69347d51b4c6"
         let language = "pt-BR"

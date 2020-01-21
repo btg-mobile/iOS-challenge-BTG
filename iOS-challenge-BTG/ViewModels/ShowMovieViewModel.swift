@@ -12,6 +12,8 @@ class ShowMovieViewModel {
 
     var movie = Movie()
     let movieService = MovieService()
+    let movieDataSource = MovieDataSource()
+    var isFavorite = false
 }
 
 // MARK: - Requests
@@ -29,6 +31,40 @@ extension ShowMovieViewModel {
 
             if let movie = movie {
                 self.movie.genres = movie.genres
+                completion(self.movie)
+            }
+        }
+    }
+
+    func checkFavorite(completion: @escaping (Movie) -> ()) {
+        movieDataSource.fetchMovie(movie: movie) { (movie, dataSourceError) in
+            if dataSourceError != nil {
+                self.isFavorite = false
+            }
+
+            if movie != nil {
+                self.isFavorite = true
+            }
+        }
+    }
+
+    func tougleIsfavorite(completion: @escaping (Movie) -> ()) {
+        if !isFavorite {
+            movieDataSource.removeMovie(movie: movie) { (movie, dataSourceError) in
+                if dataSourceError != nil {
+                    // TODO: tratar erro
+                }
+
+                self.isFavorite = false
+                completion(self.movie)
+            }
+        } else {
+            movieDataSource.saveMovie(movie: movie) { (movie, dataSourceError) in
+                if dataSourceError != nil {
+                    // TODO: tratar erro
+                }
+                
+                self.isFavorite = false
                 completion(self.movie)
             }
         }

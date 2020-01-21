@@ -39,6 +39,8 @@
 		C39B9AC023D6A5D700562D14 /* SearchMoviesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C39B9ABE23D6A5D700562D14 /* SearchMoviesViewController.xib */; };
 		C39B9AC223D6A60900562D14 /* SearchMoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9AC123D6A60900562D14 /* SearchMoviesViewModel.swift */; };
 		C39B9AC423D6C82000562D14 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9AC323D6C82000562D14 /* Service.swift */; };
+		C39B9AC723D6CEAF00562D14 /* iOS-challenge-BTG.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C39B9AC523D6CEAF00562D14 /* iOS-challenge-BTG.xcdatamodeld */; };
+		C39B9AC923D7252E00562D14 /* MovieDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9AC823D7252E00562D14 /* MovieDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +99,8 @@
 		C39B9ABE23D6A5D700562D14 /* SearchMoviesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchMoviesViewController.xib; sourceTree = "<group>"; };
 		C39B9AC123D6A60900562D14 /* SearchMoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesViewModel.swift; sourceTree = "<group>"; };
 		C39B9AC323D6C82000562D14 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		C39B9AC623D6CEAF00562D14 /* iOS-challenge-BTG.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "iOS-challenge-BTG.xcdatamodel"; sourceTree = "<group>"; };
+		C39B9AC823D7252E00562D14 /* MovieDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				C39B9A7E23D5C54500562D14 /* App */,
+				C39B9ACA23D7253F00562D14 /* DataSource */,
 				C39B9A9923D5E0D400562D14 /* Services */,
 				C39B9A8323D5C5C400562D14 /* Models */,
 				C39B9A8223D5C5B300562D14 /* Controllers */,
@@ -183,6 +188,7 @@
 				C39B9A9223D5D06400562D14 /* Constants.swift */,
 				C30FB5F123D5706300B8BFD4 /* AppDelegate.swift */,
 				C30FB5FC23D5706600B8BFD4 /* LaunchScreen.storyboard */,
+				C39B9AC523D6CEAF00562D14 /* iOS-challenge-BTG.xcdatamodeld */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -270,6 +276,14 @@
 				C39B9AA023D5F30F00562D14 /* MoviesCollectionViewCell.xib */,
 			);
 			path = MoviesView;
+			sourceTree = "<group>";
+		};
+		C39B9ACA23D7253F00562D14 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				C39B9AC823D7252E00562D14 /* MovieDataSource.swift */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -423,9 +437,11 @@
 				C39B9ABA23D64DCA00562D14 /* Genre.swift in Sources */,
 				C39B9A8523D5C6F400562D14 /* TabBarController.swift in Sources */,
 				C39B9AA923D5F32600562D14 /* CustomImageView.swift in Sources */,
+				C39B9AC723D6CEAF00562D14 /* iOS-challenge-BTG.xcdatamodeld in Sources */,
 				C39B9A9D23D5ED3800562D14 /* JSONDecoderExtension.swift in Sources */,
 				C39B9A9323D5D06400562D14 /* Constants.swift in Sources */,
 				C30FB5F223D5706300B8BFD4 /* AppDelegate.swift in Sources */,
+				C39B9AC923D7252E00562D14 /* MovieDataSource.swift in Sources */,
 				C39B9AB723D631A700562D14 /* ShowMovieViewController.swift in Sources */,
 				C39B9AC423D6C82000562D14 /* Service.swift in Sources */,
 				C39B9AA623D5F30F00562D14 /* MoviesView.swift in Sources */,
@@ -752,6 +768,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C39B9AC523D6CEAF00562D14 /* iOS-challenge-BTG.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C39B9AC623D6CEAF00562D14 /* iOS-challenge-BTG.xcdatamodel */,
+			);
+			currentVersion = C39B9AC623D6CEAF00562D14 /* iOS-challenge-BTG.xcdatamodel */;
+			path = "iOS-challenge-BTG.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C30FB5E623D5706300B8BFD4 /* Project object */;
 }
