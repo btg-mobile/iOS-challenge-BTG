@@ -80,6 +80,10 @@ class SearchMoviesViewController: UIViewController, MoviesViewInteractionLogic, 
             self.fetchMovies(search: search, nextPage: true)
         }
     }
+
+    func refreshContent() {
+        moviesView.collectionView.refreshControl?.endRefreshing()
+    }
 }
 
 

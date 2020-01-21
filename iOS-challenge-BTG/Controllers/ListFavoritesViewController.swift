@@ -55,6 +55,7 @@ class ListFavoritesViewController: UIViewController, MoviesViewInteractionLogic 
     func fetchMovies(nextPage: Bool = false) {
         viewModel.fetchfavoriteMovies(nextPage: nextPage) { (movieViewModel) in
             DispatchQueue.main.async {
+                self.moviesView.collectionView.refreshControl?.endRefreshing()
                 self.moviesView.movies = movieViewModel.movies ?? []
                 self.moviesView.collectionView.reloadData()
             }
@@ -75,5 +76,10 @@ class ListFavoritesViewController: UIViewController, MoviesViewInteractionLogic 
 
     func loadMoreData() {
         fetchMovies(nextPage: true)
+    }
+
+    func refreshContent() {
+        viewModel.movieViewModel = MovieViewModel()
+        fetchMovies()
     }
 }

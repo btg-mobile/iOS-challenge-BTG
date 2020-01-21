@@ -84,4 +84,10 @@ class ListMoviesViewController: UIViewController, MoviesViewInteractionLogic {
     func loadMoreData() {
         fetchMovies(nextPage: true)
     }
+
+    func refreshContent() {
+        viewModel.movieViewModel = MovieViewModel()
+        fetchMovies()
+        self.moviesView.collectionView.refreshControl?.endRefreshing()
+    }
 }

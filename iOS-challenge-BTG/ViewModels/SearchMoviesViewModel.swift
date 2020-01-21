@@ -87,6 +87,7 @@ extension SearchMoviesViewModel {
         if nextPage {
             guard let totalPages = self.movieViewModel.totalPages else { return }
             if page >= totalPages {
+                isLoadingMoreData = false
                 return
             }
             page += 1

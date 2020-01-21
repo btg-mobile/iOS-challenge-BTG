@@ -11,6 +11,7 @@ import UIKit
 protocol MoviesViewInteractionLogic: class {
     func didSelect(movie: Movie)
     func loadMoreData()
+    func refreshContent()
 }
 
 class MoviesView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -67,6 +68,11 @@ class MoviesView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
         layout.minimumLineSpacing = 30
 
         collectionView.collectionViewLayout = layout
+
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = Constants.color().lightGreen
+        refreshControl.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
     }
 
     // MARK: - Collection view data source
@@ -90,15 +96,19 @@ class MoviesView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
         }
     }
 
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-
-        let offsetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-
-        if offsetY > contentHeight - scrollView.frame.size.height {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row == movies.count - 1 {
             if let viewController = viewController {
                 viewController.loadMoreData()
             }
+        }
+    }
+
+    // MARK: - Actions
+
+    @objc func refreshContent() {
+        if let viewController = viewController {
+            viewController.refreshContent()
         }
     }
 }

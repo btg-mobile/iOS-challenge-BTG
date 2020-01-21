@@ -84,7 +84,7 @@ class MovieDataSource {
 
         do {
             let count = try managedContext.count(for: fetchRequest)
-            movieViewModel.totalPages = Int(count / 20)
+            movieViewModel.totalPages = (count + 20 - 1) / 20
 
             fetchRequest.fetchLimit = 20
             fetchRequest.fetchOffset = (page - 1) * 20
