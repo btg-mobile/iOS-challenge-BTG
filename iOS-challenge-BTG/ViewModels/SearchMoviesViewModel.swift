@@ -21,7 +21,7 @@ class SearchMoviesViewModel {
 extension SearchMoviesViewModel {
 
     func fetchMovies(search: String, nextPage: Bool, completion: @escaping (MovieViewModel) -> ()) {
-        if sender.isKind(of: ListMoviesViewController.self) {
+        if sender.isKind(of: ListFavoritesViewController.self) {
             fetchDataStoreMovies(search: search, nextPage: nextPage, completion: completion)
         } else {
             fetchServiceMovies(search: search, nextPage: nextPage, completion: completion)

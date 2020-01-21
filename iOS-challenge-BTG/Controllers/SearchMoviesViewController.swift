@@ -47,6 +47,12 @@ class SearchMoviesViewController: UIViewController, MoviesViewInteractionLogic, 
         }
     }
 
+    func displayMovieDetail(movie: Movie) {
+        let controller = ShowMovieViewController(with: movie)
+        guard let navigation = viewModel.sender.navigationController else { return }
+        navigation.pushViewController(controller, animated: true)
+    }
+
     // MARK: - Search
 
     func updateSearchResults(for searchController: UISearchController) {
@@ -58,12 +64,6 @@ class SearchMoviesViewController: UIViewController, MoviesViewInteractionLogic, 
         if !text.isEmpty {
             fetchMovies(search: text)
         }
-    }
-
-    func displayMovieDetail(movie: Movie) {
-        let controller = ShowMovieViewController(with: movie)
-        guard let navigation = viewModel.sender.navigationController else { return }
-        navigation.pushViewController(controller, animated: true)
     }
 
     // MARK: - Movies View Interaction Logic
