@@ -18,7 +18,8 @@ class ShowMovieViewModel {
 extension ShowMovieViewModel {
 
     func fetchMovie(completion: @escaping (Movie) -> ()) {
-        self.movieService.fetchMovie(with: self.movie.id) {
+        guard let id = self.movie.id else { return }
+        self.movieService.fetchMovie(with: id) {
             (movie, serviceError) in
 
             if serviceError != nil {

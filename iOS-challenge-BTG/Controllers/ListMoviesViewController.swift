@@ -29,6 +29,7 @@ class ListMoviesViewController: UIViewController, MoviesViewInteractionLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        setupSarchController()
         fetchMovies()
     }
 
@@ -38,12 +39,22 @@ class ListMoviesViewController: UIViewController, MoviesViewInteractionLogic {
         moviesView.viewController = self
     }
 
+    private func setupSarchController() {
+        let searchMoviesViewController = SearchMoviesViewController(sender: self)
+        let searchController = UISearchController(searchResultsController: searchMoviesViewController)
+        searchController.searchResultsUpdater = searchMoviesViewController
+        searchController.obscuresBackgroundDuringPresentation = true
+        searchController.searchBar.placeholder = "Nome do filme"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+    }
+
     // MARK: - Display
 
     func fetchMovies(nextPage: Bool = false) {
         viewModel.fetchPopularMovies(nextPage: nextPage) { (movieViewModel) in
             DispatchQueue.main.async {
-                self.moviesView.movies = movieViewModel.movies
+                self.moviesView.movies = movieViewModel.movies ?? []
                 self.moviesView.collectionView.reloadData()
             }
         }

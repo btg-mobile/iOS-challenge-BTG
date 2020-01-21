@@ -35,6 +35,9 @@
 		C39B9AB823D631A700562D14 /* ShowMovieViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C39B9AB623D631A700562D14 /* ShowMovieViewController.xib */; };
 		C39B9ABA23D64DCA00562D14 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9AB923D64DCA00562D14 /* Genre.swift */; };
 		C39B9ABC23D64E7E00562D14 /* GenreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9ABB23D64E7E00562D14 /* GenreService.swift */; };
+		C39B9ABF23D6A5D700562D14 /* SearchMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9ABD23D6A5D700562D14 /* SearchMoviesViewController.swift */; };
+		C39B9AC023D6A5D700562D14 /* SearchMoviesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C39B9ABE23D6A5D700562D14 /* SearchMoviesViewController.xib */; };
+		C39B9AC223D6A60900562D14 /* SearchMoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9AC123D6A60900562D14 /* SearchMoviesViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +92,9 @@
 		C39B9AB623D631A700562D14 /* ShowMovieViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowMovieViewController.xib; sourceTree = "<group>"; };
 		C39B9AB923D64DCA00562D14 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		C39B9ABB23D64E7E00562D14 /* GenreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreService.swift; sourceTree = "<group>"; };
+		C39B9ABD23D6A5D700562D14 /* SearchMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesViewController.swift; sourceTree = "<group>"; };
+		C39B9ABE23D6A5D700562D14 /* SearchMoviesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchMoviesViewController.xib; sourceTree = "<group>"; };
+		C39B9AC123D6A60900562D14 /* SearchMoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +209,7 @@
 				C39B9A8A23D5C96100562D14 /* ListMoviesViewModel.swift */,
 				C39B9A9023D5CB8900562D14 /* ListFavoritesViewModel.swift */,
 				C39B9AAF23D6069300562D14 /* ShowMovieViewModel.swift */,
+				C39B9AC123D6A60900562D14 /* SearchMoviesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -217,6 +224,8 @@
 				C39B9A8D23D5CB6B00562D14 /* ListFavoritesViewController.xib */,
 				C39B9AB523D631A700562D14 /* ShowMovieViewController.swift */,
 				C39B9AB623D631A700562D14 /* ShowMovieViewController.xib */,
+				C39B9ABD23D6A5D700562D14 /* SearchMoviesViewController.swift */,
+				C39B9ABE23D6A5D700562D14 /* SearchMoviesViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -371,6 +380,7 @@
 				C39B9A8F23D5CB6B00562D14 /* ListFavoritesViewController.xib in Resources */,
 				C30FB5FB23D5706600B8BFD4 /* Assets.xcassets in Resources */,
 				C39B9AA423D5F30F00562D14 /* MoviesCollectionViewCell.xib in Resources */,
+				C39B9AC023D6A5D700562D14 /* SearchMoviesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,8 +411,10 @@
 				C39B9A9123D5CB8900562D14 /* ListFavoritesViewModel.swift in Sources */,
 				C39B9A8E23D5CB6B00562D14 /* ListFavoritesViewController.swift in Sources */,
 				C39B9A9823D5E08700562D14 /* Movie.swift in Sources */,
+				C39B9ABF23D6A5D700562D14 /* SearchMoviesViewController.swift in Sources */,
 				C39B9AA523D5F30F00562D14 /* MoviesCollectionViewCell.swift in Sources */,
 				C39B9A8823D5C83F00562D14 /* ListMoviesViewController.swift in Sources */,
+				C39B9AC223D6A60900562D14 /* SearchMoviesViewModel.swift in Sources */,
 				C39B9A9B23D5E0F500562D14 /* MovieService.swift in Sources */,
 				C39B9A9623D5D09B00562D14 /* UIColorExtension.swift in Sources */,
 				C39B9ABA23D64DCA00562D14 /* Genre.swift in Sources */,

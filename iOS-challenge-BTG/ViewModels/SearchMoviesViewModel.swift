@@ -1,33 +1,30 @@
 //
-//  ListMoviesViewModel.swift
+//  SearchMoviesViewModel.swift
 //  iOS-challenge-BTG
 //
-//  Created by Bruno on 20/01/20.
+//  Created by Bruno on 21/01/20.
 //  Copyright © 2020 Bruno. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-class ListMoviesViewModel {
+class SearchMoviesViewModel {
 
-    let viewTitle = "Filmes populares"
     let movieService = MovieService()
-    let genreService = GenreService()
     var movieViewModel = MovieViewModel()
-    var genres: [Genre] = []
     var isLoadingMoreData = false
 }
 
-// MARK: - Requests
-extension ListMoviesViewModel {
+extension SearchMoviesViewModel {
 
-    func fetchPopularMovies(nextPage: Bool, completion: @escaping (MovieViewModel) -> ()) {
+    func fetchMovies(search: String, nextPage: Bool, completion: @escaping (MovieViewModel) -> ()) {
 
-        if isLoadingMoreData {
-            return
+        if nextPage {
+            if isLoadingMoreData {
+                return
+            }
+            isLoadingMoreData = true
         }
-
-        isLoadingMoreData = true
 
         guard var page = self.movieViewModel.page else { return }
 
@@ -39,7 +36,9 @@ extension ListMoviesViewModel {
             page += 1
         }
 
-        self.movieService.fetchPopularMovies(with: page) {
+        self.movieViewModel.search = search
+
+        self.movieService.fetchMovies(with: search, page: page) {
             (viewModel, serviceError) in
 
             self.isLoadingMoreData = false
@@ -59,20 +58,6 @@ extension ListMoviesViewModel {
                 }
 
                 completion(self.movieViewModel)
-            }
-        }
-    }
-
-    func fetchGenres(completion: @escaping ([Genre]) -> ()) {
-        self.genreService.fetchGenres { (genres, serviceError) in
-            if serviceError != nil {
-                // TODO: Tratar erro
-                return
-            }
-
-            if let genres = genres {
-                self.genres = genres
-                completion(genres)
             }
         }
     }

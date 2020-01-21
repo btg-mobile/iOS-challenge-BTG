@@ -9,26 +9,26 @@
 import Foundation
 
 struct Movie: Codable {
-    var id: Int = 0
-    var posterPath: String = ""
-    var releaseDate: Date = Date()
-    var title: String = ""
-    var overview: String = ""
+    var id: Int? = 0
+    var posterPath: String? = ""
+    var releaseDate: Date? = Date()
+    var title: String? = ""
+    var overview: String? = ""
     var genres: [Genre]?
-    var voteAverage: Decimal = 0
+    var voteAverage: Decimal? = 0
     var smallPosterPath: String {
-        return "https://image.tmdb.org/t/p/w300\(posterPath)"
+        return "https://image.tmdb.org/t/p/w300\(posterPath ?? "")"
     }
     var largePosterPath: String {
-        return "https://image.tmdb.org/t/p/original\(posterPath)"
+        return "https://image.tmdb.org/t/p/original\(posterPath ?? "")"
     }
     var releaseYear: String {
-        return "\(Calendar.current.component(.year, from: releaseDate))"
+        return "\(Calendar.current.component(.year, from: releaseDate ?? Date()))"
     }
     var formatedReleaseDate: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
-        return formatter.string(from: releaseDate)
+        return formatter.string(from: releaseDate ?? Date())
     }
 
     enum CodingKeys: String, CodingKey {
@@ -43,13 +43,15 @@ struct Movie: Codable {
 }
 
 struct MovieViewModel: Codable {
-    var page: Int = 1
-    var totalPages: Int = 1
-    var movies: [Movie] = []
+    var page: Int? = 1
+    var totalPages: Int? = 1
+    var search: String?
+    var movies: [Movie]? = []
 
     enum CodingKeys: String, CodingKey {
         case page
         case totalPages = "total_pages"
+        case search
         case movies = "results"
     }
 }

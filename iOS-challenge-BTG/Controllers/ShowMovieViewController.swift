@@ -49,11 +49,11 @@ class ShowMovieViewController: UIViewController {
         posterImageView.loadImageUsing(path: viewModel.movie.largePosterPath)
         titleLabel.text = viewModel.movie.title
         releaseDateLabel.text = viewModel.movie.formatedReleaseDate
-        voteAvarageLabel.text = "Nota \(viewModel.movie.voteAverage)"
+        voteAvarageLabel.text = "Nota \(viewModel.movie.voteAverage ?? 0.0)"
         overviewLabel.text = viewModel.movie.overview
     }
 
-    // MARK: - Display
+    // MARK: - Displayin
 
     func fetchMovie() {
         viewModel.fetchMovie { (movie) in
