@@ -41,6 +41,7 @@ class ListMoviesViewController: UIViewController, MoviesViewInteractionLogic {
 
     private func setupSarchController() {
         let searchMoviesViewController = SearchMoviesViewController(sender: self)
+        searchMoviesViewController.view.layoutIfNeeded()
         let searchController = UISearchController(searchResultsController: searchMoviesViewController)
         searchController.searchResultsUpdater = searchMoviesViewController
         searchController.obscuresBackgroundDuringPresentation = true
