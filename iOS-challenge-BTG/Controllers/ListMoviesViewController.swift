@@ -40,8 +40,8 @@ class ListMoviesViewController: UIViewController, MoviesViewInteractionLogic {
 
     // MARK: - Display
 
-    func fetchMovies() {
-        viewModel.fetchPopularMovies { (movieViewModel) in
+    func fetchMovies(nextPage: Bool = false) {
+        viewModel.fetchPopularMovies(nextPage: nextPage) { (movieViewModel) in
             DispatchQueue.main.async {
                 self.moviesView.movies = movieViewModel.movies
                 self.moviesView.collectionView.reloadData()
@@ -67,5 +67,9 @@ class ListMoviesViewController: UIViewController, MoviesViewInteractionLogic {
 
     func didSelect(movie: Movie) {
         displayMovieDetail(movie: movie)
+    }
+
+    func loadMoreData() {
+        fetchMovies(nextPage: true)
     }
 }

@@ -15,15 +15,34 @@ class ListMoviesViewModel {
     let genreService = GenreService()
     var movieViewModel = MovieViewModel()
     var genres: [Genre] = []
+    var isLoadingMoreData = false
 }
 
 // MARK: - Requests
 extension ListMoviesViewModel {
 
-    func fetchPopularMovies(completion: @escaping (MovieViewModel) -> ()) {
-        self.movieService.fetchPopularMovies(with: self.movieViewModel.page) {
+    func fetchPopularMovies(nextPage: Bool, completion: @escaping (MovieViewModel) -> ()) {
+
+        if isLoadingMoreData {
+            return
+        }
+
+        isLoadingMoreData = true
+
+        var page = self.movieViewModel.page
+
+        if nextPage {
+            if page >= self.movieViewModel.totalPages {
+                return
+            }
+            page += 1
+        }
+
+        self.movieService.fetchPopularMovies(with: page) {
             (viewModel, serviceError) in
 
+            self.isLoadingMoreData = false
+            
             if serviceError != nil {
                 // TODO: Tratar erro
                 return

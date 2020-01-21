@@ -10,6 +10,7 @@ import UIKit
 
 protocol MoviesViewInteractionLogic: class {
     func didSelect(movie: Movie)
+    func loadMoreData()
 }
 
 class MoviesView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -86,6 +87,18 @@ class MoviesView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let viewController = viewController {
             viewController.didSelect(movie: movies[indexPath.row])
+        }
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+
+        if offsetY > contentHeight - scrollView.frame.size.height {
+            if let viewController = viewController {
+                viewController.loadMoreData()
+            }
         }
     }
 }
