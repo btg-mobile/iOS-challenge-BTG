@@ -38,6 +38,7 @@
 		C39B9ABF23D6A5D700562D14 /* SearchMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9ABD23D6A5D700562D14 /* SearchMoviesViewController.swift */; };
 		C39B9AC023D6A5D700562D14 /* SearchMoviesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C39B9ABE23D6A5D700562D14 /* SearchMoviesViewController.xib */; };
 		C39B9AC223D6A60900562D14 /* SearchMoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9AC123D6A60900562D14 /* SearchMoviesViewModel.swift */; };
+		C39B9AC423D6C82000562D14 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9AC323D6C82000562D14 /* Service.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		C39B9ABD23D6A5D700562D14 /* SearchMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesViewController.swift; sourceTree = "<group>"; };
 		C39B9ABE23D6A5D700562D14 /* SearchMoviesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchMoviesViewController.xib; sourceTree = "<group>"; };
 		C39B9AC123D6A60900562D14 /* SearchMoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesViewModel.swift; sourceTree = "<group>"; };
+		C39B9AC323D6C82000562D14 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +256,7 @@
 			children = (
 				C39B9A9A23D5E0F500562D14 /* MovieService.swift */,
 				C39B9ABB23D64E7E00562D14 /* GenreService.swift */,
+				C39B9AC323D6C82000562D14 /* Service.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				C39B9A9323D5D06400562D14 /* Constants.swift in Sources */,
 				C30FB5F223D5706300B8BFD4 /* AppDelegate.swift in Sources */,
 				C39B9AB723D631A700562D14 /* ShowMovieViewController.swift in Sources */,
+				C39B9AC423D6C82000562D14 /* Service.swift in Sources */,
 				C39B9AA623D5F30F00562D14 /* MoviesView.swift in Sources */,
 				C39B9A8B23D5C96100562D14 /* ListMoviesViewModel.swift in Sources */,
 			);

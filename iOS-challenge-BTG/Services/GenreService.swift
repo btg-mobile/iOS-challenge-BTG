@@ -12,7 +12,7 @@ struct Genres: Codable {
     var genres: [Genre] = []
 }
 
-class GenreService {
+class GenreService: Service {
 
     // MARK: - Requests
 
@@ -21,7 +21,7 @@ class GenreService {
 
         let path = "/genre/movie/list"
 
-        guard let url = URL(string: createApiUrl(with: path)) else { return }
+        guard let url = createApiUrl(with: path, queryItems: []) else { return }
         URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) -> () in
             do {
                 if error != nil {
@@ -39,12 +39,6 @@ class GenreService {
                 completion(nil, GenreServiceError.CannotFetch())
             }
         }).resume()
-    }
-
-    // MARK: - Utility
-
-    private func createApiUrl(with path: String) -> String {
-        return "\(Constants.api().url)\(path)?api_key=\(Constants.api().key)&language=\(Constants.api().language)"
     }
 }
 
