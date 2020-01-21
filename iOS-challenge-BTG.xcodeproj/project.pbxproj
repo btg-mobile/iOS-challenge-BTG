@@ -1,0 +1,786 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C30FB5F223D5706300B8BFD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FB5F123D5706300B8BFD4 /* AppDelegate.swift */; };
+		C30FB5FB23D5706600B8BFD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C30FB5FA23D5706600B8BFD4 /* Assets.xcassets */; };
+		C30FB5FE23D5706600B8BFD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C30FB5FC23D5706600B8BFD4 /* LaunchScreen.storyboard */; };
+		C30FB60923D5706600B8BFD4 /* iOS_challenge_BTGTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FB60823D5706600B8BFD4 /* iOS_challenge_BTGTests.swift */; };
+		C30FB61423D5706600B8BFD4 /* iOS_challenge_BTGUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FB61323D5706600B8BFD4 /* iOS_challenge_BTGUITests.swift */; };
+		C39B9A8523D5C6F400562D14 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9A8423D5C6F400562D14 /* TabBarController.swift */; };
+		C39B9A8823D5C83F00562D14 /* ListMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9A8623D5C83F00562D14 /* ListMoviesViewController.swift */; };
+		C39B9A8923D5C83F00562D14 /* ListMoviesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C39B9A8723D5C83F00562D14 /* ListMoviesViewController.xib */; };
+		C39B9A8B23D5C96100562D14 /* ListMoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9A8A23D5C96100562D14 /* ListMoviesViewModel.swift */; };
+		C39B9A8E23D5CB6B00562D14 /* ListFavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9A8C23D5CB6B00562D14 /* ListFavoritesViewController.swift */; };
+		C39B9A8F23D5CB6B00562D14 /* ListFavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C39B9A8D23D5CB6B00562D14 /* ListFavoritesViewController.xib */; };
+		C39B9A9123D5CB8900562D14 /* ListFavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9A9023D5CB8900562D14 /* ListFavoritesViewModel.swift */; };
+		C39B9A9323D5D06400562D14 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9A9223D5D06400562D14 /* Constants.swift */; };
+		C39B9A9623D5D09B00562D14 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9A9523D5D09B00562D14 /* UIColorExtension.swift */; };
+		C39B9A9823D5E08700562D14 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9A9723D5E08700562D14 /* Movie.swift */; };
+		C39B9A9B23D5E0F500562D14 /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9A9A23D5E0F500562D14 /* MovieService.swift */; };
+		C39B9A9D23D5ED3800562D14 /* JSONDecoderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9A9C23D5ED3800562D14 /* JSONDecoderExtension.swift */; };
+		C39B9AA323D5F30F00562D14 /* MoviesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C39B9A9F23D5F30F00562D14 /* MoviesView.xib */; };
+		C39B9AA423D5F30F00562D14 /* MoviesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C39B9AA023D5F30F00562D14 /* MoviesCollectionViewCell.xib */; };
+		C39B9AA523D5F30F00562D14 /* MoviesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9AA123D5F30F00562D14 /* MoviesCollectionViewCell.swift */; };
+		C39B9AA623D5F30F00562D14 /* MoviesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9AA223D5F30F00562D14 /* MoviesView.swift */; };
+		C39B9AA923D5F32600562D14 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9AA723D5F32600562D14 /* CustomImageView.swift */; };
+		C39B9AAA23D5F32600562D14 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9AA823D5F32600562D14 /* UIViewExtension.swift */; };
+		C39B9AB023D6069300562D14 /* ShowMovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9AAF23D6069300562D14 /* ShowMovieViewModel.swift */; };
+		C39B9AB723D631A700562D14 /* ShowMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9AB523D631A700562D14 /* ShowMovieViewController.swift */; };
+		C39B9AB823D631A700562D14 /* ShowMovieViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C39B9AB623D631A700562D14 /* ShowMovieViewController.xib */; };
+		C39B9ABA23D64DCA00562D14 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9AB923D64DCA00562D14 /* Genre.swift */; };
+		C39B9ABC23D64E7E00562D14 /* GenreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9ABB23D64E7E00562D14 /* GenreService.swift */; };
+		C39B9ABF23D6A5D700562D14 /* SearchMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9ABD23D6A5D700562D14 /* SearchMoviesViewController.swift */; };
+		C39B9AC023D6A5D700562D14 /* SearchMoviesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C39B9ABE23D6A5D700562D14 /* SearchMoviesViewController.xib */; };
+		C39B9AC223D6A60900562D14 /* SearchMoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9AC123D6A60900562D14 /* SearchMoviesViewModel.swift */; };
+		C39B9AC423D6C82000562D14 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9AC323D6C82000562D14 /* Service.swift */; };
+		C39B9AC723D6CEAF00562D14 /* iOS-challenge-BTG.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C39B9AC523D6CEAF00562D14 /* iOS-challenge-BTG.xcdatamodeld */; };
+		C39B9AC923D7252E00562D14 /* MovieDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B9AC823D7252E00562D14 /* MovieDataSource.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C30FB60523D5706600B8BFD4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C30FB5E623D5706300B8BFD4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C30FB5ED23D5706300B8BFD4;
+			remoteInfo = "iOS-challenge-BTG";
+		};
+		C30FB61023D5706600B8BFD4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C30FB5E623D5706300B8BFD4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C30FB5ED23D5706300B8BFD4;
+			remoteInfo = "iOS-challenge-BTG";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C30FB5EE23D5706300B8BFD4 /* iOS-challenge-BTG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-challenge-BTG.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C30FB5F123D5706300B8BFD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C30FB5FA23D5706600B8BFD4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C30FB5FD23D5706600B8BFD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C30FB5FF23D5706600B8BFD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C30FB60423D5706600B8BFD4 /* iOS-challenge-BTGTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-challenge-BTGTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C30FB60823D5706600B8BFD4 /* iOS_challenge_BTGTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_challenge_BTGTests.swift; sourceTree = "<group>"; };
+		C30FB60A23D5706600B8BFD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C30FB60F23D5706600B8BFD4 /* iOS-challenge-BTGUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-challenge-BTGUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C30FB61323D5706600B8BFD4 /* iOS_challenge_BTGUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_challenge_BTGUITests.swift; sourceTree = "<group>"; };
+		C30FB61523D5706600B8BFD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C39B9A8423D5C6F400562D14 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		C39B9A8623D5C83F00562D14 /* ListMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMoviesViewController.swift; sourceTree = "<group>"; };
+		C39B9A8723D5C83F00562D14 /* ListMoviesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListMoviesViewController.xib; sourceTree = "<group>"; };
+		C39B9A8A23D5C96100562D14 /* ListMoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMoviesViewModel.swift; sourceTree = "<group>"; };
+		C39B9A8C23D5CB6B00562D14 /* ListFavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFavoritesViewController.swift; sourceTree = "<group>"; };
+		C39B9A8D23D5CB6B00562D14 /* ListFavoritesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListFavoritesViewController.xib; sourceTree = "<group>"; };
+		C39B9A9023D5CB8900562D14 /* ListFavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFavoritesViewModel.swift; sourceTree = "<group>"; };
+		C39B9A9223D5D06400562D14 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C39B9A9523D5D09B00562D14 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		C39B9A9723D5E08700562D14 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		C39B9A9A23D5E0F500562D14 /* MovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieService.swift; sourceTree = "<group>"; };
+		C39B9A9C23D5ED3800562D14 /* JSONDecoderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderExtension.swift; sourceTree = "<group>"; };
+		C39B9A9F23D5F30F00562D14 /* MoviesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoviesView.xib; sourceTree = "<group>"; };
+		C39B9AA023D5F30F00562D14 /* MoviesCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoviesCollectionViewCell.xib; sourceTree = "<group>"; };
+		C39B9AA123D5F30F00562D14 /* MoviesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesCollectionViewCell.swift; sourceTree = "<group>"; };
+		C39B9AA223D5F30F00562D14 /* MoviesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesView.swift; sourceTree = "<group>"; };
+		C39B9AA723D5F32600562D14 /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		C39B9AA823D5F32600562D14 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		C39B9AAF23D6069300562D14 /* ShowMovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMovieViewModel.swift; sourceTree = "<group>"; };
+		C39B9AB523D631A700562D14 /* ShowMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMovieViewController.swift; sourceTree = "<group>"; };
+		C39B9AB623D631A700562D14 /* ShowMovieViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowMovieViewController.xib; sourceTree = "<group>"; };
+		C39B9AB923D64DCA00562D14 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		C39B9ABB23D64E7E00562D14 /* GenreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreService.swift; sourceTree = "<group>"; };
+		C39B9ABD23D6A5D700562D14 /* SearchMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesViewController.swift; sourceTree = "<group>"; };
+		C39B9ABE23D6A5D700562D14 /* SearchMoviesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchMoviesViewController.xib; sourceTree = "<group>"; };
+		C39B9AC123D6A60900562D14 /* SearchMoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesViewModel.swift; sourceTree = "<group>"; };
+		C39B9AC323D6C82000562D14 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		C39B9AC623D6CEAF00562D14 /* iOS-challenge-BTG.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "iOS-challenge-BTG.xcdatamodel"; sourceTree = "<group>"; };
+		C39B9AC823D7252E00562D14 /* MovieDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDataSource.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C30FB5EB23D5706300B8BFD4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C30FB60123D5706600B8BFD4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C30FB60C23D5706600B8BFD4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C30FB5E523D5706300B8BFD4 = {
+			isa = PBXGroup;
+			children = (
+				C30FB5F023D5706300B8BFD4 /* iOS-challenge-BTG */,
+				C30FB60723D5706600B8BFD4 /* iOS-challenge-BTGTests */,
+				C30FB61223D5706600B8BFD4 /* iOS-challenge-BTGUITests */,
+				C30FB5EF23D5706300B8BFD4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C30FB5EF23D5706300B8BFD4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C30FB5EE23D5706300B8BFD4 /* iOS-challenge-BTG.app */,
+				C30FB60423D5706600B8BFD4 /* iOS-challenge-BTGTests.xctest */,
+				C30FB60F23D5706600B8BFD4 /* iOS-challenge-BTGUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C30FB5F023D5706300B8BFD4 /* iOS-challenge-BTG */ = {
+			isa = PBXGroup;
+			children = (
+				C39B9A7E23D5C54500562D14 /* App */,
+				C39B9ACA23D7253F00562D14 /* DataSource */,
+				C39B9A9923D5E0D400562D14 /* Services */,
+				C39B9A8323D5C5C400562D14 /* Models */,
+				C39B9A8223D5C5B300562D14 /* Controllers */,
+				C39B9A8123D5C57B00562D14 /* ViewModels */,
+				C39B9A8023D5C55E00562D14 /* Views */,
+				C39B9AA723D5F32600562D14 /* CustomImageView.swift */,
+				C39B9A7F23D5C55200562D14 /* Resources */,
+			);
+			path = "iOS-challenge-BTG";
+			sourceTree = "<group>";
+		};
+		C30FB60723D5706600B8BFD4 /* iOS-challenge-BTGTests */ = {
+			isa = PBXGroup;
+			children = (
+				C30FB60823D5706600B8BFD4 /* iOS_challenge_BTGTests.swift */,
+				C30FB60A23D5706600B8BFD4 /* Info.plist */,
+			);
+			path = "iOS-challenge-BTGTests";
+			sourceTree = "<group>";
+		};
+		C30FB61223D5706600B8BFD4 /* iOS-challenge-BTGUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C30FB61323D5706600B8BFD4 /* iOS_challenge_BTGUITests.swift */,
+				C30FB61523D5706600B8BFD4 /* Info.plist */,
+			);
+			path = "iOS-challenge-BTGUITests";
+			sourceTree = "<group>";
+		};
+		C39B9A7E23D5C54500562D14 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				C39B9A9223D5D06400562D14 /* Constants.swift */,
+				C30FB5F123D5706300B8BFD4 /* AppDelegate.swift */,
+				C30FB5FC23D5706600B8BFD4 /* LaunchScreen.storyboard */,
+				C39B9AC523D6CEAF00562D14 /* iOS-challenge-BTG.xcdatamodeld */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		C39B9A7F23D5C55200562D14 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C30FB5FA23D5706600B8BFD4 /* Assets.xcassets */,
+				C30FB5FF23D5706600B8BFD4 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C39B9A8023D5C55E00562D14 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C39B9A9E23D5F30F00562D14 /* MoviesView */,
+				C39B9A9423D5D08C00562D14 /* Extensions */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C39B9A8123D5C57B00562D14 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				C39B9A8A23D5C96100562D14 /* ListMoviesViewModel.swift */,
+				C39B9A9023D5CB8900562D14 /* ListFavoritesViewModel.swift */,
+				C39B9AAF23D6069300562D14 /* ShowMovieViewModel.swift */,
+				C39B9AC123D6A60900562D14 /* SearchMoviesViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		C39B9A8223D5C5B300562D14 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C39B9A8423D5C6F400562D14 /* TabBarController.swift */,
+				C39B9A8623D5C83F00562D14 /* ListMoviesViewController.swift */,
+				C39B9A8723D5C83F00562D14 /* ListMoviesViewController.xib */,
+				C39B9A8C23D5CB6B00562D14 /* ListFavoritesViewController.swift */,
+				C39B9A8D23D5CB6B00562D14 /* ListFavoritesViewController.xib */,
+				C39B9AB523D631A700562D14 /* ShowMovieViewController.swift */,
+				C39B9AB623D631A700562D14 /* ShowMovieViewController.xib */,
+				C39B9ABD23D6A5D700562D14 /* SearchMoviesViewController.swift */,
+				C39B9ABE23D6A5D700562D14 /* SearchMoviesViewController.xib */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C39B9A8323D5C5C400562D14 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C39B9A9723D5E08700562D14 /* Movie.swift */,
+				C39B9AB923D64DCA00562D14 /* Genre.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C39B9A9423D5D08C00562D14 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C39B9AA823D5F32600562D14 /* UIViewExtension.swift */,
+				C39B9A9523D5D09B00562D14 /* UIColorExtension.swift */,
+				C39B9A9C23D5ED3800562D14 /* JSONDecoderExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C39B9A9923D5E0D400562D14 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C39B9A9A23D5E0F500562D14 /* MovieService.swift */,
+				C39B9ABB23D64E7E00562D14 /* GenreService.swift */,
+				C39B9AC323D6C82000562D14 /* Service.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		C39B9A9E23D5F30F00562D14 /* MoviesView */ = {
+			isa = PBXGroup;
+			children = (
+				C39B9AA223D5F30F00562D14 /* MoviesView.swift */,
+				C39B9A9F23D5F30F00562D14 /* MoviesView.xib */,
+				C39B9AA123D5F30F00562D14 /* MoviesCollectionViewCell.swift */,
+				C39B9AA023D5F30F00562D14 /* MoviesCollectionViewCell.xib */,
+			);
+			path = MoviesView;
+			sourceTree = "<group>";
+		};
+		C39B9ACA23D7253F00562D14 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				C39B9AC823D7252E00562D14 /* MovieDataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C30FB5ED23D5706300B8BFD4 /* iOS-challenge-BTG */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C30FB61823D5706600B8BFD4 /* Build configuration list for PBXNativeTarget "iOS-challenge-BTG" */;
+			buildPhases = (
+				C30FB5EA23D5706300B8BFD4 /* Sources */,
+				C30FB5EB23D5706300B8BFD4 /* Frameworks */,
+				C30FB5EC23D5706300B8BFD4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "iOS-challenge-BTG";
+			productName = "iOS-challenge-BTG";
+			productReference = C30FB5EE23D5706300B8BFD4 /* iOS-challenge-BTG.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C30FB60323D5706600B8BFD4 /* iOS-challenge-BTGTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C30FB61B23D5706600B8BFD4 /* Build configuration list for PBXNativeTarget "iOS-challenge-BTGTests" */;
+			buildPhases = (
+				C30FB60023D5706600B8BFD4 /* Sources */,
+				C30FB60123D5706600B8BFD4 /* Frameworks */,
+				C30FB60223D5706600B8BFD4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C30FB60623D5706600B8BFD4 /* PBXTargetDependency */,
+			);
+			name = "iOS-challenge-BTGTests";
+			productName = "iOS-challenge-BTGTests";
+			productReference = C30FB60423D5706600B8BFD4 /* iOS-challenge-BTGTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C30FB60E23D5706600B8BFD4 /* iOS-challenge-BTGUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C30FB61E23D5706600B8BFD4 /* Build configuration list for PBXNativeTarget "iOS-challenge-BTGUITests" */;
+			buildPhases = (
+				C30FB60B23D5706600B8BFD4 /* Sources */,
+				C30FB60C23D5706600B8BFD4 /* Frameworks */,
+				C30FB60D23D5706600B8BFD4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C30FB61123D5706600B8BFD4 /* PBXTargetDependency */,
+			);
+			name = "iOS-challenge-BTGUITests";
+			productName = "iOS-challenge-BTGUITests";
+			productReference = C30FB60F23D5706600B8BFD4 /* iOS-challenge-BTGUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C30FB5E623D5706300B8BFD4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = Bruno;
+				TargetAttributes = {
+					C30FB5ED23D5706300B8BFD4 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					C30FB60323D5706600B8BFD4 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = C30FB5ED23D5706300B8BFD4;
+					};
+					C30FB60E23D5706600B8BFD4 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = C30FB5ED23D5706300B8BFD4;
+					};
+				};
+			};
+			buildConfigurationList = C30FB5E923D5706300B8BFD4 /* Build configuration list for PBXProject "iOS-challenge-BTG" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C30FB5E523D5706300B8BFD4;
+			productRefGroup = C30FB5EF23D5706300B8BFD4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C30FB5ED23D5706300B8BFD4 /* iOS-challenge-BTG */,
+				C30FB60323D5706600B8BFD4 /* iOS-challenge-BTGTests */,
+				C30FB60E23D5706600B8BFD4 /* iOS-challenge-BTGUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C30FB5EC23D5706300B8BFD4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C39B9AB823D631A700562D14 /* ShowMovieViewController.xib in Resources */,
+				C39B9AA323D5F30F00562D14 /* MoviesView.xib in Resources */,
+				C30FB5FE23D5706600B8BFD4 /* LaunchScreen.storyboard in Resources */,
+				C39B9A8923D5C83F00562D14 /* ListMoviesViewController.xib in Resources */,
+				C39B9A8F23D5CB6B00562D14 /* ListFavoritesViewController.xib in Resources */,
+				C30FB5FB23D5706600B8BFD4 /* Assets.xcassets in Resources */,
+				C39B9AA423D5F30F00562D14 /* MoviesCollectionViewCell.xib in Resources */,
+				C39B9AC023D6A5D700562D14 /* SearchMoviesViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C30FB60223D5706600B8BFD4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C30FB60D23D5706600B8BFD4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C30FB5EA23D5706300B8BFD4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C39B9AAA23D5F32600562D14 /* UIViewExtension.swift in Sources */,
+				C39B9ABC23D64E7E00562D14 /* GenreService.swift in Sources */,
+				C39B9AB023D6069300562D14 /* ShowMovieViewModel.swift in Sources */,
+				C39B9A9123D5CB8900562D14 /* ListFavoritesViewModel.swift in Sources */,
+				C39B9A8E23D5CB6B00562D14 /* ListFavoritesViewController.swift in Sources */,
+				C39B9A9823D5E08700562D14 /* Movie.swift in Sources */,
+				C39B9ABF23D6A5D700562D14 /* SearchMoviesViewController.swift in Sources */,
+				C39B9AA523D5F30F00562D14 /* MoviesCollectionViewCell.swift in Sources */,
+				C39B9A8823D5C83F00562D14 /* ListMoviesViewController.swift in Sources */,
+				C39B9AC223D6A60900562D14 /* SearchMoviesViewModel.swift in Sources */,
+				C39B9A9B23D5E0F500562D14 /* MovieService.swift in Sources */,
+				C39B9A9623D5D09B00562D14 /* UIColorExtension.swift in Sources */,
+				C39B9ABA23D64DCA00562D14 /* Genre.swift in Sources */,
+				C39B9A8523D5C6F400562D14 /* TabBarController.swift in Sources */,
+				C39B9AA923D5F32600562D14 /* CustomImageView.swift in Sources */,
+				C39B9AC723D6CEAF00562D14 /* iOS-challenge-BTG.xcdatamodeld in Sources */,
+				C39B9A9D23D5ED3800562D14 /* JSONDecoderExtension.swift in Sources */,
+				C39B9A9323D5D06400562D14 /* Constants.swift in Sources */,
+				C30FB5F223D5706300B8BFD4 /* AppDelegate.swift in Sources */,
+				C39B9AC923D7252E00562D14 /* MovieDataSource.swift in Sources */,
+				C39B9AB723D631A700562D14 /* ShowMovieViewController.swift in Sources */,
+				C39B9AC423D6C82000562D14 /* Service.swift in Sources */,
+				C39B9AA623D5F30F00562D14 /* MoviesView.swift in Sources */,
+				C39B9A8B23D5C96100562D14 /* ListMoviesViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C30FB60023D5706600B8BFD4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C30FB60923D5706600B8BFD4 /* iOS_challenge_BTGTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C30FB60B23D5706600B8BFD4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C30FB61423D5706600B8BFD4 /* iOS_challenge_BTGUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C30FB60623D5706600B8BFD4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C30FB5ED23D5706300B8BFD4 /* iOS-challenge-BTG */;
+			targetProxy = C30FB60523D5706600B8BFD4 /* PBXContainerItemProxy */;
+		};
+		C30FB61123D5706600B8BFD4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C30FB5ED23D5706300B8BFD4 /* iOS-challenge-BTG */;
+			targetProxy = C30FB61023D5706600B8BFD4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C30FB5FC23D5706600B8BFD4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C30FB5FD23D5706600B8BFD4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C30FB61623D5706600B8BFD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C30FB61723D5706600B8BFD4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C30FB61923D5706600B8BFD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8KR33X63ZD;
+				INFOPLIST_FILE = "iOS-challenge-BTG/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bruno.iOS-challenge-BTG";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C30FB61A23D5706600B8BFD4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8KR33X63ZD;
+				INFOPLIST_FILE = "iOS-challenge-BTG/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bruno.iOS-challenge-BTG";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C30FB61C23D5706600B8BFD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8KR33X63ZD;
+				INFOPLIST_FILE = "iOS-challenge-BTGTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bruno.iOS-challenge-BTGTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOS-challenge-BTG.app/iOS-challenge-BTG";
+			};
+			name = Debug;
+		};
+		C30FB61D23D5706600B8BFD4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8KR33X63ZD;
+				INFOPLIST_FILE = "iOS-challenge-BTGTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bruno.iOS-challenge-BTGTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOS-challenge-BTG.app/iOS-challenge-BTG";
+			};
+			name = Release;
+		};
+		C30FB61F23D5706600B8BFD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8KR33X63ZD;
+				INFOPLIST_FILE = "iOS-challenge-BTGUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bruno.iOS-challenge-BTGUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "iOS-challenge-BTG";
+			};
+			name = Debug;
+		};
+		C30FB62023D5706600B8BFD4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8KR33X63ZD;
+				INFOPLIST_FILE = "iOS-challenge-BTGUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bruno.iOS-challenge-BTGUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "iOS-challenge-BTG";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C30FB5E923D5706300B8BFD4 /* Build configuration list for PBXProject "iOS-challenge-BTG" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C30FB61623D5706600B8BFD4 /* Debug */,
+				C30FB61723D5706600B8BFD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C30FB61823D5706600B8BFD4 /* Build configuration list for PBXNativeTarget "iOS-challenge-BTG" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C30FB61923D5706600B8BFD4 /* Debug */,
+				C30FB61A23D5706600B8BFD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C30FB61B23D5706600B8BFD4 /* Build configuration list for PBXNativeTarget "iOS-challenge-BTGTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C30FB61C23D5706600B8BFD4 /* Debug */,
+				C30FB61D23D5706600B8BFD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C30FB61E23D5706600B8BFD4 /* Build configuration list for PBXNativeTarget "iOS-challenge-BTGUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C30FB61F23D5706600B8BFD4 /* Debug */,
+				C30FB62023D5706600B8BFD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C39B9AC523D6CEAF00562D14 /* iOS-challenge-BTG.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C39B9AC623D6CEAF00562D14 /* iOS-challenge-BTG.xcdatamodel */,
+			);
+			currentVersion = C39B9AC623D6CEAF00562D14 /* iOS-challenge-BTG.xcdatamodel */;
+			path = "iOS-challenge-BTG.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = C30FB5E623D5706300B8BFD4 /* Project object */;
+}
