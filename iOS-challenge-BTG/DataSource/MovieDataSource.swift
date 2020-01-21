@@ -64,7 +64,7 @@ class MovieDataSource {
         }
     }
 
-    func fetchMovies(search: String, page: Int, completion: @escaping (MovieViewModel?, MovieDataSourceError?) -> ()) {
+    func fetchMovies(search: String = "", page: Int, completion: @escaping (MovieViewModel?, MovieDataSourceError?) -> ()) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             completion(nil, MovieDataSourceError.CannotSave())
             return

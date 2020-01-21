@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListFavoritesViewController" customModule="iOS_challenge_BTG" customModuleProvider="target">
             <connections>
+                <outlet property="moviesView" destination="gtj-Gw-JzA" id="uUP-ht-pFI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,7 +18,18 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gtj-Gw-JzA" customClass="MoviesView" customModule="iOS_challenge_BTG" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </view>
+            </subviews>
             <color key="backgroundColor" red="0.031372549020000001" green="0.10980392160000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="gtj-Gw-JzA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="MeV-tL-BMX"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="gtj-Gw-JzA" secondAttribute="bottom" id="b4c-Zx-HT1"/>
+                <constraint firstItem="gtj-Gw-JzA" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="iHW-Jw-kdy"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gtj-Gw-JzA" secondAttribute="trailing" id="rN1-5D-gwT"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="139" y="154"/>
         </view>
