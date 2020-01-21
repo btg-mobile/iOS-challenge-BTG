@@ -11,7 +11,6 @@ import UIKit
 class SearchMoviesViewController: UIViewController, MoviesViewInteractionLogic, UISearchResultsUpdating {
 
     private var viewModel = SearchMoviesViewModel()
-    private var sender = UIViewController()
 
     @IBOutlet private weak var moviesView: MoviesView!
 
@@ -19,7 +18,7 @@ class SearchMoviesViewController: UIViewController, MoviesViewInteractionLogic, 
 
     init(sender: UIViewController) {
         super.init(nibName: nil, bundle: nil)
-        self.sender = sender
+        self.viewModel.sender = sender
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -63,7 +62,7 @@ class SearchMoviesViewController: UIViewController, MoviesViewInteractionLogic, 
 
     func displayMovieDetail(movie: Movie) {
         let controller = ShowMovieViewController(with: movie)
-        guard let navigation = sender.navigationController else { return }
+        guard let navigation = viewModel.sender.navigationController else { return }
         navigation.pushViewController(controller, animated: true)
     }
 

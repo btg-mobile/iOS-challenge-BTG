@@ -29,6 +29,7 @@ class ListFavoritesViewController: UIViewController, MoviesViewInteractionLogic 
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        setupSarchController()
         fetchMovies()
     }
 
@@ -36,6 +37,17 @@ class ListFavoritesViewController: UIViewController, MoviesViewInteractionLogic 
 
     private func setup() {
         moviesView.viewController = self
+    }
+
+    private func setupSarchController() {
+        let searchMoviesViewController = SearchMoviesViewController(sender: self)
+        searchMoviesViewController.view.layoutIfNeeded()
+        let searchController = UISearchController(searchResultsController: searchMoviesViewController)
+        searchController.searchResultsUpdater = searchMoviesViewController
+        searchController.obscuresBackgroundDuringPresentation = true
+        searchController.searchBar.placeholder = "Nome do filme"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
 
     // MARK: - Display
