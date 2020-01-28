@@ -10,5 +10,6 @@ target 'TheMovieDB-Challenge' do
   pod 'Alamofire'
   pod 'ProgressHUD'
   pod 'SwiftyJSON', '~> 5.0'
-
+  pod 'SDWebImage', '~> 5.0'
+  
 end

@@ -8,11 +8,10 @@
 
 import Foundation
 
-let BASE_URL = "https://api.themoviedb.org/3/movie/popular?api_key="
-let API_KEY = "132dfc8e68a337152fd3e36d63c77677"
+fileprivate let BASE_URL = "https://api.themoviedb.org/3/movie/popular?api_key="
+fileprivate let API_KEY = "132dfc8e68a337152fd3e36d63c77677"
 let LANGUAGE = "pt-BR"
-let resourceString = "\(BASE_URL)\(API_KEY)&language=\(LANGUAGE)&page=1"
-
+fileprivate let resourceString = "\(BASE_URL)\(API_KEY)&language=\(LANGUAGE)&page=1"
 
 class MovieDataProvider {
 
@@ -27,7 +26,7 @@ class MovieDataProvider {
         case canNotProccessData
     }
     
-    func getPopularMovies (completion: @escaping(Result<[MovieResults], MovieError>) -> Void) {
+    func getPopularMovies (completion: @escaping(Result<[Movie], MovieError>) -> Void) {
 
         guard let resourceURL = URL(string: resourceString) else {fatalError("Problema ao obter os dados da API")}
         

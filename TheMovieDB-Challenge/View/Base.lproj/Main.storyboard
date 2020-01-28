@@ -4,14 +4,13 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="OhM-nq-2na">
             <objects>
-                <viewController id="wze-eV-GHH" customClass="ViewController" customModule="ios_recruiting_brazil" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wze-eV-GHH" customClass="ViewController" customModule="TheMovieDB_Challenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2fK-Xa-FSW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -23,45 +22,32 @@
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="q2n-I7-uk5">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="265" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qOK-Xu-riV">
                                 <rect key="frame" x="0.0" y="132" width="414" height="681"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="KWv-hT-Sue">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5qR-Fi-uEe">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="MQM-Je-vwf">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="qOK-Xu-riV" firstAttribute="bottom" secondItem="aPE-2l-Elo" secondAttribute="bottom" id="3w2-S6-fT8"/>
                             <constraint firstItem="TzI-pn-b6B" firstAttribute="leading" secondItem="aPE-2l-Elo" secondAttribute="leading" id="AUf-Ir-5p8"/>
-                            <constraint firstItem="q2n-I7-uk5" firstAttribute="bottom" secondItem="aPE-2l-Elo" secondAttribute="bottom" id="B8b-fF-Smt"/>
-                            <constraint firstItem="q2n-I7-uk5" firstAttribute="trailing" secondItem="aPE-2l-Elo" secondAttribute="trailing" id="C1G-xZ-Xp4"/>
-                            <constraint firstItem="q2n-I7-uk5" firstAttribute="top" secondItem="TzI-pn-b6B" secondAttribute="bottom" symbolic="YES" id="DdT-FA-kYt"/>
                             <constraint firstItem="TzI-pn-b6B" firstAttribute="trailing" secondItem="aPE-2l-Elo" secondAttribute="trailing" id="In6-TX-RU1"/>
+                            <constraint firstItem="qOK-Xu-riV" firstAttribute="leading" secondItem="aPE-2l-Elo" secondAttribute="leading" id="NLe-jD-r4D"/>
                             <constraint firstItem="TzI-pn-b6B" firstAttribute="top" secondItem="aPE-2l-Elo" secondAttribute="top" id="SXi-l8-Bf1"/>
-                            <constraint firstItem="q2n-I7-uk5" firstAttribute="leading" secondItem="aPE-2l-Elo" secondAttribute="leading" id="ssJ-6s-98r"/>
+                            <constraint firstItem="qOK-Xu-riV" firstAttribute="top" secondItem="TzI-pn-b6B" secondAttribute="bottom" symbolic="YES" id="vu5-qG-bR7"/>
+                            <constraint firstItem="qOK-Xu-riV" firstAttribute="trailing" secondItem="aPE-2l-Elo" secondAttribute="trailing" id="w5G-fK-fyV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aPE-2l-Elo"/>
                     </view>
                     <navigationItem key="navigationItem" id="RyT-5U-GRT"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="movieTableView" destination="qOK-Xu-riV" id="lww-OI-V6j"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4T0-CQ-2Zr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="220" y="1685"/>
+            <point key="canvasLocation" x="218.84057971014494" y="1684.8214285714284"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="fcZ-mb-b1o">

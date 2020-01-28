@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="244" id="KGk-i7-Jjw" customClass="MovieCell" customModule="TheMovieDB_Challenge" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="244"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="244"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VBg-Fw-WSH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="244"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="yearLabel" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xlg-eh-NXA">
+                        <rect key="frame" x="168" y="213" width="142" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="142" id="080-0X-TsT"/>
+                            <constraint firstAttribute="height" constant="21" id="GJ5-Y1-FR8"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6s-tL-8r6">
+                        <rect key="frame" x="16" y="168" width="288" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Ssr-sy-wiK"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="VBg-Fw-WSH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="1xW-ud-E3K"/>
+                    <constraint firstAttribute="bottom" secondItem="VBg-Fw-WSH" secondAttribute="bottom" id="4TZ-vP-INc"/>
+                    <constraint firstItem="A6s-tL-8r6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="D81-JC-OsL"/>
+                    <constraint firstItem="VBg-Fw-WSH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ElP-WU-t0R"/>
+                    <constraint firstAttribute="bottom" secondItem="xlg-eh-NXA" secondAttribute="bottom" constant="10" id="H85-5B-Ruj"/>
+                    <constraint firstAttribute="trailing" secondItem="xlg-eh-NXA" secondAttribute="trailing" constant="10" id="Mx2-67-ZRQ"/>
+                    <constraint firstItem="xlg-eh-NXA" firstAttribute="top" secondItem="A6s-tL-8r6" secondAttribute="bottom" constant="24" id="acx-my-RM0"/>
+                    <constraint firstAttribute="trailing" secondItem="VBg-Fw-WSH" secondAttribute="trailing" id="mhE-LK-Bfm"/>
+                    <constraint firstAttribute="trailing" secondItem="A6s-tL-8r6" secondAttribute="trailing" constant="16" id="smD-Bk-rde"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="movieImageView" destination="VBg-Fw-WSH" id="cyt-rC-QLu"/>
+                <outlet property="movieNameLabel" destination="A6s-tL-8r6" id="3P7-Hz-6be"/>
+                <outlet property="movieYearLabel" destination="xlg-eh-NXA" id="y6A-BS-jxO"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="0.6696428571428571"/>
+        </tableViewCell>
+    </objects>
+</document>

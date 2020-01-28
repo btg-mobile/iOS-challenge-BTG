@@ -11,18 +11,18 @@ import Foundation
 // MARK: - Movie
 struct MovieHeader: Codable {
     let page, totalResults, totalPages: Int?
-    let results: [MovieResults]?
+    let results: [Movie]?
 
     enum CodingKeys: String, CodingKey {
         case page
-        case totalResults
-        case totalPages
+        case totalResults = "total_results"
+        case totalPages = "total_pages"
         case results
     }
 }
 
 // MARK: - Result
-struct MovieResults: Codable {
+struct Movie: Codable {
     let popularity: Double?
     let voteCount: Int?
     let video: Bool?
@@ -39,26 +39,17 @@ struct MovieResults: Codable {
 
     enum CodingKeys: String, CodingKey {
         case popularity
-        case voteCount
+        case voteCount = "vote_count"
         case video
-        case posterPath
+        case posterPath = "poster_path"
         case id, adult
-        case backdropPath
-        case originalLanguage
-        case originalTitle
+        case backdropPath = "backdrop_path"
+        case originalLanguage = "original_language"
+        case originalTitle = "original_title"
         case genreIDS
         case title
-        case voteAverage
+        case voteAverage = "vote_average"
         case overview
-        case releaseDate
+        case releaseDate = "release_date"
     }
 }
-
-//enum OriginalLanguage: String, Codable {
-//    case cn = "cn"
-//    case en = "en"
-//    case ko = "ko"
-//}
-
-
-//typealias MovieArray = [Result]
