@@ -1,0 +1,6 @@
+framework module Pods_TheMovieDB_Challenge {
+  umbrella header "Pods-TheMovieDB-Challenge-umbrella.h"
+
+  export *
+  module * { export * }
+}
