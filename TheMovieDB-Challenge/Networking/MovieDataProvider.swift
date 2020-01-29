@@ -8,6 +8,13 @@
 
 import Foundation
 
+protocol MovieDataProviderDelegate : class {
+
+    func successOnLoading(movies: [Movie]?)
+    func errorOnLoading(error: Error?)
+
+}
+
 fileprivate let BASE_URL = "https://api.themoviedb.org/3/movie/popular?api_key="
 fileprivate let API_KEY = "132dfc8e68a337152fd3e36d63c77677"
 let LANGUAGE = "pt-BR"
@@ -15,11 +22,7 @@ fileprivate let resourceString = "\(BASE_URL)\(API_KEY)&language=\(LANGUAGE)&pag
 
 class MovieDataProvider {
 
-    func getString(){
-        
-        print("\(resourceString) é a url")
-        
-    }
+    weak var delegate : MovieDataProviderDelegate?
     
     enum MovieError: Error{
         case noDataAvailable
@@ -27,8 +30,8 @@ class MovieDataProvider {
     }
     
     func getPopularMovies (completion: @escaping(Result<[Movie], MovieError>) -> Void) {
-
-        guard let resourceURL = URL(string: resourceString) else {fatalError("Problema ao obter os dados da API")}
+    
+        guard let resourceURL = URL(string: resourceString) else {fatalError("Problema ao obter os dados")}
         
         let dataTask = URLSession.shared.dataTask(with: resourceURL) { (data, res, err) in
             
@@ -36,22 +39,24 @@ class MovieDataProvider {
                 completion(.failure(.noDataAvailable))
                 return
             }
-
+            
             do {
                 let decoder = JSONDecoder()
                 let movieHeader = try decoder.decode(MovieHeader.self, from: jsonData)
                 if let movieResults = movieHeader.results {
+                    self.delegate?.successOnLoading(movies: movieResults)
+                    completion(.success(movieResults))
                 
-                completion(.success(movieResults))
                 }
             }catch{
+                self.delegate?.errorOnLoading(error: error)
                 completion(.failure(.canNotProccessData))
             }
-
+            
         }
 
         dataTask.resume()
-
+        
     }
     
 }

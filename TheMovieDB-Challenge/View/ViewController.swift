@@ -9,41 +9,44 @@
 import UIKit
 
 class ViewController: UIViewController {
+
+    var controller : MovieController?
     
-    var dataProvider : MovieDataProvider = MovieDataProvider()
-    var moviesArray : [Movie]?
-    
+    @IBOutlet weak var movieSearchBar: UISearchBar!
     @IBOutlet weak var movieTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        movieSearchBar.searchTextField.backgroundColor = .white
+        
+        //Delegate and protocols
+        self.controller = MovieController()
+        self.controller?.delegate = self
+        self.controller?.loadMovies()
         
         //CV DELEGATE AND DATASOURCE
         self.movieTableView.delegate = self
         self.movieTableView.dataSource = self
         
-        self.dataProvider.getPopularMovies { result in
+        //REGISTER CELL
+        self.movieTableView.register(UINib(nibName: "MovieCell", bundle: nil), forCellReuseIdentifier: "MovieCell")
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "goToDetails" {
             
-            switch result {
-            case .failure (let error):
-                print(error)
-            case .success(let movies):
+            if let vc: DetailsViewController = segue.destination as? DetailsViewController {
                 
-                self.moviesArray = movies
-                
-                print("\(self.moviesArray?.count ?? 0) registros obtidos da API")
-                
-                DispatchQueue.main.async {
-                    self.movieTableView.reloadData()
+                if let indexPath = movieTableView.indexPathForSelectedRow {
+                    vc.movie = self.controller?.loadMovieWithIndexPath(indexPath: indexPath)
                 }
                 
             }
             
         }
-        
-        //REGISTER CELL
-        self.movieTableView.register(UINib(nibName: "MovieCell", bundle: nil), forCellReuseIdentifier: "MovieCell")
         
     }
     
@@ -52,15 +55,14 @@ class ViewController: UIViewController {
 extension ViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.moviesArray?.count ?? 0
+        return self.controller?.numberOfRows() ?? 0
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell : MovieCell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         
-        cell.setupCell(movie: (self.moviesArray?[indexPath.row])!)
+        cell.setupCell(movie: (self.controller?.loadMovieWithIndexPath(indexPath: indexPath))!)
         
         return cell
         
@@ -68,12 +70,75 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        print(self.moviesArray?[indexPath.row].id ?? "")
-        print("https://image.tmdb.org/t/p/w500/\(self.moviesArray?[indexPath.row].backdropPath)")
-        print("===")
-        print(self.moviesArray?[indexPath.row].title ?? "")
-        print(self.moviesArray?[indexPath.row].overview ?? "")
+        self.performSegue(withIdentifier: "goToDetails", sender: self)
         
     }
     
 }
+
+//MARK: - UISearchBar Delegate methods
+
+extension ViewController : UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        if searchBar.text?.count == 0 {
+
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+                self.controller?.updateArray()
+                self.movieTableView.reloadData()
+            }
+            
+        }
+
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchBar.text?.count == 0 {
+
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+                self.controller?.updateArray()
+                self.movieTableView.reloadData()
+            }
+            
+        }
+        else {
+            
+            self.controller?.searchByValue(searchText: searchText)
+            
+            self.movieTableView.reloadData()
+        }
+        
+    }
+    
+}
+
+extension ViewController : MovieControllerDelegate {
+    
+    func successOnLoading() {
+        
+        DispatchQueue.main.async {
+            self.movieTableView.reloadData()
+        }
+        
+    }
+    
+    func errorOnLoading(error: Error?) {
+        
+        if !error!.localizedDescription.isEmpty {
+        print("Problema ao carregar os dados de Filmes")
+        
+            let alerta = UIAlertController(title: "Erro", message: "Problema ao carregar os dados de Filmes", preferredStyle: .alert)
+            let btnOk = UIAlertAction(title: "Ok", style: .destructive, handler: nil)
+        
+            alerta.addAction(btnOk)
+            
+            self.present(alerta, animated: true)
+        }
+    }
+    
+}
+
