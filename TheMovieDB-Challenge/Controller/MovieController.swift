@@ -7,31 +7,36 @@
 //
 
 import Foundation
+import RealmSwift
 
 protocol MovieControllerDelegate : class {
-
+    
     func successOnLoading()
     func errorOnLoading(error: Error?)
-
+    
 }
 
 class MovieController {
+    
+    let realm = try! Realm()
     
     weak var delegate: MovieControllerDelegate?
     
     private var moviesArray : [Movie] = []
     private var notFilteredArray : [Movie] = []
+    //Array de Favoritos
+    private var favoriteMoviesArray : [Movie] = []
     
     var provider: MovieDataProvider?
     
-   private func setupController(){
+    private func setupController(){
         self.provider = MovieDataProvider()
         self.provider?.delegate = self
         
     }
     
     func loadMovies(){
-
+        
         self.setupController()
         
         self.provider?.getPopularMovies { result in
@@ -77,6 +82,67 @@ class MovieController {
     func updateArray(){
         self.moviesArray = self.notFilteredArray
     }
+    
+    //MARK: - Functions for DetailsVC
+    
+    func saveFavoriteMovie(movie: Movie?){
+        
+        if let selectedMovie = movie {
+            let favorite = FavoriteMovie()
+            favorite.title = selectedMovie.title!
+            favorite.releaseDate = selectedMovie.releaseDate!
+            favorite.overview = selectedMovie.overview!
+            favorite.posterPath = selectedMovie.posterPath!
+            favorite.voteAverage = selectedMovie.voteAverage!
+            //favorite.genreIDS = selectedMovie.genreIDS!
+        
+        
+        do {
+            try realm.write {
+                realm.add(favorite)
+                print("Dados salvos no Realm com sucesso")
+            }
+        } catch {
+            print("Erro ao salvar no Realm \(error)")
+        }
+        
+        }
+            
+    }
+    
+    func loadFavoriteMovies(){
+        
+        var tempFavoriteMovieArray : Results<FavoriteMovie>!
+        //var newFavoriteMovieArray
+            
+        tempFavoriteMovieArray = realm.objects(FavoriteMovie.self)
+        
+        for array in tempFavoriteMovieArray {
+            
+            print(array.title)
+            
+        }
+        
+        
+    }
+    
+    //    func removeFavoriteMovie(index: Int){
+    //
+    //
+    //
+    //    }
+    
+    //    func numberOfRowsForFavorites() -> Int{
+    //
+    //
+    //
+    //    }
+    //
+    //    func loadMovieWithIndexPathForFavorites(indexPath: IndexPath ) -> Movie {
+    //
+    //
+    //    }
+    
     
 }
 

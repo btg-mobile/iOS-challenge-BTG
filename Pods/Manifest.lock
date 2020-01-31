@@ -1,22 +1,28 @@
 PODS:
-  - lottie-ios (3.1.5)
+  - Realm (4.3.0):
+    - Realm/Headers (= 4.3.0)
+  - Realm/Headers (4.3.0)
+  - RealmSwift (4.3.0):
+    - Realm (= 4.3.0)
   - SDWebImage (5.4.0):
     - SDWebImage/Core (= 5.4.0)
   - SDWebImage/Core (5.4.0)
 
 DEPENDENCIES:
-  - lottie-ios
+  - RealmSwift
   - SDWebImage (~> 5.0)
 
 SPEC REPOS:
   trunk:
-    - lottie-ios
+    - Realm
+    - RealmSwift
     - SDWebImage
 
 SPEC CHECKSUMS:
-  lottie-ios: 32bf84389337d86fbc8b12266e88452e0abf1dee
+  Realm: 9357c3589555793e1860a7104a7412bca4a48d99
+  RealmSwift: 402f1e379a8ef82c635313037b043f0f06de880c
   SDWebImage: 5bf6aec6481ae2a062bdc59f9d6c1d1e552090e0
 
-PODFILE CHECKSUM: 68c6f59f3e914df75021bcb851473c4f54cbee5c
+PODFILE CHECKSUM: d3d4e37efa824337006f3c6458a8ae444dee70d6
 
 COCOAPODS: 1.8.4

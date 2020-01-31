@@ -19,19 +19,15 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VBg-Fw-WSH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="244"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="yearLabel" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xlg-eh-NXA">
-                        <rect key="frame" x="168" y="213" width="142" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="142" id="080-0X-TsT"/>
-                            <constraint firstAttribute="height" constant="21" id="GJ5-Y1-FR8"/>
-                        </constraints>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="yearLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xlg-eh-NXA">
+                        <rect key="frame" x="16" y="213" width="294" height="21"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                         <color key="shadowColor" white="0.0" alpha="0.85124143839999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A6s-tL-8r6">
-                        <rect key="frame" x="16" y="187" width="288" height="30"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nameLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A6s-tL-8r6">
+                        <rect key="frame" x="16" y="178" width="288" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="Ssr-sy-wiK"/>
                         </constraints>
@@ -44,12 +40,13 @@
                 <constraints>
                     <constraint firstItem="VBg-Fw-WSH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="1xW-ud-E3K"/>
                     <constraint firstAttribute="bottom" secondItem="VBg-Fw-WSH" secondAttribute="bottom" id="4TZ-vP-INc"/>
+                    <constraint firstItem="xlg-eh-NXA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="83E-6x-zNy"/>
                     <constraint firstItem="A6s-tL-8r6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="D81-JC-OsL"/>
                     <constraint firstItem="VBg-Fw-WSH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ElP-WU-t0R"/>
-                    <constraint firstAttribute="bottom" secondItem="xlg-eh-NXA" secondAttribute="bottom" constant="10" id="H85-5B-Ruj"/>
-                    <constraint firstAttribute="trailing" secondItem="xlg-eh-NXA" secondAttribute="trailing" constant="10" id="Mx2-67-ZRQ"/>
-                    <constraint firstItem="xlg-eh-NXA" firstAttribute="top" secondItem="A6s-tL-8r6" secondAttribute="bottom" constant="-4" id="acx-my-RM0"/>
+                    <constraint firstItem="xlg-eh-NXA" firstAttribute="top" secondItem="A6s-tL-8r6" secondAttribute="bottom" constant="5" id="cI3-Bs-P8I"/>
+                    <constraint firstAttribute="trailing" secondItem="xlg-eh-NXA" secondAttribute="trailing" constant="10" id="hmw-WL-lH5"/>
                     <constraint firstAttribute="trailing" secondItem="VBg-Fw-WSH" secondAttribute="trailing" id="mhE-LK-Bfm"/>
+                    <constraint firstAttribute="bottom" secondItem="xlg-eh-NXA" secondAttribute="bottom" constant="10" id="nwj-hR-Slg"/>
                     <constraint firstAttribute="trailing" secondItem="A6s-tL-8r6" secondAttribute="trailing" constant="16" id="smD-Bk-rde"/>
                 </constraints>
             </tableViewCellContentView>

@@ -8,5 +8,6 @@ target 'TheMovieDB-Challenge' do
   # Pods for TheMovieDB-Challenge
 
   pod 'SDWebImage', '~> 5.0'
+  pod 'RealmSwift'
   
 end

@@ -59,4 +59,34 @@ class MovieDataProvider {
         
     }
     
+//    func getGenreIds(completion: @escaping(Result<[Genre], MovieError>) -> Void){
+//
+//        let resourceStr = "https://api.themoviedb.org/3/genre/movie/list?api_key=132dfc8e68a337152fd3e36d63c77677&language=pt-BR"
+//
+//        guard let resourceURL = URL(string: resourceStr) else {fatalError("Problema ao obter os Generos")}
+//
+//        let dataTask = URLSession.shared.dataTask(with: resourceURL) { (data, res, err) in
+//
+//            guard let jsonData = data else {
+//                completion(.failure(.noDataAvailable))
+//                return
+//            }
+//
+//            do {
+//                let decoder = JSONDecoder()
+//                let genres = try decoder.decode(Genre.self, from: jsonData)
+////                if let results = genres.genres {
+//                    //self.delegate?.successOnLoading(movies: movieResults)
+//                    completion(.success(results))
+//
+//                }
+//            }catch{
+//                //self.delegate?.errorOnLoading(error: error)
+//            }
+//
+//        }
+
+//        dataTask.resume()
+    
+    
 }

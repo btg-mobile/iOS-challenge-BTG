@@ -9,16 +9,18 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     var controller : MovieController?
     
+    var refreshControl: UIRefreshControl?
     @IBOutlet weak var movieSearchBar: UISearchBar!
     @IBOutlet weak var movieTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         movieSearchBar.searchTextField.backgroundColor = .white
+        self.addRefreshingControl()
         
         //Delegate and protocols
         self.controller = MovieController()
@@ -49,6 +51,25 @@ class ViewController: UIViewController {
         }
         
     }
+    
+    func addRefreshingControl(){
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.tintColor = .green
+        self.refreshControl?.addTarget(self, action: #selector(refreshList), for: .valueChanged)
+        self.movieTableView.addSubview(refreshControl!)
+        
+        
+    }
+    
+    @objc func refreshList() {
+        
+        self.refreshControl?.endRefreshing()
+        self.controller?.loadMovies()
+        self.movieTableView.reloadData()
+        
+    }
+    
     
 }
 
@@ -83,7 +104,7 @@ extension ViewController : UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         if searchBar.text?.count == 0 {
-
+            
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
                 self.controller?.updateArray()
@@ -91,13 +112,13 @@ extension ViewController : UISearchBarDelegate {
             }
             
         }
-
+        
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         if searchBar.text?.count == 0 {
-
+            
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
                 self.controller?.updateArray()
@@ -129,11 +150,11 @@ extension ViewController : MovieControllerDelegate {
     func errorOnLoading(error: Error?) {
         
         if !error!.localizedDescription.isEmpty {
-        print("Problema ao carregar os dados de Filmes")
-        
+            print("Problema ao carregar os dados de Filmes")
+            
             let alerta = UIAlertController(title: "Erro", message: "Problema ao carregar os dados de Filmes", preferredStyle: .alert)
             let btnOk = UIAlertAction(title: "Ok", style: .destructive, handler: nil)
-        
+            
             alerta.addAction(btnOk)
             
             self.present(alerta, animated: true)
