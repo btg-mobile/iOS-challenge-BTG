@@ -19,8 +19,10 @@ class FavoritesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.controller = MovieController()
+        controller?.loadFavoriteMovies()
+        
         // Do any additional setup after loading the view.
         favoritesSearchBar.searchTextField.backgroundColor = .white
         self.addRefreshingControl()
@@ -35,20 +37,19 @@ class FavoritesViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        controller?.loadFavoriteMovies()
-        print("passei")
+        print("passei pelo viewWillAppear")
+        self.controller?.loadFavoriteMovies()
         self.favoritesTableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "goToDetails" {
+        if segue.identifier == "goToDetailsOfFav" {
             
             if let vc: DetailsViewController = segue.destination as? DetailsViewController {
                 
                 if let indexPath = favoritesTableView.indexPathForSelectedRow {
-                    vc.movie = self.controller?.loadMovieWithIndexPath(indexPath: indexPath)
+                    vc.movie = self.controller?.loadMovieWithIndexPath(indexPath: indexPath, favorite: true)
                 }
                 
             }
@@ -68,9 +69,9 @@ class FavoritesViewController: UIViewController {
     }
     
     @objc func refreshList() {
-        
+        print("Pull to refresh")
         self.refreshControl?.endRefreshing()
-        self.controller?.loadMovies()
+        self.controller?.loadFavoriteMovies()
         self.favoritesTableView.reloadData()
         
     }
@@ -80,15 +81,15 @@ class FavoritesViewController: UIViewController {
 extension FavoritesViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return self.controller?.numberOfRowsForFavorites() ?? 0
-        return 0
+        return self.controller?.numberOfRowsForFavorites() ?? 0
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell : MovieCell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         
-//        cell.setupCell(movie: (self.controller?.loadMovieWithIndexPathForFavorites(indexPath: indexPath))!)
+        cell.setupCell(movie: (self.controller?.loadMovieWithIndexPathForFavorites(indexPath: indexPath))!)
         
         return cell
         
@@ -96,7 +97,7 @@ extension FavoritesViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        self.performSegue(withIdentifier: "goToDetails", sender: self)
+        self.performSegue(withIdentifier: "goToDetailsOfFav", sender: self)
         
     }
     

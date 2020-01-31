@@ -23,19 +23,19 @@ struct MovieHeader: Codable {
 
 // MARK: - Result
 struct Movie: Codable {
-    let popularity: Double?
-    let voteCount: Int?
-    let video: Bool?
-    let posterPath: String?
-    let id: Int?
-    let adult: Bool?
-    let backdropPath: String?
-    let originalLanguage: String?
-    let originalTitle: String?
-    let genreIDS: [Int]?
-    let title: String?
-    let voteAverage: Double?
-    let overview, releaseDate: String?
+    var popularity: Double?
+    var voteCount: Int?
+    var video: Bool?
+    var posterPath: String?
+    var id: Int?
+    var adult: Bool?
+    var backdropPath: String?
+    var originalLanguage: String?
+    var originalTitle: String?
+    var genreIDS: [Int]?
+    var title: String?
+    var voteAverage: Double?
+    var overview, releaseDate: String?
 
     enum CodingKeys: String, CodingKey {
         case popularity

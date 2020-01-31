@@ -63,9 +63,16 @@ class MovieController {
         
     }
     
-    func loadMovieWithIndexPath(indexPath: IndexPath ) -> Movie {
-        return (self.moviesArray[indexPath.row])
+    func loadMovieWithIndexPath(indexPath: IndexPath, favorite: Bool ) -> Movie {
+        if !favorite {
+            return (self.moviesArray[indexPath.row])
+        }
+        else{
+            return (self.favoriteMoviesArray[indexPath.row])
+        }
+        
     }
+    
     
     func searchByValue(searchText: String){
         guard !searchText.isEmpty else {
@@ -93,55 +100,109 @@ class MovieController {
             favorite.releaseDate = selectedMovie.releaseDate!
             favorite.overview = selectedMovie.overview!
             favorite.posterPath = selectedMovie.posterPath!
+            favorite.backdropPath = selectedMovie.backdropPath!
             favorite.voteAverage = selectedMovie.voteAverage!
-            //favorite.genreIDS = selectedMovie.genreIDS!
-        
-        
-        do {
-            try realm.write {
-                realm.add(favorite)
-                print("Dados salvos no Realm com sucesso")
-            }
-        } catch {
-            print("Erro ao salvar no Realm \(error)")
-        }
-        
-        }
             
+            //favorite.genreIDS = selectedMovie.genreIDS!
+            
+            favorite.popularity = selectedMovie.popularity!
+            favorite.voteCount = selectedMovie.voteCount!
+            favorite.video = selectedMovie.video!
+            favorite.id = selectedMovie.id!
+            favorite.adult = selectedMovie.adult!
+            favorite.originalLanguage = selectedMovie.originalLanguage!
+            favorite.originalTitle = selectedMovie.originalTitle!
+            
+            do {
+                try realm.write {
+                    realm.add(favorite)
+                    print("Dados salvos no Realm com sucesso")
+                }
+            } catch {
+                print("Erro ao salvar no Realm \(error)")
+            }
+            
+        }
+        
     }
     
     func loadFavoriteMovies(){
         
-        var tempFavoriteMovieArray : Results<FavoriteMovie>!
-        //var newFavoriteMovieArray
-            
+        self.favoriteMoviesArray.removeAll()
+        //Realm Array
+        var tempFavoriteMovieArray : Results<FavoriteMovie>?
         tempFavoriteMovieArray = realm.objects(FavoriteMovie.self)
         
-        for array in tempFavoriteMovieArray {
+        if let array = tempFavoriteMovieArray {
             
-            print(array.title)
-            
+            for i in array {
+                
+                let title = i.title
+                let backdropPath = i.backdropPath
+                let overview = i.overview
+                let voteAverage = i.voteAverage
+                let genreIDS = [1,2,3]
+                
+                let popularity = i.popularity
+                let voteCount = i.voteCount
+                let video = i.video
+                let posterPath = i.posterPath
+                let id = i.id
+                let adult = i.adult
+                let originalLanguage = i.originalLanguage
+                let originalTitle = i.originalTitle
+                let releaseDate = i.releaseDate
+                
+                let movie : Movie? = Movie(popularity: popularity, voteCount: voteCount, video: video, posterPath: posterPath, id: id, adult: adult, backdropPath: backdropPath, originalLanguage: originalLanguage, originalTitle: originalTitle, genreIDS: genreIDS, title: title, voteAverage: voteAverage, overview: overview, releaseDate: releaseDate)
+                
+                self.favoriteMoviesArray.append(movie!)//Aqui o filme existirá de qqr forma passou do if let
+                
+                
+            }
+            print("\(favoriteMoviesArray.count) registros no array Favoritos")
         }
         
         
     }
     
-    //    func removeFavoriteMovie(index: Int){
-    //
-    //
-    //
-    //    }
+    //MARK:- VERIFICA SE JA É FAVORITO
+    func isFavorite(id: Int) -> Bool {
+        
+        let check = realm.objects(FavoriteMovie.self).filter("id = \(id)")
+        if check.count != 0 {
+            return true
+        }
+        
+        return false
+        
+    }
     
-    //    func numberOfRowsForFavorites() -> Int{
-    //
-    //
-    //
-    //    }
-    //
-    //    func loadMovieWithIndexPathForFavorites(indexPath: IndexPath ) -> Movie {
-    //
-    //
-    //    }
+    func removeFavoriteMovie(id: Int){
+        
+        let check = realm.objects(FavoriteMovie.self).filter("id = \(id)")
+        
+        do{
+            try realm.write {
+                realm.delete(check)
+            }
+        }
+        catch{
+            print("Erro ao remover registro : \(error)")
+        }
+        
+    }
+    
+    func numberOfRowsForFavorites() -> Int{
+        
+        return self.favoriteMoviesArray.count
+        
+    }
+    
+    func loadMovieWithIndexPathForFavorites(indexPath: IndexPath ) -> Movie {
+        
+        return self.favoriteMoviesArray[indexPath.row]
+        
+    }
     
     
 }

@@ -53,7 +53,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4T0-CQ-2Zr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="218.84057971014494" y="1684.8214285714284"/>
+            <point key="canvasLocation" x="-251" y="1685"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="lcA-ag-KTU">
@@ -105,7 +105,7 @@
                                                     <constraint firstAttribute="width" constant="50" id="B9x-sc-6y5"/>
                                                     <constraint firstAttribute="height" constant="50" id="UeR-bR-vHU"/>
                                                 </constraints>
-                                                <state key="normal" image="heart" catalog="system">
+                                                <state key="normal" image="emptyHeart_icon">
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
                                                 </state>
                                                 <connections>
@@ -176,7 +176,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kcf-rw-zBm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1057.9710144927537" y="1684.8214285714284"/>
+            <point key="canvasLocation" x="1090" y="1685"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="bb9-mB-xH1">
@@ -283,17 +283,22 @@
                     <connections>
                         <outlet property="favoritesSearchBar" destination="dmd-Ex-Qby" id="XlT-yO-OFq"/>
                         <outlet property="favoritesTableView" destination="vmB-jn-C0z" id="EXu-WB-rdZ"/>
+                        <segue destination="Dtf-ND-H8k" kind="show" identifier="goToDetailsOfFav" id="VcB-qW-rDt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cse-Yf-SnW" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2439" y="919"/>
+            <point key="canvasLocation" x="2464" y="1685"/>
         </scene>
     </scenes>
     <resources>
+        <image name="emptyHeart_icon" width="22" height="21"/>
         <image name="heart" catalog="system" width="64" height="54"/>
         <image name="heart.fill" catalog="system" width="64" height="54"/>
         <image name="list.bullet" catalog="system" width="64" height="44"/>
         <image name="list.dash" catalog="system" width="64" height="42"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Ajz-IH-p8G"/>
+    </inferredMetricsTieBreakers>
 </document>

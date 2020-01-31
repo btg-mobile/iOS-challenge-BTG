@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+import RealmSwift
 
 class DetailsViewController: UIViewController {
     
@@ -21,12 +22,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var movieGenre: UILabel!
     @IBOutlet weak var btnFavorite: UIButton!
     
-    var movie : Movie? {
-        
-        didSet{
-            print("didset")
-        }
-    }
+    var movie : Movie?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +33,27 @@ class DetailsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    func checkFavoriteStatus(movie: Movie) -> Bool {
+        
+        //if movie.
+        return false
+    }
+    
+    func setFavButtonStatus(){
+        if let resp = self.controller?.isFavorite(id: movie?.id ?? 0) {
+            
+            if resp == true {
+                self.btnFavorite.setImage(#imageLiteral(resourceName: "filledHeart_icon") , for: .normal)
+            }
+            else{
+                self.btnFavorite.setImage(#imageLiteral(resourceName: "emptyHeart_icon") , for: .normal)
+            }
+        }
+    }
+    
     func loadMovie(){
+        
+        self.setFavButtonStatus()
         
         if let urlString = self.movie?.posterPath {
             self.moviePhoto.sd_setImage(with: URL(string: ("\(self.BASE_IMG_URL)\(urlString)")), placeholderImage: UIImage(named: "placeholder"))
@@ -58,35 +74,46 @@ class DetailsViewController: UIViewController {
         
     }
     
-    
     @IBAction func btnFavoriteTapped(_ sender: UIButton) {
         
-        //quanto o usuario favoritar, fazer o append em array de favoritos
+        //verifica status fav / percorre o array e verifica se existe
         
-        let alerta = UIAlertController(title: "Salvo", message: "Filme \(self.movie?.title ?? "") salvo nos favoritos.", preferredStyle: .alert)
-        let btnOk = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        if (self.controller?.isFavorite(id: self.movie?.id ?? 0))! {
+            
+            let alerta = UIAlertController(title: "Aviso", message: "Filme removido dos favoritos.", preferredStyle: .alert)
+            let btnOk = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            
+            alerta.addAction(btnOk)
+            
+            self.present(alerta, animated: true)
+            
+            if let removeId = self.movie?.id {
+                
+                self.controller?.removeFavoriteMovie(id: removeId)
+                
+            }
+            
+            self.setFavButtonStatus()
+            
+        }
+        else {
+            
+            let alerta = UIAlertController(title: "Salvo", message: "Filme \(self.movie?.title ?? "") salvo nos favoritos.", preferredStyle: .alert)
+            let btnOk = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            
+            alerta.addAction(btnOk)
+            
+            self.present(alerta, animated: true)
+        
+            if let selectedMovie = self.movie {
+                self.controller?.saveFavoriteMovie(movie: selectedMovie)
+            }
          
-         alerta.addAction(btnOk)
-         
-         self.present(alerta, animated: true)
-        
-        var favorite : Bool
-        
-        if let selectedMovie = self.movie {
-            self.controller?.saveFavoriteMovie(movie: selectedMovie)
+            self.setFavButtonStatus()
+            
         }
         
-        
-        //        if favorite {
-        //
-        //        }
-        
-        //    let result = favorite ? print("true") : print("false")
-        
-        
     }
-    
-    
     
 }
 

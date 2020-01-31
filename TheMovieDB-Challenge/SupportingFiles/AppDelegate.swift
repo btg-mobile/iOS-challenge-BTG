@@ -16,20 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        print(Realm.Configuration.defaultConfiguration.fileURL)
-        
-//        let favorite = FavoriteMovie()
-//        favorite.title = "Filme Teste"
-//        favorite.releaseDate = "2010"
-//        
-//        do {
-//            let realm = try Realm()
-//            try realm.write {
-//                realm.add(favorite)
-//            }
-//        } catch {
-//            print("Error initialising new realm, \(error)")
-//        }
+        print(Realm.Configuration.defaultConfiguration.fileURL ?? "")
         
         return true
     }

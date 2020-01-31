@@ -43,7 +43,7 @@ class ViewController: UIViewController {
             if let vc: DetailsViewController = segue.destination as? DetailsViewController {
                 
                 if let indexPath = movieTableView.indexPathForSelectedRow {
-                    vc.movie = self.controller?.loadMovieWithIndexPath(indexPath: indexPath)
+                    vc.movie = self.controller?.loadMovieWithIndexPath(indexPath: indexPath, favorite: false)
                 }
                 
             }
@@ -83,7 +83,7 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
         
         let cell : MovieCell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         
-        cell.setupCell(movie: (self.controller?.loadMovieWithIndexPath(indexPath: indexPath))!)
+        cell.setupCell(movie: (self.controller?.loadMovieWithIndexPath(indexPath: indexPath, favorite: false))!)
         
         return cell
         
