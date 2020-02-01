@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rZU-1W-wi7">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Filmes-->
+        <scene sceneID="vNk-zk-9nV">
+            <objects>
+                <navigationController title="Filmes" interfaceStyle="dark" id="rZU-1W-wi7" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aK5-sT-KmU">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="primary-dark"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" name="accent"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="rEp-v7-gge" kind="relationship" relationship="rootViewController" id="ayY-RF-SsZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qjd-SX-NVU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1001" y="-55"/>
+        </scene>
+        <!--The Movie DB-->
+        <scene sceneID="dCf-W6-OJp">
+            <objects>
+                <viewController storyboardIdentifier="MoviesViewController" title="The Movie DB" interfaceStyle="dark" id="rEp-v7-gge" customClass="MoviesViewController" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Aeh-4v-qog">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" indicatorStyle="black" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="H9z-T4-dof">
+                                <rect key="frame" x="0.0" y="88" width="414" height="718"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                <color key="separatorColor" name="accent"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="rEp-v7-gge" id="IMc-LK-UCg"/>
+                                    <outlet property="delegate" destination="rEp-v7-gge" id="BMh-wp-gJf"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tBS-Yx-tB4">
+                                <rect key="frame" x="0.0" y="806" width="414" height="56"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hik-KP-BhB">
+                                        <rect key="frame" x="16" y="4" width="41" height="48"/>
+                                        <state key="normal" title="Voltar">
+                                            <color key="titleColor" name="primary"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="backButtonPressed:" destination="rEp-v7-gge" eventType="touchUpInside" id="Ev6-FA-ckO"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mCH-pe-h2p">
+                                        <rect key="frame" x="343" y="4" width="55" height="48"/>
+                                        <state key="normal" title="Próxima">
+                                            <color key="titleColor" name="primary"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="nextButtonPressed:" destination="rEp-v7-gge" eventType="touchUpInside" id="SLi-oU-6sJ"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 - 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uml-9t-l0s">
+                                        <rect key="frame" x="188.5" y="17.5" width="37.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" name="primary"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="accent"/>
+                                <constraints>
+                                    <constraint firstItem="Hik-KP-BhB" firstAttribute="top" secondItem="tBS-Yx-tB4" secondAttribute="top" constant="4" id="3QX-Qi-5mU"/>
+                                    <constraint firstAttribute="trailing" secondItem="mCH-pe-h2p" secondAttribute="trailing" constant="16" id="BYF-vy-P3z"/>
+                                    <constraint firstAttribute="bottom" secondItem="mCH-pe-h2p" secondAttribute="bottom" constant="4" id="DCr-QW-QUu"/>
+                                    <constraint firstItem="mCH-pe-h2p" firstAttribute="top" secondItem="tBS-Yx-tB4" secondAttribute="top" constant="4" id="L20-82-GKZ"/>
+                                    <constraint firstItem="uml-9t-l0s" firstAttribute="centerY" secondItem="tBS-Yx-tB4" secondAttribute="centerY" id="fSZ-Pg-ppS"/>
+                                    <constraint firstItem="uml-9t-l0s" firstAttribute="centerX" secondItem="tBS-Yx-tB4" secondAttribute="centerX" id="ix7-MS-RXC"/>
+                                    <constraint firstAttribute="height" constant="56" id="jVp-Fs-VFj"/>
+                                    <constraint firstItem="Hik-KP-BhB" firstAttribute="leading" secondItem="tBS-Yx-tB4" secondAttribute="leading" constant="16" id="qxM-nb-kzn"/>
+                                    <constraint firstAttribute="bottom" secondItem="Hik-KP-BhB" secondAttribute="bottom" constant="4" id="vVI-xc-kga"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="OYY-ts-gsi" firstAttribute="bottom" secondItem="tBS-Yx-tB4" secondAttribute="bottom" id="BTD-Nx-Flb"/>
+                            <constraint firstItem="OYY-ts-gsi" firstAttribute="trailing" secondItem="H9z-T4-dof" secondAttribute="trailing" id="MFl-nh-F2b"/>
+                            <constraint firstItem="tBS-Yx-tB4" firstAttribute="leading" secondItem="OYY-ts-gsi" secondAttribute="leading" id="Ucj-xl-ywv"/>
+                            <constraint firstItem="H9z-T4-dof" firstAttribute="leading" secondItem="OYY-ts-gsi" secondAttribute="leading" id="bKU-0n-c5r"/>
+                            <constraint firstItem="tBS-Yx-tB4" firstAttribute="top" secondItem="H9z-T4-dof" secondAttribute="bottom" id="fAP-ng-5Sb"/>
+                            <constraint firstItem="H9z-T4-dof" firstAttribute="top" secondItem="OYY-ts-gsi" secondAttribute="top" id="h0G-Fc-sM3"/>
+                            <constraint firstItem="tBS-Yx-tB4" firstAttribute="trailing" secondItem="OYY-ts-gsi" secondAttribute="trailing" id="suu-C9-DsH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="OYY-ts-gsi"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ErB-uW-tkC">
+                        <barButtonItem key="backBarButtonItem" title=" " id="0Fx-ng-auj"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="backButton" destination="Hik-KP-BhB" id="gds-wo-35s"/>
+                        <outlet property="moviesTableView" destination="H9z-T4-dof" id="Z5K-AO-mAd"/>
+                        <outlet property="nextButton" destination="mCH-pe-h2p" id="c90-Jf-3CB"/>
+                        <outlet property="pageLabel" destination="uml-9t-l0s" id="F33-qS-Y7Z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yL0-gZ-jyH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-94.20289855072464" y="-56.25"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="accent">
+            <color red="0.0039215686274509803" green="0.82352941176470584" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="accent">
+            <color red="0.0039215686274509803" green="0.82352941176470584" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="primary">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="primary-dark">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+    </resources>
+</document>
