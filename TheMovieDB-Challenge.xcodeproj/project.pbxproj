@@ -133,8 +133,8 @@
 		BC366B7D23E0A049009ABFD6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BC366B7E23E0A063009ABFD6 /* Movie.swift */,
 				BC94C7F523E2AF5C00E225E1 /* Genre.swift */,
+				BC366B7E23E0A063009ABFD6 /* Movie.swift */,
 				BC7EC0D223E3911900B06B0D /* FavoriteMovie.swift */,
 			);
 			path = Model;

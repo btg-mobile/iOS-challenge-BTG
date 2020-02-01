@@ -22,7 +22,11 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var movieGenre: UILabel!
     @IBOutlet weak var btnFavorite: UIButton!
     
-    var movie : Movie?
+    var movie : Movie? {
+        didSet{
+            //
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,13 +34,8 @@ class DetailsViewController: UIViewController {
         self.controller = MovieController()
         
         self.loadMovie()
+//        self.movieGenre.text = "Genero: \(self.controller?.setGenres(ids: movie!.genreIDS ?? [], favorite: false) ?? "")"
         // Do any additional setup after loading the view.
-    }
-    
-    func checkFavoriteStatus(movie: Movie) -> Bool {
-        
-        //if movie.
-        return false
     }
     
     func setFavButtonStatus(){
@@ -64,7 +63,7 @@ class DetailsViewController: UIViewController {
         self.movieName.text = movie?.title
         self.moviePlot.text = movie?.overview
         self.movieRating.text = movie?.voteAverage?.toStringWithStar()
-        self.movieGenre.text = "Generos "//String(movie?.genreIDS?.count)
+        //self.movieGenre.text = "Genero: \(self.controller?.setGenres(ids: movie!.genreIDS ?? [], favorite: false) ?? "")"
         
     }
     

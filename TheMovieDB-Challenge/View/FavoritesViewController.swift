@@ -16,7 +16,6 @@ class FavoritesViewController: UIViewController {
     @IBOutlet weak var favoritesTableView: UITableView!
     @IBOutlet weak var favoritesSearchBar: UISearchBar!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -114,7 +113,7 @@ extension FavoritesViewController : UISearchBarDelegate {
             
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
-                //self.controller?.updateArray()
+                self.controller?.updateFavoriteArray()
                 self.favoritesTableView.reloadData()
             }
             
@@ -128,14 +127,14 @@ extension FavoritesViewController : UISearchBarDelegate {
             
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
-                //self.controller?.updateArray()
+                self.controller?.updateFavoriteArray()
                 self.favoritesTableView.reloadData()
             }
             
         }
         else {
             
-            //self.controller?.searchByValue(searchText: searchText)
+            self.controller?.searchFavoriteByValue(searchText: searchText)
             
             self.favoritesTableView.reloadData()
         }

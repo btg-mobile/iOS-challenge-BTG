@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         movieSearchBar.searchTextField.backgroundColor = .white
         self.addRefreshingControl()
         
@@ -150,15 +151,22 @@ extension ViewController : MovieControllerDelegate {
     func errorOnLoading(error: Error?) {
         
         if !error!.localizedDescription.isEmpty {
-            print("Problema ao carregar os dados de Filmes")
             
-            let alerta = UIAlertController(title: "Erro", message: "Problema ao carregar os dados de Filmes", preferredStyle: .alert)
-            let btnOk = UIAlertAction(title: "Ok", style: .destructive, handler: nil)
+            DispatchQueue.main.async {
+                
+                print("Problema ao carregar os dados de Filmes")
+                
+                let alerta = UIAlertController(title: "Erro", message: "Problema ao carregar os dados dos Filmes", preferredStyle: .alert)
+                let btnOk = UIAlertAction(title: "Ok", style: .destructive, handler: nil)
+                
+                alerta.addAction(btnOk)
+                
+                self.present(alerta, animated: true)
+                
+            }
             
-            alerta.addAction(btnOk)
-            
-            self.present(alerta, animated: true)
         }
+        
     }
     
 }

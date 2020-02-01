@@ -26,6 +26,9 @@ class MovieController {
     private var notFilteredArray : [Movie] = []
     //Array de Favoritos
     private var favoriteMoviesArray : [Movie] = []
+    private var notFilteredFavoriteMoviesArray : [Movie] = []
+    
+    private var genresArray : [GenreElement] = []
     
     var provider: MovieDataProvider?
     
@@ -38,6 +41,14 @@ class MovieController {
     func loadMovies(){
         
         self.setupController()
+        
+        self.provider?.getGenreIds { (allGenres) in
+            
+            self.genresArray = allGenres.genres
+            print("Total de Generos obtidos")
+            print(allGenres.genres.count)
+            
+        }
         
         self.provider?.getPopularMovies { result in
             
@@ -81,6 +92,18 @@ class MovieController {
         }
         
         self.moviesArray = notFilteredArray.filter({ (Movie) -> Bool in
+            (Movie.title?.lowercased().contains(searchText.lowercased()))!
+        })
+        
+    }
+    
+    func searchFavoriteByValue(searchText: String){
+        guard !searchText.isEmpty else {
+            self.favoriteMoviesArray = self.notFilteredFavoriteMoviesArray
+            return
+        }
+        
+        self.favoriteMoviesArray = notFilteredFavoriteMoviesArray.filter({ (Movie) -> Bool in
             (Movie.title?.lowercased().contains(searchText.lowercased()))!
         })
         
@@ -157,9 +180,9 @@ class MovieController {
                 
                 self.favoriteMoviesArray.append(movie!)//Aqui o filme existirá de qqr forma passou do if let
                 
-                
             }
             print("\(favoriteMoviesArray.count) registros no array Favoritos")
+            notFilteredFavoriteMoviesArray = favoriteMoviesArray
         }
         
         
@@ -192,6 +215,10 @@ class MovieController {
         
     }
     
+    func updateFavoriteArray(){
+        self.favoriteMoviesArray = self.notFilteredFavoriteMoviesArray
+    }
+    
     func numberOfRowsForFavorites() -> Int{
         
         return self.favoriteMoviesArray.count
@@ -203,9 +230,36 @@ class MovieController {
         return self.favoriteMoviesArray[indexPath.row]
         
     }
-    
+
+    func setGenres(completion: (String), ids: [Int], favorite: Bool) -> Void {
+        
+        //if !favorite {
+            var genresByName = ""
+            
+            for genreCodes in ids {
+                
+                for search in self.genresArray {
+                    if search.id == genreCodes {
+                        genresByName.append(search.name)
+                        print(search.name)
+                    }
+                }
+                
+            }
+            completion
+          //  completion(genresByName)
+        // }
+            
+      //  else {
+            
+      //      completion("nada")
+      //  }
+        
+    }
     
 }
+
+//MARK:- EXT DO PROTOCOLO
 
 extension MovieController : MovieDataProviderDelegate {
     func successOnLoading(movies: [Movie]?) {
