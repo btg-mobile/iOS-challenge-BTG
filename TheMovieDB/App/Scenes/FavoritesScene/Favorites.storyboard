@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Nae-mt-0Y1">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Favoritos-->
+        <scene sceneID="AAb-80-l7w">
+            <objects>
+                <navigationController title="Favoritos" interfaceStyle="dark" id="Nae-mt-0Y1" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yr6-Zh-90J">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="primary-dark"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" name="accent"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Aa7-vf-7Tz" kind="relationship" relationship="rootViewController" id="jlD-S3-ddj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KjY-Vc-CWd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1419" y="-39"/>
+        </scene>
+        <!--Favoritos-->
+        <scene sceneID="Spe-sK-Udk">
+            <objects>
+                <viewController storyboardIdentifier="FavoritesViewController" title="Favoritos" interfaceStyle="dark" id="Aa7-vf-7Tz" customClass="FavoritesViewController" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qze-di-P03">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tOl-Bt-KBl">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                <color key="separatorColor" name="accent"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Aa7-vf-7Tz" id="BoM-6d-iGH"/>
+                                    <outlet property="delegate" destination="Aa7-vf-7Tz" id="KiH-o7-sM9"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="tOl-Bt-KBl" firstAttribute="leading" secondItem="jHH-EQ-MXV" secondAttribute="leading" id="MNc-mb-oGq"/>
+                            <constraint firstItem="jHH-EQ-MXV" firstAttribute="bottom" secondItem="tOl-Bt-KBl" secondAttribute="bottom" id="Qhl-0g-wby"/>
+                            <constraint firstItem="jHH-EQ-MXV" firstAttribute="trailing" secondItem="tOl-Bt-KBl" secondAttribute="trailing" id="eyh-UZ-485"/>
+                            <constraint firstItem="tOl-Bt-KBl" firstAttribute="top" secondItem="jHH-EQ-MXV" secondAttribute="top" id="wnf-Tm-Y0y"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jHH-EQ-MXV"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="pBl-1d-iJz">
+                        <barButtonItem key="backBarButtonItem" title=" " id="5PA-4v-2Me"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="favoriteTableView" destination="tOl-Bt-KBl" id="Etd-zm-F6R"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mxN-jf-4Kj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-546.37681159420299" y="-40.178571428571423"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="accent">
+            <color red="0.0039215686274509803" green="0.82352941176470584" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="accent">
+            <color red="0.0039215686274509803" green="0.82352941176470584" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="primary-dark">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+    </resources>
+</document>
