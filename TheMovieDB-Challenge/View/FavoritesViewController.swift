@@ -96,6 +96,19 @@ extension FavoritesViewController : UITableViewDelegate, UITableViewDataSource {
         
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if let removeId = self.controller?.loadMovieWithIndexPathForFavorites(indexPath: indexPath).id {
+            
+            self.controller?.removeFavoriteMovie(id: removeId)
+            
+        }
+        
+        self.controller?.loadFavoriteMovies()
+        self.favoritesTableView.reloadData()
+        
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         self.performSegue(withIdentifier: "goToDetailsOfFav", sender: self)

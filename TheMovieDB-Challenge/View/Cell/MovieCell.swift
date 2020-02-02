@@ -37,8 +37,6 @@ class MovieCell: UITableViewCell {
             self.movieYearLabel.text = newStr
         }
         
-        //ColorsFromImage(movie.backdropPath, isFlatScheme)
-        
     }
     
 }
