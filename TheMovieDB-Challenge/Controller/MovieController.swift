@@ -17,11 +17,6 @@ protocol MovieControllerDelegate : class {
     func genreArrayFullLoaded(genre: [GenreElement])
 }
 
-protocol GenreDelegate : class {
-        
-    func genreArrayFullLoaded(genre: [GenreElement])
-}
-
 class MovieController {
     
     let realm = try! Realm()
@@ -42,6 +37,19 @@ class MovieController {
         self.provider = MovieDataProvider()
         self.provider?.delegate = self
         
+    }
+    
+    func getgenresArray() -> [GenreElement] {
+        
+        self.provider?.getGenreIds { (allGenres) in
+            
+            self.genresArray = allGenres.genres
+            self.delegate?.genreArrayFullLoaded(genre: allGenres.genres)
+            let qtde = allGenres.genres
+            print(qtde.count)
+        }
+        
+        return genresArray
     }
     
     func loadMovies(){
@@ -110,7 +118,6 @@ class MovieController {
         
         self.favoriteMoviesArray = notFilteredFavoriteMoviesArray.filter({ (Movie) -> Bool in
             
-            //(Movie.title?.lowercased().contains(searchText.lowercased()))!
             (Movie.releaseDate?.lowercased().contains(searchText.lowercased()))! || (Movie.title?.lowercased().contains(searchText.lowercased()))!
             
         })
@@ -134,34 +141,19 @@ class MovieController {
             favorite.backdropPath = selectedMovie.backdropPath!
             favorite.voteAverage = selectedMovie.voteAverage!
             
-            
-            //
-            
             for i in movie?.genreIDS ?? [] {
                 
                 do{
-                try self.realm.write {
-                    let newItem = IntGenreID()
-                    newItem.id = i
-                    favorite.items.append(newItem)
+                    try self.realm.write {
+                        let newItem = IntGenreID()
+                        newItem.id = i
+                        favorite.items.append(newItem)
+                    }
+                }catch{
+                    print("Erro ao gravar os dados na base realm")
                 }
-            }catch{
-                print("Erro ao gravar os dados na base realm")
+                
             }
-            
-            }
-            
-            
-//            do{
-//                try self.realm.write {
-//                    let newItem = IntGenreID()
-//                    newItem.id = (movie?.genreIDS?[0])!
-//                    favorite.items.append(newItem)
-//                }
-//            }catch{
-//                print("Erro ao gravar os dados na base realm")
-//            }
-            //
             
             favorite.popularity = selectedMovie.popularity!
             favorite.voteCount = selectedMovie.voteCount!
@@ -186,6 +178,14 @@ class MovieController {
     
     func loadFavoriteMovies(){
         
+        self.provider?.getGenreIds { (allGenres) in
+            
+            self.genresArray = allGenres.genres
+            self.delegate?.genreArrayFullLoaded(genre: allGenres.genres)
+            print("\(allGenres.genres.count) Generos obtidos para usar favoritos")
+            
+        }
+        
         self.favoriteMoviesArray.removeAll()
         //Realm Array
         var tempFavoriteMovieArray : Results<FavoriteMovie>?
@@ -202,24 +202,17 @@ class MovieController {
                 
                 //=================
                 
-                var genreIDSSS : Results<IntGenreID>?
-                genreIDSSS = realm.objects(IntGenreID.self)
-                
-                print("totolllllllll")
-                print(genreIDSSS?.count)
-                
+                let teste = i.items
                 
                 var genreIDS : [Int]? = []
                 
-                if let a = genreIDSSS {
+                for i in teste {
                     
-                    for i in a {
-                        
-                        print("\(i.id) encontrado")
-                        genreIDS?.append(i.id)
-                    }
+                    genreIDS?.append(i.id)
+                    
                 }
                 
+                print("\(genreIDS?.count ?? 0) Generos no genreIDS \(i.title)")
                 
                 //================
                 let popularity = i.popularity
@@ -234,10 +227,12 @@ class MovieController {
                 
                 let movie : Movie? = Movie(popularity: popularity, voteCount: voteCount, video: video, posterPath: posterPath, id: id, adult: adult, backdropPath: backdropPath, originalLanguage: originalLanguage, originalTitle: originalTitle, genreIDS: genreIDS, title: title, voteAverage: voteAverage, overview: overview, releaseDate: releaseDate)
                 
-                self.favoriteMoviesArray.append(movie!)//Aqui o filme existirá de qqr forma passou do if let
-                
+                self.favoriteMoviesArray.append(movie!)//passou do if let
+                genresArray.removeAll()
             }
-            print("\(favoriteMoviesArray.count) registros no array Favoritos")
+            
+            print("\(favoriteMoviesArray.count) Filme no array Favoritos")
+            print("########")
             notFilteredFavoriteMoviesArray = favoriteMoviesArray
         }
         
@@ -267,6 +262,21 @@ class MovieController {
         catch{
             print("Erro ao remover registro : \(error)")
         }
+        
+        //=====
+        
+        //        let check2 = realm.objects(FavoriteMovie.self).filter("id = \(id)")
+        //
+        //        do{
+        //            try realm.write {
+        //                realm.delete(check)
+        //            }
+        //        }
+        //        catch{
+        //            print("Erro ao remover registro : \(error)")
+        //        }
+        
+        //======
         
     }
     

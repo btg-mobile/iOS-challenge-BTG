@@ -24,14 +24,14 @@ class DetailsViewController: UIViewController {
     
     var movie : Movie?
     
-    var genreIDS : [GenreElement]? {
-        
-        didSet{
-            print("Recebi um array de Genre")
-            
-        }
-        
-    }
+    var genreIDS : [GenreElement]?
+//{
+//
+//        didSet{
+//            print("Recebi um array de Genre")
+//        }
+//
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +39,10 @@ class DetailsViewController: UIViewController {
         self.controller = MovieController()
         
         self.setupCell()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         
     }
     
@@ -59,11 +63,11 @@ class DetailsViewController: UIViewController {
             
         }
         
-        let size = (genresByName.count - 2)
-        let str = genresByName[0..<size] + "."
+//        let size = (genresByName.count - 2)
+//        let str = genresByName[0..<size] + "."
 
         
-        return str
+        return genresByName
         
     }
     

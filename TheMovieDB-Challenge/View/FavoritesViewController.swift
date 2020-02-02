@@ -21,12 +21,13 @@ class FavoritesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.controller = MovieController()
-        controller?.loadFavoriteMovies()
-        
         // Do any additional setup after loading the view.
         favoritesSearchBar.searchTextField.backgroundColor = .white
         self.addRefreshingControl()
+        
+        self.controller = MovieController()
+        self.controller?.delegate = self
+        controller?.loadFavoriteMovies()
         
         //CV DELEGATE AND DATASOURCE
         self.favoritesTableView.delegate = self
@@ -38,9 +39,11 @@ class FavoritesViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("passei pelo viewWillAppear")
+        self.controller?.delegate = self
+        //self.tempGenreArray = self.controller?.getgenresArray() ?? []
         self.controller?.loadFavoriteMovies()
         self.favoritesTableView.reloadData()
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -52,6 +55,7 @@ class FavoritesViewController: UIViewController {
                 if let indexPath = favoritesTableView.indexPathForSelectedRow {
                     vc.movie = self.controller?.loadMovieWithIndexPath(indexPath: indexPath, favorite: true)
                     vc.genreIDS = self.tempGenreArray
+                    print(self.tempGenreArray.count)
                 }
                 
             }
@@ -142,6 +146,25 @@ extension FavoritesViewController : UISearchBarDelegate {
             self.favoritesTableView.reloadData()
         }
         
+    }
+    
+}
+
+extension FavoritesViewController : MovieControllerDelegate {
+
+    func successOnLoading() {
+
+    }
+
+    func errorOnLoading(error: Error?) {
+
+    }
+    
+    func genreArrayFullLoaded(genre: [GenreElement]) {
+
+        self.tempGenreArray = genre
+        print(genre.count)
+
     }
     
 }
