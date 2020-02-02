@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 // MARK: - Genre
 struct Genre: Codable {
@@ -17,4 +18,11 @@ struct Genre: Codable {
 struct GenreElement: Codable {
     let id: Int
     let name: String
+}
+
+class Item: Object {
+    
+   @objc dynamic var id: Int = 0
+   @objc dynamic var name: String = ""
+    
 }

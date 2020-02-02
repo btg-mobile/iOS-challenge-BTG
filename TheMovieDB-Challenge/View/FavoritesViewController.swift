@@ -16,8 +16,6 @@ class FavoritesViewController: UIViewController {
     @IBOutlet weak var favoritesTableView: UITableView!
     @IBOutlet weak var favoritesSearchBar: UISearchBar!
     
-    private var tempGenreArray : [GenreElement] = []
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,7 +24,6 @@ class FavoritesViewController: UIViewController {
         self.addRefreshingControl()
         
         self.controller = MovieController()
-        self.controller?.delegate = self
         controller?.loadFavoriteMovies()
         
         //CV DELEGATE AND DATASOURCE
@@ -39,7 +36,7 @@ class FavoritesViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.controller?.delegate = self
+        //self.controller?.delegate = self
         //self.tempGenreArray = self.controller?.getgenresArray() ?? []
         self.controller?.loadFavoriteMovies()
         self.favoritesTableView.reloadData()
@@ -54,8 +51,6 @@ class FavoritesViewController: UIViewController {
                 
                 if let indexPath = favoritesTableView.indexPathForSelectedRow {
                     vc.movie = self.controller?.loadMovieWithIndexPath(indexPath: indexPath, favorite: true)
-                    vc.genreIDS = self.tempGenreArray
-                    print(self.tempGenreArray.count)
                 }
                 
             }
@@ -146,25 +141,6 @@ extension FavoritesViewController : UISearchBarDelegate {
             self.favoritesTableView.reloadData()
         }
         
-    }
-    
-}
-
-extension FavoritesViewController : MovieControllerDelegate {
-
-    func successOnLoading() {
-
-    }
-
-    func errorOnLoading(error: Error?) {
-
-    }
-    
-    func genreArrayFullLoaded(genre: [GenreElement]) {
-
-        self.tempGenreArray = genre
-        print(genre.count)
-
     }
     
 }

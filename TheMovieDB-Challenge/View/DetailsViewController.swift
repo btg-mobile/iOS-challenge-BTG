@@ -12,6 +12,10 @@ import RealmSwift
 
 class DetailsViewController: UIViewController {
     
+    let realm = try! Realm()
+    
+    var genreIDS : Results<Item>?
+    
     var controller : MovieController?
     
     private let BASE_IMG_URL = "https://image.tmdb.org/t/p/original/"
@@ -22,16 +26,15 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var movieGenre: UILabel!
     @IBOutlet weak var btnFavorite: UIButton!
     
-    var movie : Movie?
-    
-    var genreIDS : [GenreElement]?
-//{
-//
-//        didSet{
-//            print("Recebi um array de Genre")
-//        }
-//
-//    }
+    var movie : Movie? {
+        
+        didSet{
+            
+            loadGenres()
+            
+        }
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +45,9 @@ class DetailsViewController: UIViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    func loadGenres() {
+        
+        genreIDS = realm.objects(Item.self)
         
     }
     
@@ -53,21 +58,23 @@ class DetailsViewController: UIViewController {
         //percorre os IDS
         for genreCodes in id {
             //Percorre o Movie em busca do ID
-            for search in self.genreIDS ?? [] {
-
-                if search.id == genreCodes {
-                    genresByName.append(search.name + ", ")
-                }
+            if let categoryForDeletion = self.genreIDS {
                 
+                for search in categoryForDeletion {
+                    
+                    if search.id == genreCodes {
+                        genresByName.append(search.name + ", ")
+                    }
+                    
+                }
             }
             
         }
         
-//        let size = (genresByName.count - 2)
-//        let str = genresByName[0..<size] + "."
-
+        let size = (genresByName.count - 2)
+        let str = genresByName[0..<size] + "."
         
-        return genresByName
+        return str
         
     }
     

@@ -13,8 +13,7 @@ protocol MovieControllerDelegate : class {
     
     func successOnLoading()
     func errorOnLoading(error: Error?)
-    
-    func genreArrayFullLoaded(genre: [GenreElement])
+
 }
 
 class MovieController {
@@ -25,7 +24,7 @@ class MovieController {
     
     private var moviesArray : [Movie] = []
     private var notFilteredArray : [Movie] = []
-    //Array de Favoritos
+
     private var favoriteMoviesArray : [Movie] = []
     private var notFilteredFavoriteMoviesArray : [Movie] = []
     
@@ -37,32 +36,46 @@ class MovieController {
         self.provider = MovieDataProvider()
         self.provider?.delegate = self
         
+        self.removeAll()
+        self.saveGenresIntoRealm()
+        
+    }
+
+    func removeAll(){
+        
+        let realm = try! Realm()
+         let allUploadingObjects = realm.objects(Item.self)
+
+         try! realm.write {
+             realm.delete(allUploadingObjects)
+         }
     }
     
-    func getgenresArray() -> [GenreElement] {
+    func saveGenresIntoRealm(){
         
         self.provider?.getGenreIds { (allGenres) in
             
-            self.genresArray = allGenres.genres
-            self.delegate?.genreArrayFullLoaded(genre: allGenres.genres)
-            let qtde = allGenres.genres
-            print(qtde.count)
+            for i in allGenres.genres {
+                
+                let realm = try! Realm()
+                
+                let item = Item()
+                item.id = i.id
+                item.name = i.name
+                
+                try! realm.write {
+                    realm.add(item)
+                }
+                
+            }
+                    
         }
-        
-        return genresArray
+    
     }
     
     func loadMovies(){
         
         self.setupController()
-        
-        self.provider?.getGenreIds { (allGenres) in
-            
-            self.genresArray = allGenres.genres
-            self.delegate?.genreArrayFullLoaded(genre: allGenres.genres)
-            print("\(allGenres.genres.count) Generos obtidos")
-            
-        }
         
         self.provider?.getPopularMovies { result in
             
@@ -71,7 +84,6 @@ class MovieController {
                 print(error)
             case .success(let movies):
                 
-                //self.moviesArray = movies
                 self.notFilteredArray = movies
                 
                 print("\(self.moviesArray.count) registros obtidos da API")
@@ -178,14 +190,6 @@ class MovieController {
     
     func loadFavoriteMovies(){
         
-        self.provider?.getGenreIds { (allGenres) in
-            
-            self.genresArray = allGenres.genres
-            self.delegate?.genreArrayFullLoaded(genre: allGenres.genres)
-            print("\(allGenres.genres.count) Generos obtidos para usar favoritos")
-            
-        }
-        
         self.favoriteMoviesArray.removeAll()
         //Realm Array
         var tempFavoriteMovieArray : Results<FavoriteMovie>?
@@ -200,21 +204,16 @@ class MovieController {
                 let overview = i.overview
                 let voteAverage = i.voteAverage
                 
-                //=================
-                
-                let teste = i.items
+                let array = i.items
                 
                 var genreIDS : [Int]? = []
                 
-                for i in teste {
+                for i in array {
                     
                     genreIDS?.append(i.id)
                     
                 }
                 
-                print("\(genreIDS?.count ?? 0) Generos no genreIDS \(i.title)")
-                
-                //================
                 let popularity = i.popularity
                 let voteCount = i.voteCount
                 let video = i.video
@@ -263,21 +262,6 @@ class MovieController {
             print("Erro ao remover registro : \(error)")
         }
         
-        //=====
-        
-        //        let check2 = realm.objects(FavoriteMovie.self).filter("id = \(id)")
-        //
-        //        do{
-        //            try realm.write {
-        //                realm.delete(check)
-        //            }
-        //        }
-        //        catch{
-        //            print("Erro ao remover registro : \(error)")
-        //        }
-        
-        //======
-        
     }
     
     func updateFavoriteArray(){
@@ -311,3 +295,4 @@ extension MovieController : MovieDataProviderDelegate {
     }
     
 }
+

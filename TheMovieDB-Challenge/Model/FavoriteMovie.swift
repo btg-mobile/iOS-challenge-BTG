@@ -20,7 +20,6 @@ class FavoriteMovie : Object {
     @objc dynamic var backdropPath: String = ""
     @objc dynamic var originalLanguage: String = ""
     @objc dynamic var originalTitle: String = ""
-    //dynamic let genreIDS = List<Int>()
     let items = List<IntGenreID>()
     @objc dynamic let genreIDS : Int = 0
     @objc dynamic var title: String = ""

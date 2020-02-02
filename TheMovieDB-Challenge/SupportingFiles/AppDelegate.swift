@@ -36,5 +36,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
+    func applicationWillTerminate(_ application: UIApplication) {
+        
+        let realm = try! Realm()
+        let allUploadingObjects = realm.objects(Item.self)
+
+        try! realm.write {
+            realm.delete(allUploadingObjects)
+        }
+        
+    }
+    
 }
 
