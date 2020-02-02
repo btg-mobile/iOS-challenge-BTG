@@ -16,6 +16,8 @@ class FavoritesViewController: UIViewController {
     @IBOutlet weak var favoritesTableView: UITableView!
     @IBOutlet weak var favoritesSearchBar: UISearchBar!
     
+    private var tempGenreArray : [GenreElement] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,6 +51,7 @@ class FavoritesViewController: UIViewController {
                 
                 if let indexPath = favoritesTableView.indexPathForSelectedRow {
                     vc.movie = self.controller?.loadMovieWithIndexPath(indexPath: indexPath, favorite: true)
+                    vc.genreIDS = self.tempGenreArray
                 }
                 
             }

@@ -14,6 +14,12 @@ protocol MovieControllerDelegate : class {
     func successOnLoading()
     func errorOnLoading(error: Error?)
     
+    func genreArrayFullLoaded(genre: [GenreElement])
+}
+
+protocol GenreDelegate : class {
+        
+    func genreArrayFullLoaded(genre: [GenreElement])
 }
 
 class MovieController {
@@ -45,8 +51,8 @@ class MovieController {
         self.provider?.getGenreIds { (allGenres) in
             
             self.genresArray = allGenres.genres
-            print("Total de Generos obtidos")
-            print(allGenres.genres.count)
+            self.delegate?.genreArrayFullLoaded(genre: allGenres.genres)
+            print("\(allGenres.genres.count) Generos obtidos")
             
         }
         
@@ -84,7 +90,6 @@ class MovieController {
         
     }
     
-    
     func searchByValue(searchText: String){
         guard !searchText.isEmpty else {
             self.moviesArray = self.notFilteredArray
@@ -104,7 +109,10 @@ class MovieController {
         }
         
         self.favoriteMoviesArray = notFilteredFavoriteMoviesArray.filter({ (Movie) -> Bool in
-            (Movie.title?.lowercased().contains(searchText.lowercased()))!
+            
+            //(Movie.title?.lowercased().contains(searchText.lowercased()))!
+            (Movie.releaseDate?.lowercased().contains(searchText.lowercased()))! || (Movie.title?.lowercased().contains(searchText.lowercased()))!
+            
         })
         
     }
@@ -126,7 +134,34 @@ class MovieController {
             favorite.backdropPath = selectedMovie.backdropPath!
             favorite.voteAverage = selectedMovie.voteAverage!
             
-            //favorite.genreIDS = selectedMovie.genreIDS!
+            
+            //
+            
+            for i in movie?.genreIDS ?? [] {
+                
+                do{
+                try self.realm.write {
+                    let newItem = IntGenreID()
+                    newItem.id = i
+                    favorite.items.append(newItem)
+                }
+            }catch{
+                print("Erro ao gravar os dados na base realm")
+            }
+            
+            }
+            
+            
+//            do{
+//                try self.realm.write {
+//                    let newItem = IntGenreID()
+//                    newItem.id = (movie?.genreIDS?[0])!
+//                    favorite.items.append(newItem)
+//                }
+//            }catch{
+//                print("Erro ao gravar os dados na base realm")
+//            }
+            //
             
             favorite.popularity = selectedMovie.popularity!
             favorite.voteCount = selectedMovie.voteCount!
@@ -164,8 +199,29 @@ class MovieController {
                 let backdropPath = i.backdropPath
                 let overview = i.overview
                 let voteAverage = i.voteAverage
-                let genreIDS = [1,2,3]
                 
+                //=================
+                
+                var genreIDSSS : Results<IntGenreID>?
+                genreIDSSS = realm.objects(IntGenreID.self)
+                
+                print("totolllllllll")
+                print(genreIDSSS?.count)
+                
+                
+                var genreIDS : [Int]? = []
+                
+                if let a = genreIDSSS {
+                    
+                    for i in a {
+                        
+                        print("\(i.id) encontrado")
+                        genreIDS?.append(i.id)
+                    }
+                }
+                
+                
+                //================
                 let popularity = i.popularity
                 let voteCount = i.voteCount
                 let video = i.video
@@ -184,7 +240,6 @@ class MovieController {
             print("\(favoriteMoviesArray.count) registros no array Favoritos")
             notFilteredFavoriteMoviesArray = favoriteMoviesArray
         }
-        
         
     }
     
@@ -228,32 +283,6 @@ class MovieController {
     func loadMovieWithIndexPathForFavorites(indexPath: IndexPath ) -> Movie {
         
         return self.favoriteMoviesArray[indexPath.row]
-        
-    }
-
-    func setGenres(completion: (String), ids: [Int], favorite: Bool) -> Void {
-        
-        //if !favorite {
-            var genresByName = ""
-            
-            for genreCodes in ids {
-                
-                for search in self.genresArray {
-                    if search.id == genreCodes {
-                        genresByName.append(search.name)
-                        print(search.name)
-                    }
-                }
-                
-            }
-            completion
-          //  completion(genresByName)
-        // }
-            
-      //  else {
-            
-      //      completion("nada")
-      //  }
         
     }
     

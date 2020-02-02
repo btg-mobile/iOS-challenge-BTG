@@ -20,12 +20,14 @@ class FavoriteMovie : Object {
     @objc dynamic var backdropPath: String = ""
     @objc dynamic var originalLanguage: String = ""
     @objc dynamic var originalTitle: String = ""
-    @objc dynamic var genreIDS: String = "" //Salvar os IDs já convertidos
+    //dynamic let genreIDS = List<Int>()
+    let items = List<IntGenreID>()
+    @objc dynamic let genreIDS : Int = 0
     @objc dynamic var title: String = ""
     @objc dynamic var voteAverage: Double = 0.0
     @objc dynamic var overview : String = ""
     @objc dynamic var releaseDate: String = ""
+
+ 
     
 }
-
-

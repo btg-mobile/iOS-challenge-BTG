@@ -11,10 +11,12 @@ import UIKit
 class ViewController: UIViewController {
     
     var controller : MovieController?
-    
     var refreshControl: UIRefreshControl?
+    
     @IBOutlet weak var movieSearchBar: UISearchBar!
     @IBOutlet weak var movieTableView: UITableView!
+    
+    private var tempGenreArray : [GenreElement] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +47,7 @@ class ViewController: UIViewController {
                 
                 if let indexPath = movieTableView.indexPathForSelectedRow {
                     vc.movie = self.controller?.loadMovieWithIndexPath(indexPath: indexPath, favorite: false)
+                    vc.genreIDS = self.tempGenreArray
                 }
                 
             }
@@ -166,6 +169,12 @@ extension ViewController : MovieControllerDelegate {
             }
             
         }
+        
+    }
+    
+    func genreArrayFullLoaded(genre: [GenreElement]) {
+        
+        self.tempGenreArray = genre
         
     }
     

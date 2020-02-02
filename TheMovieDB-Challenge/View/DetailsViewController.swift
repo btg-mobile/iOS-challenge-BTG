@@ -22,10 +22,15 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var movieGenre: UILabel!
     @IBOutlet weak var btnFavorite: UIButton!
     
-    var movie : Movie? {
+    var movie : Movie?
+    
+    var genreIDS : [GenreElement]? {
+        
         didSet{
-            //
+            print("Recebi um array de Genre")
+            
         }
+        
     }
     
     override func viewDidLoad() {
@@ -33,9 +38,33 @@ class DetailsViewController: UIViewController {
         
         self.controller = MovieController()
         
-        self.loadMovie()
-//        self.movieGenre.text = "Genero: \(self.controller?.setGenres(ids: movie!.genreIDS ?? [], favorite: false) ?? "")"
-        // Do any additional setup after loading the view.
+        self.setupCell()
+        
+    }
+    
+    func setGenres(id: [Int]) -> String {
+        
+        var genresByName = ""
+        
+        //percorre os IDS
+        for genreCodes in id {
+            //Percorre o Movie em busca do ID
+            for search in self.genreIDS ?? [] {
+
+                if search.id == genreCodes {
+                    genresByName.append(search.name + ", ")
+                }
+                
+            }
+            
+        }
+        
+        let size = (genresByName.count - 2)
+        let str = genresByName[0..<size] + "."
+
+        
+        return str
+        
     }
     
     func setFavButtonStatus(){
@@ -50,7 +79,7 @@ class DetailsViewController: UIViewController {
         }
     }
     
-    func loadMovie(){
+    func setupCell(){
         
         self.setFavButtonStatus()
         
@@ -63,13 +92,7 @@ class DetailsViewController: UIViewController {
         self.movieName.text = movie?.title
         self.moviePlot.text = movie?.overview
         self.movieRating.text = movie?.voteAverage?.toStringWithStar()
-        //self.movieGenre.text = "Genero: \(self.controller?.setGenres(ids: movie!.genreIDS ?? [], favorite: false) ?? "")"
-        
-    }
-    
-    func getGenreDescription(){
-        
-        //Fazer chamada para buscar os generos a partir do array de genre
+        self.movieGenre.text = "Genero: \(self.setGenres(id: movie?.genreIDS ?? []))"
         
     }
     
@@ -103,21 +126,15 @@ class DetailsViewController: UIViewController {
             alerta.addAction(btnOk)
             
             self.present(alerta, animated: true)
-        
+            
             if let selectedMovie = self.movie {
                 self.controller?.saveFavoriteMovie(movie: selectedMovie)
             }
-         
+            
             self.setFavButtonStatus()
             
         }
         
     }
     
-}
-
-extension Double {
-    func toStringWithStar() -> String {
-        return "⭐️ " + String(format: "%.1f",self)
-    }
 }
