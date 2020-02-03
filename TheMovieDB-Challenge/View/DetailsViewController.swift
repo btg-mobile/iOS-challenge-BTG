@@ -51,31 +51,40 @@ class DetailsViewController: UIViewController {
         
     }
     
-    func setGenres(id: [Int]) -> String {
+    func setGenres(idArray: [Int]?) -> String {
         
-        var genresByName = ""
-        
-        //percorre os IDS
-        for genreCodes in id {
-            //Percorre o Movie em busca do ID
-            if let categoryForDeletion = self.genreIDS {
+        if let id = idArray {
+            
+            if id.count != 0 {
                 
-                for search in categoryForDeletion {
-                    
-                    if search.id == genreCodes {
-                        genresByName.append(search.name + ", ")
+                var genresByName = ""
+                
+                //percorre os IDS
+                for genreCodes in id {
+                    //Percorre o Movie em busca do ID
+                    if let categoryForDeletion = self.genreIDS {
+                        
+                        for search in categoryForDeletion {
+                            
+                            if search.id == genreCodes {
+                                genresByName.append(search.name + ", ")
+                            }
+                            
+                        }
                     }
                     
                 }
+                
+                let size = (genresByName.count - 2)
+                let str = genresByName[0..<size] + "."
+                
+                return str
+                
             }
             
         }
         
-        let size = (genresByName.count - 2)
-        let str = genresByName[0..<size] + "."
-        
-        return str
-        
+        return "Não foi possivel identificar generos."
     }
     
     func setFavButtonStatus(){
@@ -103,7 +112,7 @@ class DetailsViewController: UIViewController {
         self.movieName.text = movie?.title
         self.moviePlot.text = movie?.overview
         self.movieRating.text = movie?.voteAverage?.toStringWithStar()
-        self.movieGenre.text = "Genero: \(self.setGenres(id: movie?.genreIDS ?? []))"
+        self.movieGenre.text = "Genero: \(self.setGenres(idArray: movie?.genreIDS ?? []))"
         
     }
     
