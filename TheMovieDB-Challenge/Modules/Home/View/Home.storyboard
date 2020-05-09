@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="L5P-fB-q1J">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--The Movie DB Challenge-->
+        <scene sceneID="OhM-nq-2na">
+            <objects>
+                <viewController id="wze-eV-GHH" customClass="HomeViewController" customModule="The_MovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2fK-Xa-FSW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" placeholder="Busque pelo nome de um filme " translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TzI-pn-b6B">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="2nx-dy-ZoT"/>
+                                </constraints>
+                                <color key="tintColor" red="0.012347839770000001" green="0.14571556450000001" blue="0.25477373599999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="barTintColor" red="0.012347839770000001" green="0.14571556450000001" blue="0.25477373599999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="wze-eV-GHH" id="xvf-dY-0qM"/>
+                                </connections>
+                            </searchBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YEI-N7-Aaf">
+                                <rect key="frame" x="0.0" y="44" width="320" height="431"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Rhi-Hu-fBS">
+                                    <size key="itemSize" width="180" height="304"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="TzI-pn-b6B" firstAttribute="leading" secondItem="aPE-2l-Elo" secondAttribute="leading" id="AUf-Ir-5p8"/>
+                            <constraint firstItem="TzI-pn-b6B" firstAttribute="trailing" secondItem="aPE-2l-Elo" secondAttribute="trailing" id="In6-TX-RU1"/>
+                            <constraint firstItem="YEI-N7-Aaf" firstAttribute="top" secondItem="TzI-pn-b6B" secondAttribute="bottom" priority="250" id="Ka1-fA-gwX"/>
+                            <constraint firstItem="YEI-N7-Aaf" firstAttribute="trailing" secondItem="aPE-2l-Elo" secondAttribute="trailing" id="N4m-WL-OIe"/>
+                            <constraint firstItem="TzI-pn-b6B" firstAttribute="top" secondItem="aPE-2l-Elo" secondAttribute="top" id="SXi-l8-Bf1"/>
+                            <constraint firstItem="YEI-N7-Aaf" firstAttribute="bottom" secondItem="aPE-2l-Elo" secondAttribute="bottom" id="UYG-3Y-D5l"/>
+                            <constraint firstItem="YEI-N7-Aaf" firstAttribute="leading" secondItem="aPE-2l-Elo" secondAttribute="leading" id="jqU-kY-2aw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="aPE-2l-Elo"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="The Movie DB Challenge" largeTitleDisplayMode="always" id="RyT-5U-GRT"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="movieCollectionView" destination="YEI-N7-Aaf" id="4Rc-7z-Im7"/>
+                        <outlet property="movieSearchBar" destination="TzI-pn-b6B" id="6CQ-gV-Ftv"/>
+                        <outlet property="searchBarHight" destination="2nx-dy-ZoT" id="bdz-WS-AWE"/>
+                        <segue destination="CEz-NG-hl2" kind="show" identifier="goToDetails" id="isk-Wq-mzR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4T0-CQ-2Zr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1477.5" y="1080.6338028169014"/>
+        </scene>
+        <!--Movie-->
+        <scene sceneID="SYu-vw-aF6">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Movie" id="CEz-NG-hl2" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="HbK-As-Fwu"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hED-9b-e2d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2129" y="1082"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="1Cq-nP-2vA">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="L5P-fB-q1J" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" image="list.bullet" catalog="system" selectedImage="list.dash" id="dmG-ye-Nzs"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="BeA-OA-bDu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.012347839770000001" green="0.14571556450000001" blue="0.25477373599999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="wze-eV-GHH" kind="relationship" relationship="rootViewController" id="tiY-Gk-liI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4NM-Qa-Hue" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="653" y="1082"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="list.bullet" catalog="system" width="128" height="88"/>
+        <image name="list.dash" catalog="system" width="128" height="85"/>
+    </resources>
+</document>

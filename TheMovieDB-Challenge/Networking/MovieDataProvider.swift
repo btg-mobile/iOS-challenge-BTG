@@ -15,10 +15,27 @@ protocol MovieDataProviderDelegate : class {
     
 }
 
-fileprivate let BASE_URL = "https://api.themoviedb.org/3/movie/popular?api_key="
+enum MovieSelection : String {
+    
+    case popular = "popular"
+    case nowPlaying = "now_playing"
+    case upcoming = "upcoming"
+    case topRated = "top_rated"
+    
+}
+
+enum language : String {
+    
+    case portuguese = "pt-BR"
+    case english = "en-US"
+    case spanish = "es-ES"
+    
+}
+
+fileprivate let BASE_URL = "https://api.themoviedb.org/3/movie/"
 fileprivate let API_KEY = "132dfc8e68a337152fd3e36d63c77677"
-let LANGUAGE = "pt-BR"
-fileprivate let resourceString = "\(BASE_URL)\(API_KEY)&language=\(LANGUAGE)&page=1"
+
+fileprivate let resourceString = "\(BASE_URL)\(MovieSelection.nowPlaying.rawValue)?api_key=\(API_KEY)&language=\(language.portuguese.rawValue)&page=1"
 
 var genreArray : [String] = []
 

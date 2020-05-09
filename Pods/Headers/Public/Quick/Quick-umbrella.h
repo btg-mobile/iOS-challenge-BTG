@@ -1,1 +1,0 @@
-../../../Target Support Files/Quick/Quick-umbrella.h

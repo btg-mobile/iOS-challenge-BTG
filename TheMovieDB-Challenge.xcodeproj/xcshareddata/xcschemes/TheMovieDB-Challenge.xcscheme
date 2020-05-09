@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BC366B6123E08C51009ABFD6"
-               BuildableName = "TheMovieDB-Challenge.app"
+               BuildableName = "The MovieDB.app"
                BlueprintName = "TheMovieDB-Challenge"
                ReferencedContainer = "container:TheMovieDB-Challenge.xcodeproj">
             </BuildableReference>
@@ -55,7 +55,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BC366B6123E08C51009ABFD6"
-            BuildableName = "TheMovieDB-Challenge.app"
+            BuildableName = "The MovieDB.app"
             BlueprintName = "TheMovieDB-Challenge"
             ReferencedContainer = "container:TheMovieDB-Challenge.xcodeproj">
          </BuildableReference>
@@ -72,7 +72,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BC366B6123E08C51009ABFD6"
-            BuildableName = "TheMovieDB-Challenge.app"
+            BuildableName = "The MovieDB.app"
             BlueprintName = "TheMovieDB-Challenge"
             ReferencedContainer = "container:TheMovieDB-Challenge.xcodeproj">
          </BuildableReference>
