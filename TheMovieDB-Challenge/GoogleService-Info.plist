@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>146150176310-ggqd8c5svv7khqs3j9rfntm5gmr1f3kh.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.146150176310-ggqd8c5svv7khqs3j9rfntm5gmr1f3kh</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCbBX2JLh6sIq1G2f1smm8Ng6JNrgeAhpo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>146150176310</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>br.com.abstec.TheMovieDB-Challenge</string>
+	<key>PROJECT_ID</key>
+	<string>movieapp-3a4bf</string>
+	<key>STORAGE_BUCKET</key>
+	<string>movieapp-3a4bf.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:146150176310:ios:6ef7cd0ea1ee00d119ca97</string>
+	<key>DATABASE_URL</key>
+	<string>https://movieapp-3a4bf.firebaseio.com</string>
+</dict>
+</plist>

@@ -403,8 +403,7 @@ public:
                                    int preverify_ok,
                                    int depth);
 
-    class Config {
-    public:
+    struct Config {
         Config() {}
 
         /// server_address is the fully qualified host name, or IP address of

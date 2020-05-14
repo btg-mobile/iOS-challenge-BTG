@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ogx-m1-Gly">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Onbording View Controller-->
+        <scene sceneID="Phw-dP-Gwa">
+            <objects>
+                <viewController id="ogx-m1-Gly" customClass="OnbordingViewController" customModule="The_MovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="e9p-wK-wOg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="wO4-Hi-vay">
+                                <rect key="frame" x="57" y="298" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="ff6-xw-DZh"/>
+                                    <constraint firstAttribute="width" constant="300" id="zjf-DO-qEM"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0049759647810000002" green="0.14137595889999999" blue="0.25887107850000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wO4-Hi-vay" firstAttribute="centerY" secondItem="e9p-wK-wOg" secondAttribute="centerY" id="26Q-Vo-D4s"/>
+                            <constraint firstItem="wO4-Hi-vay" firstAttribute="centerX" secondItem="e9p-wK-wOg" secondAttribute="centerX" id="SRs-sK-LEx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PKz-G1-wQo"/>
+                    </view>
+                    <connections>
+                        <outlet property="logoImageView" destination="wO4-Hi-vay" id="BrH-P3-qtk"/>
+                        <segue destination="8EA-B8-aGy" kind="show" identifier="ShowLogin" id="zkF-Qm-4gt"/>
+                        <segue destination="ic5-Gt-YS2" kind="show" identifier="ShowHome" id="Wjg-Hy-1UT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MXQ-6T-RBs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="278" y="155"/>
+        </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="JcL-U2-LL0">
+            <objects>
+                <viewControllerPlaceholder id="8EA-B8-aGy" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ZQ9-FD-lnp"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DNp-Ie-Oc4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1014" y="-44"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="392-Zc-nU3">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Home" id="ic5-Gt-YS2" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="LMb-4O-ZhB"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pvx-Zd-Ow8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1014" y="317"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="logo" width="512" height="512"/>
+    </resources>
+</document>

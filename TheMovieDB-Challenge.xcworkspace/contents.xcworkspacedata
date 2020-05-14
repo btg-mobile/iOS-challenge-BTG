@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:TheMovieDB-Challenge.xcodeproj">
+      location = "group:/Users/alansilva/Documents/iOS/2-Projects/3-Testes/TheMovieDB/theMovieAPP.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

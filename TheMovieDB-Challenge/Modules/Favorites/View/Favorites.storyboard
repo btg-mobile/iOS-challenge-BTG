@@ -11,7 +11,7 @@
         <scene sceneID="lIV-Lc-AUE">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="176-fc-qdK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favorites" image="heart" catalog="system" selectedImage="heart.fill" id="pTe-EG-E4x"/>
+                    <tabBarItem key="tabBarItem" title="Favorites" image="iconStar" selectedImage="iconStarFilled" id="pTe-EG-E4x"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KrI-aA-Hcw">
@@ -31,7 +31,7 @@
         <!--Favoritos-->
         <scene sceneID="Ifk-Fu-rtq">
             <objects>
-                <viewController id="HHL-8A-3h9" customClass="FavoritesViewController" customModule="TheMovieDB_Challenge" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="HHL-8A-3h9" customClass="FavoritesViewController" customModule="The_MovieDB" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QBg-xz-NzJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -90,7 +90,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="heart" catalog="system" width="128" height="109"/>
-        <image name="heart.fill" catalog="system" width="128" height="109"/>
+        <image name="iconStar" width="30" height="30"/>
+        <image name="iconStarFilled" width="30" height="30"/>
     </resources>
 </document>

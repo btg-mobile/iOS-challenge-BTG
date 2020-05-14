@@ -36,7 +36,7 @@ class MovieController {
         self.provider = MovieDataProvider()
         self.provider?.delegate = self
         
-        self.removeAll()
+        //self.removeAll()
         self.saveGenresIntoRealm()
         
     }

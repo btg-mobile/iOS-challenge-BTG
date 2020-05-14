@@ -20,7 +20,7 @@ class FavoritesViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        favoritesSearchBar.searchTextField.backgroundColor = .white
+        //favoritesSearchBar.searchTextField.backgroundColor = .white
         self.addRefreshingControl()
         
         self.controller = MovieController()
@@ -31,7 +31,7 @@ class FavoritesViewController: UIViewController {
 //        self.favoritesTableView.dataSource = self
         
         //REGISTER CELL
-        self.favoritesTableView.register(UINib(nibName: "MovieCell", bundle: nil), forCellReuseIdentifier: "MovieCell")
+        //self.favoritesTableView.register(UINib(nibName: "MovieCell", bundle: nil), forCellReuseIdentifier: "MovieCell")
         
     }
     
@@ -39,7 +39,7 @@ class FavoritesViewController: UIViewController {
         //self.controller?.delegate = self
         //self.tempGenreArray = self.controller?.getgenresArray() ?? []
         self.controller?.loadFavoriteMovies()
-        self.favoritesTableView.reloadData()
+//        self.favoritesTableView.reloadData()
         
     }
     
@@ -64,7 +64,7 @@ class FavoritesViewController: UIViewController {
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.tintColor = .green
         self.refreshControl?.addTarget(self, action: #selector(refreshList), for: .valueChanged)
-        self.favoritesTableView.addSubview(refreshControl!)
+//        self.favoritesTableView.addSubview(refreshControl!)
         
         
     }

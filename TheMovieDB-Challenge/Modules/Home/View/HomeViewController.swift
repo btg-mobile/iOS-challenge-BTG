@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 class HomeViewController: UIViewController {
     
@@ -14,7 +15,6 @@ class HomeViewController: UIViewController {
     var refreshControl: UIRefreshControl?
     
     @IBOutlet weak var movieSearchBar: UISearchBar!
-    @IBOutlet weak var movieTableView: UITableView!
     @IBOutlet weak var movieCollectionView: UICollectionView!
     @IBOutlet weak var searchBarHight: NSLayoutConstraint!
     
@@ -22,7 +22,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-        movieSearchBar.searchTextField.backgroundColor = .white
+        //movieSearchBar.searchTextField.layer.backgroundColor = UIColor.white as! CGColor
         self.addRefreshingControl()
         
         //Delegate and protocols
@@ -39,26 +39,20 @@ class HomeViewController: UIViewController {
         let identifier = "MovieCell"
         movieCollectionView.register(UINib(nibName: nibName, bundle: nil), forCellWithReuseIdentifier: identifier)
         
+        let button = UIButton(type: .roundedRect)
+        button.frame = CGRect(x: 20, y: 50, width: 100, height: 30)
+        button.setTitle("Crash", for: [])
+        button.addTarget(self, action: #selector(self.crashButtonTapped(_:)), for: .touchUpInside)
+        view.addSubview(button)
+        
+    }
+    
+    @IBAction func crashButtonTapped(_ sender: AnyObject) {
+        Crashlytics.sharedInstance().crash()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "goToDetails" {
-            
-            //            if let vc: DetailsViewController = segue.destination as? DetailsViewController {
-            //
-            //                if let indexPath = movieCollectionView.indexPathsForSelectedItems {
-            //                    vc.movie = self.controller?.loadMovieWithIndexPath(indexPath: indexPath[0], favorite: false)
-            //                }
-            //
-            //            }
-            
-        }
-        
     }
     
     func addRefreshingControl(){
@@ -107,7 +101,8 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return .init(width: view.frame.width / 2.2 , height: view.frame.height / 2.3)
+        return .init(width: view.frame.width / 3.4 , height: view.frame.height / 4)
+        //return .init(width: view.frame.width / 2.2 , height: view.frame.height / 2.3)
         
     }
     
@@ -129,19 +124,17 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         DispatchQueue.main.async {
             
             if offset > magicalSafeAreaTop {
-                UIView.animate(withDuration: 1.5) {
+                
+                UIScrollView.animate(withDuration: 0.5) {
                     self.searchBarHight.constant = 0
-                    //self.navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
-                    
                     self.movieSearchBar.transform = .init(translationX: 0, y: min(0, -offset))
                     
                 }
                 
             }else{
                 
-                UIView.animate(withDuration: 0.5) {
+                UIScrollView.animate(withDuration: 0.5) {
                     self.searchBarHight.constant = 44.00
-                    //self.navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, offset))
                     self.movieSearchBar.transform = .init(translationX: 0, y: min(0, offset))
                     
                 }
@@ -150,15 +143,39 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
             
         }
         
-        //let alpha = 1 - (offset / safeAreaTop)
+        let num1 = scrollView.contentOffset.y
+        let num2 = scrollView.layer.frame.height
         
+        getMoreVideos(num1, num2)
+        
+        //let alpha = 1 - (offset / safeAreaTop)
+        //self.movieSearchBar.alpha = alpha
         //[movieSearchBar, navigationController?.navigationBar].forEach{$0?.alpha = alpha}
         
     }
     
+    func getMoreVideos(_ num1: CGFloat,_ num2: CGFloat) {
+        
+//
+//        print(num1)
+//        print(num2)
+        
+        if num1 >= num2 {
+            
+            print("TIME TO GET MORE VIDEOS!!!!")
+            
+        }
+        
+        
+    }
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        
+        let vc = LoginViewController()
+        
+        present(vc, animated: true, completion: nil)
         
         //self.performSegue(withIdentifier: "goToDetails", sender: self)
         
