@@ -17,9 +17,9 @@ extension Double {
 
 extension UIColor {
     
-    static let darkBlue = UIColor(red: 13.0, green: 37.0, blue: 63.0, alpha: 0)
-    static let lightBlue = UIColor(red: 1.0, green: 180.0, blue: 228.0, alpha: 0)
-    static let lightGreen = UIColor(red: 144.0, green: 206.0, blue: 161.0, alpha: 0)
+    static let darkBlue = UIColor(red: 13.0, green: 37.0, blue: 63.0, alpha: 100)
+    static let lightBlue = UIColor(red: 1.0, green: 180.0, blue: 228.0, alpha: 100)
+    static let lightGreen = UIColor(red: 144.0, green: 206.0, blue: 161.0, alpha: 100)
     
 }
 

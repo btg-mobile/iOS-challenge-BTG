@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         print("#### REALM FOLDER ####")
-        //print(Realm.Configuration.defaultConfiguration.fileURL ?? "")
+        print(Realm.Configuration.defaultConfiguration.fileURL ?? "")
         
         FirebaseApp.configure()
         

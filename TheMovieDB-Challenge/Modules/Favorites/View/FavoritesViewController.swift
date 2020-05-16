@@ -10,7 +10,7 @@ import UIKit
 
 class FavoritesViewController: UIViewController {
     
-    var controller : MovieController?
+    //var controller : MovieController?
     var refreshControl: UIRefreshControl?
     
     @IBOutlet weak var favoritesTableView: UITableView!
@@ -23,8 +23,8 @@ class FavoritesViewController: UIViewController {
         //favoritesSearchBar.searchTextField.backgroundColor = .white
         self.addRefreshingControl()
         
-        self.controller = MovieController()
-        controller?.loadFavoriteMovies()
+        //self.controller = MovieController()
+        //controller?.loadFavoriteMovies()
         
         //CV DELEGATE AND DATASOURCE
 //        self.favoritesTableView.delegate = self
@@ -38,7 +38,7 @@ class FavoritesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         //self.controller?.delegate = self
         //self.tempGenreArray = self.controller?.getgenresArray() ?? []
-        self.controller?.loadFavoriteMovies()
+       // self.controller?.loadFavoriteMovies()
 //        self.favoritesTableView.reloadData()
         
     }
@@ -50,7 +50,7 @@ class FavoritesViewController: UIViewController {
             if let vc: DetailsViewController = segue.destination as? DetailsViewController {
                 
                 if let indexPath = favoritesTableView.indexPathForSelectedRow {
-                    vc.movie = self.controller?.loadMovieWithIndexPath(indexPath: indexPath, favorite: true)
+                    //vc.movie = self.controller?.loadMovieWithIndexPath(indexPath: indexPath, favorite: true)
                 }
                 
             }
@@ -72,7 +72,7 @@ class FavoritesViewController: UIViewController {
     @objc func refreshList() {
         print("Pull to refresh")
         self.refreshControl?.endRefreshing()
-        self.controller?.loadFavoriteMovies()
+        //self.controller?.loadFavoriteMovies()
         self.favoritesTableView.reloadData()
         
     }
@@ -128,7 +128,7 @@ extension FavoritesViewController : UISearchBarDelegate {
             
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
-                self.controller?.updateFavoriteArray()
+                //self.controller?.updateFavoriteArray()
                 self.favoritesTableView.reloadData()
             }
             
@@ -142,14 +142,14 @@ extension FavoritesViewController : UISearchBarDelegate {
             
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
-                self.controller?.updateFavoriteArray()
+                //self.controller?.updateFavoriteArray()
                 self.favoritesTableView.reloadData()
             }
             
         }
         else {
             
-            self.controller?.searchFavoriteByValue(searchText: searchText)
+            //self.controller?.searchFavoriteByValue(searchText: searchText)
             
             self.favoritesTableView.reloadData()
         }

@@ -78,10 +78,10 @@
             </objects>
             <point key="canvasLocation" x="2543" y="918"/>
         </scene>
-        <!--Movie-->
+        <!--Storyboard Reference-->
         <scene sceneID="XxH-kx-vZK">
             <objects>
-                <viewControllerPlaceholder storyboardName="Movie" id="wBV-YP-ikg" sceneMemberID="viewController">
+                <viewControllerPlaceholder id="wBV-YP-ikg" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Dgt-85-Vj2"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UCr-De-gAO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

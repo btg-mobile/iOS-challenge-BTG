@@ -78,6 +78,7 @@ PODS:
   - SDWebImage (5.8.0):
     - SDWebImage/Core (= 5.8.0)
   - SDWebImage/Core (5.8.0)
+  - SwiftLint (0.39.2)
 
 DEPENDENCIES:
   - Crashlytics (~> 3.14.0)
@@ -85,6 +86,7 @@ DEPENDENCIES:
   - Firebase/Analytics
   - RealmSwift
   - SDWebImage (~> 5.0)
+  - SwiftLint
 
 SPEC REPOS:
   trunk:
@@ -105,6 +107,7 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - SDWebImage
+    - SwiftLint
 
 SPEC CHECKSUMS:
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
@@ -124,7 +127,8 @@ SPEC CHECKSUMS:
   Realm: 4eb04d7487bd43c0581256f40b424eafb711deff
   RealmSwift: 3eb8924ff7100df5928c7602f71d0fec51e7c9c5
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
+  SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
 
-PODFILE CHECKSUM: 49680aa4fd5beaf9c3b82ef7af282c00f3ec5fa5
+PODFILE CHECKSUM: 994989d2c87149d88f26fcab7504ed986f33fcb4
 
 COCOAPODS: 1.8.4

@@ -10,30 +10,36 @@ import Foundation
 
 protocol MovieDataProviderDelegate : class {
     
-    func successOnLoading(movies: [Movie]?)
+    func successOnLoading(_ movies: [Movie]?, movieSelection: Constants.MovieSelection)
     func errorOnLoading(error: Error?)
     
 }
-
-fileprivate let resourceString = "\(Constants.API.baseURL)\(Constants.MovieSelection.nowPlaying.rawValue)?api_key=\(Constants.API.privateKey)&language=\(Constants.language.portuguese.rawValue)&page=1"
-
-var genreArray : [String] = []
 
 class MovieDataProvider {
     
     weak var delegate : MovieDataProviderDelegate?
     var page: Int?
-    
+    var language: Constants.language
+    var category: Constants.category
+    var movieSelection: Constants.MovieSelection
+    var resourceString: URL?
+
+    init(page: Int?, language: Constants.language = .portuguese, category: Constants.category, movieSelection: Constants.MovieSelection){
+        self.page = page
+        self.language = language
+        self.category = category
+        self.movieSelection = movieSelection
+        self.resourceString = URL(string: "\(Constants.API.baseURL)\(category)/\(movieSelection.rawValue)?api_key=\(Constants.API.privateKey)&language=\(language)&page=\(page ?? 1)")
+    }
+
     //MARK: - Movie request
-    
-    func getPopularMovies (completion: @escaping(Result<[Movie], MovieError>) -> Void) {
+    func getMovies() {
         
-        guard let resourceURL = URL(string: resourceString) else {fatalError("Problema ao obter os dados")}
+        guard let resourceURL = resourceString else {fatalError("Problema ao obter os dados")}
         
         let dataTask = URLSession.shared.dataTask(with: resourceURL) { (data, res, err) in
             
             guard let jsonData = data else {
-                completion(.failure(.noDataAvailable))
                 self.delegate?.errorOnLoading(error: err)
                 return
             }
@@ -42,13 +48,10 @@ class MovieDataProvider {
                 let decoder = JSONDecoder()
                 let movieHeader = try decoder.decode(MovieHeader.self, from: jsonData)
                 if let movieResults = movieHeader.results {
-                    self.delegate?.successOnLoading(movies: movieResults)
-                    completion(.success(movieResults))
-                    
+                    self.delegate?.successOnLoading(movieResults, movieSelection: self.movieSelection)
                 }
             }catch{
                 self.delegate?.errorOnLoading(error: error)
-                completion(.failure(.canNotProccessData))
             }
             
         }
@@ -56,7 +59,6 @@ class MovieDataProvider {
         dataTask.resume()
         
     }
-    
     
     //MARK: - Genre id request
     

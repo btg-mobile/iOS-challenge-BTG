@@ -9,6 +9,7 @@ target 'TheMovieDB-Challenge' do
 
   pod 'SDWebImage', '~> 5.0'
   pod 'RealmSwift'
+  pod 'SwiftLint'
 
 # add the Firebase pod for Google Analytics
 pod 'Firebase/Analytics'
