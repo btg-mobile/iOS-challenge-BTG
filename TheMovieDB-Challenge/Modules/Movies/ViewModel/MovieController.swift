@@ -13,10 +13,16 @@ protocol MovieControllerDelegate : class {
     
     func successOnLoading()
     func errorOnLoading(error: Error?)
-
+    func limitOfPagesReached()
 }
 
 class MovieController {
+    
+    ///Initial value for pagination
+    var page = 1
+    var totalPages = 1
+    
+    var movieSelection: Constants.MovieSelection?
     
     let realm = try! Realm()
     
@@ -36,7 +42,7 @@ class MovieController {
     private var totalItemsAvailable: Int = 3000
     
     private func setupController(){
-        self.provider = MovieDataProvider(page: 2, category: .movie, movieSelection: .nowPlaying)
+        self.provider = MovieDataProvider(page: self.page, category: .movie, movieSelection: movieSelection ?? Constants.MovieSelection.popular)
         self.provider?.delegate = self
         
         //self.removeAll()
@@ -76,16 +82,21 @@ class MovieController {
     
     }
     
-    func loadMore(for indexPaths: [IndexPath]) {
-        guard !isFetchingItems else { return }
-        guard totalItemsAvailable > self.moviesArray.count else { return }
+    func loadAnotherPage() {
         
-        for index in indexPaths where index.row >= (self.moviesArray.count - 1) {
-            //self.interactor.getCharacters(with: self.models.count)
-            print("pode refresh")
-            self.isFetchingItems = true
-            return
+        page += 1
+        
+        
+        if page <= totalPages {
+        
+            loadMovies()
+        
+        }else {
+         
+            self.delegate?.limitOfPagesReached()
+            
         }
+
     }
     
     
@@ -94,19 +105,6 @@ class MovieController {
         self.setupController()
         
         self.provider?.getMovies() //PopularMovies { result in
-            
-//            switch result {
-//            case .failure (let error):
-//                print(error)
-//            case .success(let movies):
-//                
-//                self.notFilteredArray = movies
-//                
-//                print("\(self.moviesArray.count) registros obtidos da API")
-//                
-//            }
-//            
-//        }
         
     }
     
@@ -302,8 +300,17 @@ class MovieController {
 
 extension MovieController : MovieDataProviderDelegate {
     
+    func getTotalPages(_ totalOfPages: Int) {
+        self.totalPages = totalOfPages
+    }
+    
     func successOnLoading(_ movies: [Movie]?, movieSelection: Constants.MovieSelection) {
-        self.moviesArray = movies ?? []
+        
+        if let newArray = movies {
+        
+            self.moviesArray.append(contentsOf: newArray)
+        
+        }
         self.delegate?.successOnLoading()
     }
     

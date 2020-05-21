@@ -19,7 +19,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcd-e4-ZJE" userLabel="MainView">
                         <rect key="frame" x="0.0" y="0.0" width="180" height="320"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avengers" translatesAutoresizingMaskIntoConstraints="NO" id="A1x-JG-DIe">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="portrait-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="A1x-JG-DIe">
                                 <rect key="frame" x="0.0" y="0.0" width="180" height="290"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
@@ -45,10 +45,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sTe-cz-u58">
-                                        <rect key="frame" x="0.0" y="0.0" width="180" height="2"/>
-                                        <color key="backgroundColor" red="0.23148706560000001" green="0.74606138470000005" blue="0.79301637410000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="1"/>
+                                        <color key="backgroundColor" red="0.0" green="0.13701200490000001" blue="0.26296305660000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="2" id="iYv-4O-tnb"/>
+                                            <constraint firstAttribute="height" constant="1" id="iYv-4O-tnb"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -95,6 +95,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="avengers" width="1280" height="1920"/>
+        <image name="portrait-placeholder" width="192" height="202"/>
     </resources>
 </document>

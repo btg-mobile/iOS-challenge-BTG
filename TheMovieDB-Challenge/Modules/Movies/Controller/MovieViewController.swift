@@ -13,10 +13,13 @@ class MovieViewController: UIViewController {
     
     var controller : MovieController?
     var refreshControl: UIRefreshControl?
+    var fetchingMore = false
+    var noticeNoMoreData = false
     
     @IBOutlet weak var movieSearchBar: UISearchBar!
     @IBOutlet weak var movieCollectionView: UICollectionView!
     @IBOutlet weak var searchBarHight: NSLayoutConstraint!
+    @IBOutlet weak var loadingMoreActivityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,11 +61,24 @@ class MovieViewController: UIViewController {
         self.movieCollectionView.reloadData()
         
     }
- 
+    
     @IBAction func tappedToGoBack(_ sender: UIButton) {
-    
+        
         self.dismiss(animated: true, completion: nil)
+        
+    }
     
+    private func startFetchingNewPage() {
+        
+        fetchingMore = true
+        print("beginBatchFetch!")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
+            self.loadingMoreActivityIndicator.startAnimating()
+            self.controller?.loadAnotherPage()
+            self.fetchingMore = false
+            self.movieCollectionView.reloadData()
+        })
     }
     
 }
@@ -71,13 +87,8 @@ extension MovieViewController : UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         
-        self.controller?.loadMore(for: indexPaths)
+        ///
         
-        for i in indexPaths {
-            
-            print(i.row)
-            
-        }
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -144,8 +155,22 @@ extension MovieViewController : UICollectionViewDelegate, UICollectionViewDataSo
             
         }
         
+        //
+        
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let scrollFrameHeight = scrollView.frame.height
+        
+        if offsetY > contentHeight - scrollFrameHeight * 1.5 {
+            
+            if !fetchingMore {
+                startFetchingNewPage()
+            }
+            
+        }
+        
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         
@@ -201,10 +226,30 @@ extension MovieViewController : UISearchBarDelegate {
 
 extension MovieViewController : MovieControllerDelegate {
     
+    func limitOfPagesReached() {
+        
+        guard noticeNoMoreData == false else { return }
+        
+        noticeNoMoreData = true
+        
+        DispatchQueue.main.async {
+            
+            let alerta = UIAlertController(title: "Alerta", message: "Você chegou até o final", preferredStyle: .alert)
+            let btnOk = UIAlertAction(title: "Ok", style: .destructive, handler: nil)
+            
+            alerta.addAction(btnOk)
+            
+            self.present(alerta, animated: true)
+            
+        }
+        
+    }
+    
     func successOnLoading() {
         
         DispatchQueue.main.async {
             self.movieCollectionView.reloadData()
+            self.loadingMoreActivityIndicator.stopAnimating()
         }
         
     }

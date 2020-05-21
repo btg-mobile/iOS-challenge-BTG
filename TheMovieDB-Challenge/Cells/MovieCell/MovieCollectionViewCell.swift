@@ -48,18 +48,18 @@ class MovieCollectionViewCell: UICollectionViewCell {
     func setupCell(movie: Movie) {
         
         if let urlString = movie.posterPath {
-            self.movieImageView.sd_setImage(with: URL(string: ("\(self.BASE_IMG_URL)\(urlString)")), placeholderImage: UIImage(named: "movie-placeholder"))
+            self.movieImageView.sd_setImage(with: URL(string: ("\(self.BASE_IMG_URL)\(urlString)")), placeholderImage: UIImage(named: "portrait-placeholder"))
         }else{
-            self.movieImageView.image = UIImage(named: "movie-placeholder")
+            self.movieImageView.image = UIImage(named: "portrait-placeholder")
         }
         
         self.movieNameLabel.text = movie.title
         
-        if let str = movie.releaseDate {
-            let index = str.firstIndex(of: "-")!
-            let newStr = String(str[..<index])
-            //self.movieYearLabel.text = newStr
-        }
+//        if let str = movie.releaseDate {
+//            let index = str.firstIndex(of: "-")!
+//            let newStr = String(str[..<index])
+//            //self.movieYearLabel.text = newStr
+//        }
         
     }
     

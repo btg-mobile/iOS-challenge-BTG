@@ -34,6 +34,9 @@
 		BCA4113A24698D7100C570CD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA4113924698D7100C570CD /* LoginViewController.swift */; };
 		BCA4113F2469D58200C570CD /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCA4113E2469D58200C570CD /* Onboarding.storyboard */; };
 		BCA411412469D5EA00C570CD /* OnbordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA411402469D5EA00C570CD /* OnbordViewController.swift */; };
+		BCB20C1824741FC1009E0175 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB20C1624741FC1009E0175 /* LoadingViewController.swift */; };
+		BCB20C1924741FC1009E0175 /* Loading.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCB20C1724741FC1009E0175 /* Loading.storyboard */; };
+		BCB20C1D24742085009E0175 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB20C1C24742085009E0175 /* Utils.swift */; };
 		BCD2C0C1246C782B0046910F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BCD2C0C0246C782B0046910F /* GoogleService-Info.plist */; };
 		BCD2C0CA246D7E2E0046910F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD2C0C9246D7E2E0046910F /* Constants.swift */; };
 		BCD2C0D5246F1EA50046910F /* Movies.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCD2C0D4246F1EA40046910F /* Movies.storyboard */; };
@@ -73,6 +76,9 @@
 		BCA4113924698D7100C570CD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BCA4113E2469D58200C570CD /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		BCA411402469D5EA00C570CD /* OnbordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnbordViewController.swift; sourceTree = "<group>"; };
+		BCB20C1624741FC1009E0175 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		BCB20C1724741FC1009E0175 /* Loading.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Loading.storyboard; sourceTree = "<group>"; };
+		BCB20C1C24742085009E0175 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		BCD2C0C0246C782B0046910F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BCD2C0C9246D7E2E0046910F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BCD2C0D4246F1EA40046910F /* Movies.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Movies.storyboard; sourceTree = "<group>"; };
@@ -189,6 +195,7 @@
 		BCA4110D2465DC9800C570CD /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				BCB20C1524741F72009E0175 /* Loading */,
 				BCA4112D24698B7E00C570CD /* Onboarding */,
 				BCA411292469845D00C570CD /* Login */,
 				BCA4110E2465DCAF00C570CD /* Main */,
@@ -396,6 +403,15 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		BCB20C1524741F72009E0175 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				BCB20C1724741FC1009E0175 /* Loading.storyboard */,
+				BCB20C1624741FC1009E0175 /* LoadingViewController.swift */,
+			);
+			path = Loading;
+			sourceTree = "<group>";
+		};
 		BCD2C0C6246D72B30046910F /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -419,6 +435,7 @@
 				BCA411242465E82C00C570CD /* Animation */,
 				BC366B6E23E08C56009ABFD6 /* Assets.xcassets */,
 				BC366B7023E08C56009ABFD6 /* LaunchScreen.storyboard */,
+				BCB20C1C24742085009E0175 /* Utils.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -538,6 +555,7 @@
 				BCA4111B2465E01E00C570CD /* Favorites.storyboard in Resources */,
 				BCA4113F2469D58200C570CD /* Onboarding.storyboard in Resources */,
 				BCA411272465E83E00C570CD /* 19117-movie-clapperboard.json in Resources */,
+				BCB20C1924741FC1009E0175 /* Loading.storyboard in Resources */,
 				BCA4110B2465D46700C570CD /* MovieCollectionViewCell.xib in Resources */,
 				BC366B7223E08C56009ABFD6 /* LaunchScreen.storyboard in Resources */,
 				BCD2C0C1246C782B0046910F /* GoogleService-Info.plist in Resources */,
@@ -643,6 +661,7 @@
 				BC366B6A23E08C51009ABFD6 /* ViewController.swift in Sources */,
 				BCA4113A24698D7100C570CD /* LoginViewController.swift in Sources */,
 				BCD2C0D7246F1F8E0046910F /* MovieViewController.swift in Sources */,
+				BCB20C1824741FC1009E0175 /* LoadingViewController.swift in Sources */,
 				BC4BC32123E1272600AF984F /* DetailsViewController.swift in Sources */,
 				BCA411232465E56100C570CD /* HomeViewController.swift in Sources */,
 				BC366B6623E08C51009ABFD6 /* AppDelegate.swift in Sources */,
@@ -652,6 +671,7 @@
 				BC366B7F23E0A063009ABFD6 /* Movie.swift in Sources */,
 				BC366B6823E08C51009ABFD6 /* SceneDelegate.swift in Sources */,
 				BC366B8323E0A13C009ABFD6 /* MovieDataProvider.swift in Sources */,
+				BCB20C1D24742085009E0175 /* Utils.swift in Sources */,
 				BCA4110A2465D46700C570CD /* MovieCollectionViewCell.swift in Sources */,
 				BC5A6C7123E6100B00C99597 /* GenreID.swift in Sources */,
 				BC94C7F623E2AF5C00E225E1 /* Genre.swift in Sources */,

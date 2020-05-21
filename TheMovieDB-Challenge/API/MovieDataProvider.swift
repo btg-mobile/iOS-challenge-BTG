@@ -12,7 +12,8 @@ protocol MovieDataProviderDelegate : class {
     
     func successOnLoading(_ movies: [Movie]?, movieSelection: Constants.MovieSelection)
     func errorOnLoading(error: Error?)
-    
+    func getTotalPages(_ totalOfPages: Int)
+
 }
 
 class MovieDataProvider {
@@ -49,6 +50,15 @@ class MovieDataProvider {
                 let movieHeader = try decoder.decode(MovieHeader.self, from: jsonData)
                 if let movieResults = movieHeader.results {
                     self.delegate?.successOnLoading(movieResults, movieSelection: self.movieSelection)
+                    
+                    if self.page == 1 {
+                        self.delegate?.getTotalPages(movieHeader.totalPages ?? 0)
+                    }
+                
+                    print("API LOG####################")
+                    print("Pagination #\(self.page ?? 0)")
+                    print("\(self.resourceString!)")
+                    
                 }
             }catch{
                 self.delegate?.errorOnLoading(error: error)

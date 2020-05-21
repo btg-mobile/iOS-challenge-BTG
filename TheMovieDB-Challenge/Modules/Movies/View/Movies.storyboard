@@ -48,11 +48,21 @@
                                         <rect key="frame" x="65" y="0.0" width="245" height="40"/>
                                         <color key="backgroundColor" red="0.0049759647810000002" green="0.14137595889999999" blue="0.25887107850000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </imageView>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="yxM-5d-li8">
+                                        <rect key="frame" x="339" y="10" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="1In-gD-OSC"/>
+                                            <constraint firstAttribute="height" constant="20" id="YyZ-Vo-wLN"/>
+                                        </constraints>
+                                        <color key="color" red="0.56449776890000003" green="0.80925679210000001" blue="0.63384848829999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0049759647810000002" green="0.14137595889999999" blue="0.25887107850000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="qEC-JY-p3I" secondAttribute="trailing" constant="65" id="6te-az-AUe"/>
                                     <constraint firstAttribute="bottom" secondItem="qEC-JY-p3I" secondAttribute="bottom" id="CSC-Tf-m8e"/>
+                                    <constraint firstItem="yxM-5d-li8" firstAttribute="centerY" secondItem="LGd-bj-31G" secondAttribute="centerY" id="CuZ-km-uRT"/>
+                                    <constraint firstAttribute="trailing" secondItem="yxM-5d-li8" secondAttribute="trailing" constant="16" id="Iva-cg-KmF"/>
                                     <constraint firstItem="qEC-JY-p3I" firstAttribute="leading" secondItem="LGd-bj-31G" secondAttribute="leading" constant="65" id="YdL-Zz-OG8"/>
                                     <constraint firstItem="f6Q-Md-vqm" firstAttribute="leading" secondItem="LGd-bj-31G" secondAttribute="leading" constant="10" id="bhE-0J-T8h"/>
                                     <constraint firstItem="qEC-JY-p3I" firstAttribute="top" secondItem="LGd-bj-31G" secondAttribute="top" id="bih-id-5ib"/>
@@ -98,6 +108,7 @@
                     <navigationItem key="navigationItem" title="The Movie DB Challenge" largeTitleDisplayMode="always" id="RyT-5U-GRT"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="loadingMoreActivityIndicator" destination="yxM-5d-li8" id="OwP-nY-5Fc"/>
                         <outlet property="movieCollectionView" destination="YEI-N7-Aaf" id="4Rc-7z-Im7"/>
                         <outlet property="movieSearchBar" destination="TzI-pn-b6B" id="6CQ-gV-Ftv"/>
                         <outlet property="searchBarHight" destination="zR2-YL-tti" id="zrf-8k-BjY"/>

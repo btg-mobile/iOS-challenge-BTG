@@ -118,6 +118,10 @@ class HomeController {
 
 extension HomeController : MovieDataProviderDelegate {
     
+    func getTotalPages(_ totalOfPages: Int) {
+        ///
+    }
+        
     func successOnLoading(_ movies: [Movie]?, movieSelection: Constants.MovieSelection) {
 
         switch movieSelection {
