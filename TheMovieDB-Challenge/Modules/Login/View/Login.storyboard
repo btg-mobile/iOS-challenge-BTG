@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5yZ-Fs-g4i">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5yZ-Fs-g4i">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -12,10 +12,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Login View Controller-->
+        <!--View Controller-->
         <scene sceneID="ZSY-aS-wW9">
             <objects>
-                <viewController storyboardIdentifier="LoginStoryboard" modalPresentationStyle="fullScreen" id="5yZ-Fs-g4i" customClass="LoginViewController" customModule="The_MovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginStoryboard" modalPresentationStyle="fullScreen" id="5yZ-Fs-g4i" sceneMemberID="viewController">
                     <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="a0M-Zo-9jo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,10 +31,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mxt-fT-LPt" userLabel="Logo">
-                                                <rect key="frame" x="16" y="70" width="382" height="206.5"/>
+                                                <rect key="frame" x="16" y="70" width="382" height="171"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="RoN-Gj-5xY">
-                                                        <rect key="frame" x="0.0" y="30" width="382" height="146.5"/>
+                                                        <rect key="frame" x="46.5" y="30" width="289" height="111"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" priority="750" constant="60" id="S3F-iD-CcF"/>
                                                             <constraint firstAttribute="width" secondItem="RoN-Gj-5xY" secondAttribute="height" multiplier="60:23" id="h59-Jj-Wiv"/>
@@ -51,7 +51,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xzE-vC-SfE">
-                                                <rect key="frame" x="32" y="346.5" width="350" height="40"/>
+                                                <rect key="frame" x="32" y="311" width="350" height="40"/>
                                                 <color key="backgroundColor" red="0.25098039220000001" green="0.34509803919999998" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="1T8-un-3En"/>
@@ -64,7 +64,7 @@
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qwh-Nf-4FE">
-                                                <rect key="frame" x="32" y="418.5" width="350" height="40"/>
+                                                <rect key="frame" x="32" y="383" width="350" height="40"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Xj9-A1-4Sa"/>
@@ -78,7 +78,7 @@
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Sz-3T-UgS">
-                                                <rect key="frame" x="32" y="490.5" width="350" height="40"/>
+                                                <rect key="frame" x="32" y="455" width="350" height="40"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="PAC-Yr-3b2"/>
@@ -101,7 +101,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EDf-3t-mYO">
-                                                <rect key="frame" x="32" y="562.5" width="350" height="40"/>
+                                                <rect key="frame" x="32" y="527" width="350" height="40"/>
                                                 <color key="backgroundColor" red="0.007339064032" green="0.37054961920000001" blue="0.0052432408559999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="fm2-5F-EMb"/>
@@ -221,14 +221,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ddk-jg-VEo" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="8Yd-X8-ct3" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="683" y="26"/>
+            <point key="canvasLocation" x="682.60869565217399" y="25.446428571428569"/>
         </scene>
     </scenes>
     <resources>
         <image name="LoginSocialApple" width="13.5" height="16"/>
         <image name="LoginSocialGoogle" width="16" height="16"/>
         <image name="LoginSocialfacebook" width="16" height="16"/>
-        <image name="logo" width="512" height="512"/>
+        <image name="logo" width="289" height="208.5"/>
         <image name="woman_watching" width="4256" height="2832"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
     </resources>

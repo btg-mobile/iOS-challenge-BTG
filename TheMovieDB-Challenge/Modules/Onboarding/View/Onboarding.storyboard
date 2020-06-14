@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ogx-m1-Gly">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ogx-m1-Gly">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -10,45 +10,74 @@
         <!--Onbording View Controller-->
         <scene sceneID="Phw-dP-Gwa">
             <objects>
-                <viewController id="ogx-m1-Gly" customClass="OnbordingViewController" customModule="The_MovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnboardingViewControllerIdentifier" id="ogx-m1-Gly" customClass="OnbordingViewController" customModule="The_MovieDB" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e9p-wK-wOg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="wO4-Hi-vay">
-                                <rect key="frame" x="57" y="298" width="300" height="300"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="ff6-xw-DZh"/>
-                                    <constraint firstAttribute="width" constant="300" id="zjf-DO-qEM"/>
-                                </constraints>
-                            </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1vi-eu-GiM">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="YR4-qo-fqf">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="6" translatesAutoresizingMaskIntoConstraints="NO" id="dNa-hi-Zrd">
+                                <rect key="frame" x="20" y="800" width="374" height="37"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </pageControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BuW-eR-fiG">
+                                <rect key="frame" x="20" y="54" width="35" height="30"/>
+                                <state key="normal" title="Pular">
+                                    <color key="titleColor" red="0.0049759647810000002" green="0.14137595889999999" blue="0.25887107850000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="tappedSkip:" destination="ogx-m1-Gly" eventType="touchUpInside" id="KXg-xT-FcH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qT-86-Vx2">
+                                <rect key="frame" x="338" y="54" width="56" height="30"/>
+                                <state key="normal" title="Próximo">
+                                    <color key="titleColor" red="0.0049759647810000002" green="0.14137595889999999" blue="0.25887107850000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="tappedNext:" destination="ogx-m1-Gly" eventType="touchUpInside" id="bq4-sb-tXS"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.0049759647810000002" green="0.14137595889999999" blue="0.25887107850000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="wO4-Hi-vay" firstAttribute="centerY" secondItem="e9p-wK-wOg" secondAttribute="centerY" id="26Q-Vo-D4s"/>
-                            <constraint firstItem="wO4-Hi-vay" firstAttribute="centerX" secondItem="e9p-wK-wOg" secondAttribute="centerX" id="SRs-sK-LEx"/>
+                            <constraint firstItem="PKz-G1-wQo" firstAttribute="trailing" secondItem="dNa-hi-Zrd" secondAttribute="trailing" constant="20" id="0qH-x4-s3C"/>
+                            <constraint firstItem="1vi-eu-GiM" firstAttribute="trailing" secondItem="PKz-G1-wQo" secondAttribute="trailing" id="3ED-im-LxC"/>
+                            <constraint firstAttribute="bottom" secondItem="1vi-eu-GiM" secondAttribute="bottom" id="9n0-r8-H5b"/>
+                            <constraint firstItem="BuW-eR-fiG" firstAttribute="leading" secondItem="PKz-G1-wQo" secondAttribute="leading" constant="20" id="Rvw-84-cGG"/>
+                            <constraint firstItem="BuW-eR-fiG" firstAttribute="top" secondItem="PKz-G1-wQo" secondAttribute="top" constant="10" id="Ysk-Ce-ieK"/>
+                            <constraint firstItem="PKz-G1-wQo" firstAttribute="bottom" secondItem="dNa-hi-Zrd" secondAttribute="bottom" constant="25" id="b1P-WI-q20"/>
+                            <constraint firstItem="3qT-86-Vx2" firstAttribute="top" secondItem="PKz-G1-wQo" secondAttribute="top" constant="10" id="eue-Z9-PPq"/>
+                            <constraint firstItem="dNa-hi-Zrd" firstAttribute="leading" secondItem="PKz-G1-wQo" secondAttribute="leading" constant="20" id="hNb-VZ-3Kv"/>
+                            <constraint firstItem="1vi-eu-GiM" firstAttribute="leading" secondItem="PKz-G1-wQo" secondAttribute="leading" id="iMC-oz-jW8"/>
+                            <constraint firstItem="1vi-eu-GiM" firstAttribute="top" secondItem="e9p-wK-wOg" secondAttribute="top" id="sfU-9l-So1"/>
+                            <constraint firstItem="PKz-G1-wQo" firstAttribute="trailing" secondItem="3qT-86-Vx2" secondAttribute="trailing" constant="20" id="xvf-Mv-l1s"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PKz-G1-wQo"/>
                     </view>
                     <connections>
-                        <outlet property="logoImageView" destination="wO4-Hi-vay" id="BrH-P3-qtk"/>
-                        <segue destination="8EA-B8-aGy" kind="show" identifier="ShowLogin" id="zkF-Qm-4gt"/>
-                        <segue destination="ic5-Gt-YS2" kind="show" identifier="ShowHome" id="Wjg-Hy-1UT"/>
+                        <outlet property="constraintNextButton" destination="eue-Z9-PPq" id="RDL-XW-CWP"/>
+                        <outlet property="constraintPageControl" destination="b1P-WI-q20" id="zZz-7y-m8V"/>
+                        <outlet property="constraintSkipButton" destination="Ysk-Ce-ieK" id="mzR-Pg-EHS"/>
+                        <outlet property="onboardingCollectionView" destination="1vi-eu-GiM" id="yaT-EG-g7u"/>
+                        <outlet property="pageControl" destination="dNa-hi-Zrd" id="Jup-yT-Zkw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MXQ-6T-RBs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="278" y="155"/>
-        </scene>
-        <!--Storyboard Reference-->
-        <scene sceneID="JcL-U2-LL0">
-            <objects>
-                <viewControllerPlaceholder id="8EA-B8-aGy" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="ZQ9-FD-lnp"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DNp-Ie-Oc4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1014" y="-44"/>
+            <point key="canvasLocation" x="276.81159420289856" y="154.6875"/>
         </scene>
         <!--Home-->
         <scene sceneID="392-Zc-nU3">
@@ -58,10 +87,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pvx-Zd-Ow8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1014" y="317"/>
+            <point key="canvasLocation" x="929" y="454"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="logo" width="512" height="512"/>
-    </resources>
 </document>

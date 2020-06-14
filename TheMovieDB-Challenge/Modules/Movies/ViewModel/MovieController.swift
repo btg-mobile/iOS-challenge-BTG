@@ -41,7 +41,7 @@ class MovieController {
     private var isFetchingItems: Bool = false
     private var totalItemsAvailable: Int = 3000
     
-    private func setupController(){
+    private func setupController() {
         self.provider = MovieDataProvider(page: self.page, category: .movie, movieSelection: movieSelection ?? Constants.MovieSelection.popular)
         self.provider?.delegate = self
         
@@ -49,8 +49,14 @@ class MovieController {
         self.saveGenresIntoRealm()
         
     }
+    
+    func setMovieSelection(_  chosenMovieSelection: Constants.MovieSelection) {
+        
+        self.movieSelection = chosenMovieSelection
+        
+    }
 
-    func removeAll(){
+    private func removeAll() {
         
         let realm = try! Realm()
          let allUploadingObjects = realm.objects(Item.self)
@@ -60,7 +66,7 @@ class MovieController {
          }
     }
     
-    func saveGenresIntoRealm(){
+    private func saveGenresIntoRealm() {
         
         self.provider?.getGenreIds { (allGenres) in
             
@@ -86,10 +92,9 @@ class MovieController {
         
         page += 1
         
-        
         if page <= totalPages {
         
-            loadMovies()
+            loadMovies(movieSelection: self.movieSelection ?? Constants.MovieSelection.popular)
         
         }else {
          
@@ -99,8 +104,9 @@ class MovieController {
 
     }
     
-    
-    func loadMovies(){
+    func loadMovies(movieSelection: Constants.MovieSelection) {
+        
+        self.movieSelection = movieSelection
         
         self.setupController()
         
@@ -108,23 +114,24 @@ class MovieController {
         
     }
     
-    func numberOfRows() -> Int{
+    func numberOfRows() -> Int {
         
         return self.moviesArray.count
         
     }
     
-    func loadMovieWithIndexPath(indexPath: IndexPath, favorite: Bool ) -> Movie {
+    func loadMovieWithIndexPath(indexPath: IndexPath, favorite: Bool = false) -> Movie {
+        
         if !favorite {
             return (self.moviesArray[indexPath.row])
         }
-        else{
+        else {
             return (self.favoriteMoviesArray[indexPath.row])
         }
         
     }
     
-    func searchByValue(searchText: String){
+    func searchByValue(searchText: String) {
         guard !searchText.isEmpty else {
             self.moviesArray = self.notFilteredArray
             return
@@ -136,7 +143,7 @@ class MovieController {
         
     }
     
-    func searchFavoriteByValue(searchText: String){
+    func searchFavoriteByValue(searchText: String) {
         guard !searchText.isEmpty else {
             self.favoriteMoviesArray = self.notFilteredFavoriteMoviesArray
             return
@@ -150,13 +157,13 @@ class MovieController {
         
     }
     
-    func updateArray(){
+    func updateArray() {
         self.moviesArray = self.notFilteredArray
     }
     
     //MARK: - Functions for DetailsVC
     
-    func saveFavoriteMovie(movie: Movie?){
+    func saveFavoriteMovie(movie: Movie?) {
         
         if let selectedMovie = movie {
             let favorite = FavoriteMovie()
@@ -169,13 +176,13 @@ class MovieController {
             
             for i in movie?.genreIDS ?? [] {
                 
-                do{
+                do {
                     try self.realm.write {
                         let newItem = IntGenreID()
                         newItem.id = i
                         favorite.items.append(newItem)
                     }
-                }catch{
+                }catch {
                     print("Erro ao gravar os dados na base realm")
                 }
                 
@@ -202,7 +209,7 @@ class MovieController {
         
     }
     
-    func loadFavoriteMovies(){
+    func loadFavoriteMovies() {
         
         self.favoriteMoviesArray.removeAll()
         //Realm Array
@@ -263,26 +270,26 @@ class MovieController {
         
     }
     
-    func removeFavoriteMovie(id: Int){
+    func removeFavoriteMovie(id: Int) {
         
         let check = realm.objects(FavoriteMovie.self).filter("id = \(id)")
         
-        do{
+        do {
             try realm.write {
                 realm.delete(check)
             }
         }
-        catch{
+        catch {
             print("Erro ao remover registro : \(error)")
         }
         
     }
     
-    func updateFavoriteArray(){
+    func updateFavoriteArray() {
         self.favoriteMoviesArray = self.notFilteredFavoriteMoviesArray
     }
     
-    func numberOfRowsForFavorites() -> Int{
+    func numberOfRowsForFavorites() -> Int {
         
         return self.favoriteMoviesArray.count
         
@@ -309,7 +316,7 @@ extension MovieController : MovieDataProviderDelegate {
         if let newArray = movies {
         
             self.moviesArray.append(contentsOf: newArray)
-        
+            self.notFilteredArray = self.moviesArray
         }
         self.delegate?.successOnLoading()
     }
@@ -319,4 +326,3 @@ extension MovieController : MovieDataProviderDelegate {
     }
     
 }
-

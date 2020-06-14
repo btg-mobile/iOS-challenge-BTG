@@ -11,6 +11,8 @@ import Foundation
 enum Constants {
     enum API {
         static let baseURL = "https://api.themoviedb.org/3/"
+        static let imageURLBanner = "https://image.tmdb.org/t/p/w1280"
+        static let imageURLCover = "https://image.tmdb.org/t/p/original"
         static let publicKey = ""
         static let privateKey = "132dfc8e68a337152fd3e36d63c77677"
     }

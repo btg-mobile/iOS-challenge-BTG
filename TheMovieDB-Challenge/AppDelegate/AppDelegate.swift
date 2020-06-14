@@ -9,12 +9,10 @@
 import UIKit
 import RealmSwift
 import Firebase
-import Crashlytics
-import Fabric
+import FirebaseCrashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -25,9 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         //print(Fabric.sharedSDK().debug)
-        print("Crashlytics version: \(Crashlytics.sharedInstance().version)")
+        print("Crashlytics version: \(FirebaseCrashlyticsVersionNumber)")
         
-        Fabric.sharedSDK().debug = true
+        //Fabric.sharedSDK().debug = true
         
         return true
     }
@@ -46,7 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
 //    }
     
-    
     func applicationWillTerminate(_ application: UIApplication) {
         
         let realm = try! Realm()
@@ -59,4 +56,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
 }
-

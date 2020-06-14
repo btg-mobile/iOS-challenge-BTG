@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -19,7 +19,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcd-e4-ZJE" userLabel="MainView">
                         <rect key="frame" x="0.0" y="0.0" width="180" height="320"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="portrait-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="A1x-JG-DIe">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="portrait-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="A1x-JG-DIe" customClass="CustomImageView" customModule="The_MovieDB" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="180" height="290"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
@@ -64,6 +64,14 @@
                                     <constraint firstAttribute="trailing" secondItem="e0f-d9-sW2" secondAttribute="trailing" id="z9f-zz-fxa"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="1r5-5Y-ZRN">
+                                <rect key="frame" x="80" y="150" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="p4A-0g-Ta3"/>
+                                    <constraint firstAttribute="height" constant="20" id="vca-vF-nyV"/>
+                                </constraints>
+                                <color key="color" red="0.0" green="0.13701200490000001" blue="0.26296305660000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -74,6 +82,8 @@
                             <constraint firstAttribute="trailing" secondItem="StZ-uK-eBE" secondAttribute="trailing" id="SZe-kT-Zdc"/>
                             <constraint firstAttribute="bottom" secondItem="StZ-uK-eBE" secondAttribute="bottom" constant="8" id="ZDD-m6-i1b"/>
                             <constraint firstAttribute="trailing" secondItem="A1x-JG-DIe" secondAttribute="trailing" id="d1f-Id-qf9"/>
+                            <constraint firstItem="1r5-5Y-ZRN" firstAttribute="centerX" secondItem="fcd-e4-ZJE" secondAttribute="centerX" id="p9x-jH-nOu"/>
+                            <constraint firstItem="1r5-5Y-ZRN" firstAttribute="centerY" secondItem="fcd-e4-ZJE" secondAttribute="centerY" id="wx0-jm-xOl"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -87,6 +97,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="248" height="288"/>
             <connections>
+                <outlet property="imgLoadActivityIndicator" destination="1r5-5Y-ZRN" id="h6S-sN-i0h"/>
                 <outlet property="mainView" destination="fcd-e4-ZJE" id="4el-VW-Rec"/>
                 <outlet property="movieImageView" destination="A1x-JG-DIe" id="duE-Jj-Yny"/>
                 <outlet property="movieNameLabel" destination="Imb-hh-xuf" id="ZJh-kO-lNH"/>

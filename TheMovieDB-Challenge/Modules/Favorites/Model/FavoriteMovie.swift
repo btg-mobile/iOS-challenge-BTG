@@ -27,6 +27,4 @@ class FavoriteMovie : Object {
     @objc dynamic var overview : String = ""
     @objc dynamic var releaseDate: String = ""
 
- 
-    
 }

@@ -16,7 +16,7 @@ import Nimble_Snapshots
 class viewControllerSpec: QuickSpec {
     
     override func spec() {
-        describe("ViewController Layout"){
+        describe("ViewController Layout") {
             
             var sut : ViewController!
             
@@ -38,7 +38,7 @@ class viewControllerSpec: QuickSpec {
                     WindowHelper.showInTestWindow(viewController: sut)
                 }
                 
-                it("Espero que o layout da tableView seja"){
+                it("Espero que o layout da tableView seja") {
                     //expect(sut.tableView).to(recordSnapshot())
                     expect(sut.tableView).to(haveValidSnapshot())
                 }

@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import Crashlytics
+import FirebaseCrashlytics
+import Hero
 
 class MovieViewController: UIViewController {
     
@@ -15,37 +16,93 @@ class MovieViewController: UIViewController {
     var refreshControl: UIRefreshControl?
     var fetchingMore = false
     var noticeNoMoreData = false
+    var movieSelection: Constants.MovieSelection?
     
     @IBOutlet weak var movieSearchBar: UISearchBar!
     @IBOutlet weak var movieCollectionView: UICollectionView!
     @IBOutlet weak var searchBarHight: NSLayoutConstraint!
     @IBOutlet weak var loadingMoreActivityIndicator: UIActivityIndicatorView!
     
+//    let popular = Notification.Name(rawValue: notificationKeyPopular)
+//    let nowPlaying = Notification.Name(rawValue: notificationKeyNowPlaying)
+//    let upcoming = Notification.Name(rawValue: notificationKeyUpcoming)
+//    let topRated = Notification.Name(rawValue: notificationKeyTopRated)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-        //movieSearchBar.searchTextField.layer.backgroundColor = UIColor.white as! CGColor
+        setupView()
+        ///createObservers()
+    }
+    
+    deinit {
+        //NotificationCenter.default.removeObserver(self)
+        //print("Observers deinitilized")
+    }
+    
+    fileprivate func setupView() {
+        
+        movieCollectionView.hero.id = "ironMan"
+        
+        movieSearchBar.searchTextField.textColor = UIColor.white
+        
+        //movieSearchBar.searchTextField.layer.backgroundColor = #colorLiteral(red: 0, green: 0.7064210773, blue: 0.8952547312, alpha: 1)
+        
         self.addRefreshingControl()
         
         //Delegate and protocols
         controller = MovieController()
         controller?.delegate = self
-        controller?.loadMovies()
+        controller?.loadMovies(movieSelection: self.movieSelection ?? Constants.MovieSelection.popular)
         
-        //CV DELEGATE AND DATASOURCE
+        ///Delegate and Datasource
         movieCollectionView.delegate = self
         movieCollectionView.dataSource = self
         movieCollectionView.prefetchDataSource = self
         
-        //REGISTER CELL
+        ///Registering Cells
         let nibName = "MovieCollectionViewCell"
         let identifier = "MovieCell"
         movieCollectionView.register(UINib(nibName: nibName, bundle: nil), forCellWithReuseIdentifier: identifier)
         
     }
     
-    func addRefreshingControl(){
+    //MARK: - CreateObserves
+/*
+     func createObservers() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(setChosenMovieSelection(notification:)), name: popular, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setChosenMovieSelection(notification:)), name: nowPlaying, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setChosenMovieSelection(notification:)), name: upcoming, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setChosenMovieSelection(notification:)), name: topRated, object: nil)
+        
+    }
+    
+    @objc func setChosenMovieSelection(notification: NSNotification) {
+        
+        let movieSelection = notification.name
+
+        switch movieSelection {
+        case popular:
+            self.controller?.setMovieSelection(.popular)
+            controller?.loadMovies()
+        case nowPlaying:
+            self.controller?.setMovieSelection(.nowPlaying)
+            controller?.loadMovies()
+        case upcoming:
+            self.controller?.setMovieSelection(.upcoming)
+            controller?.loadMovies()
+        case topRated:
+            self.controller?.setMovieSelection(.topRated)
+            controller?.loadMovies()
+        default:
+            return
+        }
+        
+    }
+ */
+    
+    private func addRefreshingControl() {
         
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.tintColor = #colorLiteral(red: 0.01317793038, green: 0.1344225705, blue: 0.2308762968, alpha: 1)
@@ -57,17 +114,19 @@ class MovieViewController: UIViewController {
     @objc func refreshList() {
         
         self.refreshControl?.endRefreshing()
-        self.controller?.loadMovies()
+        self.controller?.loadMovies(movieSelection: self.movieSelection ?? Constants.MovieSelection.popular)
         self.movieCollectionView.reloadData()
         
     }
     
+    //MARK: - GoBack
     @IBAction func tappedToGoBack(_ sender: UIButton) {
         
         self.dismiss(animated: true, completion: nil)
         
     }
     
+    //MARK: - Fetch More Pages
     private func startFetchingNewPage() {
         
         fetchingMore = true
@@ -79,6 +138,7 @@ class MovieViewController: UIViewController {
             self.fetchingMore = false
             self.movieCollectionView.reloadData()
         })
+        
     }
     
 }
@@ -115,7 +175,7 @@ extension MovieViewController : UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return .init(width: view.frame.width / 3.4 , height: view.frame.height / 4.8)
+        return .init(width: view.frame.width / 3.4 , height: 190)//
         //return .init(width: view.frame.width / 2.2 , height: view.frame.height / 2.3)
         
     }
@@ -144,7 +204,7 @@ extension MovieViewController : UICollectionViewDelegate, UICollectionViewDataSo
                     self.movieSearchBar.transform = .init(translationX: 0, y: min(0, -offset))
                 }
                 
-            }else{
+            }else {
                 
                 UIScrollView.animate(withDuration: 0.5) {
                     self.searchBarHight.constant = 44.00
@@ -161,7 +221,7 @@ extension MovieViewController : UICollectionViewDelegate, UICollectionViewDataSo
         let contentHeight = scrollView.contentSize.height
         let scrollFrameHeight = scrollView.frame.height
         
-        if offsetY > contentHeight - scrollFrameHeight * 1.5 {
+        if offsetY > contentHeight - scrollFrameHeight * 2 { //1.5
             
             if !fetchingMore {
                 startFetchingNewPage()
@@ -173,12 +233,16 @@ extension MovieViewController : UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        let storyboard = UIStoryboard.init(name: "Details", bundle: nil)
         
-        let vc = LoginViewController()
+        let vc: DetailsViewController = storyboard.instantiateViewController(withIdentifier: "DetailsViewControllerID") as! DetailsViewController
+        
+//        let cellHero = "cellID\(indexPath.item)\(self.movieCollectionView.tag)"
+//        collectionView.hero.id = cellHero
+        
+        vc.movie = controller?.loadMovieWithIndexPath(indexPath: indexPath)
         
         present(vc, animated: true, completion: nil)
-        
-        //self.performSegue(withIdentifier: "goToDetails", sender: self)
         
     }
     
@@ -276,4 +340,3 @@ extension MovieViewController : MovieControllerDelegate {
     }
     
 }
-

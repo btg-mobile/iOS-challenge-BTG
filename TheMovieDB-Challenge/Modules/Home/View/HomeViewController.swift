@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Crashlytics
+import FirebaseCrashlytics
 
 class HomeViewController: UIViewController {
     
@@ -27,7 +27,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var topRatedMoviesActivityIndicator: UIActivityIndicatorView!
     
     var movieSelection: Constants.MovieSelection?
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,6 +49,29 @@ class HomeViewController: UIViewController {
         startIndicators()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+
+        perform(#selector(shouldShowOnboarding), with: self, afterDelay: 1)
+        
+    }
+    
+    @objc func shouldShowOnboarding() {
+        
+        //if UserDefaults.standard.isFirstUse() {
+        
+        let identifier = "OnboardingViewControllerIdentifier"
+    
+        let homeStoryboard = UIStoryboard.init(name: "Onboarding", bundle: nil)
+        
+        let onbordingViewController = homeStoryboard.instantiateViewController(withIdentifier: identifier)
+        
+        self.present(onbordingViewController, animated: true)
+        
+        //}
+        
+    }
+    
+    //MARK: - Register Cells
     fileprivate func registerCells() {
         
         let nibName = "MovieCollectionViewCell"
@@ -57,14 +80,14 @@ class HomeViewController: UIViewController {
         
     }
     
-    ///Sets the StatusBar as white
+    //MARK: - Sets the StatusBar as white
     override var preferredStatusBarStyle: UIStatusBarStyle {
         
         return UIStatusBarStyle.lightContent
         
     }
     
-    ///Fires the activity indicators
+    //MARK: - Fires the activity indicators
     func startIndicators() {
         
         popularMoviesActivityIndicator.startAnimating()
@@ -79,24 +102,31 @@ class HomeViewController: UIViewController {
         
         switch sender.tag {
         case 0:
-            print("0")
+            movieSelection = .popular
+            print("Popular")
         case 1:
-            print("1")
+            movieSelection = .nowPlaying
+            print("Now Playing")
         case 2:
-            print("2")
+            movieSelection = .upcoming
+            print("Upcoming")
         case 3:
-            print("3")
+            movieSelection = .topRated
+            print("Top Rated")
         default:
             return
         }
         
         let storyboard = UIStoryboard.init(name: "Movies", bundle: nil)
-
-        let vc = storyboard.instantiateViewController(withIdentifier: "MoviesList")
+        
+        let vc = storyboard.instantiateViewController(withIdentifier: "MoviesList") as! MovieViewController
+        
+        vc.movieSelection = movieSelection
+        
         vc.modalPresentationStyle = .fullScreen
         
         self.present(vc, animated: true, completion: nil)
-
+        
     }
     
     func addRefreshingControl() {
@@ -119,8 +149,7 @@ class HomeViewController: UIViewController {
     
 }
 
-    //MARK: - CollectionView Methods Extension
-
+//MARK: - CollectionView Methods Extension
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -184,10 +213,25 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let storyboard = UIStoryboard.init(name: "Details", bundle: nil)
+        
+        let vc: DetailsViewController = storyboard.instantiateViewController(withIdentifier: "DetailsViewControllerID") as! DetailsViewController
+        
+        guard let movieSelected = self.movieSelection else { return }
+        
+        //Create a logic to get the collection the user is in. So, pass it as the movieSelection above
+        
+        vc.movie = controller?.loadMovieWithIndexPath(indexPath: indexPath, movieSelection: movieSelected)
+        
+        present(vc, animated: true, completion: nil)
+        
+    }
+    
 }
 
-    //MARK: - Controller Protocol Methods
-
+//MARK: - Controller Protocol Methods
 extension HomeViewController: HomeControllerDelegate {
     
     func successOnLoadingPopularMovies() {
@@ -221,7 +265,7 @@ extension HomeViewController: HomeControllerDelegate {
     }
     
     func successOnLoadingTopRatedMovies() {
-    
+        
         DispatchQueue.main.async {
             self.movieSelection = .topRated
             self.topRatedMoviesCollectionView.reloadData()

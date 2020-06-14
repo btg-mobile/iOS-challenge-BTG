@@ -22,7 +22,6 @@ class LoginViewController: UINavigationController {
     @IBOutlet weak var loginApple: UIButton!
     @IBOutlet weak var loginEmail: UIButton!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additionalsetup after loading the view.
@@ -30,7 +29,7 @@ class LoginViewController: UINavigationController {
         //setupView()
     }
     
-    func setupView(){
+    func setupView() {
         
         loginGoogle.layer.cornerRadius = 4
         loginFacebook.layer.cornerRadius = 4
@@ -50,25 +49,17 @@ class LoginViewController: UINavigationController {
     
     @IBAction func signInWithFacebook(_ sender: UIButton) {
     
-        
-    
     }
     
     @IBAction func signInWithGoogle(_ sender: UIButton) {
-    
-        
     
     }
 
     @IBAction func signInWithApple(_ sender: UIButton) {
     
-        
-    
     }
     
     @IBAction func signInWithEmail(_ sender: UIButton) {
-    
-        
     
     }
     
@@ -80,9 +71,6 @@ class LoginViewController: UINavigationController {
 
     @IBAction func createAccount(_ sender: UIButton) {
     
-        
-    
     }
     
-
 }

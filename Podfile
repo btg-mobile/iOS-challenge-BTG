@@ -10,12 +10,15 @@ target 'TheMovieDB-Challenge' do
   pod 'SDWebImage', '~> 5.0'
   pod 'RealmSwift'
   pod 'SwiftLint'
+  pod 'lottie-ios'
+  pod 'Hero'
 
 # add the Firebase pod for Google Analytics
 pod 'Firebase/Analytics'
 
 #Firebase Crashlytics
-pod 'Fabric', '~> 1.10.2'
-pod 'Crashlytics', '~> 3.14.0'
+pod 'Firebase/Crashlytics'
+#pod 'Fabric', '~> 1.10.2'
+#pod 'Crashlytics', '~> 3.14.0'
   
 end

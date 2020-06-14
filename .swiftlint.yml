@@ -1,111 +1,67 @@
-warning_threshold: 10
-
-force_cast:
-  severity: error
-
-force_unwrapping:
-  severity: error
-    
-line_length:
-  warning: 175
-  error: 200
-  ignores_comments: true
-  ignores_function_declarations: true
-
+# rule identifiers to include from running
 whitelist_rules:
-    - block_based_kvo
-    - class_delegate_protocol
-    - closing_brace
-    - closure_body_length 
-    - closure_end_indentation 
-    - closure_parameter_position
-    - closure_spacing 
-    - collection_alignment
-    - colon
-    - comma
-    - conditional_binding_cascade
-    - contains_over_first_not_nil
-    - control_statement
-    - cyclomatic_complexity
-    - discouraged_direct_init
-    - dynamic_inline
-    - empty_count
-    - empty_enum_arguments
-    - empty_parameters
-    - empty_parentheses_with_trailing_closure
-    - empty_string
-    - explicit_init 
-    - explicit_self
-    - extension_access_modifier
-    - fatal_error_message
-    - file_length
-    - for_where
-    - force_cast
-    - force_try
-    - function_body_length
-    - function_parameter_count
-    - generic_type_name
-    - identical_operands
-    - implicit_getter
-    - leading_whitespace
-    - legacy_cggeometry_functions
-    - legacy_constant
-    - legacy_constructor
-    - legacy_nsgeometry_functions
-    - line_length
-    - literal_expression_end_indentation
-    - mark
-    - multiline_parameters
-    - multiple_closures_with_trailing_closure
-    - nesting
-    - operator_whitespace
-    - opening_brace
-    - overridden_super_call
-    - private_unit_test
-    - redundant_discardable_let
-    - redundant_nil_coalescing
-    - redundant_optional_initialization
-    - redundant_string_enum_value
-    - redundant_type_annotation
-    - redundant_void_return
-    - return_arrow_whitespace
-    - shorthand_operator
-    - sorted_imports
-    - statement_position
-    - switch_case_alignment
-    - switch_case_on_newline
-    - syntactic_sugar
-    - toggle_bool
-    - trailing_comma
-    - trailing_newline
-    - trailing_semicolon
-    - type_body_length
-    - type_name
-    - unavailable_function
-    - unneeded_break_in_switch
-    - unneeded_parentheses_in_closure_argument
-    - unused_closure_parameter
-    - unused_enumerated
-    - unused_import
-    - unused_optional_binding
-    - unused_private_declaration
-    - valid_docs
-    - valid_ibinspectable
-    - variable_name_max_length
-    - variable_name_min_length
-    - vertical_parameter_alignment
-    - vertical_parameter_alignment_on_call
-    - vertical_whitespace
-    - void_return
-    - yoda_condition
-    - convenience_type 
-    - force_unwrapping
-    - implicit_return
-    - implicitly_unwrapped_optional
-    - let_var_whitespace
-    - private_action
-    - private_over_fileprivate
-    - weak_delegate
-
-excluded:
-  - Pods
+- trailing_newline
+- opening_brace
+#    - variable_name_min_length
+- trailing_semicolon
+#    - conditional_binding_cascade
+#    - variable_name_max_length
+- operator_whitespace
+- return_arrow_whitespace
+- closing_brace
+- leading_whitespace
+- redundant_string_enum_value
+- trailing_comma
+- vertical_parameter_alignment
+- vertical_whitespace
+- redundant_discardable_let
+#    - notification_center_detachment
+#    - empty_enum_arguments
+#    -empty_count
+#    -colon
+#    -comma
+#    -force_cast
+#    -type_name
+#    -force_try
+#    -function_body_length
+#    -nesting
+#    -variable_name
+#    -control_statement
+#    -legacy_constant
+#    -line_length
+#    -trailing_whitespace
+#    -statement_position
+#    -type_body_length
+#    -todo
+#    -legacy_constructor
+#    -valid_docs
+#    -missing_docs
+#    -file_length
+#    -class_delegate_protocol
+#    -closure_parameter_position
+#    -compiler_protocol_init
+#    -cyclomatic_complexity
+#    -dynamic_inline
+#    -empty_parameters
+#    -empty_parentheses_with_trailing_closure
+#    -function_parameter_count
+#    -generic_type_name
+#    -implicit_getter
+#    -large_tuple
+#    -legacy_cggeometry_functions
+#    -legacy_nsgeometry_functions
+#    -mark
+#    -private_unit_test
+#    -redundant_optional_initialization
+#    -redundant_void_return
+#    -shorthand_operator
+#    -syntactic_sugar
+#    -unused_closure_parameter
+#    -unused_enumerated
+#    -unused_optional_binding
+#    -valid_ibinspectable
+#    -void_return
+#    -weak_delegate
+#    -for_where
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+- Pods

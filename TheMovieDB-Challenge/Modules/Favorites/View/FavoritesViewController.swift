@@ -47,25 +47,24 @@ class FavoritesViewController: UIViewController {
         
         if segue.identifier == "goToDetailsOfFav" {
             
-            if let vc: DetailsViewController = segue.destination as? DetailsViewController {
-                
-                if let indexPath = favoritesTableView.indexPathForSelectedRow {
-                    //vc.movie = self.controller?.loadMovieWithIndexPath(indexPath: indexPath, favorite: true)
-                }
-                
-            }
+//            if let vc: DetailsViewController = segue.destination as? DetailsViewController {
+//
+//                if let indexPath = favoritesTableView.indexPathForSelectedRow {
+//                    //vc.movie = self.controller?.loadMovieWithIndexPath(indexPath: indexPath, favorite: true)
+//                }
+//
+//            }
             
         }
         
     }
     
-    func addRefreshingControl(){
+    func addRefreshingControl() {
         
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.tintColor = .green
         self.refreshControl?.addTarget(self, action: #selector(refreshList), for: .valueChanged)
 //        self.favoritesTableView.addSubview(refreshControl!)
-        
         
     }
     

@@ -30,7 +30,7 @@ class LoadingView {
         if isLoading { return }
         
         isLoading = true
-        if let keyWindow = UIApplication.shared.keyWindow {
+        if let keyWindow = UIApplication.shared.windows.last { ///KeyWindow deprecated
             DispatchQueue.main.async {
                 keyWindow.addSubview(self.loadingViewcontroller.view)
                 UIView.animate(withDuration: 0.3, animations: {

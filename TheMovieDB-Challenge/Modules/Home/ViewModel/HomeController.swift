@@ -43,7 +43,7 @@ class HomeController {
         
     }
     
-    func loadMovies(from home: Bool, page: Int?, category: Constants.category, movieSelection: Constants.MovieSelection){
+    func loadMovies(from home: Bool, page: Int?, category: Constants.category, movieSelection: Constants.MovieSelection) {
         
         if home {
             
@@ -76,7 +76,7 @@ class HomeController {
         
     }
     
-    func numberOfRows(movieSelection: Constants.MovieSelection) -> Int{
+    func numberOfRows(movieSelection: Constants.MovieSelection) -> Int {
         
         switch movieSelection {
         case .popular:
@@ -91,12 +91,12 @@ class HomeController {
         
     }
     
-    func loadMovieWithIndexPath(indexPath: IndexPath, movieSelection: Constants.MovieSelection, favorite: Bool ) -> Movie {
+    func loadMovieWithIndexPath(indexPath: IndexPath, movieSelection: Constants.MovieSelection, favorite: Bool = false ) -> Movie {
         
         if favorite {
             return (self.favoriteMoviesArray[indexPath.row])
         }
-        else{
+        else {
             
             switch movieSelection {
             case .popular:
@@ -151,4 +151,3 @@ extension HomeController : MovieDataProviderDelegate {
     }
     
 }
-
