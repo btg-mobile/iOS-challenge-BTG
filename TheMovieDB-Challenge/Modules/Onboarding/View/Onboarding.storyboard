@@ -35,7 +35,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BuW-eR-fiG">
                                 <rect key="frame" x="20" y="54" width="35" height="30"/>
                                 <state key="normal" title="Pular">
-                                    <color key="titleColor" red="0.0049759647810000002" green="0.14137595889999999" blue="0.25887107850000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.8508847356" green="0.282571882" blue="0.1897338033" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="tappedSkip:" destination="ogx-m1-Gly" eventType="touchUpInside" id="KXg-xT-FcH"/>
@@ -44,7 +44,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qT-86-Vx2">
                                 <rect key="frame" x="338" y="54" width="56" height="30"/>
                                 <state key="normal" title="Próximo">
-                                    <color key="titleColor" red="0.0049759647810000002" green="0.14137595889999999" blue="0.25887107850000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.8508847356" green="0.282571882" blue="0.1897338033" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="tappedNext:" destination="ogx-m1-Gly" eventType="touchUpInside" id="bq4-sb-tXS"/>
@@ -78,16 +78,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MXQ-6T-RBs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="276.81159420289856" y="154.6875"/>
-        </scene>
-        <!--Home-->
-        <scene sceneID="392-Zc-nU3">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Home" id="ic5-Gt-YS2" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="LMb-4O-ZhB"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pvx-Zd-Ow8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="929" y="454"/>
         </scene>
     </scenes>
 </document>

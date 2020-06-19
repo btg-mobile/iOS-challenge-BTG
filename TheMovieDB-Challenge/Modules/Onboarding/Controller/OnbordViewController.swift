@@ -17,6 +17,7 @@ class OnbordingViewController: UIViewController {
     @IBOutlet weak var constraintNextButton: NSLayoutConstraint!
     
     private var viewModel = OnboardingViewModel()
+    private var cancelLoginObserver: NSObjectProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,11 +25,33 @@ class OnbordingViewController: UIViewController {
         
         setupView()
         registerCells()
-
+        setupNotification()
+    }
+    
+    deinit {
+        
+        if let cancelLogin = cancelLoginObserver {
+            NotificationCenter.default.removeObserver(cancelLogin)
+        }
+        
+    }
+    
+    func setupNotification() {
+        
+        cancelLoginObserver = NotificationCenter.default.addObserver(forName: .loginCancelled, object: nil, queue: .main) { [weak self] ( _ ) in
+            
+            guard let strongSelf = self else {
+                return
+            }
+            
+            strongSelf.dismiss(animated: true, completion: nil)
+            
+        }
+        
     }
     
     private func setupView() {
-            
+        
         pageControl.numberOfPages = self.viewModel.getNumberOfItems() + 1
         
         onboardingCollectionView.delegate = self
@@ -59,17 +82,17 @@ class OnbordingViewController: UIViewController {
     }
     
     private func nextPage() {
-
+        
         if pageControl.currentPage == self.viewModel.getNumberOfItems() {
             return
         }
-
+        
         if pageControl.currentPage == self.viewModel.getNumberOfItems() - 1 {
             moveControlConstraintsOffScreen()
             
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 self.view.layoutIfNeeded()
-                }, completion: nil)
+            }, completion: nil)
         }
         
         let indexPath = IndexPath(item: pageControl.currentPage + 1, section: 0)
@@ -88,7 +111,7 @@ class OnbordingViewController: UIViewController {
         constraintSkipButton.constant = 10
         constraintNextButton.constant = 10
     }
-
+    
 }
 
 //MARK: - Extension For CollectionView Delegate, DataSource and Layout
@@ -103,6 +126,8 @@ extension OnbordingViewController : UICollectionViewDelegate, UICollectionViewDa
         if indexPath.row == self.viewModel.getNumberOfItems() {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LoginCollectionViewCellIdentifier", for: indexPath) as! LoginCollectionViewCell
+            
+            cell.delegate = self
             
             return cell
             
@@ -126,7 +151,7 @@ extension OnbordingViewController : UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
         return UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
-
+        
     }
     
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -154,7 +179,7 @@ extension OnbordingViewController : UICollectionViewDelegate, UICollectionViewDa
             moveControlConstraintsOffScreen()
             
         }else {
-
+            
             moveControlConstraintsOnScreen()
             
         }
@@ -163,6 +188,25 @@ extension OnbordingViewController : UICollectionViewDelegate, UICollectionViewDa
             self.view.layoutIfNeeded()
         }, completion: nil)
         
+    }
+    
+}
+
+extension OnbordingViewController : LoginCollectionViewCellDelegate {
+    
+    //From Login Cell
+    func openLogin() {
+        let storyboard = UIStoryboard.init(name: "Login", bundle: nil)
+        
+        let vc = storyboard.instantiateViewController(withIdentifier: "LoginStoryboard")
+        
+        vc.modalPresentationStyle = .fullScreen
+        
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    func closeView() {
+        self.dismiss(animated: true, completion: nil)
     }
     
 }

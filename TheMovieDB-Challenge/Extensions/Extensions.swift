@@ -110,3 +110,9 @@ extension UIView {
     }
     
 }
+
+extension Notification.Name {
+    
+    static let loginCancelled = Notification.Name("cancelLoginObserver")
+    
+}
