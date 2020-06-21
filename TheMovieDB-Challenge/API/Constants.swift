@@ -17,38 +17,33 @@ enum Constants {
         static let privateKey = "132dfc8e68a337152fd3e36d63c77677"
     }
     
-    //    enum Dimensions {
-    //        static let spacing: CGFloat = 16.0
-    //        static let minItemSize = CGSize(width: 200, height: 225)
-    //    }
-    
     enum MovieSelection : String {
         
-        case popular = "popular"
-        case nowPlaying = "now_playing"
-        case upcoming = "upcoming"
-        case topRated = "top_rated"
+        case Popular = "popular"
+        case NowPlaying = "now_playing"
+        case Upcoming = "upcoming"
+        case TopRated = "top_rated"
         
     }
     
     enum language : String {
         
-        case portuguese = "pt-BR"
-        case english = "en-US"
-        case spanish = "es-ES"
+        case Portuguese = "pt-BR"
+        case English = "en-US"
+        case Spanish = "es-ES"
         
     }
     
-    enum category {
+    enum category : String {
         
-        case movie
-        case series
-        case genre
+        case Movie = "movie"
+        case Series = "serie"
+        case Genre = "genre"
     }
     
 }
 
 enum MovieError: Error {
-    case noDataAvailable
-    case canNotProccessData
+    case NoDataAvailable
+    case CanNotProccessData
 }

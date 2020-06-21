@@ -49,19 +49,19 @@ class HomeController {
             
             self.setupController()
             
-            self.provider = MovieDataProvider(page: page, category: category, movieSelection: .popular)
+            self.provider = MovieDataProvider(page: page, category: category, movieSelection: .Popular)
             self.provider?.delegate = self
             self.provider?.getMovies()
 
-            self.provider = MovieDataProvider(page: page, category: category, movieSelection: .nowPlaying)
+            self.provider = MovieDataProvider(page: page, category: category, movieSelection: .NowPlaying)
             self.provider?.delegate = self
             self.provider?.getMovies()
 
-            self.provider = MovieDataProvider(page: page, category: category, movieSelection: .upcoming)
+            self.provider = MovieDataProvider(page: page, category: category, movieSelection: .Upcoming)
             self.provider?.delegate = self
             self.provider?.getMovies()
 
-            self.provider = MovieDataProvider(page: page, category: category, movieSelection: .topRated)
+            self.provider = MovieDataProvider(page: page, category: category, movieSelection: .TopRated)
             self.provider?.delegate = self
             self.provider?.getMovies()
             
@@ -79,13 +79,13 @@ class HomeController {
     func numberOfRows(movieSelection: Constants.MovieSelection) -> Int {
         
         switch movieSelection {
-        case .popular:
+        case .Popular:
             return self.popularMoviesArray.count
-        case .nowPlaying:
+        case .NowPlaying:
             return self.nowPlayingMoviesArray.count
-        case .upcoming:
+        case .Upcoming:
             return self.upcomingMoviesArray.count
-        case .topRated:
+        case .TopRated:
             return self.topRatedMoviesArray.count
         }
         
@@ -99,13 +99,13 @@ class HomeController {
         else {
             
             switch movieSelection {
-            case .popular:
+            case .Popular:
                 return self.popularMoviesArray[indexPath.row]
-            case .nowPlaying:
+            case .NowPlaying:
                 return self.nowPlayingMoviesArray[indexPath.row]
-            case .upcoming:
+            case .Upcoming:
                 return self.upcomingMoviesArray[indexPath.row]
-            case .topRated:
+            case .TopRated:
                 return self.topRatedMoviesArray[indexPath.row]
             }
             
@@ -125,19 +125,19 @@ extension HomeController : MovieDataProviderDelegate {
     func successOnLoading(_ movies: [Movie]?, movieSelection: Constants.MovieSelection) {
 
         switch movieSelection {
-        case .popular:
+        case .Popular:
             self.popularMoviesArray = movies ?? []
             self.delegate?.successOnLoadingPopularMovies()
             
-        case .nowPlaying:
+        case .NowPlaying:
             self.nowPlayingMoviesArray = movies ?? []
             self.delegate?.successOnLoadingNowPlayingMovies()
             
-        case .upcoming:
+        case .Upcoming:
             self.upcomingMoviesArray = movies ?? []
             self.delegate?.successOnLoadingUpcomingMovies()
             
-        case .topRated:
+        case .TopRated:
             self.topRatedMoviesArray = movies ?? []
             self.delegate?.successOnLoadingTopRatedMovies()
         }
@@ -146,7 +146,7 @@ extension HomeController : MovieDataProviderDelegate {
     
     func errorOnLoading(error: Error?) {
         
-        self.delegate?.errorOnLoading(error: error, type: .nowPlaying)
+        self.delegate?.errorOnLoading(error: error, type: .NowPlaying)
         
     }
     

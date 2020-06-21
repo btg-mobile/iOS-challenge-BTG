@@ -23,6 +23,7 @@ class MovieController {
     var totalPages = 1
     
     var movieSelection: Constants.MovieSelection?
+    var didGetGenres = false
     
     let realm = try! Realm()
     
@@ -30,7 +31,7 @@ class MovieController {
     
     private var moviesArray : [Movie] = []
     private var notFilteredArray : [Movie] = []
-
+    
     private var favoriteMoviesArray : [Movie] = []
     private var notFilteredFavoriteMoviesArray : [Movie] = []
     
@@ -42,10 +43,11 @@ class MovieController {
     private var totalItemsAvailable: Int = 3000
     
     private func setupController() {
-        self.provider = MovieDataProvider(page: self.page, category: .movie, movieSelection: movieSelection ?? Constants.MovieSelection.popular)
+        self.provider = MovieDataProvider(page: self.page, category: .Movie, movieSelection: movieSelection ?? Constants.MovieSelection.Popular)
         self.provider?.delegate = self
         
         //self.removeAll()
+        
         self.saveGenresIntoRealm()
         
     }
@@ -55,37 +57,42 @@ class MovieController {
         self.movieSelection = chosenMovieSelection
         
     }
-
+    
     private func removeAll() {
         
         let realm = try! Realm()
-         let allUploadingObjects = realm.objects(Item.self)
-
-         try! realm.write {
-             realm.delete(allUploadingObjects)
-         }
+        let allUploadingObjects = realm.objects(Item.self)
+        
+        try! realm.write {
+            realm.delete(allUploadingObjects)
+        }
     }
     
     private func saveGenresIntoRealm() {
         
-        self.provider?.getGenreIds { (allGenres) in
+        if !didGetGenres {
             
-            for i in allGenres.genres {
+            self.provider?.getGenreIds { (allGenres) in
                 
-                let realm = try! Realm()
-                
-                let item = Item()
-                item.id = i.id
-                item.name = i.name
-                
-                try! realm.write {
-                    realm.add(item)
+                for i in allGenres.genres {
+                    
+                    let realm = try! Realm()
+                    
+                    let item = Item()
+                    item.id = i.id
+                    item.name = i.name
+                    
+                    try! realm.write {
+                        realm.add(item)
+                    }
+                    
                 }
                 
             }
-                    
+            
+            didGetGenres = true
         }
-    
+        
     }
     
     func loadAnotherPage() {
@@ -93,15 +100,15 @@ class MovieController {
         page += 1
         
         if page <= totalPages {
-        
-            loadMovies(movieSelection: self.movieSelection ?? Constants.MovieSelection.popular)
-        
+            
+            loadMovies(movieSelection: self.movieSelection ?? Constants.MovieSelection.Popular)
+            
         }else {
-         
+            
             self.delegate?.limitOfPagesReached()
             
         }
-
+        
     }
     
     func loadMovies(movieSelection: Constants.MovieSelection) {
@@ -314,7 +321,7 @@ extension MovieController : MovieDataProviderDelegate {
     func successOnLoading(_ movies: [Movie]?, movieSelection: Constants.MovieSelection) {
         
         if let newArray = movies {
-        
+            
             self.moviesArray.append(contentsOf: newArray)
             self.notFilteredArray = self.moviesArray
         }

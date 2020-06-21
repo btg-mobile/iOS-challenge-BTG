@@ -11,10 +11,11 @@ import Foundation
 enum SocialLoginTypes {
     case Apple
     case Facebook
-    case Gmail
+    case Google
+    case Email
 }
 
-class LoginSocialEntity: NSObject {
+class LoginSocialEntity {
     
     public var id: String?
     public var Email: String?
@@ -25,16 +26,18 @@ class LoginSocialEntity: NSObject {
     public var IdentityToken: String?
     public var type: SocialLoginTypes?
     
-    override init() {
-        self.id = ""
-        self.Email = ""
-        self.GivenName = ""
-        self.FamilyName = ""
-        self.FullName = ""
-        self.AuthorizationCode = ""
-        self.IdentityToken = ""
-        self.type = nil
+    init() {
     }
+//    override convenience init() {
+//        self.id = ""
+//        self.Email = ""
+//        self.GivenName = ""
+//        self.FamilyName = ""
+//        self.FullName = ""
+//        self.AuthorizationCode = ""
+//        self.IdentityToken = ""
+//        self.type = nil
+//    }
     
     init(id: String, Email: String, GivenName: String, FamilyName: String, FullName: String, AuthorizationCode: String, IdentityToken: String, type: SocialLoginTypes) {
         self.id = id

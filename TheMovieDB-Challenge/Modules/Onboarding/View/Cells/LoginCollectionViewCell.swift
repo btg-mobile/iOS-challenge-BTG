@@ -17,10 +17,9 @@ class LoginCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var loginNowButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var versionLabel: UILabel!
     
     weak var delegate: LoginCollectionViewCellDelegate?
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -29,40 +28,16 @@ class LoginCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func setupView() {
-
-        loginNowButton.layer.cornerRadius = 8
-        loginNowButton.layer.borderWidth = 0.5
-        loginNowButton.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    private func setupView() {
         
-        loginButton.layer.cornerRadius = 8
-        loginButton.layer.borderWidth = 0.5
-        loginButton.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        
-        setVersionLabelText()
+        [loginNowButton, loginButton].forEach { $0.layer.cornerRadius = 8 }
+        [loginNowButton, loginButton].forEach { $0.layer.borderWidth = 0.5 }
+        [loginNowButton, loginButton].forEach { $0.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)}
         
     }
     
-    //Set version text
-    private func setVersionLabelText() {
-        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-            var versionText = "v\(version)"
-            
-            #if DEBUG
-            if let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
-                versionText += "-\(build)"
-            }
-            #endif
-            
-            versionLabel.text = versionText
-            versionLabel.isHidden = false
-        } else {
-            versionLabel.isHidden = true
-        }
-    }
-
     @IBAction func signInNowButton(_ sender: UIButton) {
-            
+        
         self.delegate?.openLogin()
         
     }

@@ -25,12 +25,12 @@ class MovieDataProvider {
     var movieSelection: Constants.MovieSelection
     var resourceString: URL?
 
-    init(page: Int?, language: Constants.language = .portuguese, category: Constants.category, movieSelection: Constants.MovieSelection) {
+    init(page: Int?, language: Constants.language = .Portuguese, category: Constants.category, movieSelection: Constants.MovieSelection) {
         self.page = page
         self.language = language
         self.category = category
         self.movieSelection = movieSelection
-        self.resourceString = URL(string: "\(Constants.API.baseURL)\(category)/\(movieSelection.rawValue)?api_key=\(Constants.API.privateKey)&language=\(language)&page=\(page ?? 1)")
+        self.resourceString = URL(string: "\(Constants.API.baseURL)\(category.rawValue)/\(movieSelection.rawValue)?api_key=\(Constants.API.privateKey)&language=\(language.rawValue)&page=\(page ?? 1)")
     }
 
     //MARK: - Movie request
@@ -74,7 +74,9 @@ class MovieDataProvider {
     
     func getGenreIds(completion: @escaping(Genre) -> Void) {
         
-        let resourceURL = "https://api.themoviedb.org/3/genre/movie/list?api_key=132dfc8e68a337152fd3e36d63c77677&language=pt-BR"
+        //let resourceURL1 = "https://api.themoviedb.org/3/genre/movie/list?api_key=132dfc8e68a337152fd3e36d63c77677&language=pt-BR"
+        
+        let resourceURL = "\(Constants.API.baseURL)\(Constants.category.Genre.rawValue)/movie/list?api_key=\(Constants.API.privateKey)&language=\(language)"
     
         guard let url = URL(string: resourceURL) else { return }
         

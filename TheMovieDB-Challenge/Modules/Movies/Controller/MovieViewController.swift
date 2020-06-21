@@ -53,12 +53,11 @@ class MovieViewController: UIViewController {
         //Delegate and protocols
         controller = MovieController()
         controller?.delegate = self
-        controller?.loadMovies(movieSelection: self.movieSelection ?? Constants.MovieSelection.popular)
+        controller?.loadMovies(movieSelection: self.movieSelection ?? Constants.MovieSelection.Popular)
         
         ///Delegate and Datasource
         movieCollectionView.delegate = self
         movieCollectionView.dataSource = self
-        movieCollectionView.prefetchDataSource = self
         
         ///Registering Cells
         let nibName = "MovieCollectionViewCell"
@@ -66,42 +65,7 @@ class MovieViewController: UIViewController {
         movieCollectionView.register(UINib(nibName: nibName, bundle: nil), forCellWithReuseIdentifier: identifier)
         
     }
-    
-    //MARK: - CreateObserves
-/*
-     func createObservers() {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(setChosenMovieSelection(notification:)), name: popular, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(setChosenMovieSelection(notification:)), name: nowPlaying, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(setChosenMovieSelection(notification:)), name: upcoming, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(setChosenMovieSelection(notification:)), name: topRated, object: nil)
-        
-    }
-    
-    @objc func setChosenMovieSelection(notification: NSNotification) {
-        
-        let movieSelection = notification.name
-
-        switch movieSelection {
-        case popular:
-            self.controller?.setMovieSelection(.popular)
-            controller?.loadMovies()
-        case nowPlaying:
-            self.controller?.setMovieSelection(.nowPlaying)
-            controller?.loadMovies()
-        case upcoming:
-            self.controller?.setMovieSelection(.upcoming)
-            controller?.loadMovies()
-        case topRated:
-            self.controller?.setMovieSelection(.topRated)
-            controller?.loadMovies()
-        default:
-            return
-        }
-        
-    }
- */
-    
     private func addRefreshingControl() {
         
         self.refreshControl = UIRefreshControl()
@@ -114,7 +78,7 @@ class MovieViewController: UIViewController {
     @objc func refreshList() {
         
         self.refreshControl?.endRefreshing()
-        self.controller?.loadMovies(movieSelection: self.movieSelection ?? Constants.MovieSelection.popular)
+        self.controller?.loadMovies(movieSelection: self.movieSelection ?? Constants.MovieSelection.Popular)
         self.movieCollectionView.reloadData()
         
     }
@@ -143,13 +107,7 @@ class MovieViewController: UIViewController {
     
 }
 
-extension MovieViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDataSourcePrefetching {
-    
-    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        
-        ///
-        
-    }
+extension MovieViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
@@ -183,7 +141,6 @@ extension MovieViewController : UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
         return UIEdgeInsets(top: 10.0, left: 10, bottom: 20.0, right: 10)
-        //return .init(top: 0, left: 12, bottom: 0, right: 12)
         
     }
     
@@ -214,8 +171,6 @@ extension MovieViewController : UICollectionViewDelegate, UICollectionViewDataSo
             }
             
         }
-        
-        //
         
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height

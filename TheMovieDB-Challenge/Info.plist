@@ -19,11 +19,9 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.146150176310-ggqd8c5svv7khqs3j9rfntm5gmr1f3kh</string>
+				<string>fb2539802999667083</string>
 			</array>
 		</dict>
 		<dict>
@@ -31,12 +29,34 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>br.com.abstec.TheMovieDB</string>
+				<string>com.googleusercontent.apps.146150176310-ggqd8c5svv7khqs3j9rfntm5gmr1f3kh</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FacebookAppID</key>
+	<string>2539802999667083</string>
+	<key>FacebookDisplayName</key>
+	<string>The Movie DB App</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fbapi20130214</string>
+		<string>fbapi20130410</string>
+		<string>fbapi20130702</string>
+		<string>fbapi20131010</string>
+		<string>fbapi20131219</string>
+		<string>fbapi20140410</string>
+		<string>fbapi20140116</string>
+		<string>fbapi20150313</string>
+		<string>fbapi20150629</string>
+		<string>fbapi20160328</string>
+		<string>fbauth</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>
@@ -79,35 +99,16 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-        <key>CFBundleURLTypes</key> <array>
-            <dict>
-                <key>CFBundleURLSchemes</key>
-                <array>
-                    <string>fb2539802999667083</string>
-                </array>
-            </dict>
-        </array>
-        <key>FacebookAppID</key>
-        <string>2539802999667083</string>
-        <key>FacebookDisplayName</key>
-        <string>The Movie DB App</string>
-    <key>LSApplicationQueriesSchemes</key>
+    <key>UIAppFonts</key>
     <array>
-        <string>fbapi</string>
-        <string>fbapi20130214</string>
-        <string>fbapi20130410</string>
-        <string>fbapi20130702</string>
-        <string>fbapi20131010</string>
-        <string>fbapi20131219</string>
-        <string>fbapi20140410</string>
-        <string>fbapi20140116</string>
-        <string>fbapi20150313</string>
-        <string>fbapi20150629</string>
-        <string>fbapi20160328</string>
-        <string>fbauth</string>
-        <string>fb-messenger-share-api</string>
-        <string>fbauth2</string>
-        <string>fbshareextension</string>
+        <string>Gotham-Rounded-Bold.ttf</string>
+        <string>Gotham-Rounded-Book.otf</string>
+        <string>Gotham-Rounded-Medium.otf</string>
+        <string>Roboto-Regular.ttf</string>
+        <string>Inter-Regular.ttf</string>
+        <string>Inter-Medium.ttf</string>
+        <string>Inter-Bold.ttf</string>
+        <string>Inter-Light-BETA.ttf</string>
     </array>
 </dict>
 </plist>

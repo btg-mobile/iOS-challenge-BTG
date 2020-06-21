@@ -25,7 +25,8 @@ class OnbordingViewController: UIViewController {
         
         setupView()
         registerCells()
-        setupNotification()
+        setupNotificationObserver()
+        
     }
     
     deinit {
@@ -36,7 +37,7 @@ class OnbordingViewController: UIViewController {
         
     }
     
-    func setupNotification() {
+    private func setupNotificationObserver() {
         
         cancelLoginObserver = NotificationCenter.default.addObserver(forName: .loginCancelled, object: nil, queue: .main) { [weak self] ( _ ) in
             
@@ -196,13 +197,11 @@ extension OnbordingViewController : LoginCollectionViewCellDelegate {
     
     //From Login Cell
     func openLogin() {
-        let storyboard = UIStoryboard.init(name: "Login", bundle: nil)
         
-        let vc = storyboard.instantiateViewController(withIdentifier: "LoginStoryboard")
+        let loginView = LoginRouter.createModule(as: .fullScreen)
         
-        vc.modalPresentationStyle = .fullScreen
-        
-        self.present(vc, animated: true, completion: nil)
+        self.present(loginView, animated: true)
+    
     }
     
     func closeView() {

@@ -37,6 +37,14 @@
 		BC910BA5249B0A6A00CD5A1A /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC910BA4249B0A6A00CD5A1A /* LoginInteractor.swift */; };
 		BC910BA7249B0AD400CD5A1A /* LoginWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC910BA6249B0AD400CD5A1A /* LoginWireframe.swift */; };
 		BC910BA9249C364E00CD5A1A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC910BA8249C364E00CD5A1A /* SettingsViewController.swift */; };
+		BC910BBA249EFD3D00CD5A1A /* Inter-Light-BETA.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC910BB2249EFD3C00CD5A1A /* Inter-Light-BETA.ttf */; };
+		BC910BBB249EFD3D00CD5A1A /* Gotham-Rounded-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC910BB3249EFD3C00CD5A1A /* Gotham-Rounded-Bold.ttf */; };
+		BC910BBC249EFD3D00CD5A1A /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC910BB4249EFD3C00CD5A1A /* Inter-Regular.ttf */; };
+		BC910BBD249EFD3D00CD5A1A /* Gotham-Rounded-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = BC910BB5249EFD3C00CD5A1A /* Gotham-Rounded-Medium.otf */; };
+		BC910BBE249EFD3D00CD5A1A /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC910BB6249EFD3D00CD5A1A /* Inter-Medium.ttf */; };
+		BC910BBF249EFD3D00CD5A1A /* Gotham-Rounded-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = BC910BB7249EFD3D00CD5A1A /* Gotham-Rounded-Book.otf */; };
+		BC910BC0249EFD3D00CD5A1A /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC910BB8249EFD3D00CD5A1A /* Inter-Bold.ttf */; };
+		BC910BC1249EFD3D00CD5A1A /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC910BB9249EFD3D00CD5A1A /* Roboto-Regular.ttf */; };
 		BC94C7F423E2A2D900E225E1 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94C7F323E2A2D900E225E1 /* FavoritesViewController.swift */; };
 		BC94C7F623E2AF5C00E225E1 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94C7F523E2AF5C00E225E1 /* Genre.swift */; };
 		BCA4110A2465D46700C570CD /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA411082465D46700C570CD /* MovieCollectionViewCell.swift */; };
@@ -97,6 +105,14 @@
 		BC910BA6249B0AD400CD5A1A /* LoginWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWireframe.swift; sourceTree = "<group>"; };
 		BC910BA8249C364E00CD5A1A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		BC910BAA249C428E00CD5A1A /* The MovieDB.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "The MovieDB.entitlements"; sourceTree = "<group>"; };
+		BC910BB2249EFD3C00CD5A1A /* Inter-Light-BETA.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Light-BETA.ttf"; sourceTree = "<group>"; };
+		BC910BB3249EFD3C00CD5A1A /* Gotham-Rounded-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Rounded-Bold.ttf"; sourceTree = "<group>"; };
+		BC910BB4249EFD3C00CD5A1A /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
+		BC910BB5249EFD3C00CD5A1A /* Gotham-Rounded-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Rounded-Medium.otf"; sourceTree = "<group>"; };
+		BC910BB6249EFD3D00CD5A1A /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
+		BC910BB7249EFD3D00CD5A1A /* Gotham-Rounded-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Rounded-Book.otf"; sourceTree = "<group>"; };
+		BC910BB8249EFD3D00CD5A1A /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
+		BC910BB9249EFD3D00CD5A1A /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		BC94C7F323E2A2D900E225E1 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		BC94C7F523E2AF5C00E225E1 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		BCA411082465D46700C570CD /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -314,6 +330,21 @@
 				BC910BA0249B09CB00CD5A1A /* LoginEntity.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		BC910BB1249EFD2A00CD5A1A /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				BC910BB3249EFD3C00CD5A1A /* Gotham-Rounded-Bold.ttf */,
+				BC910BB7249EFD3D00CD5A1A /* Gotham-Rounded-Book.otf */,
+				BC910BB5249EFD3C00CD5A1A /* Gotham-Rounded-Medium.otf */,
+				BC910BB8249EFD3D00CD5A1A /* Inter-Bold.ttf */,
+				BC910BB2249EFD3C00CD5A1A /* Inter-Light-BETA.ttf */,
+				BC910BB6249EFD3D00CD5A1A /* Inter-Medium.ttf */,
+				BC910BB4249EFD3C00CD5A1A /* Inter-Regular.ttf */,
+				BC910BB9249EFD3D00CD5A1A /* Roboto-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		BCA4110C2465D46F00C570CD /* MovieCell */ = {
@@ -593,6 +624,7 @@
 		BCD2C0C8246D733A0046910F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BC910BB1249EFD2A00CD5A1A /* Fonts */,
 				BCA411242465E82C00C570CD /* Animation */,
 				BC366B6E23E08C56009ABFD6 /* Assets.xcassets */,
 				BC366B7023E08C56009ABFD6 /* LaunchScreen.storyboard */,
@@ -714,17 +746,25 @@
 				BCA4113F2469D58200C570CD /* Onboarding.storyboard in Resources */,
 				BC2814382496B30300A71447 /* LoginCollectionViewCell.xib in Resources */,
 				BCA411272465E83E00C570CD /* 19117-movie-clapperboard.json in Resources */,
+				BC910BBA249EFD3D00CD5A1A /* Inter-Light-BETA.ttf in Resources */,
 				BCB20C1924741FC1009E0175 /* Loading.storyboard in Resources */,
+				BC910BC1249EFD3D00CD5A1A /* Roboto-Regular.ttf in Resources */,
 				BCA4110B2465D46700C570CD /* MovieCollectionViewCell.xib in Resources */,
+				BC910BBB249EFD3D00CD5A1A /* Gotham-Rounded-Bold.ttf in Resources */,
+				BC910BBC249EFD3D00CD5A1A /* Inter-Regular.ttf in Resources */,
 				BC366B7223E08C56009ABFD6 /* LaunchScreen.storyboard in Resources */,
 				BCA411212465E47C00C570CD /* Details.storyboard in Resources */,
 				BC2814422498665100A71447 /* Login.storyboard in Resources */,
+				BC910BBD249EFD3D00CD5A1A /* Gotham-Rounded-Medium.otf in Resources */,
 				BC366B6F23E08C56009ABFD6 /* Assets.xcassets in Resources */,
 				BCA411192465E00C00C570CD /* Home.storyboard in Resources */,
 				BC28143A2498041B00A71447 /* GoogleService-Info.plist in Resources */,
+				BC910BC0249EFD3D00CD5A1A /* Inter-Bold.ttf in Resources */,
 				BC366B6D23E08C51009ABFD6 /* Main.storyboard in Resources */,
 				BCD2C0D5246F1EA50046910F /* Movies.storyboard in Resources */,
 				BCA411282465E83E00C570CD /* 1961-movie-loading.json in Resources */,
+				BC910BBF249EFD3D00CD5A1A /* Gotham-Rounded-Book.otf in Resources */,
+				BC910BBE249EFD3D00CD5A1A /* Inter-Medium.ttf in Resources */,
 				BC6E8765247D52A8004D71F6 /* SplashViewController.xib in Resources */,
 				BCC988522495C3DB00504891 /* OnboardingViewCell.xib in Resources */,
 				BC6E8770247DA07E004D71F6 /* Settings.storyboard in Resources */,

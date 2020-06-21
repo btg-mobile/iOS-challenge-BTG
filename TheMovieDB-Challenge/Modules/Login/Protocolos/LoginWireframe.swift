@@ -13,24 +13,24 @@ protocol ViewToPresenterProtocol: class {
     var view: PresenterToViewProtocol? { get set }
     var interactor: PresentorToInteractorProtocol? { get set }
     var router: PresenterToRouterProtocol? { get set }
-    func updateView()
+    func loginWithProvider(for provider: SocialLoginTypes)
+    func getAppVersion()
 }
 
 protocol PresentorToInteractorProtocol: class {
+    var view: LoginViewController! { get set }
     var presenter: InteractorToPresenterProtocol? { get set }
-    func fetchLiveNews()
+    func loginWithProvider(for provider: SocialLoginTypes)
 }
 
 protocol InteractorToPresenterProtocol: class {
-    func liveNewsFetched(login: LoginSocialEntity)
-    func liveNewsFetchedFailed()
+    
 }
 
 protocol PresenterToViewProtocol: class {
-    func showNews(login: LoginSocialEntity)
-    func showError()
+    func returnAppVersion(_ version: String)
 }
 
 protocol PresenterToRouterProtocol: class {
-    static func createModule() -> UIViewController
+    static func createModule(as presentationStyle: UIModalPresentationStyle) -> UIViewController
 }

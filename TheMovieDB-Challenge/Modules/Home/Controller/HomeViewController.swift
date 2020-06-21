@@ -37,7 +37,7 @@ class HomeViewController: UIViewController {
         //Delegate and protocols
         controller = HomeController()
         controller?.delegate = self
-        controller?.loadMovies(from: true, page: 1, category: .movie, movieSelection: .popular)
+        controller?.loadMovies(from: true, page: 1, category: .Movie, movieSelection: .Popular)
         
         ///Delegate and DataSource methods
         [popularMoviesCollectionView, nowPlayingMoviesCollectionView, upcomingMoviesCollectionView, topRatedMoviesCollectionView].forEach { $0.delegate = self }
@@ -104,16 +104,16 @@ class HomeViewController: UIViewController {
         
         switch sender.tag {
         case 0:
-            movieSelection = .popular
+            movieSelection = .Popular
             print("Popular")
         case 1:
-            movieSelection = .nowPlaying
+            movieSelection = .NowPlaying
             print("Now Playing")
         case 2:
-            movieSelection = .upcoming
+            movieSelection = .Upcoming
             print("Upcoming")
         case 3:
-            movieSelection = .topRated
+            movieSelection = .TopRated
             print("Top Rated")
         default:
             return
@@ -143,7 +143,7 @@ class HomeViewController: UIViewController {
     @objc func refreshList() {
         
         refreshControl?.endRefreshing()
-        controller?.loadMovies(from: true, page: 1, category: .movie, movieSelection: .popular)
+        controller?.loadMovies(from: true, page: 1, category: .Movie, movieSelection: .Popular)
         
         [popularMoviesCollectionView, nowPlayingMoviesCollectionView, upcomingMoviesCollectionView, topRatedMoviesCollectionView].forEach { $0?.reloadData() }
         
@@ -164,18 +164,18 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         switch collectionView.tag {
         case 0:
-            self.movieSelection = .popular
+            self.movieSelection = .Popular
         case 1:
-            self.movieSelection = .nowPlaying
+            self.movieSelection = .NowPlaying
         case 2:
-            self.movieSelection = .upcoming
+            self.movieSelection = .Upcoming
         case 3:
-            self.movieSelection = .topRated
+            self.movieSelection = .TopRated
         default:
             break
         }
         
-        return self.controller?.numberOfRows(movieSelection: self.movieSelection ?? Constants.MovieSelection.popular) ?? 0
+        return self.controller?.numberOfRows(movieSelection: self.movieSelection ?? Constants.MovieSelection.Popular) ?? 0
         
     }
     
@@ -183,20 +183,20 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         switch collectionView.tag {
         case 0:
-            self.movieSelection = .popular
+            self.movieSelection = .Popular
         case 1:
-            self.movieSelection = .nowPlaying
+            self.movieSelection = .NowPlaying
         case 2:
-            self.movieSelection = .upcoming
+            self.movieSelection = .Upcoming
         case 3:
-            self.movieSelection = .topRated
+            self.movieSelection = .TopRated
         default:
             break
         }
         
         let cell : MovieCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCollectionViewCell
         
-        cell.setupCell(movie: (self.controller?.loadMovieWithIndexPath(indexPath: indexPath, movieSelection: self.movieSelection ?? Constants.MovieSelection.popular, favorite: false))!)
+        cell.setupCell(movie: (self.controller?.loadMovieWithIndexPath(indexPath: indexPath, movieSelection: self.movieSelection ?? Constants.MovieSelection.Popular, favorite: false))!)
         
         return cell
         
@@ -239,7 +239,7 @@ extension HomeViewController: HomeControllerDelegate {
     func successOnLoadingPopularMovies() {
         
         DispatchQueue.main.async {
-            self.movieSelection = .popular
+            self.movieSelection = .Popular
             self.popularMoviesCollectionView.reloadData()
             self.popularMoviesActivityIndicator.stopAnimating()
         }
@@ -249,7 +249,7 @@ extension HomeViewController: HomeControllerDelegate {
     func successOnLoadingNowPlayingMovies() {
         
         DispatchQueue.main.async {
-            self.movieSelection = .nowPlaying
+            self.movieSelection = .NowPlaying
             self.nowPlayingMoviesCollectionView.reloadData()
             self.nowPlayingMoviesActivityIndicator.stopAnimating()
         }
@@ -259,7 +259,7 @@ extension HomeViewController: HomeControllerDelegate {
     func successOnLoadingUpcomingMovies() {
         
         DispatchQueue.main.async {
-            self.movieSelection = .upcoming
+            self.movieSelection = .Upcoming
             self.upcomingMoviesCollectionView.reloadData()
             self.upcomingMoviesActivityIndicator.stopAnimating()
         }
@@ -269,7 +269,7 @@ extension HomeViewController: HomeControllerDelegate {
     func successOnLoadingTopRatedMovies() {
         
         DispatchQueue.main.async {
-            self.movieSelection = .topRated
+            self.movieSelection = .TopRated
             self.topRatedMoviesCollectionView.reloadData()
             self.topRatedMoviesActivityIndicator.stopAnimating()
         }
