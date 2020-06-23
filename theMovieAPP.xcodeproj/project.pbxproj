@@ -21,7 +21,7 @@
 		BC366B6F23E08C56009ABFD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC366B6E23E08C56009ABFD6 /* Assets.xcassets */; };
 		BC366B7223E08C56009ABFD6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC366B7023E08C56009ABFD6 /* LaunchScreen.storyboard */; };
 		BC366B7F23E0A063009ABFD6 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC366B7E23E0A063009ABFD6 /* Movie.swift */; };
-		BC366B8323E0A13C009ABFD6 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC366B8223E0A13C009ABFD6 /* DataProvider.swift */; };
+		BC366B8323E0A13C009ABFD6 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC366B8223E0A13C009ABFD6 /* WebService.swift */; };
 		BC4BC32123E1272600AF984F /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4BC32023E1272600AF984F /* DetailsViewController.swift */; };
 		BC5A6C6F23E604BF00C99597 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5A6C6E23E604BF00C99597 /* Extensions.swift */; };
 		BC5A6C7123E6100B00C99597 /* GenreID.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5A6C7023E6100B00C99597 /* GenreID.swift */; };
@@ -68,6 +68,7 @@
 		BCD2C0D5246F1EA50046910F /* Movies.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCD2C0D4246F1EA40046910F /* Movies.storyboard */; };
 		BCD2C0D7246F1F8E0046910F /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD2C0D6246F1F8E0046910F /* MovieViewController.swift */; };
 		BCD2C0D9246F200E0046910F /* MovieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD2C0D8246F200E0046910F /* MovieController.swift */; };
+		BCE370C524A0129F0017BC27 /* presentingVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BCE370C424A012700017BC27 /* presentingVideo.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,7 +89,7 @@
 		BC366B7123E08C56009ABFD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC366B7323E08C56009ABFD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC366B7E23E0A063009ABFD6 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
-		BC366B8223E0A13C009ABFD6 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		BC366B8223E0A13C009ABFD6 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		BC4BC32023E1272600AF984F /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		BC5A6C6E23E604BF00C99597 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		BC5A6C7023E6100B00C99597 /* GenreID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreID.swift; sourceTree = "<group>"; };
@@ -136,6 +137,8 @@
 		BCD2C0D4246F1EA40046910F /* Movies.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Movies.storyboard; sourceTree = "<group>"; };
 		BCD2C0D6246F1F8E0046910F /* MovieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
 		BCD2C0D8246F200E0046910F /* MovieController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieController.swift; sourceTree = "<group>"; };
+		BCE370BE24A004690017BC27 /* myVideo.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = myVideo.mov; sourceTree = "<group>"; };
+		BCE370C424A012700017BC27 /* presentingVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = presentingVideo.mp4; sourceTree = "<group>"; };
 		D172C325F5FB32031B90482C /* Pods-TheMovieDB-Challenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheMovieDB-Challenge.release.xcconfig"; path = "Target Support Files/Pods-TheMovieDB-Challenge/Pods-TheMovieDB-Challenge.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -302,7 +305,7 @@
 		BC7D6FEC23E2207500639A19 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				BC366B8223E0A13C009ABFD6 /* DataProvider.swift */,
+				BC366B8223E0A13C009ABFD6 /* WebService.swift */,
 				BCD2C0C9246D7E2E0046910F /* Constants.swift */,
 			);
 			path = API;
@@ -335,6 +338,7 @@
 		BC910BB1249EFD2A00CD5A1A /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				BCE370BE24A004690017BC27 /* myVideo.mov */,
 				BC910BB3249EFD3C00CD5A1A /* Gotham-Rounded-Bold.ttf */,
 				BC910BB7249EFD3D00CD5A1A /* Gotham-Rounded-Book.otf */,
 				BC910BB5249EFD3C00CD5A1A /* Gotham-Rounded-Medium.otf */,
@@ -498,6 +502,7 @@
 			children = (
 				BCA411262465E83E00C570CD /* 1961-movie-loading.json */,
 				BCA411252465E83E00C570CD /* 19117-movie-clapperboard.json */,
+				BCE370C424A012700017BC27 /* presentingVideo.mp4 */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -742,6 +747,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCE370C524A0129F0017BC27 /* presentingVideo.mp4 in Resources */,
 				BCA4111B2465E01E00C570CD /* Favorites.storyboard in Resources */,
 				BCA4113F2469D58200C570CD /* Onboarding.storyboard in Resources */,
 				BC2814382496B30300A71447 /* LoginCollectionViewCell.xib in Resources */,
@@ -900,7 +906,7 @@
 				BC366B6823E08C51009ABFD6 /* SceneDelegate.swift in Sources */,
 				BCC988512495C3DB00504891 /* OnboardingViewCell.swift in Sources */,
 				BC910BA3249B0A5C00CD5A1A /* LoginRouter.swift in Sources */,
-				BC366B8323E0A13C009ABFD6 /* DataProvider.swift in Sources */,
+				BC366B8323E0A13C009ABFD6 /* WebService.swift in Sources */,
 				BCB20C1D24742085009E0175 /* Utils.swift in Sources */,
 				BC910BA9249C364E00CD5A1A /* SettingsViewController.swift in Sources */,
 				BC910BA1249B09CB00CD5A1A /* LoginEntity.swift in Sources */,

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftVideoBackground
 
 protocol LoginCollectionViewCellDelegate: class {
     func openLogin()
@@ -33,6 +34,8 @@ class LoginCollectionViewCell: UICollectionViewCell {
         [loginNowButton, loginButton].forEach { $0.layer.cornerRadius = 8 }
         [loginNowButton, loginButton].forEach { $0.layer.borderWidth = 0.5 }
         [loginNowButton, loginButton].forEach { $0.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)}
+        
+        try? VideoBackground.shared.play(view: self, videoName: "presentingVideo", videoType: "mp4")
         
     }
     

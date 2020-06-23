@@ -43,6 +43,7 @@ class MovieController {
     private var totalItemsAvailable: Int = 3000
     
     private func setupController() {
+        
         self.provider = MovieDataProvider(page: self.page, category: .Movie, movieSelection: movieSelection ?? Constants.MovieSelection.Popular)
         self.provider?.delegate = self
         
@@ -70,7 +71,7 @@ class MovieController {
     
     private func saveGenresIntoRealm() {
         
-        if !didGetGenres {
+        //if !didGetGenres {
             
             self.provider?.getGenreIds { (allGenres) in
                 
@@ -90,8 +91,8 @@ class MovieController {
                 
             }
             
-            didGetGenres = true
-        }
+//            didGetGenres = true
+//        }
         
     }
     

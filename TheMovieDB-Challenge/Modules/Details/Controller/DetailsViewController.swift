@@ -10,13 +10,18 @@ import UIKit
 import SDWebImage
 import RealmSwift
 import FirebaseCrashlytics
-import Hero
+import AVKit
+import AVFoundation
+
+//import Hero
 
 class DetailsViewController: UIViewController {
     
     let realm = try! Realm()
-    
     var genreIDS : Results<Item>?
+    
+    var player = AVPlayer()
+    var playerViewController = AVPlayerViewController()
     
     //var controller : MovieController?
     
@@ -26,6 +31,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var movieRating: UILabel!
     @IBOutlet weak var movieGenre: UILabel!
     @IBOutlet weak var btnFavorite: UIButton!
+    @IBOutlet weak var favoriteView: UIView!
     
     var movie : Movie? {
         
@@ -43,16 +49,36 @@ class DetailsViewController: UIViewController {
         //self.controller = MovieController()
         
         self.setupCell()
-                    
-        self.hero.isEnabled = true
-        view.hero.id = "ironMan"
-        view.hero.modifiers = [.cascade]
+        
+    }
+    
+    //MARK: - Sets the StatusBar as white
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        
+        return UIStatusBarStyle.lightContent
         
     }
     
     @IBAction func tappedGoBack(_ sender: UIButton) {
             
         self.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func playVideo(_ sender: UIButton) {
+        
+        //let videoPath = URL(string: "https://www.youtube.com/watch?v=Bw0-cV_J9q4&feature=youtu.be")
+        
+        let selectedVideo = Bundle.main.path(forResource: "presentingVideo", ofType: "mp4")
+        
+        let videoPath = URL(fileURLWithPath: selectedVideo ?? "")
+        
+        player = AVPlayer(url: videoPath)
+        playerViewController.player = player
+        
+        self.present(playerViewController, animated: true, completion: {
+            self.player.play()
+        })
         
     }
     
@@ -112,6 +138,8 @@ class DetailsViewController: UIViewController {
     
     func setupCell() {
         
+        favoriteView.layer.cornerRadius = favoriteView.frame.width / 2
+        
         //self.setFavButtonStatus()
         
         if let urlString = self.movie?.backdropPath {
@@ -123,7 +151,7 @@ class DetailsViewController: UIViewController {
         self.movieName.text = movie?.title
         self.moviePlot.text = movie?.overview
         self.movieRating.text = movie?.voteAverage?.toStringWithStar()
-        self.movieGenre.text = "Genero: \(self.setGenres(idArray: movie?.genreIDS ?? []))"
+        self.movieGenre.text = self.setGenres(idArray: movie?.genreIDS ?? [])
         
     }
     

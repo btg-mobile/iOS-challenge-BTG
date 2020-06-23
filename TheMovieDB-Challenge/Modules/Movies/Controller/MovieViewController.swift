@@ -8,7 +8,6 @@
 
 import UIKit
 import FirebaseCrashlytics
-import Hero
 
 class MovieViewController: UIViewController {
     
@@ -23,34 +22,19 @@ class MovieViewController: UIViewController {
     @IBOutlet weak var searchBarHight: NSLayoutConstraint!
     @IBOutlet weak var loadingMoreActivityIndicator: UIActivityIndicatorView!
     
-//    let popular = Notification.Name(rawValue: notificationKeyPopular)
-//    let nowPlaying = Notification.Name(rawValue: notificationKeyNowPlaying)
-//    let upcoming = Notification.Name(rawValue: notificationKeyUpcoming)
-//    let topRated = Notification.Name(rawValue: notificationKeyTopRated)
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
-        ///createObservers()
+        
     }
-    
-    deinit {
-        //NotificationCenter.default.removeObserver(self)
-        //print("Observers deinitilized")
-    }
-    
+
     fileprivate func setupView() {
-        
-        movieCollectionView.hero.id = "ironMan"
-        
+
         movieSearchBar.searchTextField.textColor = UIColor.white
-        
-        //movieSearchBar.searchTextField.layer.backgroundColor = #colorLiteral(red: 0, green: 0.7064210773, blue: 0.8952547312, alpha: 1)
         
         self.addRefreshingControl()
         
-        //Delegate and protocols
         controller = MovieController()
         controller?.delegate = self
         controller?.loadMovies(movieSelection: self.movieSelection ?? Constants.MovieSelection.Popular)

@@ -9,6 +9,7 @@
 import Foundation
 
 enum Constants {
+    
     enum API {
         static let baseURL = "https://api.themoviedb.org/3/"
         static let imageURLBanner = "https://image.tmdb.org/t/p/w1280"
@@ -39,6 +40,27 @@ enum Constants {
         case Movie = "movie"
         case Series = "serie"
         case Genre = "genre"
+    }
+    
+    //GET /movie/{movie_id}/external_ids
+    
+    enum MovieEndpoint {
+        case account_states
+        case alternative_titles
+        case changes
+        case credits
+        case external_ids
+        case images
+        case keywords
+        case release_dates
+        case videos
+        case translations
+        case recommendations
+        case similar
+        case reviews
+        case lists
+        case rating//POST DELETE
+        
     }
     
 }
