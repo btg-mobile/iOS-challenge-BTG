@@ -9,7 +9,7 @@
 import UIKit
 import AuthenticationServices
 
-class LoginViewController: UIViewController, PresenterToViewProtocol {
+class LoginViewController: UIViewController, LoginPresenterToViewProtocol {
     
     @IBOutlet weak var loginApple: UIButton!
     @IBOutlet weak var loginFacebook: UIButton!
@@ -18,7 +18,7 @@ class LoginViewController: UIViewController, PresenterToViewProtocol {
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var mainConstraint: NSLayoutConstraint!
     
-    weak var presenter: ViewToPresenterProtocol?
+    weak var presenter: LoginViewToPresenterProtocol?
     private var cancelLoginObserver: NSObjectProtocol?
     
     override func viewDidLoad() {

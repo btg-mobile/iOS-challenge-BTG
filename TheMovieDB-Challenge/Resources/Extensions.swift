@@ -8,34 +8,39 @@
 
 import Foundation
 import UIKit
+import Lottie
 
+//MARK: - Double
 extension Double {
     func toStringWithStar() -> String {
         return "⭐️ " + String(format: "%.1f",self)
     }
 }
 
+//MARK: - UIColor
 extension UIColor {
     
-    static let darkBlue = UIColor(red: 13.0, green: 37.0, blue: 63.0, alpha: 100)
-    static let lightBlue = UIColor(red: 1.0, green: 180.0, blue: 228.0, alpha: 100)
-    static let lightGreen = UIColor(red: 144.0, green: 206.0, blue: 161.0, alpha: 100)
+    static let darkBlue:  UIColor = #colorLiteral(red: 0.01234783977, green: 0.1457155645, blue: 0.254773736, alpha: 1)
+    static let lightBlue:  UIColor = #colorLiteral(red: 0.02253310941, green: 0.7065569758, blue: 0.8912119269, alpha: 1)
+    static let lightGreen: UIColor = #colorLiteral(red: 0.5648525357, green: 0.8052322268, blue: 0.6340113282, alpha: 1)
     
 }
 
+//MARK: - String
 extension String {
     subscript(_ range: CountableRange<Int>) -> String {
         let start = index(startIndex, offsetBy: max(0, range.lowerBound))
         let end = index(startIndex, offsetBy: min(self.count, range.upperBound))
         return String(self[start..<end])
     }
-
+    
     subscript(_ range: CountablePartialRangeFrom<Int>) -> String {
         let start = index(startIndex, offsetBy: max(0, range.lowerBound))
-         return String(self[start...])
+        return String(self[start...])
     }
 }
 
+//MARK: - UserDefaults
 extension UserDefaults {
     
     enum UserDefaultsKeys: String {
@@ -63,6 +68,7 @@ extension UserDefaults {
     }
 }
 
+//MARK: - UIView
 extension UIView {
     
     func anchorToTop(_ top: NSLayoutYAxisAnchor? = nil, left: NSLayoutXAxisAnchor? = nil, bottom: NSLayoutYAxisAnchor? = nil, right: NSLayoutXAxisAnchor? = nil) {
@@ -108,9 +114,38 @@ extension UIView {
         
         return anchors
     }
+
+}
+
+//MARK: - Lottie
+extension UIViewController {
+
+    public enum animationFile : String {
+        case movieLoading1 = "1961-movie-loading"
+        case movieLoading2 = "19404-video-playback"
+        case movieLoading3 = "b"
+    }
+    
+    public func lottieStartAnimation(on uiview: AnimationView, animationFileName: animationFile) {
+        
+        //let name = "1961-movie-loading"
+        let animation = Animation.named(animationFileName.rawValue)
+        uiview.animation = animation
+        uiview.loopMode = .loop
+        uiview.play()
+        
+    }
+    
+    public func lottieStopAnimation(on uiview: AnimationView) {
+        
+        uiview.stop()
+        uiview.animation = nil
+        
+    }
     
 }
 
+//MARK: - Notification
 extension Notification.Name {
     
     static let loginCancelled = Notification.Name("cancelLoginObserver")

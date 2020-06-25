@@ -10,13 +10,13 @@ import Foundation
 import Firebase
 import GoogleSignIn
 
-class LoginPresenter: ViewToPresenterProtocol, InteractorToPresenterProtocol {
+class LoginPresenter: LoginViewToPresenterProtocol, LoginInteractorToPresenterProtocol {
     
-    var view: PresenterToViewProtocol?
+    var view: LoginPresenterToViewProtocol?
     
-    var interactor: PresentorToInteractorProtocol?
+    var interactor: LoginPresentorToInteractorProtocol?
     
-    var router: PresenterToRouterProtocol?
+    var router: LoginPresenterToRouterProtocol?
     
     func loginWithProvider(for provider: SocialLoginTypes) {
         interactor?.loginWithProvider(for: provider)

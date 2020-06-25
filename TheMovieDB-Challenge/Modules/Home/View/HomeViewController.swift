@@ -16,16 +16,8 @@ class HomeViewController: UIViewController {
     var refreshControl: UIRefreshControl?
     
     @IBOutlet weak var mainScrollView: UIScrollView!
-    
     @IBOutlet weak var popularMoviesCollectionView: UICollectionView!
-    @IBOutlet weak var nowPlayingMoviesCollectionView: UICollectionView!
-    @IBOutlet weak var upcomingMoviesCollectionView: UICollectionView!
-    @IBOutlet weak var topRatedMoviesCollectionView: UICollectionView!
-    
     @IBOutlet weak var popularMoviesActivityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var nowPlayingMoviesActivityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var upcomingMoviesActivityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var topRatedMoviesActivityIndicator: UIActivityIndicatorView!
     
     var movieSelection: Constants.MovieSelection?
         
@@ -40,8 +32,8 @@ class HomeViewController: UIViewController {
         controller?.loadMovies(from: true, page: 1, category: .Movie, movieSelection: .Popular)
         
         ///Delegate and DataSource methods
-        [popularMoviesCollectionView, nowPlayingMoviesCollectionView, upcomingMoviesCollectionView, topRatedMoviesCollectionView].forEach { $0.delegate = self }
-        [popularMoviesCollectionView, nowPlayingMoviesCollectionView, upcomingMoviesCollectionView, topRatedMoviesCollectionView].forEach { $0.dataSource = self }
+        [popularMoviesCollectionView].forEach { $0.delegate = self }
+        [popularMoviesCollectionView].forEach { $0.dataSource = self }
         
         ///Registereing Cells
         registerCells()
@@ -78,7 +70,7 @@ class HomeViewController: UIViewController {
         
         let nibName = "MovieCollectionViewCell"
         let identifier = "MovieCell"
-        [popularMoviesCollectionView, nowPlayingMoviesCollectionView, upcomingMoviesCollectionView, topRatedMoviesCollectionView].forEach { $0.register(UINib(nibName: nibName, bundle: nil), forCellWithReuseIdentifier: identifier) }
+        [popularMoviesCollectionView].forEach { $0.register(UINib(nibName: nibName, bundle: nil), forCellWithReuseIdentifier: identifier) }
         
     }
     
@@ -93,9 +85,6 @@ class HomeViewController: UIViewController {
     func startIndicators() {
         
         popularMoviesActivityIndicator.startAnimating()
-        nowPlayingMoviesActivityIndicator.startAnimating()
-        upcomingMoviesActivityIndicator.startAnimating()
-        topRatedMoviesActivityIndicator.startAnimating()
         
     }
     
@@ -131,7 +120,7 @@ class HomeViewController: UIViewController {
         
     }
     
-    func addRefreshingControl() {
+   private func addRefreshingControl() {
         
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.tintColor = .lightGreen
@@ -140,12 +129,12 @@ class HomeViewController: UIViewController {
         
     }
     
-    @objc func refreshList() {
+    @objc private func refreshList() {
         
         refreshControl?.endRefreshing()
         controller?.loadMovies(from: true, page: 1, category: .Movie, movieSelection: .Popular)
         
-        [popularMoviesCollectionView, nowPlayingMoviesCollectionView, upcomingMoviesCollectionView, topRatedMoviesCollectionView].forEach { $0?.reloadData() }
+        [popularMoviesCollectionView].forEach { $0?.reloadData() }
         
     }
     
@@ -250,8 +239,6 @@ extension HomeViewController: HomeControllerDelegate {
         
         DispatchQueue.main.async {
             self.movieSelection = .NowPlaying
-            self.nowPlayingMoviesCollectionView.reloadData()
-            self.nowPlayingMoviesActivityIndicator.stopAnimating()
         }
         
     }
@@ -260,8 +247,6 @@ extension HomeViewController: HomeControllerDelegate {
         
         DispatchQueue.main.async {
             self.movieSelection = .Upcoming
-            self.upcomingMoviesCollectionView.reloadData()
-            self.upcomingMoviesActivityIndicator.stopAnimating()
         }
         
     }
@@ -270,8 +255,6 @@ extension HomeViewController: HomeControllerDelegate {
         
         DispatchQueue.main.async {
             self.movieSelection = .TopRated
-            self.topRatedMoviesCollectionView.reloadData()
-            self.topRatedMoviesActivityIndicator.stopAnimating()
         }
         
     }

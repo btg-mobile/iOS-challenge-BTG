@@ -9,28 +9,21 @@
 import UIKit
 import Lottie
 
-class SplashViewController: BaseViewController {
+class SplashViewController: UIViewController {
 
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var animatedImageView: AnimationView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //startAnimation(on: animatedImageView)
-        print("Cheguei")
         // Do any additional setup after loading the view.
-        //perform(#selector(showNavController), with: nil, afterDelay: 4)
+        
+        //self.lottieStartAnimation(on: animatedImageView, animationFileName: .movieLoading1)
+        print("###################a")
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    */
-
+    
 }

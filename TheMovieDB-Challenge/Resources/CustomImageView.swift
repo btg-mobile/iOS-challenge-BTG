@@ -62,7 +62,7 @@ class CustomImageView: UIImageView {
             let string = type == .banner ? "\(Constants.API.imageURLBanner)\(urlString)" : "\(Constants.API.imageURLCover)\(urlString)"
             
             self.sd_setImage(with: URL(string: string), placeholderImage: UIImage(named: "portrait-placeholder"), options: .continueInBackground, progress: .none) { (image, error, cache, url) in
-                print(string)
+                //print(string)
             }
             
             //self.sd_setImage(with: URL(string: string), placeholderImage: UIImage(named: "portrait-placeholder"))

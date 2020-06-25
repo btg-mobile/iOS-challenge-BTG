@@ -12,10 +12,10 @@ import GoogleSignIn
 import AuthenticationServices
 import FBSDKLoginKit
 
-class LoginInteractor: NSObject, PresentorToInteractorProtocol {
+class LoginInteractor: NSObject, LoginPresentorToInteractorProtocol {
     
     var view: LoginViewController!
-    var presenter: InteractorToPresenterProtocol?
+    var presenter: LoginInteractorToPresenterProtocol?
     
     //        if let token = AccessToken.current, !token.isExpired {
     //
@@ -27,16 +27,12 @@ class LoginInteractor: NSObject, PresentorToInteractorProtocol {
         
         switch provider {
         case .Apple:
-            print("Apple")
             openLoginWithApple(self.view)
         case .Facebook:
-            print("Facebok")
             openLoginWithFacebook(self.view)
         case .Google:
-            print("Google")
             openLoginWithGoogle(self.view)
         case .Email:
-            print("Email")
             openLoginWithEmail(self.view)
         }
         
@@ -135,25 +131,25 @@ extension LoginInteractor: GIDSignInDelegate {
 }
 
 extension LoginInteractor: ASAuthorizationControllerDelegate {
-
+    
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-
+        
         switch authorization.credential {
-
+            
         case let credentials as ASAuthorizationAppleIDCredential:
             let user = LoginSocialEntity()
-
+            
             user.id = credentials.user
             user.GivenName = credentials.fullName?.givenName
             user.FamilyName = credentials.fullName?.familyName
             user.Email = credentials.email
-
+            
         default: break
-
+            
         }
-
+        
     }
-
+    
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         print("something bad happened", error)
     }

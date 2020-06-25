@@ -9,28 +9,28 @@
 import Foundation
 import UIKit
 
-protocol ViewToPresenterProtocol: class {
-    var view: PresenterToViewProtocol? { get set }
-    var interactor: PresentorToInteractorProtocol? { get set }
-    var router: PresenterToRouterProtocol? { get set }
+protocol LoginViewToPresenterProtocol: class {
+    var view: LoginPresenterToViewProtocol? { get set }
+    var interactor: LoginPresentorToInteractorProtocol? { get set }
+    var router: LoginPresenterToRouterProtocol? { get set }
     func loginWithProvider(for provider: SocialLoginTypes)
     func getAppVersion()
 }
 
-protocol PresentorToInteractorProtocol: class {
+protocol LoginPresentorToInteractorProtocol: class {
     var view: LoginViewController! { get set }
-    var presenter: InteractorToPresenterProtocol? { get set }
+    var presenter: LoginInteractorToPresenterProtocol? { get set }
     func loginWithProvider(for provider: SocialLoginTypes)
 }
 
-protocol InteractorToPresenterProtocol: class {
+protocol LoginInteractorToPresenterProtocol: class {
     
 }
 
-protocol PresenterToViewProtocol: class {
+protocol LoginPresenterToViewProtocol: class {
     func returnAppVersion(_ version: String)
 }
 
-protocol PresenterToRouterProtocol: class {
+protocol LoginPresenterToRouterProtocol: class {
     static func createModule(as presentationStyle: UIModalPresentationStyle) -> UIViewController
 }

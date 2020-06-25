@@ -1,18 +1,18 @@
 //
-//  LoginRouter.swift
+//  HomeRouter.swift
 //  TheMovieDB-Challenge
 //
-//  Created by Alan Silva on 17/06/20.
+//  Created by Alan Silva on 24/06/20.
 //  Copyright © 2020 Alan Silva. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class LoginRouter: LoginPresenterToRouterProtocol {
+class HomeRouter: HomePresenterToRouterProtocol {
     
     static var mainstoryboard: UIStoryboard {
-        let name = "Login"
+        let name = "Home"
         return UIStoryboard(name: name, bundle: Bundle.main)
     }
     
@@ -29,16 +29,16 @@ class LoginRouter: LoginPresenterToRouterProtocol {
         
         view.modalPresentationStyle = presentationStyle
         
-        let presenter: LoginViewToPresenterProtocol & LoginInteractorToPresenterProtocol = LoginPresenter()
-        let interactor: LoginPresentorToInteractorProtocol = LoginInteractor()
-        let router: LoginPresenterToRouterProtocol = LoginRouter()
+//        let presenter: ViewToPresenterProtocol & InteractorToPresenterProtocol = LoginPresenter()
+//        let interactor: PresentorToInteractorProtocol = LoginInteractor()
+//        let router: PresenterToRouterProtocol = LoginRouter()
         
-        view.presenter = presenter
-        presenter.view = view
-        presenter.router = router
-        presenter.interactor = interactor
-        interactor.presenter = presenter
-        interactor.view = view
+//        view.presenter = presenter
+//        presenter.view = view
+//        presenter.router = router
+//        presenter.interactor = interactor
+//        interactor.presenter = presenter
+//        interactor.view = view
         
         return view
         

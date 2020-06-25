@@ -23,6 +23,10 @@ class LoadingView {
         loadingViewcontroller.view.alpha = 0.0
     }
     
+    private func instantiateView(named view: String, fromStoryboard storyboard: String) -> UIViewController {
+        return UIStoryboard(name: storyboard, bundle: nil).instantiateViewController(withIdentifier: view)
+    }
+    
     func show(style: UIBlurEffect.Style = .dark) {
         self.loadingViewcontroller.modalTransitionStyle   = .crossDissolve
         self.loadingViewcontroller.modalPresentationStyle = .overFullScreen
