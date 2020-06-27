@@ -9,6 +9,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SplashViewController" customModule="The_MovieDB" customModuleProvider="target">
             <connections>
+                <outlet property="animatedImageView" destination="Kzp-Sf-Kkh" id="rgk-Ll-lhg"/>
+                <outlet property="logoImageView" destination="KfN-Bh-AWQ" id="XiJ-Ja-c2l"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

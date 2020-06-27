@@ -11,24 +11,25 @@ import Foundation
 import UIKit
 
 protocol HomeViewToPresenterProtocol: class {
-//    var view: PresenterToViewProtocol? { get set }
-//    var interactor: PresentorToInteractorProtocol? { get set }
-//    var router: PresenterToRouterProtocol? { get set }
-//    func loginWithProvider(for provider: SocialLoginTypes)
+    var view: HomePresenterToViewProtocol? { get set }
+    var interactor: HomePresenterToInteractorProtocol? { get set }
+    var router: HomePresenterToRouterProtocol? { get set }
+    func getMovies(page: Int, category: Constants.category, movieSelection: Constants.MovieSelection)
 }
 
-protocol HomePresentorToInteractorProtocol: class {
-//    var view: LoginViewController! { get set }
-//    var presenter: InteractorToPresenterProtocol? { get set }
-//func loginWithProvider(for provider: SocialLoginTypes)
+protocol HomePresenterToInteractorProtocol: class {
+    //var view: HomeViewController! { get set }
+    var presenter: HomeInteractorToPresenterProtocol? { get set }
+    func getMovies(page: Int, category: Constants.category, movieSelection: Constants.MovieSelection)
+
 }
 
 protocol HomeInteractorToPresenterProtocol: class {
-    
+    func showMovieResults(movies: [Movie])
 }
 
 protocol HomePresenterToViewProtocol: class {
-    //func returnAppVersion(_ version: String)
+    func showMovieResults(movies: [Movie])
 }
 
 protocol HomePresenterToRouterProtocol: class {

@@ -15,9 +15,9 @@ class OnboardingViewModel {
         
         let firstPage = Page(title: "Veja o que está em alta", message: "Você pode acompanhar o que há de novo nos cinemas, bem como os filmes populares e os mais bem ranqueados.", imageName: "page1")
         
-        let secondPage = Page(title: "Favorite os seus interesses", message: "Clique em favoritar em qualquer item, seja um filme ou uma série para consultar mais tarde.", imageName: "page2")
+        let secondPage = Page(title: "Favorite os seus interesses", message: "Clique em favoritar em qualquer item, seja um filme ou uma série para consultar depois.", imageName: "page2")
         
-        let thirdPage = Page(title: "Saiba antes de ir ao cinema", message: "Assista aos trailers e review de outras pessoas e veja o que te espera.", imageName: "page3")
+        let thirdPage = Page(title: "Saiba antes de ir ao cinema", message: "Assista aos trailers e reviews de outras pessoas e veja o que te espera.", imageName: "page3")
         
         return [firstPage, secondPage, thirdPage]
     }()

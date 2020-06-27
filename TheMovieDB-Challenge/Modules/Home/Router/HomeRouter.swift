@@ -18,9 +18,9 @@ class HomeRouter: HomePresenterToRouterProtocol {
     
     static func createModule(as presentationStyle: UIModalPresentationStyle) -> UIViewController {
         
-        let withIdentifier = "LoginStoryboard"
+        let withIdentifier = "HomeViewControllerIdentifier"
         
-        guard let view = mainstoryboard.instantiateViewController(withIdentifier: withIdentifier) as? LoginViewController else {
+        guard let view = mainstoryboard.instantiateViewController(withIdentifier: withIdentifier) as? HomeViewController else {
             
             print("There was a problem presenting the selected View Controller \(withIdentifier)")
             
@@ -29,18 +29,33 @@ class HomeRouter: HomePresenterToRouterProtocol {
         
         view.modalPresentationStyle = presentationStyle
         
-//        let presenter: ViewToPresenterProtocol & InteractorToPresenterProtocol = LoginPresenter()
-//        let interactor: PresentorToInteractorProtocol = LoginInteractor()
-//        let router: PresenterToRouterProtocol = LoginRouter()
+        let presenter: HomeViewToPresenterProtocol & HomeInteractorToPresenterProtocol = HomePresenter()
+        let interactor: HomePresenterToInteractorProtocol = HomeInteractor()
+        let router: HomePresenterToRouterProtocol = HomeRouter()
         
-//        view.presenter = presenter
-//        presenter.view = view
-//        presenter.router = router
-//        presenter.interactor = interactor
-//        interactor.presenter = presenter
-//        interactor.view = view
+        view.presenter = presenter
+        presenter.view = view
+        presenter.router = router
+        presenter.interactor = interactor
+        interactor.presenter = presenter
         
         return view
+        
+    }
+
+    static func initModule(from view: HomeViewController) {
+        
+        view.modalPresentationStyle = .fullScreen
+        
+        let presenter: HomeViewToPresenterProtocol & HomeInteractorToPresenterProtocol = HomePresenter()
+        let interactor: HomePresenterToInteractorProtocol = HomeInteractor()
+        let router: HomePresenterToRouterProtocol = HomeRouter()
+        
+        view.presenter = presenter
+        presenter.view = view
+        presenter.router = router
+        presenter.interactor = interactor
+        interactor.presenter = presenter
         
     }
     

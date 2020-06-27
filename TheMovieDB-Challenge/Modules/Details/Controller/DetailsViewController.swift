@@ -112,10 +112,10 @@ class DetailsViewController: UIViewController {
                     
                 }
                 
-                let size = (genresByName.count - 2)
-                let str = genresByName[0..<size] + "."
+                //let size = (genresByName.count - 2)
+                //let str = genresByName[0..<size] + "."
                 
-                return str
+                return genresByName
                 
             }
             

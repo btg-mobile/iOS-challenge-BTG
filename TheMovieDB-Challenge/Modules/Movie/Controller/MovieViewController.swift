@@ -11,7 +11,7 @@ import FirebaseCrashlytics
 
 class MovieViewController: UIViewController {
     
-    var controller : MovieController?
+    //var controller : MovieController?
     var refreshControl: UIRefreshControl?
     var fetchingMore = false
     var noticeNoMoreData = false
@@ -35,9 +35,9 @@ class MovieViewController: UIViewController {
         
         self.addRefreshingControl()
         
-        controller = MovieController()
-        controller?.delegate = self
-        controller?.loadMovies(movieSelection: self.movieSelection ?? Constants.MovieSelection.Popular)
+//controller = MovieController()
+ //       controller?.delegate = self
+//        controller?.loadMovies(movieSelection: self.movieSelection ?? Constants.MovieSelection.Popular)
         
         ///Delegate and Datasource
         movieCollectionView.delegate = self
@@ -62,7 +62,7 @@ class MovieViewController: UIViewController {
     @objc func refreshList() {
         
         self.refreshControl?.endRefreshing()
-        self.controller?.loadMovies(movieSelection: self.movieSelection ?? Constants.MovieSelection.Popular)
+        //self.controller?.loadMovies(movieSelection: self.movieSelection ?? Constants.MovieSelection.Popular)
         self.movieCollectionView.reloadData()
         
     }
@@ -82,7 +82,7 @@ class MovieViewController: UIViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
             self.loadingMoreActivityIndicator.startAnimating()
-            self.controller?.loadAnotherPage()
+            //self.controller?.loadAnotherPage()
             self.fetchingMore = false
             self.movieCollectionView.reloadData()
         })
@@ -101,7 +101,8 @@ extension MovieViewController : UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return self.controller?.numberOfRows() ?? 0
+        return 0
+        //return self.controller?.numberOfRows() ?? 0
         
     }
     
@@ -109,7 +110,7 @@ extension MovieViewController : UICollectionViewDelegate, UICollectionViewDataSo
         
         let cell : MovieCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCollectionViewCell
         
-        cell.setupCell(movie: (self.controller?.loadMovieWithIndexPath(indexPath: indexPath, favorite: false))!)
+        //cell.setupCell(movie: (self.controller?.loadMovieWithIndexPath(indexPath: indexPath, favorite: false))!)
         
         return cell
         
@@ -179,7 +180,7 @@ extension MovieViewController : UICollectionViewDelegate, UICollectionViewDataSo
 //        let cellHero = "cellID\(indexPath.item)\(self.movieCollectionView.tag)"
 //        collectionView.hero.id = cellHero
         
-        vc.movie = controller?.loadMovieWithIndexPath(indexPath: indexPath)
+        //vc.movie = controller?.loadMovieWithIndexPath(indexPath: indexPath)
         
         present(vc, animated: true, completion: nil)
         
@@ -197,7 +198,7 @@ extension MovieViewController : UISearchBarDelegate {
             
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
-                self.controller?.updateArray()
+                //self.controller?.updateArray()
                 self.movieCollectionView.reloadData()
             }
             
@@ -211,14 +212,14 @@ extension MovieViewController : UISearchBarDelegate {
             
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
-                self.controller?.updateArray()
+                //self.controller?.updateArray()
                 self.movieCollectionView.reloadData()
             }
             
         }
         else {
             
-            self.controller?.searchByValue(searchText: searchText)
+            //self.controller?.searchByValue(searchText: searchText)
             
             self.movieCollectionView.reloadData()
         }
@@ -227,55 +228,55 @@ extension MovieViewController : UISearchBarDelegate {
     
 }
 
-extension MovieViewController : MovieControllerDelegate {
-    
-    func limitOfPagesReached() {
-        
-        guard noticeNoMoreData == false else { return }
-        
-        noticeNoMoreData = true
-        
-        DispatchQueue.main.async {
-            
-            let alerta = UIAlertController(title: "Alerta", message: "Você chegou até o final", preferredStyle: .alert)
-            let btnOk = UIAlertAction(title: "Ok", style: .destructive, handler: nil)
-            
-            alerta.addAction(btnOk)
-            
-            self.present(alerta, animated: true)
-            
-        }
-        
-    }
-    
-    func successOnLoading() {
-        
-        DispatchQueue.main.async {
-            self.movieCollectionView.reloadData()
-            self.loadingMoreActivityIndicator.stopAnimating()
-        }
-        
-    }
-    
-    func errorOnLoading(error: Error?) {
-        
-        if !error!.localizedDescription.isEmpty {
-            
-            DispatchQueue.main.async {
-                
-                print("Problema ao carregar os dados de Filmes")
-                
-                let alerta = UIAlertController(title: "Erro", message: "Problema ao carregar os dados dos Filmes", preferredStyle: .alert)
-                let btnOk = UIAlertAction(title: "Ok", style: .destructive, handler: nil)
-                
-                alerta.addAction(btnOk)
-                
-                self.present(alerta, animated: true)
-                
-            }
-            
-        }
-        
-    }
-    
-}
+//extension MovieViewController : MovieControllerDelegate {
+//
+//    func limitOfPagesReached() {
+//
+//        guard noticeNoMoreData == false else { return }
+//
+//        noticeNoMoreData = true
+//
+//        DispatchQueue.main.async {
+//
+//            let alerta = UIAlertController(title: "Alerta", message: "Você chegou até o final", preferredStyle: .alert)
+//            let btnOk = UIAlertAction(title: "Ok", style: .destructive, handler: nil)
+//
+//            alerta.addAction(btnOk)
+//
+//            self.present(alerta, animated: true)
+//
+//        }
+//
+//    }
+//
+//    func successOnLoading() {
+//
+//        DispatchQueue.main.async {
+//            self.movieCollectionView.reloadData()
+//            self.loadingMoreActivityIndicator.stopAnimating()
+//        }
+//
+//    }
+//
+//    func errorOnLoading(error: Error?) {
+//
+//        if !error!.localizedDescription.isEmpty {
+//
+//            DispatchQueue.main.async {
+//
+//                print("Problema ao carregar os dados de Filmes")
+//
+//                let alerta = UIAlertController(title: "Erro", message: "Problema ao carregar os dados dos Filmes", preferredStyle: .alert)
+//                let btnOk = UIAlertAction(title: "Ok", style: .destructive, handler: nil)
+//
+//                alerta.addAction(btnOk)
+//
+//                self.present(alerta, animated: true)
+//
+//            }
+//
+//        }
+//
+//    }
+//
+//}

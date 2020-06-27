@@ -20,7 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woman_watching" translatesAutoresizingMaskIntoConstraints="NO" id="NOu-gA-mv4">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="page4" translatesAutoresizingMaskIntoConstraints="NO" id="NOu-gA-mv4">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
@@ -237,7 +237,7 @@
         <image name="LoginSocialGoogle" width="16" height="16"/>
         <image name="LoginSocialfacebook" width="16" height="16"/>
         <image name="logo" width="289" height="208.5"/>
-        <image name="woman_watching" width="4256" height="2832"/>
+        <image name="page4" width="2128" height="1416"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
     </resources>
 </document>

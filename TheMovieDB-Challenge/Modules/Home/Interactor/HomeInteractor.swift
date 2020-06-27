@@ -9,12 +9,36 @@
 import Foundation
 import RealmSwift
 
+class HomeInteractor: HomePresenterToInteractorProtocol {
+    
+    ///Layer instances
+    //var view: HomeViewController!
+    var presenter: HomeInteractorToPresenterProtocol?
+
+    ///Local Data Arrays
+    private var favoriteMoviesArray: [Movie] = []
+    private var moviesArray: [Movie] = []
+    
+    func getMovies(page: Int, category: Constants.category, movieSelection: Constants.MovieSelection) {
+        
+        WebService.shared.getMovies(page: page, category: category, movieSelection: movieSelection) { (movies, success, error) in
+            
+            if success {
+                moviesArray = movies ?? <#default value#>
+                self.presenter?.showMovieResults(movies: movies ?? [])
+            }
+            
+        }
+        
+    }
+    
+}
+
+/*
+//--------------------------------------------------
 protocol HomeControllerDelegate : class {
     
     func successOnLoadingPopularMovies()
-    func successOnLoadingNowPlayingMovies()
-    func successOnLoadingUpcomingMovies()
-    func successOnLoadingTopRatedMovies()
     func errorOnLoading(error: Error?, type: Constants.MovieSelection)
     
 }
@@ -131,15 +155,15 @@ extension HomeController : MovieDataProviderDelegate {
             
         case .NowPlaying:
             self.nowPlayingMoviesArray = movies ?? []
-            self.delegate?.successOnLoadingNowPlayingMovies()
+            //self.delegate?.successOnLoadingNowPlayingMovies()
             
         case .Upcoming:
             self.upcomingMoviesArray = movies ?? []
-            self.delegate?.successOnLoadingUpcomingMovies()
+            //self.delegate?.successOnLoadingUpcomingMovies()
             
         case .TopRated:
             self.topRatedMoviesArray = movies ?? []
-            self.delegate?.successOnLoadingTopRatedMovies()
+            //self.delegate?.successOnLoadingTopRatedMovies()
         }
         
     }
@@ -150,4 +174,4 @@ extension HomeController : MovieDataProviderDelegate {
         
     }
     
-}
+ }*/

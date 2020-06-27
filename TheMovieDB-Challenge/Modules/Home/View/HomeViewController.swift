@@ -12,24 +12,24 @@ import GoogleSignIn
 
 class HomeViewController: UIViewController {
     
-    var controller: HomeController?
-    var refreshControl: UIRefreshControl?
-    
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var popularMoviesCollectionView: UICollectionView!
     @IBOutlet weak var popularMoviesActivityIndicator: UIActivityIndicatorView!
     
-    var movieSelection: Constants.MovieSelection?
-        
+    weak var presenter: HomeViewToPresenterProtocol?
+    private var refreshControl: UIRefreshControl?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        HomeRouter.initModule(from: self)
+        
         addRefreshingControl()
         
-        //Delegate and protocols
-        controller = HomeController()
-        controller?.delegate = self
-        controller?.loadMovies(from: true, page: 1, category: .Movie, movieSelection: .Popular)
+        let movieSelection = Constants.MovieSelection.Popular
+        
+        ///Delegate and protocols
+        presenter?.getMovies(page: 1, category: .Movie, movieSelection: movieSelection)
         
         ///Delegate and DataSource methods
         [popularMoviesCollectionView].forEach { $0.delegate = self }
@@ -40,6 +40,10 @@ class HomeViewController: UIViewController {
         
         ///Fire activity indicators
         startIndicators()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -91,30 +95,28 @@ class HomeViewController: UIViewController {
     //MARK: - TapGestures
     @IBAction func tapToSeeMorePopularMovies(_ sender: UIButton) {
         
-        switch sender.tag {
-        case 0:
-            movieSelection = .Popular
-            print("Popular")
-        case 1:
-            movieSelection = .NowPlaying
-            print("Now Playing")
-        case 2:
-            movieSelection = .Upcoming
-            print("Upcoming")
-        case 3:
-            movieSelection = .TopRated
-            print("Top Rated")
-        default:
-            return
-        }
+//        switch sender.tag {
+//        case 0:
+//            movieSelection = .Popular
+//            print("Popular")
+//        case 1:
+//            movieSelection = .NowPlaying
+//            print("Now Playing")
+//        case 2:
+//            movieSelection = .Upcoming
+//            print("Upcoming")
+//        case 3:
+//            movieSelection = .TopRated
+//            print("Top Rated")
+//        default:
+//            return
+//        }
         
         let storyboard = UIStoryboard.init(name: "Movies", bundle: nil)
         
         let vc = storyboard.instantiateViewController(withIdentifier: "MoviesList") as! MovieViewController
         
-        vc.movieSelection = movieSelection
-        
-        vc.modalPresentationStyle = .fullScreen
+        //vc.movieSelection = movieSelection
         
         self.present(vc, animated: true, completion: nil)
         
@@ -132,7 +134,7 @@ class HomeViewController: UIViewController {
     @objc private func refreshList() {
         
         refreshControl?.endRefreshing()
-        controller?.loadMovies(from: true, page: 1, category: .Movie, movieSelection: .Popular)
+        //controller?.loadMovies(from: true, page: 1, category: .Movie, movieSelection: .Popular)
         
         [popularMoviesCollectionView].forEach { $0?.reloadData() }
         
@@ -151,41 +153,30 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        switch collectionView.tag {
-        case 0:
-            self.movieSelection = .Popular
-        case 1:
-            self.movieSelection = .NowPlaying
-        case 2:
-            self.movieSelection = .Upcoming
-        case 3:
-            self.movieSelection = .TopRated
-        default:
-            break
-        }
+//        switch collectionView.tag {
+//        case 0:
+//            self.movieSelection = .Popular
+//        case 1:
+//            self.movieSelection = .NowPlaying
+//        case 2:
+//            self.movieSelection = .Upcoming
+//        case 3:
+//            self.movieSelection = .TopRated
+//        default:
+//            break
+//        }
         
-        return self.controller?.numberOfRows(movieSelection: self.movieSelection ?? Constants.MovieSelection.Popular) ?? 0
+        return 0
+        
+        //return self.controller?.numberOfRows(movieSelection: self.movieSelection ?? Constants.MovieSelection.Popular) ?? 0
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        switch collectionView.tag {
-        case 0:
-            self.movieSelection = .Popular
-        case 1:
-            self.movieSelection = .NowPlaying
-        case 2:
-            self.movieSelection = .Upcoming
-        case 3:
-            self.movieSelection = .TopRated
-        default:
-            break
-        }
-        
         let cell : MovieCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCollectionViewCell
         
-        cell.setupCell(movie: (self.controller?.loadMovieWithIndexPath(indexPath: indexPath, movieSelection: self.movieSelection ?? Constants.MovieSelection.Popular, favorite: false))!)
+        //cell.setupCell(movie: (self.controller?.loadMovieWithIndexPath(indexPath: indexPath, movieSelection: self.movieSelection ?? Constants.MovieSelection.Popular, favorite: false))!)
         
         return cell
         
@@ -210,11 +201,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         let vc: DetailsViewController = storyboard.instantiateViewController(withIdentifier: "DetailsViewControllerID") as! DetailsViewController
         
-        guard let movieSelected = self.movieSelection else { return }
-        
-        //Create a logic to get the collection the user is in. So, pass it as the movieSelection above
-        
-        vc.movie = controller?.loadMovieWithIndexPath(indexPath: indexPath, movieSelection: movieSelected)
+        //guard let movieSelected = self.movieSelection else { return }
+
+        //vc.movie = controller?.loadMovieWithIndexPath(indexPath: indexPath, movieSelection: movieSelected)
         
         present(vc, animated: true, completion: nil)
         
@@ -223,46 +212,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 }
 
 //MARK: - Controller Protocol Methods
-extension HomeViewController: HomeControllerDelegate {
+
+extension HomeViewController: HomePresenterToViewProtocol {
     
-    func successOnLoadingPopularMovies() {
-        
-        DispatchQueue.main.async {
-            self.movieSelection = .Popular
-            self.popularMoviesCollectionView.reloadData()
-            self.popularMoviesActivityIndicator.stopAnimating()
-        }
-        
-    }
-    
-    func successOnLoadingNowPlayingMovies() {
-        
-        DispatchQueue.main.async {
-            self.movieSelection = .NowPlaying
-        }
-        
-    }
-    
-    func successOnLoadingUpcomingMovies() {
-        
-        DispatchQueue.main.async {
-            self.movieSelection = .Upcoming
-        }
-        
-    }
-    
-    func successOnLoadingTopRatedMovies() {
-        
-        DispatchQueue.main.async {
-            self.movieSelection = .TopRated
-        }
-        
-    }
-    
-    func errorOnLoading(error: Error?, type: Constants.MovieSelection) {
-        
-        print("Error \(error.debugDescription) on \(type.rawValue)")
-        
+    func showMovieResults(movies: [Movie]) {
+        print(movies.count)
+        print(movies)
     }
     
 }
