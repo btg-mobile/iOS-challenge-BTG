@@ -15,21 +15,23 @@ protocol HomeViewToPresenterProtocol: class {
     var interactor: HomePresenterToInteractorProtocol? { get set }
     var router: HomePresenterToRouterProtocol? { get set }
     func getMovies(page: Int, category: Constants.category, movieSelection: Constants.MovieSelection)
+    func getNumberOfRowsInSection() -> Int
+    func loadMovieWithIndexPath(indexPath: IndexPath, movieSelection: Constants.MovieSelection, favorite: Bool) -> Movie
 }
 
 protocol HomePresenterToInteractorProtocol: class {
-    //var view: HomeViewController! { get set }
     var presenter: HomeInteractorToPresenterProtocol? { get set }
     func getMovies(page: Int, category: Constants.category, movieSelection: Constants.MovieSelection)
-
 }
 
 protocol HomeInteractorToPresenterProtocol: class {
-    func showMovieResults(movies: [Movie])
+    func returnMovieResults(movies: [Movie])
+    func problemOnFetchingData(error: Constants.errorTypes)
 }
 
 protocol HomePresenterToViewProtocol: class {
-    func showMovieResults(movies: [Movie])
+    func showMovieResults()
+    func problemOnFetchingData(error: Constants.errorTypes)
 }
 
 protocol HomePresenterToRouterProtocol: class {

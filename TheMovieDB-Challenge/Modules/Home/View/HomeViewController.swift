@@ -24,6 +24,8 @@ class HomeViewController: UIViewController {
         
         HomeRouter.initModule(from: self)
         
+        LoadingView.sharedInstance.show()
+        
         addRefreshingControl()
         
         let movieSelection = Constants.MovieSelection.Popular
@@ -39,7 +41,8 @@ class HomeViewController: UIViewController {
         registerCells()
         
         ///Fire activity indicators
-        startIndicators()
+        //startIndicators()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -135,7 +138,6 @@ class HomeViewController: UIViewController {
         
         refreshControl?.endRefreshing()
         //controller?.loadMovies(from: true, page: 1, category: .Movie, movieSelection: .Popular)
-        
         [popularMoviesCollectionView].forEach { $0?.reloadData() }
         
     }
@@ -153,22 +155,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-//        switch collectionView.tag {
-//        case 0:
-//            self.movieSelection = .Popular
-//        case 1:
-//            self.movieSelection = .NowPlaying
-//        case 2:
-//            self.movieSelection = .Upcoming
-//        case 3:
-//            self.movieSelection = .TopRated
-//        default:
-//            break
-//        }
-        
-        return 0
-        
-        //return self.controller?.numberOfRows(movieSelection: self.movieSelection ?? Constants.MovieSelection.Popular) ?? 0
+        return presenter?.getNumberOfRowsInSection() ?? 0
         
     }
     
@@ -176,7 +163,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         let cell : MovieCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCollectionViewCell
         
-        //cell.setupCell(movie: (self.controller?.loadMovieWithIndexPath(indexPath: indexPath, movieSelection: self.movieSelection ?? Constants.MovieSelection.Popular, favorite: false))!)
+        guard let movie = presenter?.loadMovieWithIndexPath(indexPath: indexPath, movieSelection: Constants.MovieSelection.Popular, favorite: false) else {
+            return UICollectionViewCell()
+        }
+        
+        cell.setupCell(movie: movie)
         
         return cell
         
@@ -184,7 +175,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        //return .init(width: view.frame.width / 3.4 , height: view.frame.height / 4)
         return .init(width: view.frame.width / 3.4 , height: 190.0)
         
     }
@@ -201,9 +191,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         let vc: DetailsViewController = storyboard.instantiateViewController(withIdentifier: "DetailsViewControllerID") as! DetailsViewController
         
-        //guard let movieSelected = self.movieSelection else { return }
+        let movieSelected = Constants.MovieSelection.Popular
 
-        //vc.movie = controller?.loadMovieWithIndexPath(indexPath: indexPath, movieSelection: movieSelected)
+        vc.movie = presenter?.loadMovieWithIndexPath(indexPath: indexPath, movieSelection: movieSelected, favorite: false)
         
         present(vc, animated: true, completion: nil)
         
@@ -215,9 +205,19 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
 extension HomeViewController: HomePresenterToViewProtocol {
     
-    func showMovieResults(movies: [Movie]) {
-        print(movies.count)
-        print(movies)
+    func showMovieResults() {
+        
+        DispatchQueue.main.async {
+            LoadingView.sharedInstance.hide()
+            self.popularMoviesCollectionView.reloadData()
+        }
+        
+    }
+    
+    func problemOnFetchingData(error: Constants.errorTypes) {
+        
+        ///Show Alert with problem
+        
     }
     
 }

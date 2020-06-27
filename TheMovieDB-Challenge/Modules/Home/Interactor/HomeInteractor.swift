@@ -10,22 +10,23 @@ import Foundation
 import RealmSwift
 
 class HomeInteractor: HomePresenterToInteractorProtocol {
-    
+
     ///Layer instances
     //var view: HomeViewController!
     var presenter: HomeInteractorToPresenterProtocol?
-
-    ///Local Data Arrays
-    private var favoriteMoviesArray: [Movie] = []
-    private var moviesArray: [Movie] = []
+    
     
     func getMovies(page: Int, category: Constants.category, movieSelection: Constants.MovieSelection) {
         
         WebService.shared.getMovies(page: page, category: category, movieSelection: movieSelection) { (movies, success, error) in
             
             if success {
-                moviesArray = movies ?? <#default value#>
-                self.presenter?.showMovieResults(movies: movies ?? [])
+                self.presenter?.returnMovieResults(movies: movies ?? [])
+            }
+            else {
+                if let error = error {
+                    self.presenter?.problemOnFetchingData(error: error)
+                }
             }
             
         }
@@ -33,145 +34,3 @@ class HomeInteractor: HomePresenterToInteractorProtocol {
     }
     
 }
-
-/*
-//--------------------------------------------------
-protocol HomeControllerDelegate : class {
-    
-    func successOnLoadingPopularMovies()
-    func errorOnLoading(error: Error?, type: Constants.MovieSelection)
-    
-}
-
-class HomeController {
-    
-    let realm = try! Realm()
-    
-    weak var delegate: HomeControllerDelegate?
-    
-    private var favoriteMoviesArray: [Movie] = []
-    
-    private var popularMoviesArray: [Movie] = []
-    private var nowPlayingMoviesArray: [Movie] = []
-    private var upcomingMoviesArray: [Movie] = []
-    private var topRatedMoviesArray: [Movie] = []
-    
-    private var genresArray: [GenreElement] = []
-    
-    var provider: MovieDataProvider?
-    
-    private func setupController() {
-        
-        //        self.provider = MovieDataProvider(page: 1, category: .movie, movieSelection: .upcoming)
-        self.provider?.delegate = self
-        
-    }
-    
-    func loadMovies(from home: Bool, page: Int?, category: Constants.category, movieSelection: Constants.MovieSelection) {
-        
-        if home {
-            
-            self.setupController()
-            
-            self.provider = MovieDataProvider(page: page, category: category, movieSelection: .Popular)
-            self.provider?.delegate = self
-            self.provider?.getMovies()
-
-            self.provider = MovieDataProvider(page: page, category: category, movieSelection: .NowPlaying)
-            self.provider?.delegate = self
-            self.provider?.getMovies()
-
-            self.provider = MovieDataProvider(page: page, category: category, movieSelection: .Upcoming)
-            self.provider?.delegate = self
-            self.provider?.getMovies()
-
-            self.provider = MovieDataProvider(page: page, category: category, movieSelection: .TopRated)
-            self.provider?.delegate = self
-            self.provider?.getMovies()
-            
-        }else {
-            
-            //self.setupController()
-            self.provider = MovieDataProvider(page: page, category: category, movieSelection: movieSelection)
-            self.provider?.delegate = self
-            self.provider?.getMovies()
-            
-        }
-        
-    }
-    
-    func numberOfRows(movieSelection: Constants.MovieSelection) -> Int {
-        
-        switch movieSelection {
-        case .Popular:
-            return self.popularMoviesArray.count
-        case .NowPlaying:
-            return self.nowPlayingMoviesArray.count
-        case .Upcoming:
-            return self.upcomingMoviesArray.count
-        case .TopRated:
-            return self.topRatedMoviesArray.count
-        }
-        
-    }
-    
-    func loadMovieWithIndexPath(indexPath: IndexPath, movieSelection: Constants.MovieSelection, favorite: Bool = false ) -> Movie {
-        
-        if favorite {
-            return (self.favoriteMoviesArray[indexPath.row])
-        }
-        else {
-            
-            switch movieSelection {
-            case .Popular:
-                return self.popularMoviesArray[indexPath.row]
-            case .NowPlaying:
-                return self.nowPlayingMoviesArray[indexPath.row]
-            case .Upcoming:
-                return self.upcomingMoviesArray[indexPath.row]
-            case .TopRated:
-                return self.topRatedMoviesArray[indexPath.row]
-            }
-            
-        }
-        
-    }
-    
-}
-//MARK:- EXT DO PROTOCOLO
-
-extension HomeController : MovieDataProviderDelegate {
-    
-    func getTotalPages(_ totalOfPages: Int) {
-        ///
-    }
-        
-    func successOnLoading(_ movies: [Movie]?, movieSelection: Constants.MovieSelection) {
-
-        switch movieSelection {
-        case .Popular:
-            self.popularMoviesArray = movies ?? []
-            self.delegate?.successOnLoadingPopularMovies()
-            
-        case .NowPlaying:
-            self.nowPlayingMoviesArray = movies ?? []
-            //self.delegate?.successOnLoadingNowPlayingMovies()
-            
-        case .Upcoming:
-            self.upcomingMoviesArray = movies ?? []
-            //self.delegate?.successOnLoadingUpcomingMovies()
-            
-        case .TopRated:
-            self.topRatedMoviesArray = movies ?? []
-            //self.delegate?.successOnLoadingTopRatedMovies()
-        }
-        
-    }
-    
-    func errorOnLoading(error: Error?) {
-        
-        self.delegate?.errorOnLoading(error: error, type: .NowPlaying)
-        
-    }
-    
- }*/

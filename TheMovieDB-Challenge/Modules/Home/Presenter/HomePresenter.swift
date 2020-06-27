@@ -7,13 +7,20 @@
 //
 
 import Foundation
+import RealmSwift
 
 class HomePresenter: HomeViewToPresenterProtocol {
+    
+    //let realm = try! Realm()
     
     ///Layer instances
     var view: HomePresenterToViewProtocol?
     var interactor: HomePresenterToInteractorProtocol?
     var router: HomePresenterToRouterProtocol?
+    
+    ///Local Data Arrays
+    private var favoriteMoviesArray: [Movie] = []
+    private var moviesArray: [Movie] = []
     
     func getMovies(page: Int, category: Constants.category, movieSelection: Constants.MovieSelection) {
         
@@ -21,13 +28,41 @@ class HomePresenter: HomeViewToPresenterProtocol {
         
     }
     
+    func getNumberOfRowsInSection() -> Int {
+        
+        return moviesArray.count
+        
+    }
+    
+    func loadMovieWithIndexPath(indexPath: IndexPath, movieSelection: Constants.MovieSelection, favorite: Bool = false ) -> Movie {
+        
+        if favorite {
+            
+            return favoriteMoviesArray[indexPath.row]
+            
+        }else {
+            
+            return moviesArray[indexPath.row]
+            
+        }
+        
+    }
+    
 }
 
 extension HomePresenter: HomeInteractorToPresenterProtocol {
     
-    func showMovieResults(movies: [Movie]) {
+    func returnMovieResults(movies: [Movie]) {
         
-        self.view?.showMovieResults(movies: movies)
+        moviesArray = movies
+        view?.showMovieResults()
+        
     }
-
+    
+    func problemOnFetchingData(error: Constants.errorTypes) {
+        
+        view?.problemOnFetchingData(error: error)
+        
+    }
+    
 }

@@ -18,6 +18,12 @@ enum Constants {
         static let privateKey = "132dfc8e68a337152fd3e36d63c77677"
     }
     
+    enum errorTypes: Error {
+        case NoError
+        case NoDataAvailable
+        case CanNotProccessData
+    }
+    
     enum MovieSelection : String {
         
         case Popular = "popular"
@@ -63,10 +69,4 @@ enum Constants {
         
     }
     
-}
-
-enum errorTypes: Error {
-    case NoError
-    case NoDataAvailable
-    case CanNotProccessData
 }

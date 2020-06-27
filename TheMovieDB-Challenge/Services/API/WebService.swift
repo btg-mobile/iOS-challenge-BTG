@@ -8,7 +8,7 @@
 
 import Foundation
 
-typealias ResultResponse<T> = (_ value: T?, _ success: Bool, _ error : errorTypes?) -> Void
+typealias ResultResponse<T> = (_ value: T?, _ success: Bool, _ error : Constants.errorTypes?) -> Void
 
 class WebService {
     

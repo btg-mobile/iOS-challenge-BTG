@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZhE-fD-2Re">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZhE-fD-2Re">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,13 +10,13 @@
         <!--Loading View Controller-->
         <scene sceneID="G0Y-6W-WFD">
             <objects>
-                <viewController storyboardIdentifier="LoadingView" id="ZhE-fD-2Re" customClass="LoadingViewController" customModule="ABCBank" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoadingView" id="ZhE-fD-2Re" customClass="LoadingViewController" customModule="The_MovieDB" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="E2O-lF-DjY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4P5-Y2-Tyr">
-                                <rect key="frame" x="137.5" y="293.5" width="100" height="100"/>
+                                <rect key="frame" x="137.5" y="283.5" width="100" height="100"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="fsx-rm-QbT">
                                         <rect key="frame" x="22.5" y="22.5" width="55" height="55"/>
@@ -27,10 +24,10 @@
                                             <constraint firstAttribute="width" constant="55" id="JLB-PP-OQC"/>
                                             <constraint firstAttribute="height" constant="55" id="uqw-m7-THc"/>
                                         </constraints>
-                                        <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="color" red="0.0" green="0.13701200490000001" blue="0.26296305660000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </activityIndicatorView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.65098039220000004" green="0.66666666669999997" blue="0.70980392160000005" alpha="0.75" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.23148706560000001" green="0.74606138470000005" blue="0.79301637410000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="CbK-jN-ak8"/>
                                     <constraint firstItem="fsx-rm-QbT" firstAttribute="centerY" secondItem="4P5-Y2-Tyr" secondAttribute="centerY" id="DL1-BW-qtW"/>
@@ -44,7 +41,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="4P5-Y2-Tyr" firstAttribute="centerY" secondItem="Bg9-8c-M08" secondAttribute="centerY" id="9Iw-eo-T1S"/>
                             <constraint firstItem="4P5-Y2-Tyr" firstAttribute="centerX" secondItem="Bg9-8c-M08" secondAttribute="centerX" id="oiP-5U-Sgm"/>
