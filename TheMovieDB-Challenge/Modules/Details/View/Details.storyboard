@@ -22,7 +22,7 @@
         <!--Details View Controller-->
         <scene sceneID="lcA-ag-KTU">
             <objects>
-                <viewController storyboardIdentifier="DetailsViewControllerID" extendedLayoutIncludesOpaqueBars="YES" modalTransitionStyle="crossDissolve" id="Dtf-ND-H8k" customClass="DetailsViewController" customModule="The_MovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailsViewControllerID" extendedLayoutIncludesOpaqueBars="YES" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="Dtf-ND-H8k" customClass="DetailsViewController" customModule="The_MovieDB" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z9E-4t-Duj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="1090"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -156,20 +156,29 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="© 2020 TMDB" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JcU-Q7-Mfn">
+                                                <rect key="frame" x="0.0" y="1057.5" width="320" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                <color key="textColor" red="0.1229623333" green="0.59681779150000003" blue="0.6394344568" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="6hP-eB-LKy" firstAttribute="leading" secondItem="8nP-4p-kLn" secondAttribute="leading" constant="20" id="28V-xK-dyC"/>
                                             <constraint firstItem="qRE-0e-6Kb" firstAttribute="top" secondItem="oAn-xA-ZhZ" secondAttribute="bottom" constant="-20" id="6wH-3F-zyE"/>
                                             <constraint firstItem="CGC-1U-5Tv" firstAttribute="leading" secondItem="8nP-4p-kLn" secondAttribute="leading" constant="40" id="9O9-Oe-Hjg"/>
+                                            <constraint firstAttribute="trailing" secondItem="JcU-Q7-Mfn" secondAttribute="trailing" id="ACr-yI-vuW"/>
                                             <constraint firstItem="8vP-IK-td8" firstAttribute="top" secondItem="QuB-Rh-dwP" secondAttribute="bottom" constant="7.5" id="C3H-aC-cMe"/>
                                             <constraint firstItem="6hP-eB-LKy" firstAttribute="top" secondItem="EQb-r4-EvB" secondAttribute="bottom" constant="20" id="DhR-MW-LnZ"/>
+                                            <constraint firstAttribute="bottom" secondItem="JcU-Q7-Mfn" secondAttribute="bottom" constant="15" id="Fi9-RW-WLV"/>
                                             <constraint firstItem="FDU-f3-cCb" firstAttribute="top" secondItem="QuB-Rh-dwP" secondAttribute="bottom" priority="750" constant="214" id="GS4-Sc-hUF"/>
                                             <constraint firstItem="FDU-f3-cCb" firstAttribute="leading" secondItem="8nP-4p-kLn" secondAttribute="leading" constant="140" id="Gk9-XK-AeL"/>
                                             <constraint firstAttribute="trailing" secondItem="FDU-f3-cCb" secondAttribute="trailing" constant="140" id="HGq-im-dF9"/>
                                             <constraint firstItem="FDU-f3-cCb" firstAttribute="top" secondItem="8vP-IK-td8" secondAttribute="bottom" constant="45.5" id="ICM-eq-AYG"/>
                                             <constraint firstItem="oAn-xA-ZhZ" firstAttribute="leading" secondItem="8nP-4p-kLn" secondAttribute="leading" id="Iir-qU-RfL"/>
                                             <constraint firstItem="CGC-1U-5Tv" firstAttribute="top" secondItem="oAn-xA-ZhZ" secondAttribute="bottom" constant="20" id="Kac-EK-o54"/>
+                                            <constraint firstItem="JcU-Q7-Mfn" firstAttribute="leading" secondItem="8nP-4p-kLn" secondAttribute="leading" id="Otb-4G-iKf"/>
                                             <constraint firstAttribute="trailing" secondItem="QuB-Rh-dwP" secondAttribute="trailing" id="Tr3-FZ-ya1"/>
                                             <constraint firstAttribute="trailing" secondItem="6hP-eB-LKy" secondAttribute="trailing" constant="20" id="VbB-EC-cbP"/>
                                             <constraint firstItem="EQb-r4-EvB" firstAttribute="top" secondItem="CGC-1U-5Tv" secondAttribute="bottom" constant="20" id="Y4e-hG-jcq"/>

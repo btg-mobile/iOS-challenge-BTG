@@ -15,6 +15,7 @@ protocol HomeViewToPresenterProtocol: class {
     var interactor: HomePresenterToInteractorProtocol? { get set }
     var router: HomePresenterToRouterProtocol? { get set }
     func getMovies(page: Int, category: Constants.category, movieSelection: Constants.MovieSelection)
+    func numberOfSections() -> Int
     func getNumberOfRowsInSection() -> Int
     func loadMovieWithIndexPath(indexPath: IndexPath, movieSelection: Constants.MovieSelection, favorite: Bool) -> Movie
 }

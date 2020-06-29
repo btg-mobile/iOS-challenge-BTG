@@ -28,6 +28,12 @@ class HomePresenter: HomeViewToPresenterProtocol {
         
     }
     
+    func numberOfSections() -> Int {
+        
+        return 4 //return moviesArray.count
+        
+    }
+    
     func getNumberOfRowsInSection() -> Int {
         
         return moviesArray.count

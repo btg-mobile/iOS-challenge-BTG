@@ -11,10 +11,7 @@ import RealmSwift
 
 class HomeInteractor: HomePresenterToInteractorProtocol {
 
-    ///Layer instances
-    //var view: HomeViewController!
     var presenter: HomeInteractorToPresenterProtocol?
-    
     
     func getMovies(page: Int, category: Constants.category, movieSelection: Constants.MovieSelection) {
         
