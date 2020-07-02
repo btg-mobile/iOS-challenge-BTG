@@ -37,11 +37,11 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Imb-hh-xuf">
                                                 <rect key="frame" x="10" y="0.0" width="160" height="35"/>
                                                 <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="13"/>
-                                                <color key="textColor" red="0.0049759647810000002" green="0.14137595889999999" blue="0.25887107850000002" alpha="0.79930971746575341" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.0049759647810000002" green="0.14137595889999999" blue="0.25887107850000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="Imb-hh-xuf" firstAttribute="leading" secondItem="e0f-d9-sW2" secondAttribute="leading" constant="10" id="OBU-TM-MRO"/>
                                             <constraint firstAttribute="trailing" secondItem="Imb-hh-xuf" secondAttribute="trailing" constant="10" id="aDn-1o-CC5"/>
@@ -107,7 +107,7 @@
                 <outlet property="movieImageView" destination="A1x-JG-DIe" id="duE-Jj-Yny"/>
                 <outlet property="movieNameLabel" destination="Imb-hh-xuf" id="ZJh-kO-lNH"/>
             </connections>
-            <point key="canvasLocation" x="279.375" y="83.450704225352112"/>
+            <point key="canvasLocation" x="737" y="99"/>
         </collectionViewCell>
     </objects>
     <resources>

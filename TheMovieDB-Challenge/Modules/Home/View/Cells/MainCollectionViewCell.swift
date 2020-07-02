@@ -11,7 +11,7 @@ import UIKit
 class MainCollectionViewCell: UICollectionViewCell {
     
     private let cellId = "appCellId"
-     var categoriredArray = [Movie]()
+    var categorizedArray = [Movie]()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,8 +25,8 @@ class MainCollectionViewCell: UICollectionViewCell {
     let categoryLabel: UILabel = {
         let label = UILabel()
         label.text = "New Movies"
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = .darkBlue
+        label.font = UIFont.systemFont(ofSize: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -35,7 +35,7 @@ class MainCollectionViewCell: UICollectionViewCell {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40.0, height: 15.0))
         button.sendActions(for: .touchUpInside)
         button.setTitle("See details", for: .normal)
-        button.tintColor = .white
+        button.tintColor = .darkBlue
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -89,7 +89,7 @@ extension MainCollectionViewCell: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 20
+        return categorizedArray.count
         
     }
     
@@ -97,7 +97,7 @@ extension MainCollectionViewCell: UICollectionViewDataSource, UICollectionViewDe
         
         let cell : MovieCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCollectionViewCell
         
-        cell.setupCell(movie: self.categoriredArray[0])
+        cell.setupCell(movie: self.categorizedArray[indexPath.row])
         
         return cell
 
@@ -105,8 +105,7 @@ extension MainCollectionViewCell: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: 100, height: frame.height - 32)
-        //return CGSize(width: self.frame.width / 3.4 , height: 200.0 - categoryLabel.frame.height)//frame.height - 32)
+        return CGSize(width: frame.width / 3.5, height: frame.height - 32)
         
     }
     

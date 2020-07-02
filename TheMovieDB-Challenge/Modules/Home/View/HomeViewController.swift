@@ -26,26 +26,16 @@ class HomeViewController: UIViewController {
         
         addRefreshingControl()
         
-        let movieSelection = Constants.MovieSelection.Popular
+        presenter?.requestFirstCallOfMovies()
         
-        ///Delegate and protocols
-        presenter?.getMovies(page: 1, category: .Movie, movieSelection: movieSelection)
+        setUp()
         
-        ///Delegate and DataSource methods
-        [mainCollectionView].forEach { $0.delegate = self }
-        [mainCollectionView].forEach { $0.dataSource = self }
-        
-        ///Registereing Cells
         registerCells()
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
-
+        
         guard let signIn = GIDSignIn.sharedInstance() else { return }
         
         if !signIn.hasPreviousSignIn() {
@@ -58,13 +48,25 @@ class HomeViewController: UIViewController {
     @objc func shouldShowOnboarding() {
         
         let identifier = "OnboardingViewControllerIdentifier"
-    
+        
         let homeStoryboard = UIStoryboard.init(name: "Onboarding", bundle: nil)
         
         let onbordingViewController = homeStoryboard.instantiateViewController(withIdentifier: identifier)
         
         self.present(onbordingViewController, animated: true)
-
+        
+    }
+    
+    private func setUp() {
+        
+        ///Delegate and DataSource methods
+        [mainCollectionView].forEach { (collectionView) in
+            
+            collectionView?.delegate = self
+            collectionView?.dataSource = self
+            
+        }
+        
     }
     
     //MARK: - Register Cells
@@ -93,7 +95,7 @@ class HomeViewController: UIViewController {
         
     }
     
-   private func addRefreshingControl() {
+    private func addRefreshingControl() {
         
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.tintColor = .lightGreen
@@ -106,8 +108,7 @@ class HomeViewController: UIViewController {
         
         refreshControl?.endRefreshing()
         
-        //controller?.loadMovies(from: true, page: 1, category: .Movie, movieSelection: .Popular)
-        [mainCollectionView].forEach { $0?.reloadData() }
+        presenter?.requestFirstCallOfMovies()
         
     }
     
@@ -116,17 +117,30 @@ class HomeViewController: UIViewController {
 //MARK: - CollectionView Methods Extension
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        
+        ///Main Screen has only one section now // Series will come afterwards
+        return 1
+        
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return presenter?.numberOfSections() ?? 0
+        return presenter?.getNumberOfSections() ?? 0
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-                
-        let cell: MainCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCollectionViewCellID", for: indexPath) as! MainCollectionViewCell
         
-        cell.categoriredArray.append(presenter?.loadMovieWithIndexPath(indexPath: indexPath, movieSelection: Constants.MovieSelection.Popular, favorite: false) ?? Movie())
+        let withReuseIdentifier = "MainCollectionViewCellID"
+        
+        let cell: MainCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: withReuseIdentifier, for: indexPath) as! MainCollectionViewCell
+        
+        if let arrayMovies = presenter?.loadMovieArrayWithIndexPath(indexPath: indexPath) {
+            
+            cell.categorizedArray = arrayMovies
+            
+        }
         
         return cell
         
@@ -134,13 +148,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: self.view.frame.width, height: 200.0)
+        return CGSize(width: view.frame.width, height: view.frame.height / 4)
         
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
-        return UIEdgeInsets(top: 40.0, left: 10, bottom: 20.0, right: 10)
+        return UIEdgeInsets(top: 20.0, left: 10, bottom: 20.0, right: 10)
         
     }
     

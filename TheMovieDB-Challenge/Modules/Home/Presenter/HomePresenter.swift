@@ -19,8 +19,8 @@ class HomePresenter: HomeViewToPresenterProtocol {
     var router: HomePresenterToRouterProtocol?
     
     ///Local Data Arrays
-    private var favoriteMoviesArray: [Movie] = []
-    private var moviesArray: [Movie] = []
+    private var favoriteMoviesArray: [[Movie]] = []
+    private var moviesArray: [[Movie]] = []
     
     func getMovies(page: Int, category: Constants.category, movieSelection: Constants.MovieSelection) {
         
@@ -28,29 +28,32 @@ class HomePresenter: HomeViewToPresenterProtocol {
         
     }
     
-    func numberOfSections() -> Int {
-        
-        return 4 //return moviesArray.count
-        
-    }
-    
-    func getNumberOfRowsInSection() -> Int {
+    func getNumberOfSections() -> Int {
         
         return moviesArray.count
         
     }
     
-    func loadMovieWithIndexPath(indexPath: IndexPath, movieSelection: Constants.MovieSelection, favorite: Bool = false ) -> Movie {
+    func getNumberOfRowsInSection(section: Int) -> Int {
         
-        if favorite {
-            
-            return favoriteMoviesArray[indexPath.row]
-            
-        }else {
-            
-            return moviesArray[indexPath.row]
-            
-        }
+        return moviesArray[section].count
+        
+    }
+    
+    func loadMovieArrayWithIndexPath(indexPath: IndexPath) -> [Movie] {
+        
+        return moviesArray[indexPath.row]
+        
+    }
+    
+    func requestFirstCallOfMovies() {
+        
+        moviesArray.removeAll()
+        
+        interactor?.getMovies(page: 1, category: .Movie, movieSelection: Constants.MovieSelection.Popular)
+        interactor?.getMovies(page: 1, category: .Movie, movieSelection: Constants.MovieSelection.NowPlaying)
+        interactor?.getMovies(page: 1, category: .Movie, movieSelection: Constants.MovieSelection.TopRated)
+        interactor?.getMovies(page: 1, category: .Movie, movieSelection: Constants.MovieSelection.Upcoming)
         
     }
     
@@ -60,7 +63,7 @@ extension HomePresenter: HomeInteractorToPresenterProtocol {
     
     func returnMovieResults(movies: [Movie]) {
         
-        moviesArray = movies
+        moviesArray.append(movies)//moviesArray = movies
         view?.showMovieResults()
         
     }

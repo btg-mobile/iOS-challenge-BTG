@@ -14,7 +14,6 @@ class MovieCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var movieImageView: CustomImageView!
     @IBOutlet weak var movieNameLabel: UILabel!
-    @IBOutlet weak var movieYearLabel: UILabel!
     @IBOutlet weak var imgLoadActivityIndicator: UIActivityIndicatorView!
     
     override func awakeFromNib() {
