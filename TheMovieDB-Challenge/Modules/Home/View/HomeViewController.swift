@@ -142,6 +142,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             
         }
         
+        cell.categoryLabel.text = presenter?.getCategoryName(section: indexPath.row)
+        
         return cell
         
     }

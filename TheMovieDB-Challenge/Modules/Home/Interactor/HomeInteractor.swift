@@ -15,15 +15,22 @@ class HomeInteractor: HomePresenterToInteractorProtocol {
     
     func getMovies(page: Int, category: Constants.category, movieSelection: Constants.MovieSelection) {
         
-        WebService.shared.getMovies(page: page, category: category, movieSelection: movieSelection) { (movies, success, error) in
+        NetworkingService.shared.getMovies(page: page, category: category, movieSelection: movieSelection) { (movieHeader, success, error) in
             
             if success {
-                self.presenter?.returnMovieResults(movies: movies ?? [])
+                
+                guard let movieHeader = movieHeader else {
+                    return
+                }
+                
+                self.presenter?.returnMovieResults(movieHeader: movieHeader)
+                
             }
             else {
                 if let error = error {
                     self.presenter?.problemOnFetchingData(error: error)
                 }
+                
             }
             
         }

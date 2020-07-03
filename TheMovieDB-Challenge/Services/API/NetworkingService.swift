@@ -8,11 +8,11 @@
 
 import Foundation
 
-typealias ResultResponse<T> = (_ value: T?, _ success: Bool, _ error : Constants.errorTypes?) -> Void
+typealias GenericResponse<T> = (_ value: T?, _ success: Bool, _ error : Constants.errorTypes?) -> Void
 
-struct WebService {
+struct NetworkingService {
     
-    static let shared = WebService()
+    static let shared = NetworkingService()
     
     let language: Constants.language = .English //Replace by UserDefaults
     
@@ -21,7 +21,7 @@ struct WebService {
         case getSeries
         case getGenres
         
-        var path: String {
+        var url: String {
             switch self {
             case .getMovies:
                 return "\(Constants.API.baseURL)/movie/"
@@ -35,27 +35,25 @@ struct WebService {
         
     }
     
-    func getMovies(page: Int, category: Constants.category, movieSelection: Constants.MovieSelection, completion : @escaping ResultResponse<[Movie]>) {
+    func getMovies(page: Int, category: Constants.category, movieSelection: Constants.MovieSelection, completion : @escaping GenericResponse<MovieHeader>) {
         
-        let resourceString = URL(string: "\(Endpoints.getMovies.path)\(movieSelection.rawValue)?api_key=\(Constants.API.privateKey)&language=\(language.rawValue)&page=\(page)")
+        let resourceString = URL(string: "\(Endpoints.getMovies.url)\(movieSelection.rawValue)?api_key=\(Constants.API.privateKey)&language=\(language.rawValue)&page=\(page)")
         
         guard let resourceURL = resourceString else {fatalError("Problema ao obter os dados")}
         
         let dataTask = URLSession.shared.dataTask(with: resourceURL) { (data, res, err) in
             
             guard let jsonData = data else {
-                completion([], false, .NoDataAvailable)
+                completion(nil, false, .NoDataAvailable)
                 return
             }
             
             do {
                 let decoder = JSONDecoder()
-                let movieHeader = try decoder.decode(MovieHeader.self, from: jsonData)
-                if let movieResults = movieHeader.results {
+                var movieHeader = try decoder.decode(MovieHeader.self, from: jsonData)
                     
-                    let container = MovieContainer(category: category, type: movieSelection, header: movieHeader)
-                    
-                    completion(movieResults, true, .NoError)
+                movieHeader.categoryType = movieSelection
+                    completion(movieHeader, true, .NoError)
                     
                     if page == 1 {
                         
@@ -67,11 +65,10 @@ struct WebService {
                     print(String.init(repeating: "-", count: 56) + "API LOG" + String.init(repeating: "-", count: 57))
                     print("Page#\(page) \(resourceURL)")
                     print(String.init(repeating: "-", count: 120));print("")
-                    
-                }
+
             }catch {
                 
-                completion([], false, .CanNotProccessData)
+                completion(nil, false, .CanNotProccessData)
                 
             }
             

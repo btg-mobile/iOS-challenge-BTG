@@ -21,6 +21,7 @@ class HomePresenter: HomeViewToPresenterProtocol {
     ///Local Data Arrays
     private var favoriteMoviesArray: [[Movie]] = []
     private var moviesArray: [[Movie]] = []
+    private var sectionNames: [String] = []
     
     func getMovies(page: Int, category: Constants.category, movieSelection: Constants.MovieSelection) {
         
@@ -57,13 +58,38 @@ class HomePresenter: HomeViewToPresenterProtocol {
         
     }
     
+    func getCategoryName(section: Int) -> String {
+        
+        return sectionNames[section]
+    
+    }
+    
 }
 
 extension HomePresenter: HomeInteractorToPresenterProtocol {
     
-    func returnMovieResults(movies: [Movie]) {
+    func returnMovieResults(movieHeader: MovieHeader) {
         
-        moviesArray.append(movies)//moviesArray = movies
+        let sectionName = { () -> String in
+            
+            switch movieHeader.categoryType?.rawValue ?? "" {
+                
+            case "popular":
+                return "Popular"
+            case "now_playing":
+                return "Now Playing"
+            case "upcoming":
+                return "Upcoming"
+            case "top_rated":
+                return "Top Rated"
+            default:
+                return ""
+            }
+            
+        }()
+        
+        sectionNames.append(sectionName)
+        moviesArray.append(movieHeader.movies ?? [])
         view?.showMovieResults()
         
     }

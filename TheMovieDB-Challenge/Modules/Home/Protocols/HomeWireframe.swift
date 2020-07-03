@@ -18,6 +18,7 @@ protocol HomeViewToPresenterProtocol: class {
     func getNumberOfSections() -> Int
     func getNumberOfRowsInSection(section: Int) -> Int
     func loadMovieArrayWithIndexPath(indexPath: IndexPath) -> [Movie]
+    func getCategoryName(section: Int) -> String
     func requestFirstCallOfMovies()
 }
 
@@ -27,7 +28,7 @@ protocol HomePresenterToInteractorProtocol: class {
 }
 
 protocol HomeInteractorToPresenterProtocol: class {
-    func returnMovieResults(movies: [Movie])
+    func returnMovieResults(movieHeader: MovieHeader)
     func problemOnFetchingData(error: Constants.errorTypes)
 }
 

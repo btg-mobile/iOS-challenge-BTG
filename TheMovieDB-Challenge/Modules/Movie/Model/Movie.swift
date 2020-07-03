@@ -11,13 +11,14 @@ import Foundation
 // MARK: - Movie
 struct MovieHeader: Codable {
     let page, totalResults, totalPages: Int?
-    let results: [Movie]?
-
+    let movies: [Movie]?
+    var categoryType: Constants.MovieSelection?
+    
     enum CodingKeys: String, CodingKey {
         case page
         case totalResults = "total_results"
         case totalPages = "total_pages"
-        case results
+        case movies = "results"
     }
 }
 
@@ -52,12 +53,4 @@ struct Movie: Codable {
         case overview
         case releaseDate = "release_date"
     }
-}
-
-struct MovieContainer {
-    
-    var category: Constants.category
-    var type: Constants.MovieSelection
-    var header: MovieHeader
-    
 }

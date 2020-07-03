@@ -143,7 +143,7 @@ class DetailsViewController: UIViewController {
         //self.setFavButtonStatus()
         
         if let urlString = self.movie?.backdropPath {
-            self.moviePhoto.loadUrlImageFromSDWeb(urlString: urlString, type: .cover, done: { [weak self] isLoadFinished in
+            self.moviePhoto.loadUrlImageFromSDWeb(urlString: urlString, type: .cover, done: { isLoadFinished in
                 
                 if isLoadFinished {
                     

@@ -30,7 +30,7 @@ enum Constants {
         case NowPlaying = "now_playing"
         case Upcoming = "upcoming"
         case TopRated = "top_rated"
-        
+        case NoSelection
     }
     
     enum language : String {
@@ -46,6 +46,7 @@ enum Constants {
         case Movie = "movie"
         case Series = "serie"
         case Genre = "genre"
+        case NoCategory
     }
     
     //GET /movie/{movie_id}/external_ids

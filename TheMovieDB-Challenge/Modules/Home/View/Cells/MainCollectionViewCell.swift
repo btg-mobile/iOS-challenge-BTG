@@ -11,7 +11,16 @@ import UIKit
 class MainCollectionViewCell: UICollectionViewCell {
     
     private let cellId = "appCellId"
-    var categorizedArray = [Movie]()
+    var categorizedArray = [Movie]() {
+        
+        didSet {
+            
+            ///Set Category Type
+            //categoryLabel.text = categorizedArray[0].type
+            
+        }
+        
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,7 +33,7 @@ class MainCollectionViewCell: UICollectionViewCell {
     
     let categoryLabel: UILabel = {
         let label = UILabel()
-        label.text = "New Movies"
+        label.text = ""
         label.textColor = .darkBlue
         label.font = UIFont.systemFont(ofSize: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
