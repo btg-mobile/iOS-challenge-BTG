@@ -53,3 +53,11 @@ struct Movie: Codable {
         case releaseDate = "release_date"
     }
 }
+
+struct MovieContainer {
+    
+    var category: Constants.category
+    var type: Constants.MovieSelection
+    var header: MovieHeader
+    
+}

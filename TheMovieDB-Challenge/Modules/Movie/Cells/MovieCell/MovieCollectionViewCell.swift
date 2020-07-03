@@ -20,33 +20,25 @@ class MovieCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        setupView()
+        layer.cornerRadius = 10.0
         
-    }
-    
-    func setupView() {
-     
-        mainView.layer.cornerRadius = 8.0
-        movieImageView.layer.cornerRadius = 8.0
+        imgLoadActivityIndicator.startAnimating()
         
-        formatViewsWithDropShadow(self)
     }
 
-    func formatViewsWithDropShadow(_ view: UIView) {
-        
-        view.layer.masksToBounds = false
-        view.layer.shadowColor = UIColor.darkGray.cgColor
-        view.layer.shadowOpacity = 0.2
-        view.layer.shadowOffset = CGSize(width: 0.0, height: 4.0)
-        view.layer.shadowRadius = 5.0
-        
-    }
-    
     func setupCell(movie: Movie) {
         
         if let urlString = movie.posterPath {
             
-            self.movieImageView.loadUrlImageFromSDWeb(urlString: urlString, type: .banner)
+            self.movieImageView.loadUrlImageFromSDWeb(urlString: urlString, type: .banner, done: { [weak self] isLoadFinished in
+                
+                if isLoadFinished {
+                    
+                    self?.imgLoadActivityIndicator.stopAnimating()
+                    
+                }
+                
+            })
             
         }
         

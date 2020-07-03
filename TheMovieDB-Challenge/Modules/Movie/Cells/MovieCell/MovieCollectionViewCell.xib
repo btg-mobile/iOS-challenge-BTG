@@ -24,8 +24,8 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcd-e4-ZJE" userLabel="MainView">
                         <rect key="frame" x="0.0" y="0.0" width="180" height="320"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="portrait-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="A1x-JG-DIe" customClass="CustomImageView" customModule="The_MovieDB" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="180" height="290"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="portrait-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="A1x-JG-DIe" customClass="CustomImageView" customModule="The_MovieDB" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="180" height="282"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="StZ-uK-eBE" userLabel="bottomView">
@@ -36,7 +36,7 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Imb-hh-xuf">
                                                 <rect key="frame" x="10" y="0.0" width="160" height="35"/>
-                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="13"/>
+                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="12.5"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -51,7 +51,7 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sTe-cz-u58">
                                         <rect key="frame" x="0.0" y="0.0" width="180" height="1"/>
-                                        <color key="backgroundColor" red="0.0" green="0.13701200490000001" blue="0.26296305660000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.1229623333" green="0.59681779150000003" blue="0.6394344568" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="iYv-4O-tnb"/>
                                         </constraints>
@@ -83,7 +83,7 @@
                             <constraint firstItem="A1x-JG-DIe" firstAttribute="top" secondItem="fcd-e4-ZJE" secondAttribute="top" id="2xT-wp-ZbO"/>
                             <constraint firstItem="StZ-uK-eBE" firstAttribute="leading" secondItem="fcd-e4-ZJE" secondAttribute="leading" id="8ga-qV-QGB"/>
                             <constraint firstItem="A1x-JG-DIe" firstAttribute="leading" secondItem="fcd-e4-ZJE" secondAttribute="leading" id="J8j-eo-TKo"/>
-                            <constraint firstItem="StZ-uK-eBE" firstAttribute="top" secondItem="A1x-JG-DIe" secondAttribute="bottom" constant="-8" id="Q50-JT-xlv"/>
+                            <constraint firstItem="StZ-uK-eBE" firstAttribute="top" secondItem="A1x-JG-DIe" secondAttribute="bottom" id="Q50-JT-xlv"/>
                             <constraint firstAttribute="trailing" secondItem="StZ-uK-eBE" secondAttribute="trailing" id="SZe-kT-Zdc"/>
                             <constraint firstAttribute="bottom" secondItem="StZ-uK-eBE" secondAttribute="bottom" constant="8" id="ZDD-m6-i1b"/>
                             <constraint firstAttribute="trailing" secondItem="A1x-JG-DIe" secondAttribute="trailing" id="d1f-Id-qf9"/>

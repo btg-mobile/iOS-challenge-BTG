@@ -10,7 +10,7 @@ import Foundation
 
 typealias ResultResponse<T> = (_ value: T?, _ success: Bool, _ error : Constants.errorTypes?) -> Void
 
-class WebService {
+struct WebService {
     
     static let shared = WebService()
     
@@ -52,6 +52,8 @@ class WebService {
                 let decoder = JSONDecoder()
                 let movieHeader = try decoder.decode(MovieHeader.self, from: jsonData)
                 if let movieResults = movieHeader.results {
+                    
+                    let container = MovieContainer(category: category, type: movieSelection, header: movieHeader)
                     
                     completion(movieResults, true, .NoError)
                     

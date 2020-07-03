@@ -60,7 +60,7 @@ class DetailsViewController: UIViewController {
     }
     
     @IBAction func tappedGoBack(_ sender: UIButton) {
-            
+        
         self.dismiss(animated: true, completion: nil)
         
     }
@@ -124,17 +124,17 @@ class DetailsViewController: UIViewController {
         return "Não foi possivel identificar generos."
     }
     
-//    func setFavButtonStatus(){
-//        if let resp = self.controller?.isFavorite(id: movie?.id ?? 0) {
-//
-//            if resp == true {
-//                self.btnFavorite.setImage(#imageLiteral(resourceName: "filledHeart_icon") , for: .normal)
-//            }
-//            else{
-//                self.btnFavorite.setImage(#imageLiteral(resourceName: "emptyHeart_icon") , for: .normal)
-//            }
-//        }
-//    }
+    //    func setFavButtonStatus(){
+    //        if let resp = self.controller?.isFavorite(id: movie?.id ?? 0) {
+    //
+    //            if resp == true {
+    //                self.btnFavorite.setImage(#imageLiteral(resourceName: "filledHeart_icon") , for: .normal)
+    //            }
+    //            else{
+    //                self.btnFavorite.setImage(#imageLiteral(resourceName: "emptyHeart_icon") , for: .normal)
+    //            }
+    //        }
+    //    }
     
     func setupCell() {
         
@@ -143,7 +143,16 @@ class DetailsViewController: UIViewController {
         //self.setFavButtonStatus()
         
         if let urlString = self.movie?.backdropPath {
-            self.moviePhoto.loadUrlImageFromSDWeb(urlString: urlString, type: .cover)
+            self.moviePhoto.loadUrlImageFromSDWeb(urlString: urlString, type: .cover, done: { [weak self] isLoadFinished in
+                
+                if isLoadFinished {
+                    
+                    //self?.imgLoadActivityIndicator.stopAnimating()
+                    
+                }
+                
+            })
+            
         }else {
             self.moviePhoto.image = UIImage(named: "placeholder")
         }
@@ -155,45 +164,45 @@ class DetailsViewController: UIViewController {
         
     }
     
-//    @IBAction func btnFavoriteTapped(_ sender: UIButton) {
-//
-//        //verifica status fav / percorre o array e verifica se existe
-//
-//        if (self.controller?.isFavorite(id: self.movie?.id ?? 0))! {
-//
-//            let alerta = UIAlertController(title: "Aviso", message: "Filme removido dos favoritos.", preferredStyle: .alert)
-//            let btnOk = UIAlertAction(title: "Ok", style: .default, handler: nil)
-//
-//            alerta.addAction(btnOk)
-//
-//            self.present(alerta, animated: true)
-//
-//            if let removeId = self.movie?.id {
-//
-//                self.controller?.removeFavoriteMovie(id: removeId)
-//
-//            }
-//
-//            self.setFavButtonStatus()
-//
-//        }
-//        else {
-//
-//            let alerta = UIAlertController(title: "Salvo", message: "Filme \(self.movie?.title ?? "") salvo nos favoritos.", preferredStyle: .alert)
-//            let btnOk = UIAlertAction(title: "Ok", style: .default, handler: nil)
-//
-//            alerta.addAction(btnOk)
-//
-//            self.present(alerta, animated: true)
-//
-//            if let selectedMovie = self.movie {
-//                self.controller?.saveFavoriteMovie(movie: selectedMovie)
-//            }
-//
-//            self.setFavButtonStatus()
-//
-//        }
-//
-//    }
+    //    @IBAction func btnFavoriteTapped(_ sender: UIButton) {
+    //
+    //        //verifica status fav / percorre o array e verifica se existe
+    //
+    //        if (self.controller?.isFavorite(id: self.movie?.id ?? 0))! {
+    //
+    //            let alerta = UIAlertController(title: "Aviso", message: "Filme removido dos favoritos.", preferredStyle: .alert)
+    //            let btnOk = UIAlertAction(title: "Ok", style: .default, handler: nil)
+    //
+    //            alerta.addAction(btnOk)
+    //
+    //            self.present(alerta, animated: true)
+    //
+    //            if let removeId = self.movie?.id {
+    //
+    //                self.controller?.removeFavoriteMovie(id: removeId)
+    //
+    //            }
+    //
+    //            self.setFavButtonStatus()
+    //
+    //        }
+    //        else {
+    //
+    //            let alerta = UIAlertController(title: "Salvo", message: "Filme \(self.movie?.title ?? "") salvo nos favoritos.", preferredStyle: .alert)
+    //            let btnOk = UIAlertAction(title: "Ok", style: .default, handler: nil)
+    //
+    //            alerta.addAction(btnOk)
+    //
+    //            self.present(alerta, animated: true)
+    //
+    //            if let selectedMovie = self.movie {
+    //                self.controller?.saveFavoriteMovie(movie: selectedMovie)
+    //            }
+    //
+    //            self.setFavButtonStatus()
+    //
+    //        }
+    //
+    //    }
     
 }

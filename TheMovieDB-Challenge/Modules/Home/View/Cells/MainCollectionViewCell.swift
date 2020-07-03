@@ -28,6 +28,7 @@ class MainCollectionViewCell: UICollectionViewCell {
         label.textColor = .darkBlue
         label.font = UIFont.systemFont(ofSize: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
+        
         return label
     }()
     
@@ -55,7 +56,10 @@ class MainCollectionViewCell: UICollectionViewCell {
     
     func setupViews() {
         
-        backgroundColor = UIColor.clear
+        layer.shadowRadius = 9
+        layer.shadowOpacity = 2.3
+        layer.shadowColor = UIColor.darkGray.cgColor
+        layer.shadowOffset = CGSize(width: 5, height: 8)
         
         addSubview(mainCollectionView)
         addSubview(categoryLabel)
