@@ -8,22 +8,21 @@
 
 import UIKit
 
-class MainCollectionViewCell: UICollectionViewCell {
+protocol MainCollectionViewCellDelegate : class {
+    func didTapToSeeDetails(_ section: Int)
+}
+
+class CategorySectionsCollectionViewCell: UICollectionViewCell {
     
     private let cellId = "appCellId"
-    var categorizedArray = [Movie]() {
-        
-        didSet {
-            
-            ///Set Category Type
-            //categoryLabel.text = categorizedArray[0].type
-            
-        }
-        
-    }
+    var section = 0
+    var categorizedArray = [Movie]()
+    
+    weak var delegate: MainCollectionViewCellDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .red
         setupViews()
     }
     
@@ -31,25 +30,26 @@ class MainCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let categoryLabel: UILabel = {
-        let label = UILabel()
-        label.text = ""
-        label.textColor = .darkBlue
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-    }()
-    
-    let detailsButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40.0, height: 15.0))
-        button.sendActions(for: .touchUpInside)
-        button.setTitle("See details", for: .normal)
-        button.tintColor = .darkBlue
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        return button
-    }()
+//    let categoryLabel: UILabel = {
+//        let label = UILabel()
+//        label.text = ""
+//        label.textColor = .darkBlue
+//        label.font = UIFont.systemFont(ofSize: 14)
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//
+//        return label
+//    }()
+//
+//    let seeDetailsLabel: UILabel = {
+//        let label = UILabel()
+//        label.text = "VEjs more details..."
+//        label.textColor = .darkBlue
+//        label.sizeToFit()
+//        label.font = UIFont.systemFont(ofSize: 14)
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//
+//        return label
+//    }()
     
     let mainCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -63,7 +63,7 @@ class MainCollectionViewCell: UICollectionViewCell {
         return collectionView
     }()
     
-    func setupViews() {
+    private func setupViews() {
         
         layer.shadowRadius = 9
         layer.shadowOpacity = 2.3
@@ -71,8 +71,8 @@ class MainCollectionViewCell: UICollectionViewCell {
         layer.shadowOffset = CGSize(width: 5, height: 8)
         
         addSubview(mainCollectionView)
-        addSubview(categoryLabel)
-        addSubview(detailsButton)
+//        addSubview(categoryLabel)
+//        addSubview(seeDetailsLabel)
         
         mainCollectionView.dataSource = self
         mainCollectionView.delegate = self
@@ -81,24 +81,34 @@ class MainCollectionViewCell: UICollectionViewCell {
         let identifier = "MovieCell"
         [mainCollectionView].forEach { $0.register(UINib(nibName: nibName, bundle: nil), forCellWithReuseIdentifier: identifier) }
         
-        detailsButton.addTarget(self, action: #selector(seeDetailsTapped), for: .touchUpInside)
+        //let labelTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.seeDetailsTapped))
+//        seeDetailsLabel.isUserInteractionEnabled = true
+//        seeDetailsLabel.addGestureRecognizer(labelTapGesture)
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-14-[v0]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v0": categoryLabel]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v0": mainCollectionView]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-14-[v0]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v0": detailsButton]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[nameLabel(30)][v0]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v0": mainCollectionView, "nameLabel": categoryLabel]))
+//        let viewDict = ["categoryLabel": categoryLabel, "seeDetailsLabel": seeDetailsLabel, "mainCollectionView": mainCollectionView]
+//
+//        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-14-[categoryLabel]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: viewDict))
+//        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[seeDetailsLabel]-8-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: viewDict))
+//        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[mainCollectionView]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: viewDict))
+//        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[categoryLabel(30)][mainCollectionView]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: viewDict))
+//        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[seeDetailsLabel(30)][mainCollectionView]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: viewDict))
+  
+        let viewDict = ["mainCollectionView": mainCollectionView]
+        
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[mainCollectionView]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: viewDict))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[mainCollectionView]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: viewDict))
         
     }
     
     @objc func seeDetailsTapped() {
         
-        print("Opaa")
+        delegate?.didTapToSeeDetails(section)
         
     }
     
 }
 
-extension MainCollectionViewCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension CategorySectionsCollectionViewCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         

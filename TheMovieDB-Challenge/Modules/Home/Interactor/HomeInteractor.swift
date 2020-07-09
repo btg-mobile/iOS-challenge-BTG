@@ -27,8 +27,11 @@ class HomeInteractor: HomePresenterToInteractorProtocol {
                 
             }
             else {
+                
                 if let error = error {
+                    
                     self.presenter?.problemOnFetchingData(error: error)
+                    
                 }
                 
             }

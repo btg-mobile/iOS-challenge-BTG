@@ -29,8 +29,20 @@ class MovieViewController: UIViewController {
         
     }
 
-    fileprivate func setupView() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        //navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    fileprivate func setupView() {
+        
+        //self.tabBarController?.tabBar.isHidden = true
+        
         movieSearchBar.searchTextField.textColor = UIColor.white
         
         self.addRefreshingControl()

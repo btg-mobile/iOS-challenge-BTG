@@ -24,10 +24,10 @@
                                             <constraint firstAttribute="width" constant="55" id="JLB-PP-OQC"/>
                                             <constraint firstAttribute="height" constant="55" id="uqw-m7-THc"/>
                                         </constraints>
-                                        <color key="color" red="0.0" green="0.13701200490000001" blue="0.26296305660000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="color" red="0.56449776890000003" green="0.80925679210000001" blue="0.63384848829999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </activityIndicatorView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.23148706560000001" green="0.74606138470000005" blue="0.79301637410000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.0049759647810000002" green="0.14137595889999999" blue="0.25887107850000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="CbK-jN-ak8"/>
                                     <constraint firstItem="fsx-rm-QbT" firstAttribute="centerY" secondItem="4P5-Y2-Tyr" secondAttribute="centerY" id="DL1-BW-qtW"/>

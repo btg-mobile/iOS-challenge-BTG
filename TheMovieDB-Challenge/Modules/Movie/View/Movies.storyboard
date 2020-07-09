@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wze-eV-GHH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fqH-Ph-CX4">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -10,13 +10,13 @@
         <!--The Movie DB Challenge-->
         <scene sceneID="OhM-nq-2na">
             <objects>
-                <viewController storyboardIdentifier="MoviesList" id="wze-eV-GHH" customClass="MovieViewController" customModule="The_MovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MoviesList" modalPresentationStyle="fullScreen" id="wze-eV-GHH" customClass="MovieViewController" customModule="The_MovieDB" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2fK-Xa-FSW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YEI-N7-Aaf">
-                                <rect key="frame" x="0.0" y="128" width="375" height="601"/>
+                                <rect key="frame" x="0.0" y="172" width="375" height="557"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Rhi-Hu-fBS">
                                     <size key="itemSize" width="180" height="304"/>
@@ -30,11 +30,11 @@
                                 </userDefinedRuntimeAttributes>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xaa-DV-06L">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
                                 <color key="backgroundColor" red="0.0049759647810000002" green="0.14137595889999999" blue="0.25887107850000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LGd-bj-31G" userLabel="ImageView">
-                                <rect key="frame" x="0.0" y="44" width="375" height="40"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6Q-Md-vqm">
                                         <rect key="frame" x="10" y="5" width="30" height="30"/>
@@ -75,7 +75,7 @@
                                 </constraints>
                             </view>
                             <searchBar contentMode="redraw" placeholder="Busque pelo nome de um filme " translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TzI-pn-b6B">
-                                <rect key="frame" x="0.0" y="84" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="128" width="375" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="zR2-YL-tti"/>
@@ -107,7 +107,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aPE-2l-Elo"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="list.bullet" catalog="system" id="dmG-ye-Nzs"/>
                     <navigationItem key="navigationItem" title="The Movie DB Challenge" largeTitleDisplayMode="always" id="RyT-5U-GRT"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -115,11 +114,41 @@
                         <outlet property="movieCollectionView" destination="YEI-N7-Aaf" id="4Rc-7z-Im7"/>
                         <outlet property="movieSearchBar" destination="TzI-pn-b6B" id="6CQ-gV-Ftv"/>
                         <outlet property="searchBarHight" destination="zR2-YL-tti" id="zrf-8k-BjY"/>
+                        <segue destination="hRV-6i-Qmi" kind="show" identifier="goToDetailsViewController" id="4vf-bE-xpv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4T0-CQ-2Zr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1476" y="1080.2955665024631"/>
+            <point key="canvasLocation" x="2418.4000000000001" y="1080.2955665024631"/>
+        </scene>
+        <!--Details-->
+        <scene sceneID="xeO-Bd-lMm">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Details" id="hRV-6i-Qmi" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="PrQ-M8-YTU"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9a9-9V-CvT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3003.1999999999998" y="992.36453201970448"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="WlA-Ph-xPT">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fqH-Ph-CX4" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" image="list.bullet" catalog="system" id="dmG-ye-Nzs"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="F8t-om-2LK">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="wze-eV-GHH" kind="relationship" relationship="rootViewController" id="gvx-yc-47b"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="roM-dJ-WT6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1673" y="1080"/>
         </scene>
     </scenes>
     <resources>

@@ -41,6 +41,7 @@ class HomeViewController: UIViewController {
         if !signIn.hasPreviousSignIn() {
             
             perform(#selector(shouldShowOnboarding), with: self, afterDelay: 1)
+            
         }
         
     }
@@ -59,6 +60,8 @@ class HomeViewController: UIViewController {
     
     private func setUp() {
         
+        mainCollectionView.showsVerticalScrollIndicator = false
+        
         ///Delegate and DataSource methods
         [mainCollectionView].forEach { (collectionView) in
             
@@ -73,7 +76,9 @@ class HomeViewController: UIViewController {
     fileprivate func registerCells() {
         
         let cellID = "MainCollectionViewCellID"
-        mainCollectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: cellID)
+        mainCollectionView.register(CategorySectionsCollectionViewCell.self, forCellWithReuseIdentifier: cellID)
+        
+//        mainCollectionView.register(HomeSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HomeSectionHeaderView.reuseIdentifier)
         
     }
     
@@ -120,13 +125,21 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
         ///Main Screen has only one section now // Series will come afterwards
-        return 1
+        return presenter?.numberOfSections() ?? 0
         
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return presenter?.getNumberOfSections() ?? 0
+        return 1//presenter?.getNumberOfRowsInSection(section: section) ?? 0
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        let sectionHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HomeSectionHeaderView.reuseIdentifier, for: indexPath) as! HomeSectionHeaderView
+        
+        return sectionHeaderView
         
     }
     
@@ -134,7 +147,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         let withReuseIdentifier = "MainCollectionViewCellID"
         
-        let cell: MainCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: withReuseIdentifier, for: indexPath) as! MainCollectionViewCell
+        let cell: CategorySectionsCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: withReuseIdentifier, for: indexPath) as! CategorySectionsCollectionViewCell
         
         if let arrayMovies = presenter?.loadMovieArrayWithIndexPath(indexPath: indexPath) {
             
@@ -142,9 +155,23 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             
         }
         
-        cell.categoryLabel.text = presenter?.getCategoryName(section: indexPath.row)
+        //cell.categoryLabel.text = presenter?.getCategoryName(section: indexPath.row)
+        cell.section = indexPath.row
+        cell.delegate = self
         
         return cell
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let storyboard = UIStoryboard.init(name: "Details", bundle: nil)
+        
+        let vc: DetailsViewController = storyboard.instantiateViewController(withIdentifier: "DetailsViewControllerID") as! DetailsViewController
+        
+        vc.movie = presenter?.loadMovieWithIndexPath(indexPath: indexPath)
+        
+        present(vc, animated: true, completion: nil)
         
     }
     
@@ -178,6 +205,22 @@ extension HomeViewController: HomePresenterToViewProtocol {
     func problemOnFetchingData(error: Constants.errorTypes) {
         
         ///Show Alert with problem
+        
+    }
+    
+}
+
+//MARK: - MainCollectionViewCellDelegate Protocol Methods
+
+extension HomeViewController: MainCollectionViewCellDelegate {
+    
+    func didTapToSeeDetails(_ section: Int) {
+        
+        let movieStoryboard = UIStoryboard.init(name: "Movies", bundle: Bundle.main)
+        
+        let vc = movieStoryboard.instantiateViewController(withIdentifier: "MoviesList")
+        
+        self.present(vc, animated: true, completion: nil)
         
     }
     

@@ -59,6 +59,17 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Gotham-Rounded-Bold.ttf</string>
+		<string>Gotham-Rounded-Book.otf</string>
+		<string>Gotham-Rounded-Medium.otf</string>
+		<string>Roboto-Regular.ttf</string>
+		<string>Inter-Regular.ttf</string>
+		<string>Inter-Medium.ttf</string>
+		<string>Inter-Bold.ttf</string>
+		<string>Inter-Light-BETA.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -99,16 +110,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>UIAppFonts</key>
-    <array>
-        <string>Gotham-Rounded-Bold.ttf</string>
-        <string>Gotham-Rounded-Book.otf</string>
-        <string>Gotham-Rounded-Medium.otf</string>
-        <string>Roboto-Regular.ttf</string>
-        <string>Inter-Regular.ttf</string>
-        <string>Inter-Medium.ttf</string>
-        <string>Inter-Bold.ttf</string>
-        <string>Inter-Light-BETA.ttf</string>
-    </array>
 </dict>
 </plist>

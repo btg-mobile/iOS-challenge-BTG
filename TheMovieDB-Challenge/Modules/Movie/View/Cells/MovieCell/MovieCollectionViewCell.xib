@@ -24,9 +24,9 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcd-e4-ZJE" userLabel="MainView">
                         <rect key="frame" x="0.0" y="0.0" width="180" height="320"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="portrait-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="A1x-JG-DIe" customClass="CustomImageView" customModule="The_MovieDB" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A1x-JG-DIe" customClass="CustomImageView" customModule="The_MovieDB" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="180" height="282"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="StZ-uK-eBE" userLabel="bottomView">
                                 <rect key="frame" x="0.0" y="282" width="180" height="30"/>
@@ -110,7 +110,4 @@
             <point key="canvasLocation" x="737" y="99"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="portrait-placeholder" width="192" height="202"/>
-    </resources>
 </document>

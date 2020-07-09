@@ -20,7 +20,7 @@ class HomePresenter: HomeViewToPresenterProtocol {
     
     ///Local Data Arrays
     private var favoriteMoviesArray: [[Movie]] = []
-    private var moviesArray: [[Movie]] = []
+    private var moviesArray: [[Movie]] = [[]]
     private var sectionNames: [String] = []
     
     func getMovies(page: Int, category: Constants.category, movieSelection: Constants.MovieSelection) {
@@ -29,7 +29,7 @@ class HomePresenter: HomeViewToPresenterProtocol {
         
     }
     
-    func getNumberOfSections() -> Int {
+    func numberOfSections() -> Int {
         
         return moviesArray.count
         
@@ -43,8 +43,20 @@ class HomePresenter: HomeViewToPresenterProtocol {
     
     func loadMovieArrayWithIndexPath(indexPath: IndexPath) -> [Movie] {
         
-        return moviesArray[indexPath.row]
+        return moviesArray[indexPath.section]
         
+    }
+    
+    func loadMovieWithIndexPath(indexPath: IndexPath) -> Movie {
+        
+        return moviesArray[indexPath.section][indexPath.row]
+        
+    }
+    
+    func getCategoryName(section: Int) -> String {
+        
+        return sectionNames[section]
+    
     }
     
     func requestFirstCallOfMovies() {
@@ -56,12 +68,6 @@ class HomePresenter: HomeViewToPresenterProtocol {
         interactor?.getMovies(page: 1, category: .Movie, movieSelection: Constants.MovieSelection.TopRated)
         interactor?.getMovies(page: 1, category: .Movie, movieSelection: Constants.MovieSelection.Upcoming)
         
-    }
-    
-    func getCategoryName(section: Int) -> String {
-        
-        return sectionNames[section]
-    
     }
     
 }
