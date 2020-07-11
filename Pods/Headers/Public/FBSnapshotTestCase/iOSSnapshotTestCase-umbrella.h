@@ -1,1 +1,0 @@
-../../../Target Support Files/iOSSnapshotTestCase/iOSSnapshotTestCase-umbrella.h

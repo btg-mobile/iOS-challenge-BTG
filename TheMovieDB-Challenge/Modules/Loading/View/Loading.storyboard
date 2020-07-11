@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZhE-fD-2Re">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Loading View Controller-->
+        <scene sceneID="G0Y-6W-WFD">
+            <objects>
+                <viewController storyboardIdentifier="LoadingView" id="ZhE-fD-2Re" customClass="LoadingViewController" customModule="The_MovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="E2O-lF-DjY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4P5-Y2-Tyr">
+                                <rect key="frame" x="137.5" y="283.5" width="100" height="100"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="fsx-rm-QbT">
+                                        <rect key="frame" x="22.5" y="22.5" width="55" height="55"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="55" id="JLB-PP-OQC"/>
+                                            <constraint firstAttribute="height" constant="55" id="uqw-m7-THc"/>
+                                        </constraints>
+                                        <color key="color" red="0.56449776890000003" green="0.80925679210000001" blue="0.63384848829999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0049759647810000002" green="0.14137595889999999" blue="0.25887107850000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="CbK-jN-ak8"/>
+                                    <constraint firstItem="fsx-rm-QbT" firstAttribute="centerY" secondItem="4P5-Y2-Tyr" secondAttribute="centerY" id="DL1-BW-qtW"/>
+                                    <constraint firstAttribute="height" constant="100" id="fh4-8v-MZh"/>
+                                    <constraint firstItem="fsx-rm-QbT" firstAttribute="centerX" secondItem="4P5-Y2-Tyr" secondAttribute="centerX" id="u7H-V0-4N2"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4P5-Y2-Tyr" firstAttribute="centerY" secondItem="Bg9-8c-M08" secondAttribute="centerY" id="9Iw-eo-T1S"/>
+                            <constraint firstItem="4P5-Y2-Tyr" firstAttribute="centerX" secondItem="Bg9-8c-M08" secondAttribute="centerX" id="oiP-5U-Sgm"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Bg9-8c-M08"/>
+                    </view>
+                    <connections>
+                        <outlet property="parentindicator" destination="4P5-Y2-Tyr" id="0NP-tK-Fzm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="We4-j2-c4m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="36" y="98"/>
+        </scene>
+    </scenes>
+</document>

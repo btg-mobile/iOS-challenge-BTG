@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "happy-woman-watching-movie-holding-tablet-computer-beautiful-positive-blogger-streaming-video-online_207258-281.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "happy-woman-watching-movie-holding-tablet-computer-beautiful-positive-blogger-streaming-video-online_207258-282.jpg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "happy-woman-watching-movie-holding-tablet-computer-beautiful-positive-blogger-streaming-video-online_207258-283.jpg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vcI-JW-zDu">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Settings View Controller-->
+        <scene sceneID="c47-s8-FZK">
+            <objects>
+                <viewController id="vcI-JW-zDu" customClass="SettingsViewController" customModule="The_MovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FK1-jT-RpZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3mU-h0-qWH">
+                                <rect key="frame" x="50" y="144" width="314" height="30"/>
+                                <state key="normal" title="Log Out from Google"/>
+                                <connections>
+                                    <action selector="tappedToLogOut:" destination="vcI-JW-zDu" eventType="touchUpInside" id="gG5-WZ-dlF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="3mU-h0-qWH" firstAttribute="leading" secondItem="Rm5-iJ-MQo" secondAttribute="leading" constant="50" id="JJw-5J-tB4"/>
+                            <constraint firstItem="Rm5-iJ-MQo" firstAttribute="trailing" secondItem="3mU-h0-qWH" secondAttribute="trailing" constant="50" id="Lr1-aq-aGZ"/>
+                            <constraint firstItem="3mU-h0-qWH" firstAttribute="top" secondItem="Rm5-iJ-MQo" secondAttribute="top" constant="100" id="y0q-Ms-e9Q"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Rm5-iJ-MQo"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="more" id="bhy-sE-ssK"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iPl-kQ-2Fb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="335" y="-137"/>
+        </scene>
+    </scenes>
+</document>
