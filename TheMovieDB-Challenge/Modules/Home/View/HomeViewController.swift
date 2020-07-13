@@ -78,7 +78,7 @@ class HomeViewController: UIViewController {
         let cellID = "MainCollectionViewCellID"
         mainCollectionView.register(CategorySectionsCollectionViewCell.self, forCellWithReuseIdentifier: cellID)
         
-//        mainCollectionView.register(HomeSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HomeSectionHeaderView.reuseIdentifier)
+        mainCollectionView.register(HomeSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HomeSectionHeaderView.reuseIdentifier)
         
     }
     
@@ -143,6 +143,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
+        return .init(width: view.frame.width, height: 30.0)
+        
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let withReuseIdentifier = "MainCollectionViewCellID"
@@ -183,7 +189,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
-        return UIEdgeInsets(top: 20.0, left: 10, bottom: 20.0, right: 10)
+        
+        
+        return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
         
     }
     
