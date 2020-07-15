@@ -10,7 +10,7 @@
         <!--Favorites-->
         <scene sceneID="lIV-Lc-AUE">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="176-fc-qdK" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="favoriteStoryboardID" automaticallyAdjustsScrollViewInsets="NO" id="176-fc-qdK" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Favorites" image="iconStar" selectedImage="iconStarFilled" id="pTe-EG-E4x"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>

@@ -17,10 +17,15 @@ class HomeViewController: UIViewController {
     weak var presenter: HomeViewToPresenterProtocol?
     private var refreshControl: UIRefreshControl?
     
+    //MARK: - Sets the StatusBar as white
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        
+        return UIStatusBarStyle.lightContent
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        HomeRouter.initModule(from: self)
         
         LoadingView.sharedInstance.show()
         
@@ -81,29 +86,22 @@ class HomeViewController: UIViewController {
         mainCollectionView.register(HomeSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HomeSectionHeaderView.reuseIdentifier)
         
     }
-    
-    //MARK: - Sets the StatusBar as white
-    override var preferredStatusBarStyle: UIStatusBarStyle {
         
-        return UIStatusBarStyle.lightContent
-        
-    }
-    
     //MARK: - TapGestures
-    @IBAction func tapToSeeMorePopularMovies(_ sender: UIButton) {
-        
-        let storyboard = UIStoryboard.init(name: "Movies", bundle: nil)
-        
-        let vc = storyboard.instantiateViewController(withIdentifier: "MoviesList") as! MovieViewController
-        
-        self.present(vc, animated: true, completion: nil)
-        
-    }
+//    @IBAction func tapToSeeMorePopularMovies(_ sender: UIButton) {
+//
+//        let storyboard = UIStoryboard.init(name: "Movies", bundle: nil)
+//
+//        let vc = storyboard.instantiateViewController(withIdentifier: "MoviesList") as! MovieViewController
+//
+//        self.present(vc, animated: true, completion: nil)
+//
+//    }
     
     private func addRefreshingControl() {
         
         self.refreshControl = UIRefreshControl()
-        self.refreshControl?.tintColor = .lightGreen
+        self.refreshControl?.tintColor = .darkBlue
         self.refreshControl?.addTarget(self, action: #selector(refreshList), for: .valueChanged)
         self.mainCollectionView.addSubview(refreshControl ?? UIView())
         
@@ -111,9 +109,10 @@ class HomeViewController: UIViewController {
     
     @objc private func refreshList() {
         
-        refreshControl?.endRefreshing()
-        
-        presenter?.requestFirstCallOfMovies()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.refreshControl?.endRefreshing()
+            self.presenter?.requestFirstCallOfMovies()
+        }
         
     }
     
@@ -139,6 +138,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         let sectionHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HomeSectionHeaderView.reuseIdentifier, for: indexPath) as! HomeSectionHeaderView
         
+        sectionHeaderView.movieTypeLabel.text = presenter?.getCategoryName(section: indexPath.section)
+        
+        sectionHeaderView.selectedSection = indexPath.section
+        sectionHeaderView.delegate = self
+        
         return sectionHeaderView
         
     }
@@ -162,22 +166,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
         
         //cell.categoryLabel.text = presenter?.getCategoryName(section: indexPath.row)
-        cell.section = indexPath.row
+        cell.selectedSection = indexPath.section
         cell.delegate = self
         
         return cell
-        
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let storyboard = UIStoryboard.init(name: "Details", bundle: nil)
-        
-        let vc: DetailsViewController = storyboard.instantiateViewController(withIdentifier: "DetailsViewControllerID") as! DetailsViewController
-        
-        vc.movie = presenter?.loadMovieWithIndexPath(indexPath: indexPath)
-        
-        present(vc, animated: true, completion: nil)
         
     }
     
@@ -188,8 +180,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        
-        
         
         return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
         
@@ -222,6 +212,21 @@ extension HomeViewController: HomePresenterToViewProtocol {
 
 extension HomeViewController: MainCollectionViewCellDelegate {
     
+    func didSelectItemAt(section: Int, row: Int) {
+    
+        let storyboard = UIStoryboard.init(name: "Details", bundle: nil)
+        let identifier = "DetailsViewControllerID"
+        
+        let vc: DetailsViewController = storyboard.instantiateViewController(withIdentifier: identifier) as! DetailsViewController
+        
+        let indexPath = IndexPath(row: row, section: section)
+        
+        vc.movie = presenter?.loadMovieWithIndexPath(indexPath: indexPath)
+        
+        present(vc, animated: true, completion: nil)
+        
+    }
+    
     func didTapToSeeDetails(_ section: Int) {
         
         let movieStoryboard = UIStoryboard.init(name: "Movies", bundle: Bundle.main)
@@ -231,5 +236,5 @@ extension HomeViewController: MainCollectionViewCellDelegate {
         self.present(vc, animated: true, completion: nil)
         
     }
-    
+        
 }

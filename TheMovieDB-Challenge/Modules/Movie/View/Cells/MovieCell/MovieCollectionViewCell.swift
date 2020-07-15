@@ -26,7 +26,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
 
     func setupCell(movie: Movie) {
         
-        mainView.layer.cornerRadius = 10.0
+        //layer.cornerRadius = 6.0
         layer.masksToBounds = false
         layer.shadowRadius = 9
         layer.shadowOpacity = 2.3

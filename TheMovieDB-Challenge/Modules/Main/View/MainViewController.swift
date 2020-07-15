@@ -6,13 +6,13 @@
 //  Copyright © 2020 Alan Silva. All rights reserved.
 //
 
-import UIKit
-
-class MainViewController: UITabBarController {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
-}
+//import UIKit
+//
+//class MainViewController: UITabBarController {
+//    
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        
+//    }
+//    
+//}

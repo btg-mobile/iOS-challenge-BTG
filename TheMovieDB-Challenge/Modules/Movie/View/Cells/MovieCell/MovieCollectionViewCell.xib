@@ -107,7 +107,7 @@
                 <outlet property="movieImageView" destination="A1x-JG-DIe" id="duE-Jj-Yny"/>
                 <outlet property="movieNameLabel" destination="Imb-hh-xuf" id="ZJh-kO-lNH"/>
             </connections>
-            <point key="canvasLocation" x="737" y="99"/>
+            <point key="canvasLocation" x="736.875" y="98.239436619718305"/>
         </collectionViewCell>
     </objects>
 </document>
