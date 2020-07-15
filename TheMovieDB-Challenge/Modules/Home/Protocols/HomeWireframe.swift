@@ -6,8 +6,6 @@
 //  Copyright © 2020 Alan Silva. All rights reserved.
 //
 
-import Foundation
-
 import UIKit
 
 protocol HomeViewToPresenterProtocol: class {

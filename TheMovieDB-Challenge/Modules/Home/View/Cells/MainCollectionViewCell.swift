@@ -10,12 +10,13 @@ import UIKit
 
 protocol MainCollectionViewCellDelegate : class {
     func didTapToSeeDetails(_ section: Int)
+    func didSelectItemAt(section: Int, row: Int)
 }
 
 class CategorySectionsCollectionViewCell: UICollectionViewCell {
     
     private let cellId = "appCellId"
-    var section = 0
+    var selectedSection: Int?
     var categorizedArray = [Movie]()
     
     weak var delegate: MainCollectionViewCellDelegate?
@@ -89,6 +90,16 @@ extension CategorySectionsCollectionViewCell: UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
         return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if let section = selectedSection {
+        
+            delegate?.didSelectItemAt(section: section, row: indexPath.row)
+        
+        }
         
     }
     
