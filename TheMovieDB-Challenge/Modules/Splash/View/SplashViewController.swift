@@ -45,11 +45,16 @@ class SplashViewController: UIViewController {
         DispatchQueue.main.async {
             UIView.transition(with: self.view, duration: 0.3, options: .transitionCrossDissolve, animations: {
                 
-                let homeStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
-                
-                let homeVC = homeStoryboard.instantiateInitialViewController()
-                
-                self.present(homeVC!, animated: false, completion: nil)
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                if let tabBar = storyboard.instantiateViewController(withIdentifier: "MainViewControllerIdentifier") as? UITabBarController {
+                    let first = HomeRouter.createModule(as: .fullScreen)
+                    let second = UIStoryboard.init(name: "Favorites", bundle: Bundle.main).instantiateViewController(withIdentifier: "favoriteStoryboardID")
+                    let third = UIStoryboard.init(name: "Settings", bundle: Bundle.main).instantiateViewController(withIdentifier: "settingsStoryboardID")
+                    
+                    tabBar.viewControllers = [first, second, third]
+                    
+                    self.present(tabBar, animated: false, completion: nil)
+                }
                 
             })
         }

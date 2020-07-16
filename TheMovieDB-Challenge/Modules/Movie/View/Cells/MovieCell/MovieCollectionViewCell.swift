@@ -20,13 +20,18 @@ class MovieCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        layer.cornerRadius = 10.0
-        
         imgLoadActivityIndicator.startAnimating()
         
     }
 
     func setupCell(movie: Movie) {
+        
+        //layer.cornerRadius = 6.0
+        layer.masksToBounds = false
+        layer.shadowRadius = 9
+        layer.shadowOpacity = 2.3
+        layer.shadowColor = UIColor.darkGray.cgColor
+        layer.shadowOffset = CGSize(width: 5, height: 8)
         
         if let urlString = movie.posterPath {
             

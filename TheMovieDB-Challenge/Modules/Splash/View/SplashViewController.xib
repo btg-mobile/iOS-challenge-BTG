@@ -28,7 +28,6 @@
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kzp-Sf-Kkh" customClass="AnimationView" customModule="Lottie">
                     <rect key="frame" x="40" y="434" width="240" height="80"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="Kz5-1Y-hbL"/>
                         <constraint firstAttribute="width" secondItem="Kzp-Sf-Kkh" secondAttribute="height" multiplier="3:1" id="eFa-Ux-0qt"/>
