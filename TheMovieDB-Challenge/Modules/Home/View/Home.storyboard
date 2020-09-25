@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wze-eV-GHH">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--The Movie DB Challenge-->
+        <scene sceneID="OhM-nq-2na">
+            <objects>
+                <viewController storyboardIdentifier="HomeViewControllerIdentifier" modalPresentationStyle="fullScreen" id="wze-eV-GHH" customClass="HomeViewController" customModule="The_MovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2fK-Xa-FSW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="apv-Lq-Zzu" userLabel="TopView">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <color key="backgroundColor" red="0.0049759647810000002" green="0.14137595889999999" blue="0.25887107850000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Laj-85-yJA" userLabel="HeaderView">
+                                <rect key="frame" x="0.0" y="44" width="414" height="40"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="long_logo" translatesAutoresizingMaskIntoConstraints="NO" id="azM-N1-RKJ">
+                                        <rect key="frame" x="65" y="0.0" width="284" height="40"/>
+                                        <color key="backgroundColor" red="0.0049759647810000002" green="0.14137595889999999" blue="0.25887107850000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0049759647810000002" green="0.14137595889999999" blue="0.25887107850000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="1Yo-LS-PLC"/>
+                                    <constraint firstItem="azM-N1-RKJ" firstAttribute="top" secondItem="Laj-85-yJA" secondAttribute="top" id="EiS-3C-vV2"/>
+                                    <constraint firstAttribute="bottom" secondItem="azM-N1-RKJ" secondAttribute="bottom" id="aGw-Fq-Ega"/>
+                                    <constraint firstItem="azM-N1-RKJ" firstAttribute="leading" secondItem="Laj-85-yJA" secondAttribute="leading" constant="65" id="bbT-6e-T13"/>
+                                    <constraint firstAttribute="trailing" secondItem="azM-N1-RKJ" secondAttribute="trailing" constant="65" id="wSn-c8-c2S"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="goU-fW-9dx" userLabel="MainView">
+                                <rect key="frame" x="0.0" y="84" width="414" height="729"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ymd-98-l2H">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="729"/>
+                                        <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wCz-Id-zfW">
+                                            <size key="itemSize" width="180" height="304"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                    </collectionView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0049759647810000002" green="0.14137595889999999" blue="0.25887107850000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="ymd-98-l2H" firstAttribute="leading" secondItem="goU-fW-9dx" secondAttribute="leading" id="0IK-Zb-1au"/>
+                                    <constraint firstItem="ymd-98-l2H" firstAttribute="top" secondItem="goU-fW-9dx" secondAttribute="top" id="GP9-9t-xxE"/>
+                                    <constraint firstAttribute="trailing" secondItem="ymd-98-l2H" secondAttribute="trailing" id="MkG-FM-S0u"/>
+                                    <constraint firstAttribute="bottom" secondItem="ymd-98-l2H" secondAttribute="bottom" id="Sfe-kr-RCE"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Laj-85-yJA" firstAttribute="leading" secondItem="aPE-2l-Elo" secondAttribute="leading" id="11s-Y5-bcL"/>
+                            <constraint firstItem="goU-fW-9dx" firstAttribute="trailing" secondItem="aPE-2l-Elo" secondAttribute="trailing" id="KrP-iS-okm"/>
+                            <constraint firstItem="aPE-2l-Elo" firstAttribute="bottom" secondItem="goU-fW-9dx" secondAttribute="bottom" id="MAV-b1-1bc"/>
+                            <constraint firstItem="apv-Lq-Zzu" firstAttribute="top" secondItem="2fK-Xa-FSW" secondAttribute="top" id="PLE-ab-z2b"/>
+                            <constraint firstItem="apv-Lq-Zzu" firstAttribute="leading" secondItem="2fK-Xa-FSW" secondAttribute="leading" id="Q87-OZ-M0b"/>
+                            <constraint firstItem="Laj-85-yJA" firstAttribute="top" secondItem="apv-Lq-Zzu" secondAttribute="bottom" id="doT-KN-acc"/>
+                            <constraint firstItem="goU-fW-9dx" firstAttribute="top" secondItem="Laj-85-yJA" secondAttribute="bottom" id="emt-Zu-YP3"/>
+                            <constraint firstItem="Laj-85-yJA" firstAttribute="trailing" secondItem="aPE-2l-Elo" secondAttribute="trailing" id="fi2-il-aIA"/>
+                            <constraint firstAttribute="trailing" secondItem="apv-Lq-Zzu" secondAttribute="trailing" id="mP4-eJ-m5h"/>
+                            <constraint firstItem="goU-fW-9dx" firstAttribute="leading" secondItem="aPE-2l-Elo" secondAttribute="leading" id="tb0-SA-EFI"/>
+                            <constraint firstItem="Laj-85-yJA" firstAttribute="top" secondItem="aPE-2l-Elo" secondAttribute="top" id="tm9-15-pSK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="aPE-2l-Elo"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Home" image="baseline_movie_filter_black_24pt" id="dmG-ye-Nzs"/>
+                    <navigationItem key="navigationItem" title="The Movie DB Challenge" largeTitleDisplayMode="always" id="RyT-5U-GRT"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="mainCollectionView" destination="ymd-98-l2H" id="VSJ-Te-81p"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4T0-CQ-2Zr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1460" y="1042.6108374384237"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="baseline_movie_filter_black_24pt" width="24" height="24"/>
+        <image name="long_logo" width="509.33334350585938" height="37"/>
+    </resources>
+</document>

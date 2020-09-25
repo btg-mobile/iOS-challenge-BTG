@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="176-fc-qdK">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Favorites-->
+        <scene sceneID="lIV-Lc-AUE">
+            <objects>
+                <navigationController storyboardIdentifier="favoriteStoryboardID" automaticallyAdjustsScrollViewInsets="NO" id="176-fc-qdK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Favorites" image="iconStar" selectedImage="iconStarFilled" id="pTe-EG-E4x"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KrI-aA-Hcw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0" green="0.69475418330000005" blue="0.87939745189999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="HHL-8A-3h9" kind="relationship" relationship="rootViewController" id="8kx-Qp-7mo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E9K-ra-Sog" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1657.9710144927537" y="918.75"/>
+        </scene>
+        <!--Favoritos-->
+        <scene sceneID="Ifk-Fu-rtq">
+            <objects>
+                <viewController id="HHL-8A-3h9" customClass="FavoritesViewController" customModule="The_MovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QBg-xz-NzJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" placeholder="Busque pelo nome ou ano" translatesAutoresizingMaskIntoConstraints="NO" id="dmd-Ex-Qby">
+                                <rect key="frame" x="0.0" y="44" width="320" height="44"/>
+                                <color key="backgroundColor" red="0.0" green="0.69081521030000004" blue="0.8754540086" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="a6G-Li-xT2"/>
+                                </constraints>
+                                <color key="tintColor" red="0.0" green="0.69081521030000004" blue="0.8754540086" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="barTintColor" red="0.0" green="0.69081521030000004" blue="0.8754540086" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="HHL-8A-3h9" id="7up-lW-syq"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="265" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vmB-jn-C0z">
+                                <rect key="frame" x="0.0" y="88" width="320" height="431"/>
+                                <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dmd-Ex-Qby" firstAttribute="top" secondItem="I4u-av-ZsU" secondAttribute="top" id="5aT-1D-99T"/>
+                            <constraint firstItem="dmd-Ex-Qby" firstAttribute="trailing" secondItem="I4u-av-ZsU" secondAttribute="trailing" id="7OB-do-cBS"/>
+                            <constraint firstItem="vmB-jn-C0z" firstAttribute="trailing" secondItem="I4u-av-ZsU" secondAttribute="trailing" id="Lnj-kc-LQG"/>
+                            <constraint firstItem="vmB-jn-C0z" firstAttribute="top" secondItem="dmd-Ex-Qby" secondAttribute="bottom" symbolic="YES" id="My2-Ia-TQx"/>
+                            <constraint firstItem="vmB-jn-C0z" firstAttribute="bottom" secondItem="I4u-av-ZsU" secondAttribute="bottom" id="Urh-mQ-sBm"/>
+                            <constraint firstItem="dmd-Ex-Qby" firstAttribute="leading" secondItem="I4u-av-ZsU" secondAttribute="leading" id="dMl-At-gwO"/>
+                            <constraint firstItem="vmB-jn-C0z" firstAttribute="leading" secondItem="I4u-av-ZsU" secondAttribute="leading" id="wor-mc-z9u"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="I4u-av-ZsU"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Favoritos" largeTitleDisplayMode="always" id="R6F-Og-xe2"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="favoritesSearchBar" destination="dmd-Ex-Qby" id="XlT-yO-OFq"/>
+                        <outlet property="favoritesTableView" destination="vmB-jn-C0z" id="EXu-WB-rdZ"/>
+                        <segue destination="wBV-YP-ikg" kind="show" identifier="goToDetailsOfFav" id="nhY-Pj-eud"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cse-Yf-SnW" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2543" y="918"/>
+        </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="XxH-kx-vZK">
+            <objects>
+                <viewControllerPlaceholder id="wBV-YP-ikg" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Dgt-85-Vj2"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UCr-De-gAO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3356" y="820"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="iconStar" width="30" height="30"/>
+        <image name="iconStarFilled" width="30" height="30"/>
+    </resources>
+</document>
